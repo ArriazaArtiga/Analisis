@@ -1,0 +1,17 @@
+﻿$PBExportHeader$f_db_upd_estado_contribuyente.srf
+global type f_db_upd_estado_contribuyente from function_object
+end type
+
+forward prototypes
+global function integer f_db_upd_estado_contribuyente (string as_dpi, ref integer ai_estado)
+end prototypes
+
+global function integer f_db_upd_estado_contribuyente (string as_dpi, ref integer ai_estado);update contribuyentes
+set 	estado = :ai_estado,
+		subestado = 1
+where dpi = :as_dpi 
+using SQLCA;
+
+return 1
+end function
+

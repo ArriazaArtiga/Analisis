@@ -1,0 +1,27 @@
+﻿$PBExportHeader$f_db_get_fechas_fin_cv.srf
+global type f_db_get_fechas_fin_cv from function_object
+end type
+
+forward prototypes
+global function datetime f_db_get_fechas_fin_cv (long al_solicitud, string as_dpi, string as_tipo_docto, string as_unidad)
+end prototypes
+
+global function datetime f_db_get_fechas_fin_cv (long al_solicitud, string as_dpi, string as_tipo_docto, string as_unidad);Datetime ldt_fecha_fin, ldt_fecha_final
+
+select  	DATEADD(mm,b.Monto_Anio1,a.Fecha_Inicio_Calculo)
+into 		:ldt_fecha_fin
+from		Solicitud_Documentos_expediente a,
+			Solicitud_Detalle_Pagos b
+where   	a.No_Solicitud = b.No_Solicitud
+and		a.dpi = b.dpi
+and		a.No_Solicitud = :al_solicitud
+and		a.dpi = :as_dpi
+and		a.tipo_documento = :as_tipo_docto
+and		a.unidad = :as_unidad
+using 		SQLCA;
+
+ldt_fecha_final = f_fecha_fin_mes(month(date(ldt_fecha_fin)),year(date(ldt_fecha_fin)))
+
+Return ldt_fecha_final
+end function
+

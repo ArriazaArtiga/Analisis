@@ -1,0 +1,82 @@
+﻿$PBExportHeader$f_db_get_monto_b14_pen_meses_pago.srf
+global type f_db_get_monto_b14_pen_meses_pago from function_object
+end type
+
+forward prototypes
+global function integer f_db_get_monto_b14_pen_meses_pago (string as_dpi, decimal adc_pension)
+end prototypes
+
+global function integer f_db_get_monto_b14_pen_meses_pago (string as_dpi, decimal adc_pension);integer li_dia, li_mes, li_anio, li_meses
+datetime ldt_fecha_inicio_calculo, ldt_fecha_fin_mes, ldt_fecha_b14_present, ldt_fecha_b14_ini_present
+string ls_fecha
+decimal ldc_pension, ldc_monto
+
+Select 	Fecha_Inicio_Calculo 
+into 		:ldt_fecha_inicio_calculo
+from 		Solicitud_Documentos_Expediente
+where 	DPI = :as_dpi and
+			Tipo_Documento = '7' and
+			Unidad = 5 
+using 		SQLCA;
+
+li_mes = month(date(ldt_fecha_inicio_calculo))
+li_anio = year(date(ldt_fecha_inicio_calculo))
+
+if li_mes = 1 or li_mes = 3 or li_mes = 5 or li_mes = 7 or li_mes = 8 or li_mes = 10 or li_mes = 12 then
+	li_dia = 31
+else
+	if li_mes = 4 or li_mes = 6 or li_mes = 9 or li_mes = 11 then
+		li_dia = 30
+	else
+		if mod(li_anio, 400) = 0 then
+			li_dia = 29
+		else
+			if mod(li_anio, 4) = 0 and mod(li_anio, 100) <> 0 then
+				li_dia = 29
+			else
+				li_dia = 28
+			end if
+		end if
+	end if
+end if
+
+ls_fecha = string(li_dia)+'/'+string(li_mes)+'/'+string(li_anio)
+ldt_fecha_fin_mes = datetime(ls_fecha)
+
+ldt_fecha_b14_present = datetime('30/06/'+string(year(today())))
+ldt_fecha_b14_ini_present = datetime('01/07/'+string(year(today())-1))
+
+if ldt_fecha_inicio_calculo < ldt_fecha_b14_ini_present then
+	Select 	DATEDIFF(mm,:ldt_fecha_b14_ini_present, :ldt_fecha_b14_present)
+	into 		:li_meses
+	from 		Solicitud_Documentos_Expediente
+	where 	DPI = :as_dpi and
+				Tipo_Documento = '7' and
+				Unidad = 5 
+	using 		SQLCA;
+else
+	Select 	DATEDIFF(mm,:ldt_fecha_fin_mes, :ldt_fecha_b14_present)
+	into 		:li_meses
+	from 		Solicitud_Documentos_Expediente
+	where 	DPI = :as_dpi and
+				Tipo_Documento = '7' and
+				Unidad = 5 
+	using 		SQLCA;
+end if
+
+//ldc_pension = f_db_get_pension_calculada_contribuyente(as_dpi)
+
+//ldc_monto = (adc_pension/12) * (li_meses)
+//messagebox('pension',adc_pension)
+//messagebox('pension/12',adc_pension/12)
+//messagebox('dia',li_dia)
+//messagebox('pension/12/dia',(adc_pension/12)/li_dia)
+//messagebox('meses',li_meses)
+//messagebox('ldt_fecha_fin_mes',string(ldt_fecha_fin_mes))
+//messagebox('ldt_fecha_b14_past',string(datetime('30/06/'+string(year(today()) - 1))))
+//
+
+
+return li_meses+1
+end function
+

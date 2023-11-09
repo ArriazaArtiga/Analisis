@@ -1,0 +1,22 @@
+﻿$PBExportHeader$f_db_ins_nom_gral.srf
+global type f_db_ins_nom_gral from function_object
+end type
+
+forward prototypes
+global function string f_db_ins_nom_gral ()
+end prototypes
+
+global function string f_db_ins_nom_gral ();String ls_nomengral, ls_descripcion
+Datetime ldt_fecha
+
+ls_nomengral = f_db_genera_nomen_nomi(1)
+ls_descripcion = 'Nómina general de pensionados'
+ldt_fecha = DateTime(today())
+
+insert 	Nomina_General_Encabezado (Nomenclatura_General,Descripcion,Fecha,Estado_Nomina) 
+values 	(:ls_nomengral,:ls_descripcion,:ldt_fecha,1)
+using SQLCA;
+
+Return ls_nomengral
+end function
+

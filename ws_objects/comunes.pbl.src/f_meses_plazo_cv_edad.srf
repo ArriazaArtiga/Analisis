@@ -1,0 +1,47 @@
+﻿$PBExportHeader$f_meses_plazo_cv_edad.srf
+global type f_meses_plazo_cv_edad from function_object
+end type
+
+forward prototypes
+global function integer f_meses_plazo_cv_edad (datetime adt_fecha_solic, integer ai_dif_edad, integer ai_edad_tope, datetime adt_fecha_nac)
+end prototypes
+
+global function integer f_meses_plazo_cv_edad (datetime adt_fecha_solic, integer ai_dif_edad, integer ai_edad_tope, datetime adt_fecha_nac);datetime ldt_fecha_tope_solic, ldt_fecha_cumple_tope
+integer li_plazo
+
+//messagebox('adt_fecha_solic',string(adt_fecha_solic))
+//messagebox('ai_dif_edad',string(ai_dif_edad))
+//messagebox('ai_edad_tope',string(ai_edad_tope))
+//messagebox('adt_fecha_nac',string(adt_fecha_nac))
+
+select DATEADD(yy,:ai_dif_edad,:adt_fecha_solic)
+into :ldt_fecha_tope_solic
+from Etapas 
+where idEtapa = 10
+using SQLCA;
+
+select dateadd(yy,:ai_edad_tope,:adt_fecha_nac)
+into :ldt_fecha_cumple_tope
+from Etapas
+where idEtapa = 10
+using SQLCA;
+
+if ldt_fecha_cumple_tope < ldt_fecha_tope_solic then
+	select DATEDIFF(mm,:adt_fecha_solic,:ldt_fecha_cumple_tope) + 1
+	into :li_plazo
+	from Etapas
+	where idEtapa = 10
+	using SQLCA;
+else
+	select DATEDIFF(mm,:adt_fecha_solic,:ldt_fecha_tope_solic) + 1
+	into :li_plazo
+	from Etapas
+	where idEtapa = 10
+	using SQLCA;
+end if
+
+commit;
+
+return li_plazo
+end function
+

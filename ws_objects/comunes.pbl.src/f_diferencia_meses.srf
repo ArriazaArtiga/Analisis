@@ -1,0 +1,19 @@
+﻿$PBExportHeader$f_diferencia_meses.srf
+global type f_diferencia_meses from function_object
+end type
+
+forward prototypes
+global function integer f_diferencia_meses (datetime adt_fecha1, datetime adt_fecha2)
+end prototypes
+
+global function integer f_diferencia_meses (datetime adt_fecha1, datetime adt_fecha2);integer li_meses
+
+select DATEDIFF(mm,:adt_fecha1, :adt_fecha2)
+into :li_meses 
+from Etapas 
+where idEtapa = 10
+using SQLCA;
+
+return li_meses
+end function
+

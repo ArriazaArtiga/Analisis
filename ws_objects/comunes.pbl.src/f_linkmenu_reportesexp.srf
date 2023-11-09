@@ -1,0 +1,19 @@
+﻿$PBExportHeader$f_linkmenu_reportesexp.srf
+global type f_linkmenu_reportesexp from function_object
+end type
+
+forward prototypes
+global function string f_linkmenu_reportesexp (integer m, string t, integer s)
+end prototypes
+
+global function string f_linkmenu_reportesexp (integer m, string t, integer s);string link
+
+SELECT LinkDw 
+INTO
+:link
+      FROM Menu_Link
+      WHERE IdMenu = :m AND Tramite =:t AND Subtramite = :s
+using SQLCA;
+return link
+end function
+

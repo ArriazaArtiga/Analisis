@@ -1,0 +1,71 @@
+﻿$PBExportHeader$f_db_get_monto_pension_dias_pago_new.srf
+global type f_db_get_monto_pension_dias_pago_new from function_object
+end type
+
+forward prototypes
+global function decimal f_db_get_monto_pension_dias_pago_new (string as_dpi, decimal adc_pension, long al_solicitud)
+end prototypes
+
+global function decimal f_db_get_monto_pension_dias_pago_new (string as_dpi, decimal adc_pension, long al_solicitud);integer li_dia, li_mes, li_anio, li_dias, li_dia_resol
+datetime ldt_fecha_inicio_calculo, ldt_fecha_fin_mes
+string ls_fecha
+decimal ldc_pension, ldc_monto
+
+Select 	
+	Fecha_Inicio_Calculo 
+into 
+	:ldt_fecha_inicio_calculo
+from
+	Solicitud_Documentos_Expediente ss,
+	Solicitudes s 
+where 	
+	ss.DPI = :as_dpi and
+	ss. No_Solicitud = :al_solicitud and
+	ss.Tipo_Documento = '7' and
+	ss. Unidad = 5  and
+	s.Etapa not in (300)
+using 		SQLCA;
+
+li_dia_resol = day(date(ldt_fecha_inicio_calculo))
+li_mes = month(date(ldt_fecha_inicio_calculo))
+li_anio = year(date(ldt_fecha_inicio_calculo))
+
+if li_mes = 1 or li_mes = 3 or li_mes = 5 or li_mes = 7 or li_mes = 8 or li_mes = 10 or li_mes = 12 then
+	li_dia = 31
+else
+	if li_mes = 4 or li_mes = 6 or li_mes = 9 or li_mes = 11 then
+		li_dia = 30
+	else
+		if mod(li_anio, 400) = 0 then
+			li_dia = 29
+		else
+			if mod(li_anio, 4) = 0 and mod(li_anio, 100) <> 0 then
+				li_dia = 29
+			else
+				li_dia = 28
+			end if
+		end if
+	end if
+end if
+
+//ls_fecha = string(li_dia)+'/'+string(li_mes)+'/'+string(li_anio)
+//ldt_fecha_fin_mes = datetime(ls_fecha)
+
+//Select 	DATEDIFF(dd,Fecha_Inicio_Calculo, :ldt_fecha_fin_mes)
+//into 		:li_dias
+//from 		Solicitud_Documentos_Expediente
+//where 	DPI = :as_dpi and
+//			No_Solicitud = :al_solicitud and
+//			Tipo_Documento = '7' and
+//			Unidad = 5 
+//using 		SQLCA;
+
+li_dias = li_dia - li_dia_resol
+//ldc_pension = f_db_get_pension_calculada_contribuyente(as_dpi)
+
+ldc_monto = (adc_pension / li_dia) * (li_dias+1)
+//messagebox("","Pension "+string(adc_pension)+" dias del mes: "+string(li_dia)+" dias de la resolucion: "+string(li_dias + 1))
+
+return ldc_monto
+end function
+

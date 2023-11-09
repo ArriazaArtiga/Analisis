@@ -1,0 +1,21 @@
+﻿$PBExportHeader$f_db_get_no_declara_benef.srf
+global type f_db_get_no_declara_benef from function_object
+end type
+
+forward prototypes
+global function string f_db_get_no_declara_benef (string as_dpi)
+end prototypes
+
+global function string f_db_get_no_declara_benef (string as_dpi);String ls_no_declaracion
+
+select idFormulario
+into :ls_no_declaracion
+from Declaracion_Beneficiarios
+where Status = '1' and
+DPI_Contribuyente = :as_dpi
+using sqlca;
+Commit;
+
+return ls_no_declaracion
+end function
+

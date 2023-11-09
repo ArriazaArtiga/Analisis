@@ -1,0 +1,23 @@
+﻿$PBExportHeader$f_letras_resolucion.srf
+global type f_letras_resolucion from function_object
+end type
+
+forward prototypes
+global function string f_letras_resolucion (string as_resolucion)
+end prototypes
+
+global function string f_letras_resolucion (string as_resolucion);Integer li_pos1, li_pos2
+String ls_seg1, ls_seg2, ls_seg3, ls_resolucion_letras
+
+li_pos1 = Pos( as_resolucion, '-', 1 )
+li_pos2 = Pos(as_resolucion, '-', li_pos1+1)
+
+ls_seg1 = Mid ( as_resolucion, 1 , li_pos1 - 1 )
+ls_seg2 = Mid ( as_resolucion, li_pos1+1 , li_pos2 - li_pos1 - 1 )
+ls_seg3 = Mid ( as_resolucion, li_pos2+1 , len(as_resolucion)-(li_pos2+1)+1)
+
+ls_resolucion_letras = f_letras_sinquetzales(ls_seg1+'.00') + ' GUION ' + ls_seg2 + ' GUION ' + f_letras_sinquetzales(ls_seg3+'.00')
+
+return lower(ls_resolucion_letras)
+end function
+

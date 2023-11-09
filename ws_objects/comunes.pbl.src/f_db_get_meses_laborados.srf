@@ -1,0 +1,20 @@
+﻿$PBExportHeader$f_db_get_meses_laborados.srf
+global type f_db_get_meses_laborados from function_object
+end type
+
+forward prototypes
+global function integer f_db_get_meses_laborados (string as_dpi, long al_no_solicitud)
+end prototypes
+
+global function integer f_db_get_meses_laborados (string as_dpi, long al_no_solicitud);Integer li_mes
+
+Select mes 
+into :li_mes
+from Solicitud_Tiempo_Servicio 
+where No_Solicitud = :al_no_solicitud 
+and DPI = :as_dpi
+using SQLCA;
+
+Return li_mes
+end function
+

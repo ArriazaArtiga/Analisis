@@ -1,0 +1,54 @@
+﻿$PBExportHeader$f_db_get_monto_pension_dias_pago_pm.srf
+global type f_db_get_monto_pension_dias_pago_pm from function_object
+end type
+
+forward prototypes
+global function decimal f_db_get_monto_pension_dias_pago_pm (string as_dpi, decimal adc_pension)
+end prototypes
+
+global function decimal f_db_get_monto_pension_dias_pago_pm (string as_dpi, decimal adc_pension);integer li_dia, li_mes, li_anio, li_dias
+datetime ldt_fecha_inicio_calculo, ldt_fecha_fin_mes
+string ls_fecha
+decimal ldc_pension, ldc_monto
+
+Select 	
+	b.Fecha_fallecimiento 
+into 		
+	:ldt_fecha_inicio_calculo
+from 		
+	Solicitud_prestacion_muerte b,
+	Solicitudes a
+where 	
+	b.No_Solicitud = a.No_Solicitud and
+	b.DPI =:as_dpi  and
+	a.Etapa not in (300)
+using 		SQLCA;
+
+li_mes = month(date(ldt_fecha_inicio_calculo))
+li_anio = year(date(ldt_fecha_inicio_calculo))
+
+if li_mes = 1 or li_mes = 3 or li_mes = 5 or li_mes = 7 or li_mes = 8 or li_mes = 10 or li_mes = 12 then
+	li_dia = 31
+else
+	if li_mes = 4 or li_mes = 6 or li_mes = 9 or li_mes = 11 then
+		li_dia = 30
+	else
+		if mod(li_anio, 400) = 0 then
+			li_dia = 29
+		else
+			if mod(li_anio, 4) = 0 and mod(li_anio, 100) <> 0 then
+				li_dia = 29
+			else
+				li_dia = 28
+			end if
+		end if
+	end if
+end if
+li_dias = li_dia - day(date(ldt_fecha_inicio_calculo))
+
+//li_dias = li_dias + 1
+ldc_monto = (adc_pension / li_dia) * li_dias
+
+return ldc_monto
+end function
+

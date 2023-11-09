@@ -1,0 +1,23 @@
+﻿$PBExportHeader$f_db_get_pension_calculada_contribuyente.srf
+global type f_db_get_pension_calculada_contribuyente from function_object
+end type
+
+forward prototypes
+global function decimal f_db_get_pension_calculada_contribuyente (string as_dpi)
+end prototypes
+
+global function decimal f_db_get_pension_calculada_contribuyente (string as_dpi);Decimal ldc_pension
+
+select Pension_Calculada
+into :ldc_pension
+from Contribuyentes
+where DPI = :as_dpi
+using SQLCA;
+
+If isnull(ldc_pension) Then
+	ldc_pension = 0
+end if
+
+Return ldc_pension
+end function
+

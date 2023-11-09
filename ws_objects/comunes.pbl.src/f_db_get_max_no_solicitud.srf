@@ -1,0 +1,18 @@
+﻿$PBExportHeader$f_db_get_max_no_solicitud.srf
+global type f_db_get_max_no_solicitud from function_object
+end type
+
+forward prototypes
+global function long f_db_get_max_no_solicitud ()
+end prototypes
+
+global function long f_db_get_max_no_solicitud ();Long ll_solic
+
+select max(no_solicitud)
+into :ll_solic
+from Solicitudes
+using sqlca;
+
+Return ll_solic
+end function
+

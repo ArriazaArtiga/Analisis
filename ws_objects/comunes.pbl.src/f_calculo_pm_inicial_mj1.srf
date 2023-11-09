@@ -1,0 +1,34 @@
+﻿$PBExportHeader$f_calculo_pm_inicial_mj1.srf
+global type f_calculo_pm_inicial_mj1 from function_object
+end type
+
+forward prototypes
+global function decimal f_calculo_pm_inicial_mj1 (integer ai_anios, datetime adt_fecha_nacimiento, datetime adt_fecha_fin_p1, decimal adc_pension1, decimal adc_pension2, decimal adc_pension_maxima)
+end prototypes
+
+global function decimal f_calculo_pm_inicial_mj1 (integer ai_anios, datetime adt_fecha_nacimiento, datetime adt_fecha_fin_p1, decimal adc_pension1, decimal adc_pension2, decimal adc_pension_maxima);Decimal ldc_prestacion_muerte
+		// dw_solicitud_pagos.object.solicitud_prestacion_muerte_prestacion_muerte[ll_row] = f_calculo_pm_inicial_mj1(li_anios,ldt_fecha_fallecimiento,ldt_fecha_fin_p1,ldc_pension1,ldc_pension2,ldc_pension_maxima)
+	
+If adt_fecha_nacimiento <= adt_fecha_fin_p1 then
+	
+	if adc_pension1 <= adc_pension_maxima then
+		ldc_prestacion_muerte = (round(ai_anios * adc_pension1,2)) 
+
+	else
+		ldc_prestacion_muerte = (round(ai_anios * adc_pension_maxima,2)) 
+
+	end if
+else
+
+	if adc_pension2 <= adc_pension_maxima then
+		ldc_prestacion_muerte = (round(ai_anios * adc_pension2,2)) 
+
+	else
+		ldc_prestacion_muerte = (round(ai_anios * adc_pension_maxima,2)) 
+
+	end if
+end if
+
+Return ldc_prestacion_muerte
+end function
+

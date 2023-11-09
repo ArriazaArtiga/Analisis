@@ -1,0 +1,20 @@
+﻿$PBExportHeader$f_db_get_resolucion.srf
+global type f_db_get_resolucion from function_object
+end type
+
+forward prototypes
+global function string f_db_get_resolucion (string as_dpi, long al_no_solic)
+end prototypes
+
+global function string f_db_get_resolucion (string as_dpi, long al_no_solic);String ls_resolucion
+
+select referencia_solicitud
+into 	:ls_resolucion
+from	solicitudes
+where 	DPI = :as_dpi and
+		     no_solicitud = :al_no_solic
+using SQLCA;
+
+return ls_resolucion
+end function
+

@@ -1,0 +1,23 @@
+﻿$PBExportHeader$f_db_get_salario_contribuyente.srf
+global type f_db_get_salario_contribuyente from function_object
+end type
+
+forward prototypes
+global function decimal f_db_get_salario_contribuyente (string as_dpi)
+end prototypes
+
+global function decimal f_db_get_salario_contribuyente (string as_dpi);Decimal ldc_salario
+
+select Salario
+into :ldc_salario
+from Contribuyentes
+where DPI = :as_dpi
+using SQLCA;
+
+If isnull(ldc_salario) Then
+	ldc_salario = 0
+end if
+
+Return ldc_salario
+end function
+

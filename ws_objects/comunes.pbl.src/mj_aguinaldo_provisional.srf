@@ -1,0 +1,151 @@
+﻿$PBExportHeader$mj_aguinaldo_provisional.srf
+global type mj_aguinaldo_provisional from function_object
+end type
+
+forward prototypes
+global function decimal mj_aguinaldo_provisional (decimal pension, date f_fallece, date f_upago, date f_iagui, date f_fagui)
+end prototypes
+
+global function decimal mj_aguinaldo_provisional (decimal pension, date f_fallece, date f_upago, date f_iagui, date f_fagui);decimal resultado
+integer  dias_año,dias, años, i
+boolean bisiesto
+string cadena
+date  año_inicial, año_final
+//cadena = "La pension es de: "+string(pension)
+
+if f_iagui < f_fallece  and f_fagui > f_fallece  and f_iagui < f_upago  and f_fagui > f_upago  and f_fallece > f_upago then
+	if pension <> 0 then
+		bisiesto = false
+		resultado=0
+		años =(year(f_fallece) - year(f_iagui))
+		for i = 1 to años
+			año_inicial = date(string(year(f_iagui)+i)+'-02-01')
+			año_final = date(string((year(f_iagui)+i))+'-03-01')
+			dias_año= daysafter(año_inicial , año_final)
+		
+			if dias_año > 28 then
+				bisiesto = true
+			end if
+		next
+		
+		if bisiesto then
+			if day(f_iagui)=1 then
+				dias = (daysafter(f_iagui, f_fallece)+1)-1	
+			else
+				dias = (daysafter(f_iagui, f_fallece))-1
+			end if	
+		else
+			if day(f_iagui)=1 then
+				dias = daysafter(f_iagui, f_fallece)+1
+			else
+				dias = daysafter(f_iagui, f_fallece)
+			end if	
+		end if
+		resultado=(pension/365) * (dias)
+    end if
+	cadena += "El número de dias calculado es: "+string(dias)
+	messagebox("Aguinaldo Provisional ...",cadena)
+end if
+	
+if  f_iagui < f_fallece and  f_fagui > f_fallece and f_iagui < f_upago and f_fagui > f_upago and f_fallece < f_upago then
+	if pension <> 0 then
+		bisiesto = false
+		resultado=0
+		años =(year(f_fallece) - year(f_iagui))
+		for i = 1 to años
+			año_inicial = date(string(year(f_iagui)+i)+'-02-01')
+			año_final = date(string((year(f_iagui)+i))+'-03-01')
+			dias_año= daysafter(año_inicial , año_final)
+			if dias_año > 28 then
+				bisiesto = true
+			end if
+		next
+		if bisiesto then
+			if day(f_iagui)=1 then
+				dias = (daysafter(f_iagui, f_fallece)+1)+1	
+			else
+				dias = (daysafter(f_iagui, f_fallece))+1
+			end if	
+		else
+			if day(f_iagui)=1 then
+				dias = daysafter(f_iagui, f_fallece)	+1
+			else
+				dias = daysafter(f_iagui, f_fallece)
+			end if	
+		end if
+		resultado=(pension/365) * (dias)				
+	end if 
+	cadena = "El número de dias calculado es: "+string(dias)
+	messagebox("Aguinaldo Provisional..",cadena)
+end if
+if f_iagui < f_fallece and f_fagui > f_fallece and f_iagui < f_upago  and f_fagui = f_upago  and f_fallece < f_upago then
+	if pension <> 0 then
+		bisiesto = false
+		resultado=0
+		años =(year(f_fallece) - year(f_iagui))
+
+		for i = 1 to años
+			año_inicial = date(string(year(f_iagui)+i)+'-02-01')
+			año_final = date(string((year(f_iagui)+i))+'-03-01')
+			dias_año= daysafter(año_inicial , año_final)
+			if dias_año > 28 then
+				bisiesto = true
+			end if
+		next
+		if bisiesto then
+			if day(f_iagui)=1 then
+				dias = (daysafter(f_iagui, f_fallece)+1)-1	
+			else
+				dias = (daysafter(f_iagui, f_fallece))-1
+			end if	
+		else
+			if day(f_iagui)=1 then
+				dias = daysafter(f_iagui, f_fallece)	+1
+			else
+				dias = daysafter(f_iagui, f_fallece)+1
+			end if	
+		end if
+		resultado=(pension/365) * (dias)				
+	end if 
+	cadena = "El número de dias calculado es: "+string(dias)
+	messagebox("Aguinaldo Provisional.",cadena)
+end if
+if f_iagui < f_fallece and f_fagui > f_fallece  and f_iagui < f_upago  and f_fagui > f_upago  and f_fallece = f_upago then
+	if pension <> 0 then
+		bisiesto = false
+		resultado=0
+		años =(year(f_fallece) - year(f_iagui))
+
+		for i = 1 to años
+			año_inicial = date(string(year(f_iagui)+i)+'-02-01')
+			año_final = date(string((year(f_iagui)+i))+'-03-01')
+			dias_año= daysafter(año_inicial , año_final)
+			if dias_año > 28 then
+				bisiesto = true
+			end if
+		next
+		if bisiesto then
+			if day(f_iagui)=1 then
+				dias = (daysafter(f_iagui, f_fallece)+1)-1	
+			else
+				dias = (daysafter(f_iagui, f_fallece))-1
+			end if	
+		else
+			if day(f_iagui)=1 then
+				dias = daysafter(f_iagui, f_fallece)	+1
+			else
+				dias = daysafter(f_iagui, f_fallece)+1
+			end if	
+		end if
+		resultado=(pension/365) * (dias)				
+	end if 
+	cadena = "El número de dias calculado es: "+string(dias)
+	messagebox("Aguinaldo Provisional.",cadena)
+end if
+
+
+return resultado 
+
+
+end function
+

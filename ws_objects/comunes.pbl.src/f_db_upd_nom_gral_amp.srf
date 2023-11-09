@@ -1,0 +1,25 @@
+﻿$PBExportHeader$f_db_upd_nom_gral_amp.srf
+global type f_db_upd_nom_gral_amp from function_object
+end type
+
+forward prototypes
+global subroutine f_db_upd_nom_gral_amp ()
+end prototypes
+
+global subroutine f_db_upd_nom_gral_amp ();UPDATE	Nomina_General_Detalle
+SET		Nomina_General_Detalle.Monto_Pension = Nomina_General_Detalle.Monto_Pension + Nomina_Ampliacion_Detalle.Monto_Ampliacion
+FROM		Nomina_Ampliacion_Detalle, Nomina_Ampliacion_Encabezado, Nomina_General_Encabezado, Nomina_General_Detalle
+WHERE	Nomina_General_Encabezado.Nomenclatura_General = Nomina_General_Detalle.Nomenclatura_General and
+			Nomina_Ampliacion_Encabezado.Nomenclatura_AMP = Nomina_Ampliacion_Detalle.Nomenclatura_AMP and
+			Nomina_Ampliacion_Detalle.Resolucion 					= Nomina_General_Detalle.Resolucion and
+			Nomina_General_Encabezado.Estado_Nomina 			= 1 and
+			Nomina_Ampliacion_Encabezado.Estado_Nomina 		= 2 and
+			isnull(Nomina_Ampliacion_Encabezado.Nomenclatura_General,0) = 0
+			
+USING SQLCA;
+
+Commit;
+
+Return
+end subroutine
+

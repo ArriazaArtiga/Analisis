@@ -1,0 +1,20 @@
+﻿$PBExportHeader$f_db_backup_base_datos.srf
+global type f_db_backup_base_datos from function_object
+end type
+
+forward prototypes
+global function string f_db_backup_base_datos (integer ai_depto, integer ai_muni)
+end prototypes
+
+global function string f_db_backup_base_datos (integer ai_depto, integer ai_muni);string ls_nombre
+
+select nombre
+into :ls_nombre 
+from Municipios 
+where depto = :ai_depto
+and	muni = :ai_muni
+using SQLCA;
+
+return ls_nombre
+end function
+

@@ -1,0 +1,45 @@
+﻿$PBExportHeader$f_meses_letras.srf
+global type f_meses_letras from function_object
+end type
+
+forward prototypes
+global function string f_meses_letras (integer ai_mes)
+end prototypes
+
+global function string f_meses_letras (integer ai_mes);String ls_mes
+
+//If ai_mes > 12 Then
+//	ai_mes = 1
+//end if
+
+Choose Case ai_mes
+	Case 1
+		ls_mes='enero'
+	Case 2
+		ls_mes='febrero'
+	Case 3
+		ls_mes='marzo'
+	Case 4
+		ls_mes='abril'
+	Case 5
+		ls_mes='mayo'
+	Case 6
+		ls_mes='junio'
+	Case 7
+		ls_mes='julio'
+	Case 8
+		ls_mes='agosto'
+	Case 9
+		ls_mes='septiembre'
+	Case 10
+		ls_mes='octubre'
+	Case 11
+		ls_mes='noviembre'
+	Case 12
+		ls_mes='diciembre'
+		
+End Choose
+
+Return ls_mes
+end function
+

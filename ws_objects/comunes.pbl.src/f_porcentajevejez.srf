@@ -1,0 +1,41 @@
+﻿$PBExportHeader$f_porcentajevejez.srf
+global type f_porcentajevejez from function_object
+end type
+
+forward prototypes
+global function double f_porcentajevejez (integer escala, integer meses)
+end prototypes
+
+global function double f_porcentajevejez (integer escala, integer meses);double resultado, maximo, minimo
+
+SELECT 
+ 	MAX(Meses),
+	MIN(Meses)
+INTO
+	:maximo,
+	:minimo
+FROM 
+	EscalaAportacion 
+WHERE 
+	Id_escala = :escala
+USING SQLCA;
+	
+IF meses >maximo THEN
+	resultado = 1
+ELSEIF  meses < minimo THEN
+	resultado = 0
+ELSE
+	SELECT  
+		Porcentaje 
+	INTO  
+		:resultado	
+	FROM 
+		EscalaAportacion 
+	WHERE 
+		Meses = :meses AND  Id_escala = :escala
+	USING SQLCA;
+END IF
+
+return resultado
+end function
+

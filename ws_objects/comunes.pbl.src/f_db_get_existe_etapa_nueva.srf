@@ -1,0 +1,23 @@
+﻿$PBExportHeader$f_db_get_existe_etapa_nueva.srf
+global type f_db_get_existe_etapa_nueva from function_object
+end type
+
+forward prototypes
+global function integer f_db_get_existe_etapa_nueva (string as_dpi, long al_solicitud, integer ai_etapa)
+end prototypes
+
+global function integer f_db_get_existe_etapa_nueva (string as_dpi, long al_solicitud, integer ai_etapa);integer li_existe
+
+select count(etapa)
+into :li_existe
+from solicitud_etapas
+where dpi = :as_dpi and no_solicitud = :al_solicitud and etapa = :ai_etapa
+using SQLCA;
+
+/*if ili_existe <1 then
+	li_existe = 0
+end if */
+
+return li_existe
+end function
+

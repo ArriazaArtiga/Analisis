@@ -1,0 +1,19 @@
+﻿$PBExportHeader$f_sumarmeses.srf
+global type f_sumarmeses from function_object
+end type
+
+forward prototypes
+global function datetime f_sumarmeses (integer meses, datetime fecha)
+end prototypes
+
+global function datetime f_sumarmeses (integer meses, datetime fecha);datetime resultado
+
+select DATEADD(MM,:meses, :fecha)
+into :resultado
+from Etapas 
+where idEtapa = 10
+using SQLCA;
+
+return resultado
+end function
+

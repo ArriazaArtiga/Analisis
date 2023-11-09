@@ -1,0 +1,23 @@
+﻿$PBExportHeader$f_db_get_desc_ent_mpal_all.srf
+global type f_db_get_desc_ent_mpal_all from function_object
+end type
+
+forward prototypes
+global function string f_db_get_desc_ent_mpal_all (integer ai_depto, integer ai_muni, integer ai_correla)
+end prototypes
+
+global function string f_db_get_desc_ent_mpal_all (integer ai_depto, integer ai_muni, integer ai_correla);String ls_descripcion
+
+SELECT a.Nombre + ', Departamento de ' + b.Nombre
+into :ls_descripcion
+FROM   Corporacion_Empresa_Municipal a,
+	   Departamentos b
+where  b.Depto = a.Depto
+and	b.depto = :ai_depto
+and    a.muni = :ai_muni
+and    a.correlativo = :ai_correla
+using sqlca;
+
+return ls_descripcion
+end function
+

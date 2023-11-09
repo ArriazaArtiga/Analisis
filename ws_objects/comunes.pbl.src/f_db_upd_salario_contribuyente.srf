@@ -1,0 +1,21 @@
+﻿$PBExportHeader$f_db_upd_salario_contribuyente.srf
+global type f_db_upd_salario_contribuyente from function_object
+end type
+
+forward prototypes
+global function integer f_db_upd_salario_contribuyente (string as_dpi, decimal adc_salario)
+end prototypes
+
+global function integer f_db_upd_salario_contribuyente (string as_dpi, decimal adc_salario);
+update 
+	Contribuyentes
+set
+	Salario = :adc_salario,
+where 
+	dpi = :as_dpi 
+using SQLCA;
+
+return 1
+
+end function
+

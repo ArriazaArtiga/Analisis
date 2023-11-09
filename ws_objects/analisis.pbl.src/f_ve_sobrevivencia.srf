@@ -1,0 +1,20 @@
+﻿$PBExportHeader$f_ve_sobrevivencia.srf
+global type f_ve_sobrevivencia from function_object
+end type
+
+forward prototypes
+global function integer f_ve_sobrevivencia (string fdpi)
+end prototypes
+
+global function integer f_ve_sobrevivencia (string fdpi);int fcuenta
+fcuenta = 0
+Select count(*) into :fcuenta 
+from superviviencias where rtrim(dpi) = rtrim(:fdpi);
+
+if sqlca.sqlcode <> 0 then
+			fcuenta = 0
+		end if
+
+return fcuenta
+end function
+

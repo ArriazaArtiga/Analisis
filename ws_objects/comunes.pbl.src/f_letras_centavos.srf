@@ -1,0 +1,23 @@
+﻿$PBExportHeader$f_letras_centavos.srf
+global type f_letras_centavos from function_object
+end type
+
+forward prototypes
+global function string f_letras_centavos (string as_numero)
+end prototypes
+
+global function string f_letras_centavos (string as_numero);Integer li_pos1, li_pos2
+String ls_seg1, ls_seg2, ls_seg3, ls_centavos_letras
+
+li_pos1 = Pos( as_numero, '.', 1 )
+li_pos2 = Pos(as_numero, '.', li_pos1+1)
+
+ls_seg1 = Mid ( as_numero, 1 , li_pos1 - 1 )
+ls_seg2 = Mid ( as_numero, li_pos1, 1 )
+ls_seg3 = Mid ( as_numero, li_pos1+1, len(as_numero))
+
+ls_centavos_letras = ls_seg3+'/100'
+
+return ls_centavos_letras
+end function
+

@@ -1,0 +1,22 @@
+﻿$PBExportHeader$f_db_get_max_correla_subestado.srf
+global type f_db_get_max_correla_subestado from function_object
+end type
+
+forward prototypes
+global function long f_db_get_max_correla_subestado ()
+end prototypes
+
+global function long f_db_get_max_correla_subestado ();Long ll_correla
+
+select max(correlativo)
+into :ll_correla
+from Contribuyentes_SubEstados
+using sqlca;
+
+if isnull(ll_correla) then
+	ll_correla = 0
+end if
+
+Return ll_correla
+end function
+

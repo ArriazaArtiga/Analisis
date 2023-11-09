@@ -1,0 +1,22 @@
+﻿$PBExportHeader$f_db_get_fecha_pension_audi.srf
+global type f_db_get_fecha_pension_audi from function_object
+end type
+
+forward prototypes
+global function datetime f_db_get_fecha_pension_audi (long al_solicitud, string as_dpi, string as_tipo_docto)
+end prototypes
+
+global function datetime f_db_get_fecha_pension_audi (long al_solicitud, string as_dpi, string as_tipo_docto);Datetime ldt_fecha_pension
+
+select  	a.Fecha_Pension
+into 		:ldt_fecha_pension
+from		Solicitud_Documentos_expediente a
+where   	a.No_Solicitud = :al_solicitud
+and		a.dpi = :as_dpi
+and		a.tipo_documento = :as_tipo_docto
+and		a.unidad = 4
+using 		SQLCA;
+
+Return ldt_fecha_pension
+end function
+

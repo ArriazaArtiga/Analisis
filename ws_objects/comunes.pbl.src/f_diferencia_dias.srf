@@ -1,0 +1,19 @@
+﻿$PBExportHeader$f_diferencia_dias.srf
+global type f_diferencia_dias from function_object
+end type
+
+forward prototypes
+global function integer f_diferencia_dias (date adt_fecha1, date adt_fecha2)
+end prototypes
+
+global function integer f_diferencia_dias (date adt_fecha1, date adt_fecha2);integer li_dias
+
+select DATEDIFF(d,:adt_fecha1, :adt_fecha2)
+into :li_dias 
+from Etapas 
+where idEtapa = 10
+using SQLCA;
+
+return li_dias
+end function
+

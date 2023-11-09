@@ -1,0 +1,184 @@
+﻿$PBExportHeader$d_analisis_rep_liquidacion_expediente_parte3.srd
+release 22;
+datawindow(units=0 timer_interval=0 color=1073741824 brushmode=0 transparency=0 gradient.angle=0 gradient.color=8421504 gradient.focus=0 gradient.repetition.count=0 gradient.repetition.length=100 gradient.repetition.mode=0 gradient.scale=100 gradient.spread=100 gradient.transparency=0 picture.blur=0 picture.clip.bottom=0 picture.clip.left=0 picture.clip.right=0 picture.clip.top=0 picture.mode=0 picture.scale.x=100 picture.scale.y=100 picture.transparency=0 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 2 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 5 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.background=no print.preview.background=no print.preview.outline=yes hidegrayline=no showbackcoloronxp=no picture.file="" )
+header(height=0 color="536870912" transparency="0" gradient.color="8421504" gradient.transparency="0" gradient.angle="0" brushmode="0" gradient.repetition.mode="0" gradient.repetition.count="0" gradient.repetition.length="100" gradient.focus="0" gradient.scale="100" gradient.spread="100" )
+summary(height=0 color="536870912" transparency="0" gradient.color="8421504" gradient.transparency="0" gradient.angle="0" brushmode="0" gradient.repetition.mode="0" gradient.repetition.count="0" gradient.repetition.length="100" gradient.focus="0" gradient.scale="100" gradient.spread="100" )
+footer(height=0 color="536870912" transparency="0" gradient.color="8421504" gradient.transparency="0" gradient.angle="0" brushmode="0" gradient.repetition.mode="0" gradient.repetition.count="0" gradient.repetition.length="100" gradient.focus="0" gradient.scale="100" gradient.spread="100" )
+detail(height=2316 color="536870912" transparency="0" gradient.color="8421504" gradient.transparency="0" gradient.angle="0" brushmode="0" gradient.repetition.mode="0" gradient.repetition.count="0" gradient.repetition.length="100" gradient.focus="0" gradient.scale="100" gradient.spread="100" )
+table(column=(type=char(30) updatewhereclause=yes name=contribuyentes_nombres dbname="nombres" )
+ column=(type=char(100) updatewhereclause=yes name=contribuyentes_apellidos dbname="apellidos" )
+ column=(type=char(100) updatewhereclause=yes name=contribuyentes_casada dbname="casada" )
+ column=(type=char(15) updatewhereclause=yes name=contribuyentes_dpi dbname="dpi" )
+ column=(type=datetime updatewhereclause=yes name=contribuyentes_fecha_nacimiento dbname="fecha_nacimiento" )
+ column=(type=long updatewhereclause=yes name=edad dbname="edad" )
+ column=(type=datetime updatewhereclause=yes name=contribuyentes_fecha_ingreso dbname="fecha_ingreso" )
+ column=(type=datetime updatewhereclause=yes name=solicitudes_fecha_entrega_cargo dbname="fecha_entrega_cargo" )
+ column=(type=char(150) updatewhereclause=yes name=contribuyentes_puestos_descripcion dbname="descripcion" )
+ column=(type=char(100) updatewhereclause=yes name=corporacion_empresa_municipal_nombre dbname="nombre" )
+ column=(type=char(30) updatewhereclause=yes name=departamentos_nombre dbname="nombre" )
+ column=(type=decimal(0) updatewhereclause=yes name=solicitud_tiempo_servicio_anio dbname="anio" )
+ column=(type=decimal(0) updatewhereclause=yes name=solicitud_tiempo_servicio_mes dbname="mes" )
+ column=(type=decimal(0) updatewhereclause=yes name=solicitudes_no_solicitud dbname="no_solicitud" )
+ column=(type=char(12) updatewhereclause=yes name=solicitudes_referencia_solicitud dbname="referencia_solicitud" )
+ column=(type=char(2) updatewhereclause=yes name=solicitudes_tipo_tramite dbname="tipo_tramite" )
+ column=(type=char(21) updatewhereclause=yes name=descripcion_tramite dbname="descripcion_tramite" )
+ column=(type=number updatewhereclause=yes name=porcentaje dbname="porcentaje" )
+ column=(type=long updatewhereclause=yes name=no_salarios dbname="no_salarios" )
+ column=(type=decimal(2) updatewhereclause=yes name=tot_salarios dbname="tot_salarios" )
+ column=(type=decimal(6) updatewhereclause=yes name=sueldo_prom dbname="sueldo_prom" )
+ column=(type=decimal(6) updatewhereclause=yes name=pensión dbname="pensión" )
+ column=(type=decimal(4) updatewhereclause=yes name=pensión_inicial dbname="pensión_inicial" )
+ column=(type=decimal(2) updatewhereclause=yes name=pensión_máxima dbname="pensión_máxima" )
+ column=(type=decimal(2) updatewhereclause=yes name=pensión_mínima dbname="pensión_mínima" )
+ column=(type=datetime updatewhereclause=yes name=contribuyentes_fecha_pension_inicial dbname="fecha_pension_inicial" )
+ column=(type=char(1) updatewhereclause=yes name=solicitud_documentos_expediente_tipo_documento dbname="tipo_documento" )
+ column=(type=datetime updatewhereclause=yes name=solicitud_documentos_expediente_fecha_documento dbname="fecha_documento" )
+ column=(type=datetime updatewhereclause=yes name=solicitud_documentos_expediente_fecha_pension dbname="fecha_pension" )
+ column=(type=decimal(0) updatewhereclause=yes name=solicitud_documentos_expediente_idejecutivo dbname="idejecutivo" )
+ column=(type=decimal(0) updatewhereclause=yes name=mes_inicial dbname="mes_inicial" )
+ retrieve="select	a.Nombres,
+		a.Apellidos,
+		ISNULL(a.Casada, '') as 'Casada',
+		a.DPI,
+		a.Fecha_Nacimiento,
+		DATEDIFF(yy,a.Fecha_Nacimiento,f.fecha_resolucion) as 'Edad',
+		a.Fecha_Ingreso,
+		f.Fecha_Entrega_Cargo,
+		b.Descripcion,
+		c.Nombre,
+		d.Nombre,
+		e.Anio,
+		e.Mes,
+		f.no_solicitud,
+		f.Referencia_Solicitud,
+		f.Tipo_Tramite,
+		Case f.Tipo_Tramite 
+			when '01' then 'Pensión por Vejez' 
+			when '02' then 'Pensión por Invalidez' 
+		end as 'Descripcion_Tramite',
+		a.PorcentajePension *100  as 'Porcentaje',
+		Case f.Tipo_Tramite 
+			when '01' then 48
+			when '02' then 12
+		end as 'No_Salarios',
+		(select 
+		sum(ISNULL(g.monto_anio1,0)) + 
+		sum(ISNULL(g.monto_anio2,0)) +
+		sum(ISNULL(g.monto_anio3,0)) +
+		sum(ISNULL(g.monto_anio4,0)) +
+		sum(ISNULL(g.monto_anio5,0)) + 
+		sum(ISNULL(g.monto_anio6,0)) + 
+		sum(ISNULL(g.monto_anio7,0)) +
+		sum(ISNULL(g.monto_anio8,0)) from Solicitud_Detalle_Pagos g where g.DPI = a.DPI and
+		g.no_solicitud = f.no_solicitud) as 'Tot_Salarios',
+		(select 
+		round((sum(ISNULL(g.monto_anio1,0)) + 
+		sum(ISNULL(g.monto_anio2,0)) +
+		sum(ISNULL(g.monto_anio3,0)) +
+		sum(ISNULL(g.monto_anio4,0)) +
+		sum(ISNULL(g.monto_anio5,0)) + 
+		sum(ISNULL(g.monto_anio6,0)) +
+		sum(ISNULL(g.monto_anio7,0)) +
+		sum(ISNULL(g.monto_anio8,0)))/48,2) from Solicitud_Detalle_Pagos g where g.DPI = a.DPI and
+		g.no_solicitud = f.no_solicitud) as 'Sueldo_Prom',
+		(select 
+		round((round((sum(ISNULL(g.monto_anio1,0)) + 
+		sum(ISNULL(g.monto_anio2,0)) +
+		sum(ISNULL(g.monto_anio3,0)) +
+		sum(ISNULL(g.monto_anio4,0)) +
+		sum(ISNULL(g.monto_anio5,0)) + 
+		sum(ISNULL(g.monto_anio6,0)) +
+		sum(ISNULL(g.monto_anio7,0)) +
+		sum(ISNULL(g.monto_anio8,0)))/48,0)) *
+		(case 
+						when e.Anio < 15 then round(((((((e.Anio *12)+e.Mes)*30)+ e.Dias)*70)/5400),2)
+						when e.Anio = 15 then 70
+						when e.Anio = 16 then 72
+						when e.Anio = 17 then 74
+						when e.Anio = 18 then 76
+						when e.Anio = 19 then 78
+						when e.Anio = 20 then 80
+						when e.Anio = 21 then 82
+						when e.Anio = 22 then 84
+						when e.Anio = 23 then 86
+						when e.Anio = 24 then 88
+						when e.Anio = 25 then 90
+						when e.Anio = 26 then 92
+						when e.Anio = 27 then 95
+						when e.Anio >= 28 then 100
+					 end)/100 ,2)  from Solicitud_Detalle_Pagos g where g.DPI = a.DPI and
+		g.no_solicitud = f.no_solicitud) as 'Pensión',
+		round(a.Pension_Inicial,2) as 'Pensión_Inicial',
+		3623.00 as 'Pensión_Máxima',
+		500.00 as 'Pensión_Mínima',
+		a.fecha_pension_inicial,
+		h.tipo_documento,
+		h.fecha_documento,
+		h.fecha_pension,
+		h.idejecutivo,
+		( select min(z.Mes) from Solicitud_Detalle_Pagos z where a.dpi = z.dpi and anio1 > 0 ) as 'Mes_Inicial'
+from	Contribuyentes a,
+		Contribuyentes_Puestos b,
+		Corporacion_Empresa_Municipal c,
+		Departamentos d,
+		Solicitud_Tiempo_Servicio e,
+		Solicitudes f,
+		Solicitud_Documentos_Expediente h
+where	b.idPuesto = a.Puesto and
+		c.Depto = a.Depto and
+		c.Muni = a.Muni and
+		c.Correlativo = a.Correlativo and
+		d.Depto = a.Depto and
+		e.DPI = a.DPI and
+		e.no_solicitud = f.no_solicitud and
+		h.DPI = a.DPI and
+		h.no_solicitud = f.no_solicitud and
+		h.tipo_documento = '2' and
+		f.DPI = a.DPI and
+		f.etapa < 210 and
+		a.DPI = :as_dpi
+
+" arguments=(("as_dpi", string)) )
+compute(band=detail alignment="2" expression="f_db_get_abreviatura_gerente()"border="0" color="33554432" x="357" y="2296" height="72" width="187" format="[GENERAL]" html.valueishtml="0"  name=compute_13 visible="1"  font.face="Calibri" font.height="-11" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" transparency="0" )
+text(band=detail alignment="0" text="Liquidación:" border="0" color="33554432" x="78" y="68" height="72" width="338" html.valueishtml="0"  name=t_3 visible="1"  font.face="Calibri" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" transparency="0" )
+compute(band=detail alignment="3" expression=" 'De conformidad con el Inciso a) Artículo 18, de la Ley Orgánica del Plan de Prestaciones del Empleado Municipal, contenido en el Decreto Legislativo 44-94, y Artículos 5, del Reglamento de dicha Ley, al solicitante el  señor(a) ' 
+ +  contribuyentes_nombres + ' ' +  contribuyentes_apellidos + ' ' + if(isNull( contribuyentes_casada), '',  contribuyentes_casada ) + 
+ ' con la aplicación de la escala del ' + lower(f_numero_a_letra_con_dec( string(porcentaje,~"###,###.00~") )) +
+  ' por ciento ( ' + string( porcentaje,~"###,###.00~") + '%) sobre el sueldo promedio de ' 
+  + lower(f_letras_sinquetzales(string(round(tot_salarios / no_salarios ,2),~"###,###.00~"))) +
+   ' Quetzales con ' + f_letras_centavos(string(round(tot_salarios / no_salarios ,2),~"###,###.00~")) + 
+   ' (Q. ' +  string(round(tot_salarios / no_salarios ,2),~"###,###.00~") + ' )' 
+   + if( pensión_inicial  > pensión_mínima  and  pensión_inicial  <  pensión_máxima,', le corresponde en concepto de pensión por vejez la cantidad de ' 
+   + lower(f_letras_sinquetzales(string( pensión_inicial  ,~"###,##0.00~"))) 
+   + ' Quetzales con ' + f_letras_centavos(string( pensión_inicial  ,~"###,##0.00~")) 
+   + ' (Q. ' +  string(  pensión_inicial ,~"###,##0.00~") + ' )',
+     if( pensión_inicial  >=  pensión_máxima ,
+     ', sin embargo por disposición de junta directiva en acta No. 81-2015 de fecha 02 de septiembre del año dos mil quince se fija la pensión máxima, le corresponde en concepto de pensión por vejez la cantidad de ' 
+     + lower(f_letras_sinquetzales(string( pensión_máxima  ,~"###,###.00~"))) + ' Quetzales con ' 
+     + f_letras_centavos(string( pensión_máxima  ,~"###,##0.00~")) 
+     + ' (Q. ' +  string( pensión_máxima  ,~"###,##0.00~") + ' )' ,
+     ', sin embargo por disposición de junta directiva en acta No. 81-2015 de fecha 02 de septiembre del año dos mil quince se fija la pensión mínima, le corresponde en concepto de pensión por vejez la cantidad de ' 
+     + lower(f_letras_sinquetzales(string( pensión_mínima  ,~"###,##0.00~"))) + ' Quetzales con ' 
+     + f_letras_centavos(string( pensión_mínima  ,~"###,##0.00~")) 
+     + ' (Q. ' +  string( pensión_mínima  ,~"###,##0.00~") + ' )' ))  
+     
+     + ', la que se hará efectiva en mensualidades vencidas a  partir del ' +  lower(f_fecha_letras_com( solicitud_documentos_expediente_fecha_pension )) + '.' "border="0" color="33554432" x="78" y="156" height="532" width="2990" format="[GENERAL]" html.valueishtml="0"  name=compute_6 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" transparency="0" )
+compute(band=detail alignment="0" expression="'Guatemala, ' + day( solicitud_documentos_expediente_fecha_documento) + ' de  ' + lower(f_fecha_meses_letras_com(solicitud_documentos_expediente_fecha_documento)) + '. '"border="0" color="33554432" x="1317" y="728" height="72" width="1742" format="[GENERAL]" html.valueishtml="0"  name=compute_7 visible="1"  font.face="Calibri" font.height="-11" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" transparency="0" )
+compute(band=detail alignment="0" expression="'Elaboró: ________________________  Revisó: ________________________'"border="0" color="33554432" x="343" y="1028" height="92" width="2272" format="[GENERAL]" html.valueishtml="0"  name=compute_8 visible="1"  font.face="Calibri" font.height="-11" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" transparency="0" )
+compute(band=detail alignment="0" expression="f_db_get_usuario_analista( solicitud_documentos_expediente_idejecutivo )"border="0" color="33554432" x="338" y="1220" height="72" width="558" format="[GENERAL]" html.valueishtml="0"  name=compute_9 visible="1"  font.face="Calibri" font.height="-11" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" transparency="0" )
+compute(band=detail alignment="0" expression="'_______________________________'
+"border="0" color="33554432" x="1563" y="1404" height="72" width="1051" format="[GENERAL]" html.valueishtml="0"  name=compute_10 visible="1"  font.face="Calibri" font.height="-11" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" transparency="0" )
+compute(band=detail alignment="0" expression="'Vo.Bo. _______________________________'
+"border="0" color="33554432" x="357" y="1788" height="92" width="1239" format="[GENERAL]" html.valueishtml="0"  name=compute_11 visible="1"  font.face="Calibri" font.height="-11" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" transparency="0" )
+compute(band=detail alignment="2" expression="f_db_get_nombre_gerente()+'~~r~~n'+f_puestoger()"border="0" color="33554432" x="503" y="1892" height="168" width="1093" format="[GENERAL]" html.valueishtml="0"  name=compute_12 visible="1"  font.face="Calibri" font.height="-11" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" transparency="0" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" nativepdf.customsize=0 nativepdf.customorientation=0 nativepdf.pdfstandard=0 nativepdf.useprintspec=no )
+export.xhtml()
+ 

@@ -1,0 +1,20 @@
+﻿$PBExportHeader$f_db_get_desc_requisito.srf
+global type f_db_get_desc_requisito from function_object
+end type
+
+forward prototypes
+global function string f_db_get_desc_requisito (integer ai_requisito, string as_tipo_tramite)
+end prototypes
+
+global function string f_db_get_desc_requisito (integer ai_requisito, string as_tipo_tramite);string ls_desc
+
+select descripcion
+into :ls_desc
+from Solicitudes_requisitos 
+where idRequisito = :ai_requisito and
+		tipo_tramite = :as_tipo_tramite
+using SQLCA;
+
+return ls_desc
+end function
+

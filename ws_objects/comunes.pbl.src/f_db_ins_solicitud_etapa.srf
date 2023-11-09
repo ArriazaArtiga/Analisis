@@ -1,0 +1,14 @@
+﻿$PBExportHeader$f_db_ins_solicitud_etapa.srf
+global type f_db_ins_solicitud_etapa from function_object
+end type
+
+forward prototypes
+global subroutine f_db_ins_solicitud_etapa (long al_no_solicitud, string as_dpi, integer ai_etapa, datetime adt_fecha, string as_usuario, datetime adt_fecha_sys)
+end prototypes
+
+global subroutine f_db_ins_solicitud_etapa (long al_no_solicitud, string as_dpi, integer ai_etapa, datetime adt_fecha, string as_usuario, datetime adt_fecha_sys);
+insert 	Solicitud_Etapas (No_Solicitud,DPI,Etapa,Fecha,Usuario,Fecha_Sys) 
+values 	(:al_no_solicitud,:as_dpi,:ai_etapa,:adt_fecha,:as_usuario,:adt_fecha_sys)
+using SQLCA;
+end subroutine
+

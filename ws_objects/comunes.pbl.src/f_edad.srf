@@ -1,0 +1,20 @@
+﻿$PBExportHeader$f_edad.srf
+global type f_edad from function_object
+end type
+
+forward prototypes
+global function integer f_edad (datetime a, datetime b)
+end prototypes
+
+global function integer f_edad (datetime a, datetime b);integer li_meses
+
+select 
+DATEDIFF(YEAR,:a,:b)-(CASE WHEN	DATEADD(YY,DATEDIFF(YEAR,:a,:b),:a)>:b	THEN 1 ELSE 0 END)
+into :li_meses 
+from Etapas 
+where idEtapa = 10
+using SQLCA;
+
+return li_meses
+end function
+

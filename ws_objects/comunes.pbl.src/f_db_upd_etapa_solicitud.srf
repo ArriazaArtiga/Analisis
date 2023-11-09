@@ -1,0 +1,17 @@
+﻿$PBExportHeader$f_db_upd_etapa_solicitud.srf
+global type f_db_upd_etapa_solicitud from function_object
+end type
+
+forward prototypes
+global function integer f_db_upd_etapa_solicitud (string as_dpi, long al_solicitud, integer ai_etapa)
+end prototypes
+
+global function integer f_db_upd_etapa_solicitud (string as_dpi, long al_solicitud, integer ai_etapa);update solicitudes
+set etapa = :ai_etapa
+where dpi = :as_dpi and
+		no_solicitud = :al_solicitud
+using SQLCA;
+
+return 1
+end function
+

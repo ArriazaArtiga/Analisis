@@ -1,0 +1,19 @@
+﻿$PBExportHeader$f_db_get_solicitud_subtipo_tramite.srf
+global type f_db_get_solicitud_subtipo_tramite from function_object
+end type
+
+forward prototypes
+global function string f_db_get_solicitud_subtipo_tramite (string as_dpi)
+end prototypes
+
+global function string f_db_get_solicitud_subtipo_tramite (string as_dpi);String ls_subtipo_tramite
+
+select 	b.subtipo_tramite
+into 		:ls_subtipo_tramite
+from		solicitudes b
+where	b.DPI = :as_dpi and b.etapa <210 
+using SQLCA;
+
+return ls_subtipo_tramite
+end function
+

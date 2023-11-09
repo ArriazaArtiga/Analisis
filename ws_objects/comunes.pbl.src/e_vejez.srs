@@ -1,0 +1,33 @@
+﻿$PBExportHeader$e_vejez.srs
+global type e_vejez from structure
+	integer		solicitud
+	string		dpi
+	string		iddoc
+	string		resolucion
+	datetime		fecharesolucion
+	datetime		entregacargo
+	datetime		iniciocalculo
+	decimal		pensionmensual
+	string		textdiasacum
+	string		textperiodoacum
+	string		montodiasacum
+	string		montoperiodoacum
+	boolean		bono
+	boolean		aguinaldo
+	decimal		montobono
+	decimal		montoaguinaldo
+	string		textbono
+	string		textaguinaldo
+	decimal		montoauxpostumo
+	string		textauxpostperiodo
+	decimal		montoauxpostperiodo
+	decimal		total
+	string		direccion
+	string		persona
+	string		montoinsaux
+	datetime		fechasolicitud
+	integer		diasbono
+	integer		diasaguinaldo
+	string		_aux
+end type
+

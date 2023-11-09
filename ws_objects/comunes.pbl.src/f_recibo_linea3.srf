@@ -1,0 +1,36 @@
+﻿$PBExportHeader$f_recibo_linea3.srf
+global type f_recibo_linea3 from function_object
+end type
+
+forward prototypes
+global function decimal f_recibo_linea3 (datetime adt_fecha_inicio_calculo, datetime adt_b14_past, decimal adc_pension, string as_dpi, datetime adt_fecha_resol, datetime adt_b14_present)
+end prototypes
+
+global function decimal f_recibo_linea3 (datetime adt_fecha_inicio_calculo, datetime adt_b14_past, decimal adc_pension, string as_dpi, datetime adt_fecha_resol, datetime adt_b14_present);Decimal ldc_b14_ant, ldc_b14_present, ldc_b14
+DateTime ldt_b14_present, ldc_fecha_resol
+
+ldc_fecha_resol = adt_fecha_resol
+
+if adt_fecha_inicio_calculo <  datetime( adt_b14_past ) then
+	ldc_b14_ant = round((adc_pension/12) * (6 - month(date(adt_fecha_inicio_calculo))) + f_db_get_monto_b14_pen_dias_pago1( as_dpi , adc_pension ),2)
+else
+	ldc_b14_ant = 0.00
+end if
+/*
+//ldt_b14_present = datetime('30/06/'+(string(year(  date(adt_fecha_inicio_calculo)) ) ))
+
+messagebox('b14 present',string(adt_b14_present))
+messagebox('fecha resol',string(adt_fecha_resol))
+
+if adt_b14_present <  adt_fecha_resol then
+	ldc_b14_present = round((adc_pension/12) * 6,2) /*+ f_db_get_monto_b14_pen_dias_pago1( as_dpi , adc_pension ),2)*/
+else
+	ldc_b14_present = 0.00
+end if
+messagebox('ldc_b14_present',string(ldc_b14_present))
+
+
+ldc_b14 = ldc_b14_ant + ldc_b14_present*/
+Return round (ldc_b14_ant,2)
+end function
+

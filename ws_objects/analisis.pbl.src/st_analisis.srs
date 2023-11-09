@@ -1,0 +1,10 @@
+﻿$PBExportHeader$st_analisis.srs
+global type st_analisis from structure
+	long		sl_solicitud		descriptor "comment" = "Número solicitud"
+	string		ss_dpi		descriptor "comment" = "DPI contribuyente"
+	integer		_unidad
+	string		_tramite
+	string		doc
+	datawindow		dt
+end type
+

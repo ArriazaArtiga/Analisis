@@ -1,0 +1,20 @@
+﻿$PBExportHeader$f_pensionado_actualizar_actvidad.srf
+global type f_pensionado_actualizar_actvidad from function_object
+end type
+
+forward prototypes
+global function boolean f_pensionado_actualizar_actvidad (integer a, decimal b, string c)
+end prototypes
+
+global function boolean f_pensionado_actualizar_actvidad (integer a, decimal b, string c);if a = 6 then
+	update Pensionados set Ampliacion = :b where CUI = :c;
+	commit;
+else
+	update Pensionados set Actividad =  :a where CUI = :c;
+	commit;
+end if
+
+
+return true;
+end function
+

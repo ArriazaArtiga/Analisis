@@ -1,0 +1,21 @@
+﻿$PBExportHeader$f_db_get_folio_documento_expediente.srf
+global type f_db_get_folio_documento_expediente from function_object
+end type
+
+forward prototypes
+global function integer f_db_get_folio_documento_expediente (integer ai_solicitud, string as_dpi, string as_tipo_docto)
+end prototypes
+
+global function integer f_db_get_folio_documento_expediente (integer ai_solicitud, string as_dpi, string as_tipo_docto);Integer li_no_folio
+
+select no_folio
+into :li_no_folio
+from solicitud_documentos_expediente
+where 	dpi = :as_dpi
+and 		no_solicitud = :ai_solicitud
+and		tipo_documento = :as_tipo_docto
+using SQLCA;
+
+return li_no_folio
+end function
+

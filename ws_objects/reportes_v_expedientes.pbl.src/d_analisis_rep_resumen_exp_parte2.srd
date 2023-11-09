@@ -1,0 +1,76 @@
+﻿$PBExportHeader$d_analisis_rep_resumen_exp_parte2.srd
+release 22;
+datawindow(units=0 timer_interval=0 color=1073741824 brushmode=0 transparency=0 gradient.angle=0 gradient.color=8421504 gradient.focus=0 gradient.repetition.count=0 gradient.repetition.length=100 gradient.repetition.mode=0 gradient.scale=100 gradient.spread=100 gradient.transparency=0 picture.blur=0 picture.clip.bottom=0 picture.clip.left=0 picture.clip.right=0 picture.clip.top=0 picture.mode=0 picture.scale.x=100 picture.scale.y=100 picture.transparency=0 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 2 print.margin.left = 110 print.margin.right = 110 print.margin.top = 400 print.margin.bottom = 400 print.paper.source = 0 print.paper.size = 5 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.background=no print.preview.background=no print.preview.outline=yes hidegrayline=no showbackcoloronxp=no picture.file="" )
+header(height=0 color="536870912" transparency="0" gradient.color="8421504" gradient.transparency="0" gradient.angle="0" brushmode="0" gradient.repetition.mode="0" gradient.repetition.count="0" gradient.repetition.length="100" gradient.focus="0" gradient.scale="100" gradient.spread="100" )
+summary(height=0 color="536870912" transparency="0" gradient.color="8421504" gradient.transparency="0" gradient.angle="0" brushmode="0" gradient.repetition.mode="0" gradient.repetition.count="0" gradient.repetition.length="100" gradient.focus="0" gradient.scale="100" gradient.spread="100" )
+footer(height=0 color="536870912" transparency="0" gradient.color="8421504" gradient.transparency="0" gradient.angle="0" brushmode="0" gradient.repetition.mode="0" gradient.repetition.count="0" gradient.repetition.length="100" gradient.focus="0" gradient.scale="100" gradient.spread="100" )
+detail(height=148 color="536870912" transparency="0" gradient.color="8421504" gradient.transparency="0" gradient.angle="0" brushmode="0" gradient.repetition.mode="0" gradient.repetition.count="0" gradient.repetition.length="100" gradient.focus="0" gradient.scale="100" gradient.spread="100" )
+table(column=(type=decimal(0) updatewhereclause=yes name=solicitudes_detalle_requisitos_requisito dbname="requisito" )
+ column=(type=char(1000) updatewhereclause=yes name=descripcion dbname="descripcion" )
+ retrieve="
+ SELECT b.requisito,   
+         a.descripcion  
+    FROM solicitudes_requisitos a,   
+         solicitudes_detalle_requisitos b,   
+         contribuyentes c,   
+         solicitudes d  
+   WHERE ( a.idrequisito = b.requisito ) and  
+         ( c.dpi = d.dpi ) and  
+         ( d.no_solicitud = b.no_solicitud ) and  
+         ( d.dpi = b.dpi ) and  
+         ( ( c.DPI = :as_dpi ) AND  
+         ( d.etapa < 210 ) AND  
+		( b.Recibido = '1' ) and
+         ( a.Status = '1' ) )    
+
+union
+
+select	a.idDocumento,
+		case a.Tipo_Documento
+			when '1' then 'Memorandum'
+			when '2' then case a.Unidad 
+								when '3' then 'Dictamen de Jefatura de Auditoría Interna'
+								when '4' then 'Dictamen de Dirección de Asesoría Jurídica'
+						  	  end
+			when '3' then 'Resolución de Junta Directiva'
+			when '4' then 'Escritura'
+			when '5' then 'Providencia I'
+			when '6' then 'Providencia II Junta Directiva'
+			--when '7' then 'Aut. A. Póstumo'
+			when '8' then case c.Tipo_Tramite
+							when '01' then 'Hoja Cálculo (Certificación Últimos 48 Salarios)'
+							when '02' then 'Hoja Cálculo (Certificación Últimos 12 Salarios)'
+								/*case c.subtipo_invalidez 
+									when '1' then 'Hoja Cálculo (Certificación Últimos 12 Salarios)'
+									when '2' then 'Hoja Cálculo (Certificación Últimos ' + CAST(d.mes as varchar(1)) + ' Meses)'
+								end*/
+							when '03' then 'Hoja Cálculo'
+							when '04' then 'Hoja Cálculo'
+							when '05' then 'Hoja Cálculo'
+							when '06' then 'Hoja Cálculo'
+							when '07' then 'Hoja Cálculo'
+						   end
+			when '9' then 'Liquidación'
+			when '10' then 'Otros'
+		end as Tipo_Documento
+from	Solicitud_Documentos_Expediente a,
+		Contribuyentes b,
+		Solicitudes c
+where	a.No_Solicitud = c.No_Solicitud
+and		a.DPI = c.DPI
+and		b.DPI = c.DPI
+and		b.DPI = :as_dpi
+and 		c.etapa < 210
+and		a.Tipo_Documento not in ('7','B')" arguments=(("as_dpi", string)) )
+column(band=detail id=2 alignment="3" tabsequence=32766 border="0" color="25314066" x="334" y="0" height="128" width="2921" format="[general]" html.valueishtml="0"  name=descripcion visible="1"  resizeable=1 edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.autovscroll=yes  font.face="Tahoma" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" transparency="0" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" nativepdf.customsize=0 nativepdf.customorientation=0 nativepdf.pdfstandard=0 nativepdf.useprintspec=no )
+export.xhtml()
+ 

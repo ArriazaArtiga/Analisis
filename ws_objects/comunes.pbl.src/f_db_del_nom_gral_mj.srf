@@ -1,0 +1,21 @@
+﻿$PBExportHeader$f_db_del_nom_gral_mj.srf
+global type f_db_del_nom_gral_mj from function_object
+end type
+
+forward prototypes
+global subroutine f_db_del_nom_gral_mj (string as_nom_gral)
+end prototypes
+
+global subroutine f_db_del_nom_gral_mj (string as_nom_gral);DELETE FROM Nomina_General_Detalle   
+WHERE Nomenclatura_General = :as_nom_gral and
+	Resolucion IN   
+    (SELECT Resolucion   
+     FROM	Nomina_Muerte_Jubilado_Detalle,
+			Nomina_Muerte_Jubilado_Encabezado   
+     WHERE	Nomina_Muerte_Jubilado_Encabezado.Nomenclatura_MJ = Nomina_Muerte_Jubilado_Detalle.Nomenclatura_MJ and
+			Nomina_Muerte_Jubilado_Encabezado.Estado_Nomina = 1 )
+USING SQLCA;
+
+Return;
+end subroutine
+

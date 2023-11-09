@@ -1,0 +1,31 @@
+﻿$PBExportHeader$f_db_get_nombre_gerente.srf
+global type f_db_get_nombre_gerente from function_object
+end type
+
+forward prototypes
+global function string f_db_get_nombre_gerente (string as_abreviatura)
+global function string f_db_get_nombre_gerente ()
+end prototypes
+
+global function string f_db_get_nombre_gerente (string as_abreviatura);String ls_nombre
+
+Select Titulo + ' ' + Descripcion, Abreviatura
+into :ls_nombre, :as_abreviatura
+from Usuarios
+where Tipo = 1
+using SQLCA;
+
+return ls_nombre
+end function
+
+global function string f_db_get_nombre_gerente ();String ls_nombre
+
+Select Titulo + ' ' + Descripcion
+into :ls_nombre
+from Usuarios
+where Tipo = 1 and Status = 1
+using SQLCA;
+
+return ls_nombre
+end function
+

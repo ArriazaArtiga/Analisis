@@ -1,0 +1,19 @@
+﻿$PBExportHeader$f_puestogerente.srf
+global type f_puestoGerente from function_object
+end type
+
+forward prototypes
+global function string f_puestogerente ()
+end prototypes
+
+global function string f_puestogerente ();String ls_nombre
+
+Select Puesto
+into :ls_nombre
+from Usuarios
+where Tipo = 1
+using SQLCA;
+
+return ls_nombre
+end function
+

@@ -1,0 +1,184 @@
+﻿$PBExportHeader$f_recibo_linea5.srf
+global type f_recibo_linea5 from function_object
+end type
+
+forward prototypes
+global function decimal f_recibo_linea5 (datetime adt_fecha_inicio_calculo, datetime adt_agui_past, datetime adt_agui_present, datetime adt_fecha_resolucion, decimal adc_pension, string as_dpi)
+end prototypes
+
+global function decimal f_recibo_linea5 (datetime adt_fecha_inicio_calculo, datetime adt_agui_past, datetime adt_agui_present, datetime adt_fecha_resolucion, decimal adc_pension, string as_dpi);decimal aguinaldo
+integer meses1, meses2, dias1,dias2
+date inicioAguinaldo
+
+inicioAguinaldo = date(string(year(date(adt_fecha_inicio_calculo)))+'-12-01')
+if inicioAguinaldo > date(adt_fecha_inicio_calculo) then
+	inicioAguinaldo = date(string(year(date(adt_fecha_inicio_calculo))-1)+'-12-01')
+end if
+
+if month(date(adt_fecha_resolucion)) = 11 or  month(date(adt_fecha_resolucion)) = 12 then
+	if day(date(adt_fecha_inicio_calculo))=1 then
+		dias1 = daysafter(date(adt_fecha_inicio_calculo), date(adt_agui_present))+1
+	elseif date(adt_fecha_inicio_calculo) = date(adt_fecha_resolucion) and month(date(adt_fecha_inicio_calculo)) <> 12 then
+		dias1 = 1
+	else
+		dias1 = daysafter(date(adt_fecha_inicio_calculo), date(adt_agui_present))+1
+	end if
+	aguinaldo= (adc_pension/365)*dias1                                           
+	if aguinaldo < 0 then
+		aguinaldo = 0
+	end if
+else
+	aguinaldo= 0
+end if
+if aguinaldo < 0 then
+ 	aguinaldo = 0.00
+end if
+return round (aguinaldo,2)
+
+
+
+
+
+/*
+if  adt_agui_present> adt_fecha_inicio_calculo and inicioAguinaldo < date(adt_fecha_inicio_calculo) then 
+	//messagebox("aguinaldo","Inicio Calculo: " +string(adt_fecha_inicio_calculo))
+
+	dias1 = daysafter(date(adt_fecha_inicio_calculo), date(adt_agui_present))+1
+	//messagebox("aguinaldo","Dias: " +string(dias1))
+
+	aguinaldo= (adc_pension/365)*dias1
+	//messagebox("aguinaldo","Fecha: " +string(adt_agui_present))
+	
+end if 
+if   inicioAguinaldo > date(adt_fecha_inicio_calculo) and adt_agui_present > adt_fecha_inicio_calculo and inicioAguinaldo < date(adt_fecha_resolucion) and adt_agui_present > adt_fecha_resolucion and adt_fecha_inicio_calculo < adt_fecha_resolucion then 
+
+	//messagebox("aguinaldo","Inicio Calculo: " +string(adt_fecha_inicio_calculo))
+
+	dias1 = daysafter(date(adt_fecha_inicio_calculo), date(adt_agui_present))+1
+	//messagebox("aguinaldo","Dias: " +string(dias1))
+
+	aguinaldo= (adc_pension/365)*dias1
+	//messagebox("aguinaldo","Fecha: " +string(adt_agui_present))
+	
+end if */
+return round (aguinaldo,2)
+
+
+
+
+
+
+
+/*decimal ldc_agui, ldc_agui_act
+datetime ldt_fecha_agui1, ldt_fecha_agui2
+date ld_fecha
+string ls_anio
+
+ls_anio = string(year(date(adt_fecha_inicio_calculo)))
+ld_fecha = date(string('30/11/' + ls_anio))
+ldt_fecha_agui1 = datetime(ld_fecha)
+
+if adt_fecha_inicio_calculo > ldt_fecha_agui1 and month(date(adt_fecha_inicio_calculo)) <> 12 then
+	ls_anio = string(year(date(adt_fecha_inicio_calculo)) + 1)
+	ld_fecha = date(string('30/11/' + ls_anio))
+	ldt_fecha_agui1 = datetime(ld_fecha)
+
+end if
+
+ls_anio = string(year(date(adt_fecha_resolucion)))
+ld_fecha = date(string('30/11/' + ls_anio))
+ldt_fecha_agui2 = datetime(ld_fecha)
+
+if adt_fecha_resolucion < ldt_fecha_agui2 then
+	ls_anio = string(year(date(adt_fecha_resolucion)) - 1)
+	ld_fecha = date(string('30/11/' + ls_anio))
+	ldt_fecha_agui2 = datetime(ld_fecha)
+	
+end if
+
+//messagebox('agui1',string(ldt_fecha_agui1,"dd/mm/yyyy"))
+//messagebox('agui2',string(ldt_fecha_agui2,"dd/mm/yyyy"))
+//messagebox('dia fecha_inicio_calculo',string(day(date(adt_fecha_inicio_calculo)),"###,###.00"))
+//messagebox('pension',string(adc_pension/12,"###,###.00"))
+//messagebox('agui',string( round((adc_pension/12) * (11 - month(date(adt_fecha_inicio_calculo)) - 1) ,2),"###,###.00"))
+
+if ldt_fecha_agui1 > ldt_fecha_agui2  and month(date(adt_fecha_resolucion)) < 12  then
+	ldc_agui =   round((adc_pension/12) * (11 - (month(date(adt_fecha_inicio_calculo)) - 1)) ,2)
+	messagebox('3',string(ldc_agui))
+else
+	if ldt_fecha_agui1 = ldt_fecha_agui2 then
+		if month(date(adt_fecha_inicio_calculo)) = 12 and month(date(adt_fecha_resolucion)) < 12  then
+			ldc_agui = 0
+			messagebox('4',string(ldc_agui))
+		else
+			if day(date(adt_fecha_inicio_calculo)) = 1 then  //mes completo
+				ldc_agui = round((adc_pension/12) * (11 - (month(date(adt_fecha_inicio_calculo)) - 1)) ,2)
+				messagebox('5',string(ldc_agui))
+			else  //mes y dias
+				if month(date(adt_fecha_resolucion)) < 11 then
+					ldc_agui = round((adc_pension/12) * (11 - month(date(adt_fecha_inicio_calculo))) + f_db_get_monto_agui_pen_dias_pago1( as_dpi , adc_pension ),2)
+					messagebox('6',string(ldc_agui))
+				else
+					if month(date(adt_fecha_resolucion)) = 12 and month(date(adt_fecha_inicio_calculo)) < 12 then
+						ldc_agui = round((adc_pension/12) * (11 - month(date(adt_fecha_inicio_calculo))) + f_db_get_monto_agui_pen_dias_pago1( as_dpi , adc_pension ),2)
+						messagebox('7',string(ldc_agui))
+					else
+						if month(date(adt_fecha_resolucion)) = 12 and month(date(adt_fecha_inicio_calculo)) = 12 then
+							ldc_agui = round((adc_pension/12) * 11 + f_db_get_monto_agui_pen_dias_pago1( as_dpi , adc_pension ),2)
+							messagebox('8',string(ldc_agui))
+						else
+							ldc_agui = round((adc_pension/12) * 11 /*+ f_db_get_monto_agui_pen_dias_pago1( as_dpi , adc_pension )*/,2)
+							messagebox('9',string(ldc_agui))
+						end if
+					end if
+				end if
+			end if
+		end if
+	else
+		ldc_agui = (adc_pension * f_diferencia_anios(ldt_fecha_agui1,ldt_fecha_agui2)) + round((adc_pension/12) * (11 - month(date(adt_fecha_inicio_calculo))) + f_db_get_monto_agui_pen_dias_pago1( as_dpi , adc_pension ),2)
+		messagebox('10',string(ldc_agui))
+	end if
+	if ldc_agui < 0 then
+		ldc_agui = 0.00
+		messagebox('11',string(ldc_agui))
+	end if
+//		if adt_fecha_inicio_calculo <  adt_agui_past or adt_fecha_inicio_calculo <  adt_agui_present then
+//			if adt_fecha_inicio_calculo <  adt_agui_past then
+//				ldc_agui = round((adc_pension/12) * (11 - month(date(adt_fecha_inicio_calculo))) + f_db_get_monto_agui_pen_dias_pago1( as_dpi , adc_pension ),2)
+//			end if
+//			if adt_fecha_inicio_calculo <  adt_agui_present then
+//				if (adt_fecha_inicio_calculo < datetime( adt_agui_past ) or adt_fecha_inicio_calculo > datetime( adt_agui_past ) ) and adt_fecha_inicio_calculo <=  datetime( adt_agui_present ) then
+//					if adt_fecha_inicio_calculo <  datetime( adt_agui_past ) then
+//						if f_meses_fechas(adt_fecha_inicio_calculo,adt_agui_present  ) >= 12 then
+//							ldc_agui_act = adc_pension
+//						else
+//							if adt_fecha_resolucion > adt_agui_present then
+//								ldc_agui_act = round((adc_pension/12)  * (f_meses_fechas( adt_agui_past ,adt_agui_present  ) -1) + f_db_get_monto_agui_pen_dias_pago3( as_dpi , adc_pension ),2)
+//							else
+//								ldc_agui_act = 0.00
+//							end if
+//						end if
+//					else
+//						if f_meses_fechas(adt_fecha_inicio_calculo,adt_agui_present  ) >= 12 then
+//							ldc_agui_act = adc_pension
+//						else
+//							if adt_fecha_resolucion > adt_agui_present then
+//								ldc_agui_act = round((adc_pension/12)  * f_meses_fechas(adt_fecha_inicio_calculo,adt_agui_present  ) + f_db_get_monto_agui_pen_dias_pago3( as_dpi , adc_pension ),2)
+//							else
+//								ldc_agui_act = 0.00
+//							end if
+//						end if
+//					end if
+//				else
+//					ldc_agui_act = 0.00
+//				end if
+//			end if
+//		else
+//			ldc_agui = 0.00
+//		end if
+//	end if
+end if
+messagebox('12',string(ldc_agui))
+return ldc_agui*/
+end function
+

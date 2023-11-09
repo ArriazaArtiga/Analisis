@@ -1,0 +1,21 @@
+﻿$PBExportHeader$f_get_ap_casada.srf
+global type f_get_ap_casada from function_object
+end type
+
+forward prototypes
+global function string f_get_ap_casada (string ls_apellido_casada)
+end prototypes
+
+global function string f_get_ap_casada (string ls_apellido_casada);string ls_apCasada, ls_cadena
+
+ls_cadena= Trim(ls_apellido_casada)
+
+IF(IsNull(ls_cadena)) THEN
+	ls_apCasada = "";
+ELSE 
+	ls_apCasada = " "+ls_apellido_casada
+END IF
+
+RETURN ls_apCasada
+end function
+

@@ -1,0 +1,176 @@
+﻿$PBExportHeader$f_fecha_meses_letras_com.srf
+global type f_fecha_meses_letras_com from function_object
+end type
+
+forward prototypes
+global function string f_fecha_meses_letras_com (datetime ad_fecha)
+end prototypes
+
+global function string f_fecha_meses_letras_com (datetime ad_fecha);string	ls_fec,ls_mes,ls_dia,ls_ano
+integer	li_dia,li_mes,li_ano
+
+li_dia=day(Date(ad_fecha))
+li_mes=month(Date(ad_fecha))
+li_ano=year(Date(ad_fecha))
+
+Choose Case li_mes
+	Case 1
+		ls_mes='ENERO'
+	Case 2
+		ls_mes='FEBRERO'
+	Case 3
+		ls_mes='MARZO'
+	Case 4
+		ls_mes='ABRIL'
+	Case 5
+		ls_mes='MAYO'
+	Case 6
+		ls_mes='JUNIO'
+	Case 7
+		ls_mes='JULIO'
+	Case 8
+		ls_mes='AGOSTO'
+	Case 9
+		ls_mes='SEPTIEMBRE'
+	Case 10
+		ls_mes='OCTUBRE'
+	Case 11
+		ls_mes='NOVIEMBRE'
+	Case 12
+		ls_mes='DICIEMBRE'
+		
+End Choose
+
+Choose Case li_dia
+	Case 1
+		ls_dia='UNO'
+	Case 2
+		ls_dia='DOS'
+	Case 3
+		ls_dia='TRES'
+	Case 4
+		ls_dia='CUATRO'
+	Case 5
+		ls_dia='CINCO'
+	Case 6
+		ls_dia='SEIS'
+	Case 7
+		ls_dia='SIETE'
+	Case 8
+		ls_dia='OCHO'
+	Case 9
+		ls_dia='NUEVE'
+	Case 10
+		ls_dia='DIEZ'
+	Case 11
+		ls_dia='ONCE'
+	Case 12
+		ls_dia='DOCE'
+	Case 13
+		ls_dia='TRECE'
+	Case 14
+		ls_dia='CATORCE'
+	Case 15
+		ls_dia='QUINCE'
+	Case 16
+		ls_dia='DIECISEIS'
+	Case 17
+		ls_dia='DIECISIETE'
+	Case 18
+		ls_dia='DIECIOCHO'
+	Case 19
+		ls_dia='DIECINUEVE'
+	Case 20
+		ls_dia='VEINTE'
+	Case 21
+		ls_dia='VEINTIUNO'
+	Case 22
+		ls_dia='VEINTIDOS'
+	Case 23
+		ls_dia='VEINTITRES'
+	Case 24
+		ls_dia='VEINTICUATRO'
+	Case 25
+		ls_dia='VEINTICINCO'
+	Case 26
+		ls_dia='VEINTISEIS'
+	Case 27
+		ls_dia='VEINTISIETE'
+	Case 28
+		ls_dia='VEINTIOCHO'
+	Case 29
+		ls_dia='VEINTINUEVE'
+	Case 30
+		ls_dia='TREINTA'
+	Case 31
+		ls_dia='TREINTA Y UNO'
+End Choose
+
+Choose Case li_ano
+	Case 1994
+		ls_ano='MIL NOVECIENTOS NOVENTA Y CUATRO'
+	Case 1995
+		ls_ano='MIL NOVECIENTOS NOVENTA Y CINCO'
+	Case 1996
+		ls_ano='MIL NOVECIENTOS NOVENTA Y SEIS'
+	Case 1997
+		ls_ano='MIL NOVECIENTOS NOVENTA Y SIETE'
+	Case 1998
+		ls_ano='MIL NOVECIENTOS NOVENTA Y OCHO'
+	Case 1999
+		ls_ano='MIL NOVECIENTOS NOVENTA Y NUEVE'
+	Case 2000
+		ls_ano='DOS MIL'
+	Case 2001
+		ls_ano='DOS MIL UNO'
+	Case 2002
+		ls_ano='DOS MIL DOS'
+	Case 2003
+		ls_ano='DOS MIL TRES'
+	Case 2004
+		ls_ano='DOS MIL CUATRO'
+	Case 2005
+		ls_ano='DOS MIL CINCO'
+	Case 2006
+		ls_ano='DOS MIL SEIS'
+	Case 2007
+		ls_ano='DOS MIL SIETE'
+	Case 2008
+		ls_ano='DOS MIL OCHO'
+	Case 2009
+		ls_ano='DOS MIL NUEVE'
+	Case 2010
+		ls_ano='DOS MIL DIEZ'
+	Case 2011
+		ls_ano='DOS MIL ONCE'
+	Case 2012
+		ls_ano='DOS MIL DOCE'
+	Case 2013
+		ls_ano='DOS MIL TRECE'
+	Case 2014
+		ls_ano='DOS MIL CATORCE'
+	Case 2015
+		ls_ano='DOS MIL QUINCE'
+	Case 2016
+		ls_ano='DOS MIL DIECISEIS'
+	Case 2017
+		ls_ano='DOS MIL DIECISIETE'
+	Case 2018
+		ls_ano='DOS MIL DIECIOCHO'
+	Case 2019
+		ls_ano='DOS MIL DIECINUEVE'
+	Case 2020
+		ls_ano='DOS MIL VEINTE'
+		
+End Choose
+
+//ls_fec=ls_dia+' DE '+ls_mes+' DEL '+ls_ano
+ls_fec=ls_mes+' DEL '+string(li_ano)
+
+If isnull(ls_fec) Then
+	ls_fec=''
+End If
+
+Return lower(ls_fec)
+end function
+

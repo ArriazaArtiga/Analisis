@@ -1,0 +1,19 @@
+﻿$PBExportHeader$f_db_get_fecha.srf
+global type f_db_get_fecha from function_object
+end type
+
+forward prototypes
+global function datetime f_db_get_fecha ()
+end prototypes
+
+global function datetime f_db_get_fecha ();datetime ldt_fecha_db
+
+select GETDATE() 
+into :ldt_fecha_db 
+from Etapas 
+where idEtapa = 10
+using SQLCA;
+
+return ldt_fecha_db
+end function
+

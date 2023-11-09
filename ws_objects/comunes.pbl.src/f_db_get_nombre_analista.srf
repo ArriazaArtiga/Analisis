@@ -1,0 +1,22 @@
+﻿$PBExportHeader$f_db_get_nombre_analista.srf
+global type f_db_get_nombre_analista from function_object
+end type
+
+forward prototypes
+global function string f_db_get_nombre_analista (long al_solicitud)
+end prototypes
+
+global function string f_db_get_nombre_analista (long al_solicitud);String ls_analista
+
+select  	b.Nombre + ' ' + b.Apellidos 
+into 		:ls_analista
+from		Solicitud_Etapas a,
+			Ejecutivos_Analisis b
+where   	a.idEjecutivo = b.idEjecutivo 
+and		a.No_Solicitud = :al_solicitud
+and		a.etapa = 40
+using 		SQLCA;
+
+Return ls_analista
+end function
+

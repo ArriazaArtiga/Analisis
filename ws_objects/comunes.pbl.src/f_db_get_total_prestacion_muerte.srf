@@ -1,0 +1,59 @@
+﻿$PBExportHeader$f_db_get_total_prestacion_muerte.srf
+global type f_db_get_total_prestacion_muerte from function_object
+end type
+
+forward prototypes
+global function decimal f_db_get_total_prestacion_muerte (string as_dpi)
+end prototypes
+
+global function decimal f_db_get_total_prestacion_muerte (string as_dpi);Decimal ldc_total, ldc_suma1, ldc_suma2, ldc_suma3, ldc_suma4
+
+select isnull(sum(round(a.Prestacion_Muerte,2)),0.00)
+into :ldc_suma1
+from Detalle_Beneficiarios a,
+	 Declaracion_Beneficiarios b
+where 
+	 b.idFormulario = a.idFormulario and
+	 b.Status = '1' and
+	 a.Tipo in('1','2','3') and
+	 b.DPI_Contribuyente = :as_dpi
+using sqlca;
+
+select isnull(sum(round(a.Monto,2)),0.00)
+into :ldc_suma2
+from Detalle_Beneficiarios a,
+	 Declaracion_Beneficiarios b
+where 
+	 b.idFormulario = a.idFormulario and
+	 b.Status = '1' and
+	 a.Tipo1  in('1','2','3') and
+	 b.DPI_Contribuyente = :as_dpi
+using sqlca;
+
+select isnull(sum(round(a.Monto1,2)),0.00)
+into :ldc_suma3
+from Detalle_Beneficiarios a,
+	 Declaracion_Beneficiarios b
+where 
+	 b.idFormulario = a.idFormulario and
+	 b.Status = '1' and
+	 a.Tipo2  in('1','2','3') and
+	 b.DPI_Contribuyente = :as_dpi
+using sqlca;
+
+select isnull(sum(round(a.Monto_Pendiente,2)),0.00)
+into :ldc_suma4
+from Detalle_Beneficiarios a,
+	 Declaracion_Beneficiarios b
+where 
+	 b.idFormulario = a.idFormulario and
+	 b.Status = '1' and
+	 a.Pendiente = '1' and
+	 b.DPI_Contribuyente = :as_dpi
+using sqlca;
+
+ldc_total = ldc_suma1 + ldc_suma2 + ldc_suma3 + ldc_suma4
+
+Return ldc_total
+end function
+

@@ -1,0 +1,29 @@
+﻿$PBExportHeader$f_db_get_monto_conv_infom.srf
+global type f_db_get_monto_conv_infom from function_object
+end type
+
+forward prototypes
+global function decimal f_db_get_monto_conv_infom (integer ai_depto, integer ai_muni, integer ai_ent_muni)
+end prototypes
+
+global function decimal f_db_get_monto_conv_infom (integer ai_depto, integer ai_muni, integer ai_ent_muni);integer li_dia, li_mes, li_anio, li_dias
+datetime ldt_fecha_entrega_cargo, ldt_fecha_fin_mes
+string ls_fecha
+decimal ldc_monto
+
+Select sum(monto) 
+into :ldc_monto
+from rmuni_convenios
+where tipo_convenio = '1'
+and depto = :ai_depto
+and muni = :ai_muni
+and correlativo = :ai_ent_muni
+using SQLCA;
+
+if isnull(ldc_monto) then
+	ldc_monto = 0.00
+end if
+
+return ldc_monto
+end function
+

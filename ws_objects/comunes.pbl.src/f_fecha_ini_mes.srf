@@ -1,0 +1,20 @@
+﻿$PBExportHeader$f_fecha_ini_mes.srf
+global type f_fecha_ini_mes from function_object
+end type
+
+forward prototypes
+global function datetime f_fecha_ini_mes (integer ai_mes, integer ai_anio)
+end prototypes
+
+global function datetime f_fecha_ini_mes (integer ai_mes, integer ai_anio);integer li_dia
+string ls_fecha
+datetime ldt_fecha_ini_mes
+
+li_dia = 1
+
+ls_fecha = string(li_dia)+'/'+string(ai_mes)+'/'+string(ai_anio)
+ldt_fecha_ini_mes = datetime(ls_fecha)
+
+Return ldt_fecha_ini_mes
+end function
+

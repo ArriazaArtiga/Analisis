@@ -1,0 +1,25 @@
+﻿$PBExportHeader$f_db_get_datos_solicitud.srf
+global type f_db_get_datos_solicitud from function_object
+end type
+
+forward prototypes
+global function string f_db_get_datos_solicitud (string as_dpi, ref string as_apellidos, ref string as_casada, ref integer ai_depto, ref integer ai_muni, ref integer ai_correlativo, ref datetime adt_fecha_ingreso, long al_solicitud, datetime adt_fecha, string as_nit, string as_tipo_tramite, string as_status, integer ai_etapa, string as_descripcion, string as_telefono, string as_celular, string as_direccion_notificaciones, integer ai_depto_notificaciones, integer ai_muni_notificaciones)
+end prototypes
+
+global function string f_db_get_datos_solicitud (string as_dpi, ref string as_apellidos, ref string as_casada, ref integer ai_depto, ref integer ai_muni, ref integer ai_correlativo, ref datetime adt_fecha_ingreso, long al_solicitud, datetime adt_fecha, string as_nit, string as_tipo_tramite, string as_status, integer ai_etapa, string as_descripcion, string as_telefono, string as_celular, string as_direccion_notificaciones, integer ai_depto_notificaciones, integer ai_muni_notificaciones);String ls_nombres
+
+select a.apellidos, a.casada, a.nombres, a.depto, a.muni, a.correlativo, a.fecha_ingreso ,
+		b.No_Solicitud, b.Fecha,b.NIT, b.Tipo_Tramite, b.Status, b.Etapa, c.Descripcion, 
+		b.Telefono, b.Celular,b.Direccion_Notificaciones,b.Departamento,b.Municipio
+into 	:as_apellidos, :as_casada, :ls_nombres, :ai_depto, :ai_muni, :ai_correlativo, :adt_fecha_ingreso,
+		:al_solicitud, :adt_fecha, :as_nit, :as_tipo_tramite, :as_status, :ai_etapa, :as_descripcion,
+		:as_telefono, :as_celular, :as_direccion_notificaciones, :ai_depto_notificaciones, :ai_muni_notificaciones
+from	contribuyentes a , solicitudes b, Etapas c
+where	a.DPI = b.DPI and
+		c.idEtapa = b.Etapa and
+		b.DPI = :as_dpi
+using SQLCA;
+
+return ls_nombres
+end function
+

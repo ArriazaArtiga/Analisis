@@ -1,0 +1,21 @@
+﻿$PBExportHeader$f_db_get_desc_entidad.srf
+global type f_db_get_desc_entidad from function_object
+end type
+
+forward prototypes
+global function string f_db_get_desc_entidad (integer ai_depto, integer ai_muni, integer ai_entidad)
+end prototypes
+
+global function string f_db_get_desc_entidad (integer ai_depto, integer ai_muni, integer ai_entidad);string ls_nombre
+
+select nombre
+into :ls_nombre 
+from corporacion_empresa_municipal 
+where depto = :ai_depto
+and	muni = :ai_muni
+and 	correlativo =  :ai_entidad
+using SQLCA;
+
+return ls_nombre
+end function
+

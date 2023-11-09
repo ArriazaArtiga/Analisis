@@ -1,0 +1,20 @@
+﻿$PBExportHeader$f_db_get_solicitud_requisitos.srf
+global type f_db_get_solicitud_requisitos from function_object
+end type
+
+forward prototypes
+global function integer f_db_get_solicitud_requisitos (string as_tipo_tramite)
+end prototypes
+
+global function integer f_db_get_solicitud_requisitos (string as_tipo_tramite);Integer li_rows
+
+select count(idRequisito)
+into :li_rows
+from Solicitudes_Requisitos 
+where Tipo_Tramite = :as_tipo_tramite
+and Status = 1
+using SQLCA;
+  
+return li_rows
+end function
+

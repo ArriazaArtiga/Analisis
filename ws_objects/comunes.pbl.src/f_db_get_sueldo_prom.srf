@@ -1,0 +1,71 @@
+﻿$PBExportHeader$f_db_get_sueldo_prom.srf
+global type f_db_get_sueldo_prom from function_object
+end type
+
+forward prototypes
+global function decimal f_db_get_sueldo_prom (string as_dpi, long al_no_solic)
+end prototypes
+
+global function decimal f_db_get_sueldo_prom (string as_dpi, long al_no_solic);Decimal ldc_sueldo_prom, ldc_tot_anio1, ldc_tot_anio2, ldc_tot_anio3, ldc_tot_anio4, ldc_tot_anio5, ldc_tot_anio6, ldc_tot_anio7, ldc_tot_anio8
+String ls_tipo_tramite, ls_subtipo_invalidez
+Integer li_mes_servicio, li_anio_servicio
+
+select tipo_tramite, subtipo_invalidez
+into :ls_tipo_tramite, :ls_subtipo_invalidez
+from Solicitudes
+where DPI = :as_dpi
+and no_solicitud = :al_no_solic
+using sqlca; 
+
+select mes
+into :li_mes_servicio
+from solicitud_tiempo_servicio
+where DPI = :as_dpi
+and no_solicitud = :al_no_solic
+using sqlca; 
+
+select anio
+into :li_anio_servicio
+from solicitud_tiempo_servicio
+where DPI = :as_dpi
+and no_solicitud = :al_no_solic
+using sqlca; 
+
+select sum(monto_anio1),sum(monto_anio2),sum(monto_anio3),sum(monto_anio4),sum(monto_anio5),sum(monto_anio6),sum(monto_anio7),sum(monto_anio8)
+into :ldc_tot_anio1, :ldc_tot_anio2, :ldc_tot_anio3, :ldc_tot_anio4, :ldc_tot_anio5, :ldc_tot_anio6, :ldc_tot_anio7, :ldc_tot_anio8
+from Solicitud_Detalle_Pagos
+where DPI = :as_dpi and
+no_solicitud = :al_no_solic
+using sqlca;
+
+if isnull(ldc_tot_anio1) then ldc_tot_anio1 = 0
+if isnull(ldc_tot_anio2) then ldc_tot_anio2 = 0
+if isnull(ldc_tot_anio3) then ldc_tot_anio3 = 0
+if isnull(ldc_tot_anio4) then ldc_tot_anio4 = 0
+if isnull(ldc_tot_anio5) then ldc_tot_anio5 = 0
+if isnull(ldc_tot_anio6) then ldc_tot_anio6 = 0
+if isnull(ldc_tot_anio7) then ldc_tot_anio7 = 0
+if isnull(ldc_tot_anio8) then ldc_tot_anio8 = 0
+
+choose case ls_tipo_tramite
+	case '01'  // Vejez
+		ldc_sueldo_prom = round((ldc_tot_anio1 + ldc_tot_anio2 + ldc_tot_anio3 + ldc_tot_anio4 + ldc_tot_anio5 + ldc_tot_anio6 + ldc_tot_anio7 + ldc_tot_anio8) / 48,0)
+	case '02'  // Invalidez
+		choose case ls_subtipo_invalidez
+			case '1'  // Normal
+				ldc_sueldo_prom = (ldc_tot_anio1 + ldc_tot_anio2 + ldc_tot_anio3 + ldc_tot_anio4 + ldc_tot_anio5 + ldc_tot_anio6 + ldc_tot_anio7 + ldc_tot_anio8) / 12
+			case '2'  // Accidente
+				if li_anio_servicio = 0 then
+					ldc_sueldo_prom = (ldc_tot_anio1 + ldc_tot_anio2 + ldc_tot_anio3 + ldc_tot_anio4 + ldc_tot_anio5 + ldc_tot_anio6 + ldc_tot_anio7 + ldc_tot_anio8) / li_mes_servicio
+				else
+					ldc_sueldo_prom = (ldc_tot_anio1 + ldc_tot_anio2 + ldc_tot_anio3 + ldc_tot_anio4 + ldc_tot_anio5 + ldc_tot_anio6 + ldc_tot_anio7 + ldc_tot_anio8) / 12
+				end if
+		end choose
+		//ldc_sueldo_prom = (ldc_tot_anio1 + ldc_tot_anio2 + ldc_tot_anio3 + ldc_tot_anio4 + ldc_tot_anio5 + ldc_tot_anio6 + ldc_tot_anio7 + ldc_tot_anio8) / 12
+end choose
+
+if isnull(ldc_sueldo_prom) then ldc_sueldo_prom = 0
+//messagebox('sueldo prom',ldc_sueldo_prom)
+return ldc_sueldo_prom
+end function
+

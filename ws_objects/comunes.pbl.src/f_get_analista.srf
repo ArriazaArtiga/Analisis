@@ -1,0 +1,22 @@
+﻿$PBExportHeader$f_get_analista.srf
+global type f_get_analista from function_object
+end type
+
+forward prototypes
+global function string f_get_analista (long al_idanalista)
+end prototypes
+
+global function string f_get_analista (long al_idanalista);String ls_analista
+
+select  	b.descripcion
+into 		:ls_analista
+from		usuarios b
+where   	b.idUsuario = :al_idanalista
+using 		SQLCA;
+if isnull(ls_analista) then
+	return 'No es ejecutivo'
+else
+	Return ls_analista
+end if
+end function
+

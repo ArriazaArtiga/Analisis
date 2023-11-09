@@ -1,0 +1,43 @@
+﻿$PBExportHeader$f_db_get_monto_primer_pago.srf
+global type f_db_get_monto_primer_pago from function_object
+end type
+
+forward prototypes
+global function decimal f_db_get_monto_primer_pago (string as_dpi)
+end prototypes
+
+global function decimal f_db_get_monto_primer_pago (string as_dpi);Decimal ldc_monto_primer_pago, ldc_monto_pension, ldc_monto_ins, ldc_monto_aux_post, ldc_l8, ldc_l1, ldc_lb14, ldc_l4, ldc_l6, ldc_l7
+Integer li_rango_meses_ini_fin
+String ls_dpi
+DateTime ldt_fecha_ini_calc, ldt_fecha_resol, ldt_fecha_docto, ldt_b14_past, ldt_b14_present, ldt_agui_past, ldt_agui_present
+Long ll_solicitud
+
+SELECT a.dpi, h.fecha_inicio_calculo, f.no_solicitud, f.fecha_resolucion, h.fecha_documento, round(a.Pension_Inicial,2), h.monto_inscripcion, h.monto_aux_postumo, DATEDIFF(mm,h.fecha_inicio_calculo, f.fecha_resolucion)
+into :ls_dpi, :ldt_fecha_ini_calc, :ll_solicitud, :ldt_fecha_resol, :ldt_fecha_docto, :ldc_monto_pension, :ldc_monto_ins, :ldc_monto_aux_post, :li_rango_meses_ini_fin
+FROM contribuyentes a,   
+         solicitudes f,   
+         solicitud_documentos_expediente h  
+WHERE ( h.dpi = a.dpi ) and  
+         ( h.no_solicitud = f.no_solicitud ) and  
+         ( f.dpi = a.dpi ) and  
+         ( ( h.tipo_documento = '7 ' ) AND  
+		 ( f.etapa < 210 ) and
+         ( a.DPI = :as_dpi ) )    
+using SQLCA;
+
+ldt_b14_past = datetime('30/06' + string(year(date(ldt_fecha_docto)) - 1))
+ldt_b14_present = datetime('30/06' + string(year(date(ldt_fecha_docto)) ))
+ldt_agui_past = datetime('30/11' + string(year(date(ldt_fecha_docto)) - 1))
+ldt_agui_present = datetime('30/11' + string(year(date(ldt_fecha_docto)) ))
+
+ldc_l8 = f_recibo_linea1(ldt_fecha_ini_calc,as_dpi,ldc_monto_pension,ll_solicitud)
+ldc_l1 = f_recibo_linea2(ldt_fecha_ini_calc,ldt_fecha_resol,ldc_monto_pension)
+
+ldc_l6 = ldc_monto_ins
+ldc_l7 = ldc_monto_aux_post *(li_rango_meses_ini_fin + 1)
+
+ldc_monto_primer_pago = ldc_l1   + ldc_l8 - ( ldc_l7 + ldc_l6)
+ 
+Return ldc_monto_primer_pago
+end function
+

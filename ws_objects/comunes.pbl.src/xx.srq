@@ -1,0 +1,115 @@
+﻿$PBExportHeader$xx.srq
+select	 a.Tipo_Tramite, 
+		 a.No_Solicitud,
+		 a.Referencia_Solicitud,
+		 (Select z.no_documento from Solicitud_Documentos_Expediente z where z.Tipo_Documento = '3' and z.No_Solicitud = a.No_Solicitud ) as 'Acta',
+		 a.Fecha,
+		 a.Fecha_Resolucion,
+		 b.Nombres + ' ' + b.Apellidos + ' ' + ISNULL(b.Casada,'') as Nombres,
+		 a.DPI,
+		 ISNULL((select c.Anio from Solicitud_Tiempo_Servicio c where a.DPI = c.DPI and a.no_solicitud = c.no_solicitud ),0) as 'Año_Servicio',
+		 ISNULL((select c.Mes from Solicitud_Tiempo_Servicio c where a.DPI = c.DPI and a.no_solicitud = c.no_solicitud ),0) as 'Mes_Servicio',
+		 ISNULL((select c.Dias from Solicitud_Tiempo_Servicio c where a.DPI = c.DPI and a.no_solicitud = c.no_solicitud ),0) as 'Dias_Servicio',
+		 d.Nombre as 'Depto_Labora',
+		 e.Nombre as 'Muni_Labora',
+		 f.Nombre as 'Entidad_Labora',
+		 Case a.Tipo_Tramite
+			When '01' Then b.Pension_Inicial
+			When '02' Then b.Pension_Inicial
+			When '03' Then b.Salario
+			When '04' Then b.Pension_Calculada
+			When '05' Then b.Salario
+			When '06' Then round(0.00,2)
+			When '07' Then round(0.00,2)
+			When '09' Then round(0.00,2)
+		 End as 'Pensión_Salario',
+		 Case a.Tipo_Tramite
+			When '01' Then (Select z.Fecha_Inicio_Calculo from Solicitud_Documentos_Expediente z where z.Tipo_Documento = '7' and z.No_Solicitud = a.No_Solicitud )
+			When '02' Then (Select z.Fecha_Inicio_Calculo from Solicitud_Documentos_Expediente z where z.Tipo_Documento = '7' and z.No_Solicitud = a.No_Solicitud )
+		 End as 'FPP',
+		 Case a.Tipo_Tramite
+			When '01' Then round(0.00,2)
+			When '02' Then round(0.00,2)
+			When '03' Then Round( b.Salario * 0.07,0 ) + Round( b.Salario * 0.10,0 )
+			When '04' Then isnull(( select  sum( u.Prestacion_Muerte ) from Declaracion_Beneficiarios v, Detalle_Beneficiarios u where a.DPI = v.DPI_Contribuyente and v.idFormulario = u.idFormulario and v.status = 1 and u.tipo1 = 1 ),0.00)
+			When '05' Thenisnull(( select  sum( u.Prestacion_Muerte ) from Declaracion_Beneficiarios v, Detalle_Beneficiarios u where a.DPI = v.DPI_Contribuyente and v.idFormulario = u.idFormulario and v.status = 1 and u.tipo1 = 1 ),0.00)
+			When '06' Then round(0.00,2)
+			When '07' Then round(0.00,2)
+			When '09' Then round(0.00,2)
+		 End as 'MPM',
+		 Case a.Tipo_Tramite
+			When '01' Then Round(0.00,2)
+			When '02' Then Round(0.00,2)
+			When '03' Then Round(0.00,2)
+			When '04' Then isnull(( select  sum( u.Monto ) from Declaracion_Beneficiarios v, Detalle_Beneficiarios u where a.DPI = v.DPI_Contribuyente and v.idFormulario = u.idFormulario and v.status = 1 and u.tipo1 = 1 ),0.00)
+			When '05' Then isnull(( select  sum( u.Monto ) from Declaracion_Beneficiarios v, Detalle_Beneficiarios u where a.DPI = v.DPI_Contribuyente and v.idFormulario = u.idFormulario and v.status = 1 and u.tipo1 = 1 ),0.00)
+			When '06' Then isnull(( select  sum( u.Monto ) from Declaracion_Beneficiarios v, Detalle_Beneficiarios u where a.DPI = v.DPI_Contribuyente and v.idFormulario = u.idFormulario and v.status = 1 and u.tipo1 = 1 ),0.00)
+			When '07' Then isnull(( select  sum( u.Monto ) from Declaracion_Beneficiarios v, Detalle_Beneficiarios u where a.DPI = v.DPI_Contribuyente and v.idFormulario = u.idFormulario and v.status = 1 and u.tipo1 = 1 ),0.00)
+			When '09' Then isnull(( select  sum( u.Monto ) from Declaracion_Beneficiarios v, Detalle_Beneficiarios u where a.DPI = v.DPI_Contribuyente and v.idFormulario = u.idFormulario and v.status = 1 and u.tipo1 = 1 ),0.00)
+		 End as 'Ayuda Funerales',
+		 Case a.Tipo_Tramite
+			When '01' Then Round(0.00,2)
+			When '02' Then Round(0.00,2)
+			When '03' Then Round(0.00,2)
+			When '04' Then isnull(( select  sum( u.Monto1 ) from Declaracion_Beneficiarios v, Detalle_Beneficiarios u where a.DPI = v.DPI_Contribuyente and v.idFormulario = u.idFormulario and v.status = 1 and u.tipo2 = 1 ),0.00)
+			When '05' Then isnull(( select  sum( u.Monto1 ) from Declaracion_Beneficiarios v, Detalle_Beneficiarios u where a.DPI = v.DPI_Contribuyente and v.idFormulario = u.idFormulario and v.status = 1 and u.tipo2 = 1 ),0.00)
+			When '06' Then isnull(( select  sum( u.Monto1 ) from Declaracion_Beneficiarios v, Detalle_Beneficiarios u where a.DPI = v.DPI_Contribuyente and v.idFormulario = u.idFormulario and v.status = 1 and u.tipo2 = 1 ),0.00)
+			When '07' Then isnull(( select  sum( u.Monto1 ) from Declaracion_Beneficiarios v, Detalle_Beneficiarios u where a.DPI = v.DPI_Contribuyente and v.idFormulario = u.idFormulario and v.status = 1 and u.tipo2 = 1 ),0.00)
+			When '09' Then round(0.00,2)
+		 End as 'Beneficio Póstumo',
+ 		 Case a.Tipo_Tramite
+			When '01' Then Round(0.00,2)
+			When '02' Then Round(0.00,2)
+			When '03' Then Round(0.00,2)
+			When '04' Then isnull(( select  sum( isnull(u.Monto,0.00) + isnull(u.Monto1,0.00) + isnull(u.Prestacion_Muerte,0.00) ) from Declaracion_Beneficiarios v, Detalle_Beneficiarios u where a.DPI = v.DPI_Contribuyente and v.idFormulario = u.idFormulario and v.status = 1 and lower(u.Cuenta_Banco) = 'parte pendiente' ),0.00)
+			When '05' Then isnull(( select  sum( isnull(u.Monto,0.00) + isnull(u.Monto1,0.00) + isnull(u.Prestacion_Muerte,0.00) ) from Declaracion_Beneficiarios v, Detalle_Beneficiarios u where a.DPI = v.DPI_Contribuyente and v.idFormulario = u.idFormulario and v.status = 1 and lower(u.Cuenta_Banco) = 'parte pendiente' ),0.00)
+			When '06' Then Round(0.00,2)
+			When '07' Then Round(0.00,2)
+			When '09' Then round(0.00,2)
+		 End as 'Pensiones Pendientes',
+		 Case a.Tipo_Tramite
+			When '01' Then Round(0.00,2)
+			When '02' Then Round(0.00,2)
+			When '03' Then Round(0.00,2)
+			When '04' Then isnull(( select  sum( u.Monto_Pendiente ) from Declaracion_Beneficiarios v, Detalle_Beneficiarios u where a.DPI = v.DPI_Contribuyente and v.idFormulario = u.idFormulario and v.status = 1 and u.pendiente = 1 ),0.00)
+			When '05' Then isnull(( select  sum( u.Monto_Pendiente ) from Declaracion_Beneficiarios v, Detalle_Beneficiarios u where a.DPI = v.DPI_Contribuyente and v.idFormulario = u.idFormulario and v.status = 1 and u.pendiente = 1 ),0.00)
+			When '06' Then Round(0.00,2)
+			When '07' Then Round(0.00,2)
+			When '09' Then round(0.00,2)
+		 End as 'PenPend',
+		 g.nomina,
+ 		 Case a.Tipo_Tramite
+			When '01' Then Round(0.00,2)
+			When '02' Then Round(0.00,2)
+			When '03' Then Round(0.00,2)
+			When '04' Then ( select ISNULL(Monto_Pensiones_Pendientes,0) + ISNULL(Monto_Dias_Pendientes,0) + ISNULL(Monto_B14_Pendiente,0) + ISNULL(Monto_Agui_Pendiente,0) from Solicitud_Prestacion_Muerte w where a.DPI = w.DPI and a.No_Solicitud = w.No_Solicitud )
+			When '05' Then ( select ISNULL(Monto_Pensiones_Pendientes,0) + ISNULL(Monto_Dias_Pendientes,0) + ISNULL(Monto_B14_Pendiente,0) + ISNULL(Monto_Agui_Pendiente,0) from Solicitud_Prestacion_Muerte w where a.DPI = w.DPI and a.No_Solicitud = w.No_Solicitud )
+			When '06' Then Round(0.00,2)
+			When '07' Then Round(0.00,2)
+			When '09' Then round(0.00,2)
+		 End as 'MPPend',
+		 (Select z.Monto_Inscripcion  from Solicitud_Documentos_Expediente z where z.Tipo_Documento = '7' and z.No_Solicitud = a.No_Solicitud ) as 'AXP_Ins',
+		 (Select (z.Monto_Aux_Postumo) * (DATEDIFF(mm,z.fecha_inicio_calculo,a.fecha_resolucion)+1) from Solicitud_Documentos_Expediente z where z.Tipo_Documento = '7' and z.No_Solicitud = a.No_Solicitud ) as 'AXP_Mens',
+		 (Select z.Fecha_Documento from Solicitud_Documentos_Expediente z where z.Tipo_Documento = '7' and z.No_Solicitud = a.No_Solicitud ) as 'Fecha_Recibo',
+		 (Select g.Usuario from Solicitud_Etapas g where a.No_Solicitud = g.No_Solicitud and a.DPI = g.DPI and g.Etapa = 40 ) as 'Ejecutivo_Análisis'
+//DATEDIFF(mm,h.fecha_inicio_calculo, f.fecha_resolucion)
+from	 Solicitudes a,
+		 Contribuyentes b,
+		 Departamentos d,
+		 Municipios e,
+		 Corporacion_Empresa_Municipal f,
+		 Solicitud_Etapas g
+where	 RTRIM(LTRIM(b.DPI)) = RTRIM(LTRIM(a.DPI)) and
+		 d.Depto = b.Depto and
+		 e.Depto = b.Depto and
+		 e.Muni = b.Muni and
+		 f.Depto = b.Depto and
+		 f.Muni = b.Muni and
+		 f.Correlativo = b.Correlativo and
+		 a.No_Solicitud = g.No_Solicitud and
+		 a.DPI = g.DPI and
+		 a.Etapa = g.Etapa and
+		 a.Etapa = 180  and
+		 g.Fecha >= :adt_fecha and
+		 g.fecha < DATEADD(dd,1,:adt_fecha)
+order by a.Tipo_Tramite, a.Referencia_Solicitud ARG(NAME = "an_listado" TYPE = number)  ARG(NAME = "adt_fecha" TYPE = datetime) 

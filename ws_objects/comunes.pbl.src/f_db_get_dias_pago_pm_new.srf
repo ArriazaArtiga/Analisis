@@ -1,0 +1,48 @@
+﻿$PBExportHeader$f_db_get_dias_pago_pm_new.srf
+global type f_db_get_dias_pago_pm_new from function_object
+end type
+
+forward prototypes
+global function integer f_db_get_dias_pago_pm_new (string as_dpi)
+end prototypes
+
+global function integer f_db_get_dias_pago_pm_new (string as_dpi);integer li_dia, li_mes, li_anio, li_dias
+datetime ldt_fecha_inicio_calculo, ldt_fecha_fin_mes
+string ls_fecha
+decimal ldc_salario, ldc_monto
+
+Select 	a.Fecha_fallecimiento 
+into 		:ldt_fecha_inicio_calculo
+from 		Solicitud_prestacion_muerte a,
+			Solicitudes b
+where 	a.no_solicitud = b.no_solicitud and
+			a.DPI = :as_dpi and
+			b.Etapa not in(300)
+using 		SQLCA;
+
+li_mes = month(date(ldt_fecha_inicio_calculo))
+li_anio = year(date(ldt_fecha_inicio_calculo))
+
+if li_mes = 1 or li_mes = 3 or li_mes = 5 or li_mes = 7 or li_mes = 8 or li_mes = 10 or li_mes = 12 then
+	li_dia = 31
+else
+	if li_mes = 4 or li_mes = 6 or li_mes = 9 or li_mes = 11 then
+		li_dia = 30
+	else
+		if mod(li_anio, 400) = 0 then
+			li_dia = 29
+		else
+			if mod(li_anio, 4) = 0 and mod(li_anio, 100) <> 0 then
+				li_dia = 29
+			else
+				li_dia = 28
+			end if
+		end if
+	end if
+end if
+ li_dias = li_dia - day(date(ldt_fecha_inicio_calculo))
+
+
+return li_dias
+end function
+

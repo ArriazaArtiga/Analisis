@@ -1,0 +1,34 @@
+﻿$PBExportHeader$f_db_get_meses_edad_cv.srf
+global type f_db_get_meses_edad_cv from function_object
+end type
+
+forward prototypes
+global function integer f_db_get_meses_edad_cv (long al_solicitud, string as_dpi, string as_tipo_docto, string as_unidad)
+end prototypes
+
+global function integer f_db_get_meses_edad_cv (long al_solicitud, string as_dpi, string as_tipo_docto, string as_unidad);Datetime ldt_fecha_fin
+Integer li_meses
+
+select 	DATEDIFF(mm,b.Fecha,dateadd(yy,65,a.fecha_nacimiento))+1
+from		Contribuyentes a,
+			Solicitudes b
+where	a.DPI = b.DPI and
+			b.Etapa < 210 and
+			a.DPI = :as_dpi
+
+
+select  	DATEADD(mm,b.Monto_Anio1,a.Fecha_Inicio_Calculo)
+into 		:ldt_fecha_fin
+from		Solicitud_Documentos_expediente a,
+			Solicitud_Detalle_Pagos b
+where   	a.No_Solicitud = b.No_Solicitud
+and		a.dpi = b.dpi
+and		a.No_Solicitud = :al_solicitud
+and		a.dpi = :as_dpi
+and		a.tipo_documento = :as_tipo_docto
+and		a.unidad = :as_unidad
+using 		SQLCA;
+
+Return li_meses
+end function
+

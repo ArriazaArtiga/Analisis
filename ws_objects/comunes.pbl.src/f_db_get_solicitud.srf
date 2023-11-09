@@ -1,0 +1,19 @@
+﻿$PBExportHeader$f_db_get_solicitud.srf
+global type f_db_get_solicitud from function_object
+end type
+
+forward prototypes
+global function long f_db_get_solicitud (string as_dpi)
+end prototypes
+
+global function long f_db_get_solicitud (string as_dpi);Long ll_solicitud
+
+select 	b.No_Solicitud
+into 		:ll_solicitud
+from		solicitudes b
+where	(b.DPI = :as_dpi and etapa < 210)
+using SQLCA;
+
+return ll_solicitud
+end function
+

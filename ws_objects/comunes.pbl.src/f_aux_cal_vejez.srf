@@ -1,0 +1,61 @@
+﻿$PBExportHeader$f_aux_cal_vejez.srf
+global type f_aux_cal_vejez from function_object
+end type
+
+forward prototypes
+global function e_vejez f_aux_cal_vejez (string as_dpi)
+end prototypes
+
+global function e_vejez f_aux_cal_vejez (string as_dpi);e_vejez st
+Decimal aux, aux_men, pension
+Datetime f_resolucion, f_entregacargo, f_iniciocalculo, f_sol
+String s_dpi, s_resolucion, _aux
+Integer sol
+
+  SELECT   
+  		f.No_Solicitud,
+         f.referencia_solicitud,   
+         f.fecha_resolucion,   
+         f.fecha_entrega_cargo,   
+         round(a.Pension_Inicial,2) as 'Pensión_Inicial',   
+         h.fecha_inicio_calculo,   
+		isnull(h.monto_inscripcion,0.00) as 'monto_inscripcion',
+		isnull(h.monto_aux_postumo,0.00) as 'monto_aux_postumo',
+		f.auxpost
+	INTO
+		:sol,
+		:s_resolucion,
+		:f_resolucion,
+		:f_entregacargo,
+		:pension,
+		:f_iniciocalculo,
+		:aux,
+		:aux_men,
+		:_aux
+       FROM contribuyentes a,     
+         solicitudes f,   
+         solicitud_documentos_expediente h  
+   WHERE 
+		a.DPI= f.DPI and
+		f.No_Solicitud = h.No_Solicitud and
+         ((  h.tipo_documento = '8' ) OR (  h.tipo_documento = '8' )) AND  
+		( f.etapa < 200 ) and
+         ( a.DPI = :as_dpi )  
+using SQLCA;
+st.solicitud = sol
+st.fechasolicitud = f_sol
+st.resolucion= s_resolucion
+st.fecharesolucion=f_resolucion
+st.entregacargo=f_entregacargo
+st.pensionmensual=pension
+st.iniciocalculo=f_iniciocalculo
+st.montoinsaux=string(aux)
+st.montoauxpostumo=aux_men
+/*messagebox("fecharesolucion",string(st.fecharesolucion))
+messagebox("entregacargo",string(st.entregacargo))
+messagebox("iniciocalculo",string(st.iniciocalculo))
+messagebox("montoinsaux",string(st.montoinsaux))
+messagebox("montoauxpostumo",string(st.montoauxpostumo))*/
+return st
+end function
+

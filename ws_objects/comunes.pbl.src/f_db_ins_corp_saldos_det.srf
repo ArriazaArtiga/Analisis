@@ -1,0 +1,15 @@
+﻿$PBExportHeader$f_db_ins_corp_saldos_det.srf
+global type f_db_ins_corp_saldos_det from function_object
+end type
+
+forward prototypes
+global subroutine f_db_ins_corp_saldos_det (integer ai_mes, integer ai_anio, integer ai_depto, integer ai_muni, integer ai_ent_muni, string as_descripcion, decimal adc_convenios_infom, decimal adc_convenios_plan, decimal adc_deuda_laboral, decimal adc_deuda_patronal, decimal adc_intereses_mora, decimal adc_constitucional, decimal adc_ingresos, integer ai_nomesesdeuda)
+end prototypes
+
+global subroutine f_db_ins_corp_saldos_det (integer ai_mes, integer ai_anio, integer ai_depto, integer ai_muni, integer ai_ent_muni, string as_descripcion, decimal adc_convenios_infom, decimal adc_convenios_plan, decimal adc_deuda_laboral, decimal adc_deuda_patronal, decimal adc_intereses_mora, decimal adc_constitucional, decimal adc_ingresos, integer ai_nomesesdeuda);insert 	corporacion_saldos_det (mes,anio,depto,muni,correlativo,descripcion,convenios_infom,convenios_plan,deuda_laboral,deuda_patronal,intereses_mora,constitucional,ingresos,nomesesdeuda) 
+values 	(:ai_mes,:ai_anio,:ai_depto,:ai_muni,:ai_ent_muni,:as_descripcion,:adc_convenios_infom,:adc_convenios_plan,:adc_deuda_laboral,:adc_deuda_patronal,:adc_intereses_mora,:adc_constitucional,:adc_ingresos,:ai_nomesesdeuda)
+using SQLCA;
+
+return
+end subroutine
+

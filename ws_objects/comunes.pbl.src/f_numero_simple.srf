@@ -1,0 +1,497 @@
+﻿$PBExportHeader$f_numero_simple.srf
+global type f_numero_simple from function_object
+end type
+
+forward prototypes
+global function string f_numero_simple (integer fdato)
+end prototypes
+
+global function string f_numero_simple (integer fdato);
+String Ls_Numero
+Choose Case FDato
+		Case 0
+				Ls_Numero ='cero'
+		Case 1
+				Ls_Numero ='uno'
+		Case 2
+				Ls_Numero ='dos'
+		Case 3
+				Ls_Numero ='tres'
+		Case 4
+				Ls_Numero ='cuatro'
+		Case 5
+				Ls_Numero ='cinco'
+		Case 6
+				Ls_Numero ='seis'
+		Case 7
+				Ls_Numero ='siete'
+		Case 8
+				Ls_Numero ='ocho'
+		Case 9
+				Ls_Numero ='nueve'
+		Case 10
+				Ls_Numero ='diez'
+		Case 11
+				Ls_Numero ='once'
+		Case 12
+				Ls_Numero ='doce'
+		Case 13
+				Ls_Numero ='trece'
+		Case 14
+				Ls_Numero ='catorce'
+		Case 15
+				Ls_Numero ='quince'
+		Case 16
+				Ls_Numero ='dieciseis'
+		Case 17
+				Ls_Numero ='diecisiete'
+		Case 18
+				Ls_Numero ='dieciocho'
+		Case 19
+				Ls_Numero ='diecinueve'
+		Case 20
+				Ls_Numero ='veinte'
+		Case 21
+				Ls_Numero ='veintiuno'
+		Case 22
+				Ls_Numero ='veintidos'
+		Case 23
+				Ls_Numero ='veintitres'
+		Case 24
+				Ls_Numero ='veinticuatro'
+		Case 25
+				Ls_Numero ='veinticinco'
+		Case 26
+				Ls_Numero ='veintiseis'
+		Case 27
+				Ls_Numero ='veintisiete'
+		Case 28
+				Ls_Numero ='veintiocho'
+		Case 29
+				Ls_Numero ='veintinueve'
+		Case 30
+				Ls_Numero ='treinta'
+		Case 31
+				Ls_Numero ='treinta y uno'
+		Case 32
+				Ls_Numero ='treinta y dos'
+		Case 33
+				Ls_Numero ='treinta y tres'
+		Case 34
+				Ls_Numero ='treinta y cuatro'
+		Case 35
+				Ls_Numero ='treinta y cinco'
+		Case 36
+				Ls_Numero ='treinta y seis'
+		Case 37
+				Ls_Numero ='treinta y siete'
+		Case 38
+				Ls_Numero ='treinta y ocho'
+		Case 39
+				Ls_Numero ='treinta y nueve'
+		Case 40
+				Ls_Numero ='cuarenta'
+		Case 41 
+				Ls_Numero ='cuarenta y uno'
+		Case 42
+				Ls_Numero ='cuarenta y dos'				
+		Case 43
+				Ls_Numero ='cuarenta y tres'
+		Case 44
+				Ls_Numero ='cuarenta y cuatro'
+		Case 45
+				Ls_Numero ='cuarenta y cinco'
+		Case 46
+				Ls_Numero ='cuarenta y seis'
+		Case 47
+				Ls_Numero ='cuarenta y siete'
+		Case 48
+				Ls_Numero ='cuarenta y ocho'
+		Case 49
+				Ls_Numero ='cuarenta y nueve'
+		Case 50
+				Ls_Numero ='cincuenta'
+		Case 51
+				Ls_Numero ='cincuenta y uno'
+		Case 52
+				Ls_Numero ='cincuenta y dos'
+		Case 53
+				Ls_Numero ='cincuenta y tres'
+		Case 54
+				Ls_Numero ='cincuenta y cuatro'
+		Case 55
+				Ls_Numero ='cincuenta y cinco'
+		Case 56
+				Ls_Numero ='cincuenta y seis'
+		Case 57
+				Ls_Numero ='cincuenta y siete'
+		Case 58
+				Ls_Numero ='cincuenta y ocho'
+		Case 59
+				Ls_Numero ='cincuenta y nueve'
+		Case 60
+				Ls_Numero ='sesenta'
+		Case 61
+				Ls_Numero ='sesenta y uno'
+		Case 62
+				Ls_Numero ='sesenta y dos'
+		Case 63
+				Ls_Numero ='sesenta y tres'
+		Case 64
+				Ls_Numero ='sesenta y cuatro'
+		Case 65
+				Ls_Numero ='sesenta y cinco'
+		Case 66
+				Ls_Numero ='sesenta y seis'
+		Case 67
+				Ls_Numero ='sesenta y siete'
+		Case 68
+				Ls_Numero ='sesenta y ocho'
+		Case 69
+				Ls_Numero ='sesenta y nueve'
+		Case 70
+			Ls_Numero ='setenta'
+		Case 71
+			Ls_Numero ='setenta y uno'
+		Case 72
+			Ls_Numero ='setenta y dos'
+		Case 73
+			Ls_Numero ='setenta y tres'
+		Case 74
+			Ls_Numero ='setenta y cuatro'
+		Case 75
+			Ls_Numero ='setenta y cinco'
+		Case 76
+			Ls_Numero ='setenta y seis'
+		Case 77
+			Ls_Numero ='setenta y siete'
+		Case 78
+			Ls_Numero ='setenta y ocho'
+		Case 79
+			Ls_Numero ='setenta y nueve'
+		Case 80
+			Ls_Numero ='ochenta'
+		Case 81
+			Ls_Numero ='ochenta y uno'
+		Case 82
+			Ls_Numero ='ochenta y dos'
+		Case 83
+			Ls_Numero ='ochenta y tres'
+		Case 84
+			Ls_Numero ='ochenta y cuatro'
+		Case 85
+			Ls_Numero ='ochenta y cinco'
+		Case 86
+			Ls_Numero ='ochenta y seis'
+		Case 87
+			Ls_Numero ='ochenta y siete'
+		Case 88
+			Ls_Numero ='ochenta y ocho'
+		Case 89
+			Ls_Numero ='ochenta y nueve'
+		Case 90
+			Ls_Numero ='noventa'
+		Case 91
+			Ls_Numero ='noventa y uno'
+		Case 92
+			Ls_Numero ='noventa y dos'
+		Case 93
+			Ls_Numero ='noventa y tres'
+		Case 94
+			Ls_Numero ='noventa y cuatro'
+		Case 95
+			Ls_Numero ='noventa y cinco'
+		Case 96
+			Ls_Numero ='noventa y seis'
+		Case 97
+			Ls_Numero ='noventa y siete'
+		Case 98
+			Ls_Numero ='noventa y ocho'
+		Case 99
+			Ls_Numero ='noventa y nueve'
+		Case 100
+			Ls_Numero ='cien'
+		Case 101
+			Ls_Numero ='ciento uno'
+		Case 102
+			Ls_Numero ='ciento dos'
+		Case 103
+			Ls_Numero ='ciento tres'
+		Case 104
+			Ls_Numero ='ciento cuatro'
+		Case 105
+			Ls_Numero ='ciento cinco'
+		Case 106
+			Ls_Numero ='ciento seis'
+		Case 107
+			Ls_Numero ='ciento siete'
+		Case 108
+			Ls_Numero ='ciento ocho'
+		Case 109
+			Ls_Numero ='ciento nueve'
+		Case 110
+			Ls_Numero ='ciento diez'
+		Case 111
+			Ls_Numero ='ciento once'
+		Case 112
+			Ls_Numero ='ciento doce'
+		Case 113
+			Ls_Numero ='ciento trece'
+		Case 114
+			Ls_Numero ='ciento catorce'
+		Case 115
+			Ls_Numero ='ciento quince'
+		Case 116
+			Ls_Numero ='ciento dieciseis'
+		Case 117
+			Ls_Numero ='ciento diecisiete'
+		Case 118
+			Ls_Numero ='ciento dieciocho'
+		Case 119
+			Ls_Numero ='ciento diecinueve'
+		Case 120
+			Ls_Numero ='ciento veinte'
+		Case 121
+			Ls_Numero ='ciento veintiuno'
+		Case 122
+			Ls_Numero ='ciento veintidos'
+		Case 123
+			Ls_Numero ='ciento veintitres'
+		Case 124
+			Ls_Numero ='ciento veinticuatro'
+		Case 125
+			Ls_Numero ='ciento veinticinco'
+		Case 126
+			Ls_Numero ='ciento veintiseis'
+		Case 127
+			Ls_Numero ='ciento veintisiete'
+		Case 128
+			Ls_Numero ='ciento veintiocho'
+		Case 129
+			Ls_Numero ='ciento veintinueve'
+		Case 130
+			Ls_Numero ='ciento treinta'
+		Case 131
+			Ls_Numero ='ciento treinta y uno'
+		Case 132
+			Ls_Numero ='ciento treinta y dos'
+		Case 133
+			Ls_Numero ='ciento treinta y tres'
+		Case 134
+			Ls_Numero ='ciento treinta y cuatro'
+		Case 135
+			Ls_Numero ='ciento treinta y cinco'
+		Case 136
+			Ls_Numero ='ciento treinta y seis'
+		Case 137
+			Ls_Numero ='ciento treinta y siete'
+		Case 138
+			Ls_Numero ='ciento treinta y ocho'
+		Case 139
+			Ls_Numero ='ciento treinta y nueve'
+		Case 140
+			Ls_Numero ='ciento cuarenta'
+		Case 141
+			Ls_Numero ='ciento cuarenta y uno'
+		Case 142
+			Ls_Numero ='ciento cuarenta y dos'
+		Case 143
+			Ls_Numero ='ciento cuarenta y tres'
+		Case 144
+			Ls_Numero ='ciento cuarenta y cuatro'
+		Case 145
+			Ls_Numero ='ciento cuarenta y cinco'
+		Case 146
+			Ls_Numero ='ciento cuarenta y seis'
+		Case 147
+			Ls_Numero ='ciento cuarenta y siete'
+		Case 148
+			Ls_Numero ='ciento cuarenta y ocho'
+		Case 149
+			Ls_Numero ='ciento cuarenta y nueve'
+		Case 150
+			Ls_Numero ='ciento cincuenta'
+		Case 151
+			Ls_Numero ='ciento cincuenta y uno'
+		Case 152
+			Ls_Numero ='ciento cincuenta y dos'
+		Case 153
+			Ls_Numero ='ciento cincuenta y tres'
+		Case 154
+			Ls_Numero ='ciento cincuenta y cuatro'
+		Case 155
+			Ls_Numero ='ciento cincuenta y cinco'
+		Case 156
+			Ls_Numero ='ciento cincuenta y seis'
+		Case 157
+			Ls_Numero ='ciento cincuenta y siete'
+		Case 158
+			Ls_Numero ='ciento cincuenta y ocho'
+		Case 159
+			Ls_Numero ='ciento cincuenta y nueve'
+		Case 160
+			Ls_Numero ='ciento sesenta'
+		Case 161
+			Ls_Numero ='ciento sesenta y uno'
+		Case 162
+			Ls_Numero ='ciento sesenta y dos'
+		Case 163
+			Ls_Numero ='ciento sesenta y tres'
+		Case 164
+			Ls_Numero ='ciento sesenta y cuatro'
+		Case 165
+			Ls_Numero ='ciento sesenta y cinco'
+		Case 166
+			Ls_Numero ='ciento sesenta y seis'
+		Case 167
+			Ls_Numero ='ciento sesenta y siete'
+		Case 168
+			Ls_Numero ='ciento sesenta y ocho'
+		Case 169
+			Ls_Numero ='ciento sesenta y nueve'
+		Case 170
+			Ls_Numero ='ciento setenta'
+		Case 171
+			Ls_Numero ='ciento setenta y uno'
+		Case 172
+			Ls_Numero ='ciento setenta y dos'
+		Case 173
+			Ls_Numero ='ciento setenta y tres'
+		Case 174
+			Ls_Numero ='ciento setenta y cuatro'
+		Case 175
+			Ls_Numero ='ciento setenta y cinco'
+		Case 176
+			Ls_Numero ='ciento setenta y seis'
+		Case 177
+			Ls_Numero ='ciento setenta y siete'
+		Case 178
+			Ls_Numero ='ciento setenta y ocho'
+		Case 179
+			Ls_Numero ='ciento setenta y nueve'
+		Case 180
+			Ls_Numero ='ciento ochenta'
+		Case 181
+			Ls_Numero ='ciento ochenta y uno'
+		Case 182
+			Ls_Numero ='ciento ochenta y dos'
+		Case 183
+			Ls_Numero ='ciento ochenta y tres'
+		Case 184
+			Ls_Numero ='ciento ochenta y cuatro'
+		Case 185
+			Ls_Numero ='ciento ochenta y cinco'
+		Case 186
+			Ls_Numero ='ciento ochenta y seis'
+		Case 187
+			Ls_Numero ='ciento ochenta y siete'
+		Case 188
+			Ls_Numero ='ciento ochenta y ocho'
+		Case 189
+			Ls_Numero ='ciento ochenta y nueve'
+		Case 190
+			Ls_Numero ='ciento noventa'
+		Case 191
+			Ls_Numero ='ciento noventa y uno'
+		Case 192
+			Ls_Numero ='ciento noventa y dos'
+		Case 193
+			Ls_Numero ='ciento noventa y tres'
+		Case 194
+			Ls_Numero ='ciento noventa y cuatro'
+		Case 195
+			Ls_Numero ='ciento noventa y cinco'
+		Case 196
+			Ls_Numero ='ciento noventa y seis'
+		Case 197
+			Ls_Numero ='ciento noventa y siete'
+		Case 198
+			Ls_Numero ='ciento noventa y ocho'
+		Case 199
+			Ls_Numero ='ciento noventa y nueve'
+		Case 200
+			Ls_Numero ='doscientos'
+		Case 201
+			Ls_Numero ='doscientos uno'
+		Case 202
+			Ls_Numero ='doscientos dos'
+		Case 203
+			Ls_Numero ='doscientos tres'
+		Case 204
+			Ls_Numero ='doscientos cuatro'
+		Case 205
+			Ls_Numero ='doscientos cinco'
+		Case 206
+			Ls_Numero ='doscientos seis'
+		Case 207
+			Ls_Numero ='doscientos siete'
+		Case 208
+			Ls_Numero ='doscientos ocho'
+		Case 209
+			Ls_Numero ='doscientos nueve'
+		Case 210
+			Ls_Numero ='doscientos diez'
+		Case 211
+			Ls_Numero ='doscientos once'
+		Case 212
+			Ls_Numero ='doscientos doce'
+		Case 213
+			Ls_Numero ='doscientos trece'
+		Case 214
+			Ls_Numero ='doscientos catorce'
+		Case 215
+			Ls_Numero ='doscientos quince'
+		Case 216
+			Ls_Numero ='doscientos dieciseis'
+		Case 217
+			Ls_Numero ='doscientos diecisiete'
+		Case 218
+			Ls_Numero ='doscientos dieciocho'
+		Case 219
+			Ls_Numero ='doscientos diecinueve'
+		Case 220
+			Ls_Numero ='doscientos veinte'
+		Case 221
+			Ls_Numero ='doscientos veintiuno'
+		Case 222
+			Ls_Numero ='doscientos veintidos'
+		Case 223
+			Ls_Numero ='doscientos veintitres'
+		Case 224
+			Ls_Numero ='doscientos veinticuatro'
+		Case 225
+			Ls_Numero ='doscientos veinticinco'
+		Case 226
+			Ls_Numero ='doscientos veintiseis'
+		Case 227
+			Ls_Numero ='doscientos veintisiete'
+		Case 228
+			Ls_Numero ='doscientos veintiocho'
+		Case 229
+			Ls_Numero ='doscientos veintinueve'
+		Case 230
+			Ls_Numero ='doscientos treinta'
+		Case 231
+			Ls_Numero ='doscientos treinta y uno'
+		Case 232
+			Ls_Numero ='doscientos treinta y dos'
+		Case 233
+			Ls_Numero ='doscientos treinta y tres'
+		Case 234
+			Ls_Numero ='doscientos treinta y cuatro'
+		Case 235
+			Ls_Numero ='doscientos treinta y cinco'
+		Case 236
+			Ls_Numero ='doscientos treinta y seis'
+		Case 237
+			Ls_Numero ='doscientos treinta y siete'
+		Case 238
+			Ls_Numero ='doscientos treinta y ocho'
+		Case 239
+			Ls_Numero ='doscientos treinta y nueve'
+		Case 240
+			Ls_Numero ='doscientos cuarenta'
+		End Choose
+Return Ls_numero
+end function
+

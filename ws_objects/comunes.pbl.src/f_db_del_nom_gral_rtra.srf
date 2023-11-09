@@ -1,0 +1,21 @@
+﻿$PBExportHeader$f_db_del_nom_gral_rtra.srf
+global type f_db_del_nom_gral_rtra from function_object
+end type
+
+forward prototypes
+global subroutine f_db_del_nom_gral_rtra (string as_nom_gral)
+end prototypes
+
+global subroutine f_db_del_nom_gral_rtra (string as_nom_gral);DELETE FROM Nomina_General_Detalle   
+WHERE Nomenclatura_General = :as_nom_gral and
+	Resolucion IN   
+    (SELECT 	Resolucion   
+     FROM	Nomina_Reinc_Detalle,
+				Nomina_Reinc_Tra_Encabezado   
+     WHERE	Nomina_Reinc_Tra_Encabezado.Correlativo_RTR = Nomina_Reinc_Detalle.Correlativo_RTR and
+				Nomina_Reinc_Tra_Encabezado.Estado_Nomina = 1 )
+USING SQLCA;
+
+Return;
+end subroutine
+

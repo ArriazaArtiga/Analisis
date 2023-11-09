@@ -1,0 +1,24 @@
+﻿$PBExportHeader$f_db_upd_salario_contribuyente02.srf
+global type f_db_upd_salario_contribuyente02 from function_object
+end type
+
+forward prototypes
+global function integer f_db_upd_salario_contribuyente02 (double as_porcentaje, decimal as_pension, string as_dpi, decimal adc_salario)
+end prototypes
+
+global function integer f_db_upd_salario_contribuyente02 (double as_porcentaje, decimal as_pension, string as_dpi, decimal adc_salario);
+update 
+	Contribuyentes
+set
+	Salario = :adc_salario,
+	Pension_Inicial = :as_pension,
+	Fecha_Pension_Inicial = getdate(),
+	PorcentajePension = :as_porcentaje
+where 
+	dpi = :as_dpi 
+using SQLCA;
+
+return 1
+
+end function
+

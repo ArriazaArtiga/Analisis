@@ -1,0 +1,19 @@
+﻿$PBExportHeader$f_db_get_unidad_user.srf
+global type f_db_get_unidad_user from function_object
+end type
+
+forward prototypes
+global function integer f_db_get_unidad_user (string as_user)
+end prototypes
+
+global function integer f_db_get_unidad_user (string as_user);Integer li_unidad
+
+select  	Unidad 
+into 		:li_unidad
+from		Usuarios
+where   	Usuario = :as_user
+using 		SQLCA;
+
+Return li_unidad
+end function
+

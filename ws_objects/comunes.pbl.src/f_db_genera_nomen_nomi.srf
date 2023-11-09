@@ -1,0 +1,100 @@
+﻿$PBExportHeader$f_db_genera_nomen_nomi.srf
+global type f_db_genera_nomen_nomi from function_object
+end type
+
+forward prototypes
+global function string f_db_genera_nomen_nomi (integer ai_nomina)
+end prototypes
+
+global function string f_db_genera_nomen_nomi (integer ai_nomina);String ls_nomenclatura
+Integer li_correlativo
+
+choose case ai_nomina
+	case 1 //General
+		Update Nominas_Pensionados_Correlativos 
+		Set   General = General + 1
+		Using sqlca;
+
+		Commit;
+
+		Select General
+		into :li_correlativo 
+		from  Nominas_Pensionados_Correlativos
+		using sqlca;
+		
+		ls_nomenclatura = 'NGR' + String(li_correlativo) + String(year(today()))
+		
+	case 2 //Extraordinaria
+		Update Nominas_Pensionados_Correlativos 
+		Set   Extraordinaria = Extraordinaria + 1
+		Using sqlca;
+
+		Commit;
+
+		Select Extraordinaria
+		into :li_correlativo 
+		from  Nominas_Pensionados_Correlativos
+		using sqlca;
+		
+		ls_nomenclatura = 'NEX' + String(li_correlativo) + String(year(today()))
+		
+	case 3 //Ampliación
+		Update Nominas_Pensionados_Correlativos 
+		Set   Ampliacion = Ampliacion + 1
+		Using sqlca;
+
+		Commit;
+
+		Select Ampliacion
+		into :li_correlativo 
+		from  Nominas_Pensionados_Correlativos
+		using sqlca;
+		
+		ls_nomenclatura = 'NAP' + String(li_correlativo) + String(year(today()))
+		
+	case 4 //Muerte Jubilado
+		Update Nominas_Pensionados_Correlativos 
+		Set   Muerte_Jubilado = Muerte_Jubilado + 1
+		Using sqlca;
+
+		Commit;
+
+		Select Muerte_Jubilado
+		into :li_correlativo 
+		from  Nominas_Pensionados_Correlativos
+		using sqlca;
+		
+		ls_nomenclatura = 'NMJ' + String(li_correlativo) + String(year(today()))
+		
+	case 5 //Reincorporación Pensionados
+		Update Nominas_Pensionados_Correlativos 
+		Set   RPEN = RPEN + 1
+		Using sqlca;
+
+		Commit;
+
+		Select RPEN
+		into :li_correlativo 
+		from  Nominas_Pensionados_Correlativos
+		using sqlca;
+		
+		ls_nomenclatura = 'RPN' + String(li_correlativo) + String(year(today()))
+		
+	case 6 //Reincorporación Trabajo
+		Update Nominas_Pensionados_Correlativos 
+		Set   RTRA = RTRA + 1
+		Using sqlca;
+
+		Commit;
+
+		Select RTRA
+		into :li_correlativo 
+		from  Nominas_Pensionados_Correlativos
+		using sqlca;
+		
+		ls_nomenclatura = 'RTR' + String(li_correlativo) + String(year(today()))
+end choose
+
+return ls_nomenclatura
+end function
+

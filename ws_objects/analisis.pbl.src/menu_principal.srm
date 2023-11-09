@@ -1,0 +1,1964 @@
+﻿$PBExportHeader$menu_principal.srm
+forward
+global type menu_principal from menu
+end type
+type m_mantenimiento from menu within menu_principal
+end type
+type m_solicitudes from menu within m_mantenimiento
+end type
+type m_etapas from menu within m_mantenimiento
+end type
+type m_1 from menu within m_mantenimiento
+end type
+type m_requisitos from menu within m_mantenimiento
+end type
+type m_usuarios from menu within m_mantenimiento
+end type
+type m_nominasauxiliares from menu within m_mantenimiento
+end type
+type m_mantenimiento from menu within menu_principal
+m_solicitudes m_solicitudes
+m_etapas m_etapas
+m_1 m_1
+m_requisitos m_requisitos
+m_usuarios m_usuarios
+m_nominasauxiliares m_nominasauxiliares
+end type
+type m_procesos from menu within menu_principal
+end type
+type m_calculomontos from menu within m_procesos
+end type
+type m_cambioetapa from menu within m_procesos
+end type
+type m_regresodeetapa from menu within m_procesos
+end type
+type m_cambiossubestado from menu within m_procesos
+end type
+type m_cierrenominapensionados from menu within m_procesos
+end type
+type m_cierrepagos from menu within m_procesos
+end type
+type m_procesos from menu within menu_principal
+m_calculomontos m_calculomontos
+m_cambioetapa m_cambioetapa
+m_regresodeetapa m_regresodeetapa
+m_cambiossubestado m_cambiossubestado
+m_cierrenominapensionados m_cierrenominapensionados
+m_cierrepagos m_cierrepagos
+end type
+type m_pensionados0 from menu within menu_principal
+end type
+type m_nuevopensionado from menu within m_pensionados0
+end type
+type m_pensionados0 from menu within menu_principal
+m_nuevopensionado m_nuevopensionado
+end type
+type m_reportes from menu within menu_principal
+end type
+type m_analisis from menu within m_reportes
+end type
+type m_documentossolicitudes from menu within m_analisis
+end type
+type m_solicitudesportramite from menu within m_analisis
+end type
+type m_solicitudepordepartamento from menu within m_analisis
+end type
+type m_solicitudesporetapa from menu within m_analisis
+end type
+type m_sobrevivenciaspresentadas from menu within m_analisis
+end type
+type m_consultadesolicitudes from menu within m_analisis
+end type
+type m_nominapensionados from menu within m_analisis
+end type
+type m_pensionados from menu within m_analisis
+end type
+type m_resumensolicitudes from menu within m_analisis
+end type
+type m_solicitudesrevision from menu within m_analisis
+end type
+type m_analisis from menu within m_reportes
+m_documentossolicitudes m_documentossolicitudes
+m_solicitudesportramite m_solicitudesportramite
+m_solicitudepordepartamento m_solicitudepordepartamento
+m_solicitudesporetapa m_solicitudesporetapa
+m_sobrevivenciaspresentadas m_sobrevivenciaspresentadas
+m_consultadesolicitudes m_consultadesolicitudes
+m_nominapensionados m_nominapensionados
+m_pensionados m_pensionados
+m_resumensolicitudes m_resumensolicitudes
+m_solicitudesrevision m_solicitudesrevision
+end type
+type m_auditoria from menu within m_reportes
+end type
+type m_enviadoaauditoria from menu within m_auditoria
+end type
+type m_aprobadorechazadoa from menu within m_auditoria
+end type
+type m_auditoria from menu within m_reportes
+m_enviadoaauditoria m_enviadoaauditoria
+m_aprobadorechazadoa m_aprobadorechazadoa
+end type
+type m_juridico from menu within m_reportes
+end type
+type m_enviadoajuridico from menu within m_juridico
+end type
+type m_aprobadorechazadoj from menu within m_juridico
+end type
+type m_juridico from menu within m_reportes
+m_enviadoajuridico m_enviadoajuridico
+m_aprobadorechazadoj m_aprobadorechazadoj
+end type
+type m_financiero from menu within m_reportes
+end type
+type m_enviadoafinanciero from menu within m_financiero
+end type
+type m_aprobadorechazadof from menu within m_financiero
+end type
+type m_nominasauxiliaresfinanciero from menu within m_financiero
+end type
+type m_reporteauxiliar from menu within m_financiero
+end type
+type m_financiero from menu within m_reportes
+m_enviadoafinanciero m_enviadoafinanciero
+m_aprobadorechazadof m_aprobadorechazadof
+m_nominasauxiliaresfinanciero m_nominasauxiliaresfinanciero
+m_reporteauxiliar m_reporteauxiliar
+end type
+type m_gerencia from menu within m_reportes
+end type
+type m_solicitudesgerencia from menu within m_gerencia
+end type
+type m_solicitudesejecutivo from menu within m_gerencia
+end type
+type m_gerencia from menu within m_reportes
+m_solicitudesgerencia m_solicitudesgerencia
+m_solicitudesejecutivo m_solicitudesejecutivo
+end type
+type m_presentacion from menu within m_reportes
+end type
+type m_actasautorizacionresumen from menu within m_presentacion
+end type
+type m_actasautorizacionindividual from menu within m_presentacion
+end type
+type m_presentacion from menu within m_reportes
+m_actasautorizacionresumen m_actasautorizacionresumen
+m_actasautorizacionindividual m_actasautorizacionindividual
+end type
+type m_reportes from menu within menu_principal
+m_analisis m_analisis
+m_auditoria m_auditoria
+m_juridico m_juridico
+m_financiero m_financiero
+m_gerencia m_gerencia
+m_presentacion m_presentacion
+end type
+type m_test from menu within menu_principal
+end type
+type m_calvi from menu within m_test
+end type
+type m_parametrización from menu within m_test
+end type
+type m_buscardpi from menu within m_test
+end type
+type m_pensionado from menu within m_test
+end type
+type m_registro from menu within m_test
+end type
+type m_nomina from menu within m_test
+end type
+type m_test from menu within menu_principal
+m_calvi m_calvi
+m_parametrización m_parametrización
+m_buscardpi m_buscardpi
+m_pensionado m_pensionado
+m_registro m_registro
+m_nomina m_nomina
+end type
+global type menu_principal from menu
+m_mantenimiento m_mantenimiento
+m_procesos m_procesos
+m_pensionados0 m_pensionados0
+m_reportes m_reportes
+m_test m_test
+end type
+end forward
+
+global type menu_principal from menu
+m_mantenimiento m_mantenimiento
+m_procesos m_procesos
+m_pensionados0 m_pensionados0
+m_reportes m_reportes
+m_test m_test
+end type
+global menu_principal menu_principal
+
+on menu_principal.create
+menu_principal=this
+call super::create
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+this.m_mantenimiento=create m_mantenimiento
+this.m_procesos=create m_procesos
+this.m_pensionados0=create m_pensionados0
+this.m_reportes=create m_reportes
+this.m_test=create m_test
+this.Item[UpperBound(this.Item)+1]=this.m_mantenimiento
+this.Item[UpperBound(this.Item)+1]=this.m_procesos
+this.Item[UpperBound(this.Item)+1]=this.m_pensionados0
+this.Item[UpperBound(this.Item)+1]=this.m_reportes
+this.Item[UpperBound(this.Item)+1]=this.m_test
+end on
+
+on menu_principal.destroy
+call super::destroy
+destroy(this.m_mantenimiento)
+destroy(this.m_procesos)
+destroy(this.m_pensionados0)
+destroy(this.m_reportes)
+destroy(this.m_test)
+end on
+
+event clicked;open(w_nomina)
+end event
+
+type m_mantenimiento from menu within menu_principal
+m_solicitudes m_solicitudes
+m_etapas m_etapas
+m_1 m_1
+m_requisitos m_requisitos
+m_usuarios m_usuarios
+m_nominasauxiliares m_nominasauxiliares
+end type
+
+on m_mantenimiento.create
+call super::create
+this.text = "⚙  MANTENIMIENTO"
+this.default = true
+this.toolbaritembarindex = 0
+this.mergeoption = filemenu!
+this.menuitemtype = menuitemtypeexit!
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.menutitletext = "Mantenimiento"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.menuanimation = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+this.m_solicitudes=create m_solicitudes
+this.m_etapas=create m_etapas
+this.m_1=create m_1
+this.m_requisitos=create m_requisitos
+this.m_usuarios=create m_usuarios
+this.m_nominasauxiliares=create m_nominasauxiliares
+this.Item[UpperBound(this.Item)+1]=this.m_solicitudes
+this.Item[UpperBound(this.Item)+1]=this.m_etapas
+this.Item[UpperBound(this.Item)+1]=this.m_1
+this.Item[UpperBound(this.Item)+1]=this.m_requisitos
+this.Item[UpperBound(this.Item)+1]=this.m_usuarios
+this.Item[UpperBound(this.Item)+1]=this.m_nominasauxiliares
+end on
+
+on m_mantenimiento.destroy
+call super::destroy
+destroy(this.m_solicitudes)
+destroy(this.m_etapas)
+destroy(this.m_1)
+destroy(this.m_requisitos)
+destroy(this.m_usuarios)
+destroy(this.m_nominasauxiliares)
+end on
+
+type m_solicitudes from menu within m_mantenimiento
+end type
+
+on m_solicitudes.create
+call super::create
+this.text = "SOLICITUDES~tF1"
+this.checked = true
+this.default = true
+this.shortcut = 112
+this.menuimage = "Custom004!"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.menuanimation = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_solicitudes.destroy
+call super::destroy
+end on
+
+event clicked;Open(w_analisis_mnt_solicitudes)
+end event
+
+type m_etapas from menu within m_mantenimiento
+end type
+
+on m_etapas.create
+call super::create
+this.text = "ETAPAS"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_etapas.destroy
+call super::destroy
+end on
+
+event clicked;Open(w_analisis_mnt_etapas)
+end event
+
+type m_1 from menu within m_mantenimiento
+end type
+
+on m_1.create
+call super::create
+this.text = "PROFESIONES"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_1.destroy
+call super::destroy
+end on
+
+event clicked;Open(w_analisis_mnt_profesiones)
+end event
+
+type m_requisitos from menu within m_mantenimiento
+end type
+
+on m_requisitos.create
+call super::create
+this.text = "REQUISITOS"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_requisitos.destroy
+call super::destroy
+end on
+
+event clicked;Open(w_analisis_mnt_solicitudes_requisitos)
+end event
+
+type m_usuarios from menu within m_mantenimiento
+end type
+
+on m_usuarios.create
+call super::create
+this.text = "USUARIOS"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_usuarios.destroy
+call super::destroy
+end on
+
+event clicked;Open(w_analisis_mnt_usuarios)
+end event
+
+type m_nominasauxiliares from menu within m_mantenimiento
+end type
+
+on m_nominasauxiliares.create
+call super::create
+this.text = "NOMINAS AUXILIARES"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_nominasauxiliares.destroy
+call super::destroy
+end on
+
+event clicked;Open(w_analisis_mnt_nominas_auxiliares)
+end event
+
+type m_procesos from menu within menu_principal
+m_calculomontos m_calculomontos
+m_cambioetapa m_cambioetapa
+m_regresodeetapa m_regresodeetapa
+m_cambiossubestado m_cambiossubestado
+m_cierrenominapensionados m_cierrenominapensionados
+m_cierrepagos m_cierrepagos
+end type
+
+on m_procesos.create
+call super::create
+this.text = "◉ PROCESOS"
+this.toolbaritemtext = "xxxx"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.menutitletext = "Procesos"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.menuanimation = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+this.m_calculomontos=create m_calculomontos
+this.m_cambioetapa=create m_cambioetapa
+this.m_regresodeetapa=create m_regresodeetapa
+this.m_cambiossubestado=create m_cambiossubestado
+this.m_cierrenominapensionados=create m_cierrenominapensionados
+this.m_cierrepagos=create m_cierrepagos
+this.Item[UpperBound(this.Item)+1]=this.m_calculomontos
+this.Item[UpperBound(this.Item)+1]=this.m_cambioetapa
+this.Item[UpperBound(this.Item)+1]=this.m_regresodeetapa
+this.Item[UpperBound(this.Item)+1]=this.m_cambiossubestado
+this.Item[UpperBound(this.Item)+1]=this.m_cierrenominapensionados
+this.Item[UpperBound(this.Item)+1]=this.m_cierrepagos
+end on
+
+on m_procesos.destroy
+call super::destroy
+destroy(this.m_calculomontos)
+destroy(this.m_cambioetapa)
+destroy(this.m_regresodeetapa)
+destroy(this.m_cambiossubestado)
+destroy(this.m_cierrenominapensionados)
+destroy(this.m_cierrepagos)
+end on
+
+type m_calculomontos from menu within m_procesos
+end type
+
+on m_calculomontos.create
+call super::create
+this.text = "CALCULO MONTOS~tF2"
+this.checked = true
+this.default = true
+this.shortcut = 113
+this.menuimage = "Compute!"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_calculomontos.destroy
+call super::destroy
+end on
+
+event clicked;Open(w_analisis_mnt_calculo_montos)
+
+end event
+
+type m_cambioetapa from menu within m_procesos
+end type
+
+on m_cambioetapa.create
+call super::create
+this.text = "CAMBIO ETAPA~tF3"
+this.shortcut = 114
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_cambioetapa.destroy
+call super::destroy
+end on
+
+event clicked;Open(w_analisis_mnt_cambio_etapas)
+end event
+
+type m_regresodeetapa from menu within m_procesos
+end type
+
+on m_regresodeetapa.create
+call super::create
+this.text = "REGRESO DE ETAPA~tF4"
+this.shortcut = 115
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_regresodeetapa.destroy
+call super::destroy
+end on
+
+event clicked;Open(w_analisis_mnt_regreso_etapas)
+end event
+
+type m_cambiossubestado from menu within m_procesos
+end type
+
+on m_cambiossubestado.create
+call super::create
+this.text = "CAMBIOS SUBESTADO"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_cambiossubestado.destroy
+call super::destroy
+end on
+
+event clicked;Open(w_analisis_mnt_cambio_subestados)
+end event
+
+type m_cierrenominapensionados from menu within m_procesos
+end type
+
+on m_cierrenominapensionados.create
+call super::create
+this.text = "CIERRE NOMINA PENSIONADOS"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_cierrenominapensionados.destroy
+call super::destroy
+end on
+
+event clicked;Open(w_analisis_mnt_nominas_cierres)
+end event
+
+type m_cierrepagos from menu within m_procesos
+end type
+
+event clicked;Open(w_analisis_mnt_nom_aux_cierre_pagos)
+end event
+
+on m_cierrepagos.create
+call super::create
+this.text = "CIERRE PAGOS"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_cierrepagos.destroy
+call super::destroy
+end on
+
+type m_pensionados0 from menu within menu_principal
+m_nuevopensionado m_nuevopensionado
+end type
+
+on m_pensionados0.create
+call super::create
+this.visible = false
+this.text = "PENSIONADOS"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+this.m_nuevopensionado=create m_nuevopensionado
+this.Item[UpperBound(this.Item)+1]=this.m_nuevopensionado
+end on
+
+on m_pensionados0.destroy
+call super::destroy
+destroy(this.m_nuevopensionado)
+end on
+
+type m_nuevopensionado from menu within m_pensionados0
+end type
+
+event clicked;Open(w_pensionados)
+end event
+
+on m_nuevopensionado.create
+call super::create
+this.text = "PENSIONADO"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_nuevopensionado.destroy
+call super::destroy
+end on
+
+type m_reportes from menu within menu_principal
+m_analisis m_analisis
+m_auditoria m_auditoria
+m_juridico m_juridico
+m_financiero m_financiero
+m_gerencia m_gerencia
+m_presentacion m_presentacion
+end type
+
+on m_reportes.create
+call super::create
+this.text = "♨ REPORTES"
+this.default = true
+this.mergeoption = editmenu!
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.menutitletext = "Reportes"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.menuanimation = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+this.m_analisis=create m_analisis
+this.m_auditoria=create m_auditoria
+this.m_juridico=create m_juridico
+this.m_financiero=create m_financiero
+this.m_gerencia=create m_gerencia
+this.m_presentacion=create m_presentacion
+this.Item[UpperBound(this.Item)+1]=this.m_analisis
+this.Item[UpperBound(this.Item)+1]=this.m_auditoria
+this.Item[UpperBound(this.Item)+1]=this.m_juridico
+this.Item[UpperBound(this.Item)+1]=this.m_financiero
+this.Item[UpperBound(this.Item)+1]=this.m_gerencia
+this.Item[UpperBound(this.Item)+1]=this.m_presentacion
+end on
+
+on m_reportes.destroy
+call super::destroy
+destroy(this.m_analisis)
+destroy(this.m_auditoria)
+destroy(this.m_juridico)
+destroy(this.m_financiero)
+destroy(this.m_gerencia)
+destroy(this.m_presentacion)
+end on
+
+type m_analisis from menu within m_reportes
+m_documentossolicitudes m_documentossolicitudes
+m_solicitudesportramite m_solicitudesportramite
+m_solicitudepordepartamento m_solicitudepordepartamento
+m_solicitudesporetapa m_solicitudesporetapa
+m_sobrevivenciaspresentadas m_sobrevivenciaspresentadas
+m_consultadesolicitudes m_consultadesolicitudes
+m_nominapensionados m_nominapensionados
+m_pensionados m_pensionados
+m_resumensolicitudes m_resumensolicitudes
+m_solicitudesrevision m_solicitudesrevision
+end type
+
+on m_analisis.create
+call super::create
+this.text = "ANALISIS"
+this.mergeoption = windowmenu!
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.menuanimation = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+this.m_documentossolicitudes=create m_documentossolicitudes
+this.m_solicitudesportramite=create m_solicitudesportramite
+this.m_solicitudepordepartamento=create m_solicitudepordepartamento
+this.m_solicitudesporetapa=create m_solicitudesporetapa
+this.m_sobrevivenciaspresentadas=create m_sobrevivenciaspresentadas
+this.m_consultadesolicitudes=create m_consultadesolicitudes
+this.m_nominapensionados=create m_nominapensionados
+this.m_pensionados=create m_pensionados
+this.m_resumensolicitudes=create m_resumensolicitudes
+this.m_solicitudesrevision=create m_solicitudesrevision
+this.Item[UpperBound(this.Item)+1]=this.m_documentossolicitudes
+this.Item[UpperBound(this.Item)+1]=this.m_solicitudesportramite
+this.Item[UpperBound(this.Item)+1]=this.m_solicitudepordepartamento
+this.Item[UpperBound(this.Item)+1]=this.m_solicitudesporetapa
+this.Item[UpperBound(this.Item)+1]=this.m_sobrevivenciaspresentadas
+this.Item[UpperBound(this.Item)+1]=this.m_consultadesolicitudes
+this.Item[UpperBound(this.Item)+1]=this.m_nominapensionados
+this.Item[UpperBound(this.Item)+1]=this.m_pensionados
+this.Item[UpperBound(this.Item)+1]=this.m_resumensolicitudes
+this.Item[UpperBound(this.Item)+1]=this.m_solicitudesrevision
+end on
+
+on m_analisis.destroy
+call super::destroy
+destroy(this.m_documentossolicitudes)
+destroy(this.m_solicitudesportramite)
+destroy(this.m_solicitudepordepartamento)
+destroy(this.m_solicitudesporetapa)
+destroy(this.m_sobrevivenciaspresentadas)
+destroy(this.m_consultadesolicitudes)
+destroy(this.m_nominapensionados)
+destroy(this.m_pensionados)
+destroy(this.m_resumensolicitudes)
+destroy(this.m_solicitudesrevision)
+end on
+
+type m_documentossolicitudes from menu within m_analisis
+end type
+
+event clicked;Open ( w_analisis_rep_solicitudes_expediente )
+end event
+
+on m_documentossolicitudes.create
+call super::create
+this.text = "DOCUMENTOS SOLICITUDES~tF5"
+this.checked = true
+this.shortcut = 116
+this.menuimage = "DatabaseProfile5!"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_documentossolicitudes.destroy
+call super::destroy
+end on
+
+type m_solicitudesportramite from menu within m_analisis
+end type
+
+on m_solicitudesportramite.create
+call super::create
+this.text = "SOLICITUDES POR TRAMITE"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_solicitudesportramite.destroy
+call super::destroy
+end on
+
+event clicked;Open ( w_analisis_rep_solicitudes_tramite )
+end event
+
+type m_solicitudepordepartamento from menu within m_analisis
+end type
+
+on m_solicitudepordepartamento.create
+call super::create
+this.text = "SOLICITUDE POR DEPARTAMENTO"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_solicitudepordepartamento.destroy
+call super::destroy
+end on
+
+event clicked;Open ( w_analisis_rep_solicitudes_departamento )
+end event
+
+type m_solicitudesporetapa from menu within m_analisis
+end type
+
+on m_solicitudesporetapa.create
+call super::create
+this.text = "SOLICITUDES POR ETAPA"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_solicitudesporetapa.destroy
+call super::destroy
+end on
+
+event clicked;Open ( w_analisis_rep_solicitudes_etapas )
+end event
+
+type m_sobrevivenciaspresentadas from menu within m_analisis
+end type
+
+on m_sobrevivenciaspresentadas.create
+call super::create
+this.text = "SOBREVIVENCIAS PRESENTADAS"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_sobrevivenciaspresentadas.destroy
+call super::destroy
+end on
+
+event clicked;Open(w_analisis_rep_sobreviv_presentadas)
+end event
+
+type m_consultadesolicitudes from menu within m_analisis
+end type
+
+on m_consultadesolicitudes.create
+call super::create
+this.text = "CONSULTA DE SOLICITUDES"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_consultadesolicitudes.destroy
+call super::destroy
+end on
+
+event clicked;Open(w_analisis_con_solicitudes)
+end event
+
+type m_nominapensionados from menu within m_analisis
+end type
+
+on m_nominapensionados.create
+call super::create
+this.text = "NOMINA PENSIONADOS"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_nominapensionados.destroy
+call super::destroy
+end on
+
+event clicked;Open(w_analisis_rep_nominas_pensionados)
+end event
+
+type m_pensionados from menu within m_analisis
+end type
+
+on m_pensionados.create
+call super::create
+this.text = "PENSIONADOS"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_pensionados.destroy
+call super::destroy
+end on
+
+event clicked;Open(w_analisis_rep_pensionados_x)
+end event
+
+type m_resumensolicitudes from menu within m_analisis
+end type
+
+on m_resumensolicitudes.create
+call super::create
+this.text = "RESUMEN SOLICITUDES"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_resumensolicitudes.destroy
+call super::destroy
+end on
+
+event clicked;Open(w_analisis_rep_solicitudes_resumen_etapas)
+end event
+
+type m_solicitudesrevision from menu within m_analisis
+end type
+
+on m_solicitudesrevision.create
+call super::create
+this.text = "SOLICITUDES REVISION"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_solicitudesrevision.destroy
+call super::destroy
+end on
+
+event clicked;Open(w_analisis_rep_solic_x_tramite_etapas_rev)
+end event
+
+type m_auditoria from menu within m_reportes
+m_enviadoaauditoria m_enviadoaauditoria
+m_aprobadorechazadoa m_aprobadorechazadoa
+end type
+
+on m_auditoria.create
+call super::create
+this.text = "AUDITORIA"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+this.m_enviadoaauditoria=create m_enviadoaauditoria
+this.m_aprobadorechazadoa=create m_aprobadorechazadoa
+this.Item[UpperBound(this.Item)+1]=this.m_enviadoaauditoria
+this.Item[UpperBound(this.Item)+1]=this.m_aprobadorechazadoa
+end on
+
+on m_auditoria.destroy
+call super::destroy
+destroy(this.m_enviadoaauditoria)
+destroy(this.m_aprobadorechazadoa)
+end on
+
+type m_enviadoaauditoria from menu within m_auditoria
+end type
+
+on m_enviadoaauditoria.create
+call super::create
+this.text = "ENVIADO A AUDITORIA"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_enviadoaauditoria.destroy
+call super::destroy
+end on
+
+event clicked;Open(w_analisis_rep_solic_x_tramite_etapa_60)
+end event
+
+type m_aprobadorechazadoa from menu within m_auditoria
+end type
+
+on m_aprobadorechazadoa.create
+call super::create
+this.text = "APROBADO / RECHAZADO"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_aprobadorechazadoa.destroy
+call super::destroy
+end on
+
+event clicked;Open(w_analisis_rep_solic_x_tramite_et_70_80)
+end event
+
+type m_juridico from menu within m_reportes
+m_enviadoajuridico m_enviadoajuridico
+m_aprobadorechazadoj m_aprobadorechazadoj
+end type
+
+on m_juridico.create
+call super::create
+this.text = "JURIDICO"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+this.m_enviadoajuridico=create m_enviadoajuridico
+this.m_aprobadorechazadoj=create m_aprobadorechazadoj
+this.Item[UpperBound(this.Item)+1]=this.m_enviadoajuridico
+this.Item[UpperBound(this.Item)+1]=this.m_aprobadorechazadoj
+end on
+
+on m_juridico.destroy
+call super::destroy
+destroy(this.m_enviadoajuridico)
+destroy(this.m_aprobadorechazadoj)
+end on
+
+type m_enviadoajuridico from menu within m_juridico
+end type
+
+on m_enviadoajuridico.create
+call super::create
+this.text = "ENVIADO A JURIDICO"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_enviadoajuridico.destroy
+call super::destroy
+end on
+
+event clicked;Open(w_analisis_rep_solic_x_tramite_etapa_90)
+end event
+
+type m_aprobadorechazadoj from menu within m_juridico
+end type
+
+on m_aprobadorechazadoj.create
+call super::create
+this.text = "APROBADO / RECHAZADO"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_aprobadorechazadoj.destroy
+call super::destroy
+end on
+
+event clicked;Open(w_analisis_rep_solic_x_tramite_et_100_110)
+end event
+
+type m_financiero from menu within m_reportes
+m_enviadoafinanciero m_enviadoafinanciero
+m_aprobadorechazadof m_aprobadorechazadof
+m_nominasauxiliaresfinanciero m_nominasauxiliaresfinanciero
+m_reporteauxiliar m_reporteauxiliar
+end type
+
+on m_financiero.create
+call super::create
+this.text = "FINANCIERO"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.menuanimation = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+this.m_enviadoafinanciero=create m_enviadoafinanciero
+this.m_aprobadorechazadof=create m_aprobadorechazadof
+this.m_nominasauxiliaresfinanciero=create m_nominasauxiliaresfinanciero
+this.m_reporteauxiliar=create m_reporteauxiliar
+this.Item[UpperBound(this.Item)+1]=this.m_enviadoafinanciero
+this.Item[UpperBound(this.Item)+1]=this.m_aprobadorechazadof
+this.Item[UpperBound(this.Item)+1]=this.m_nominasauxiliaresfinanciero
+this.Item[UpperBound(this.Item)+1]=this.m_reporteauxiliar
+end on
+
+on m_financiero.destroy
+call super::destroy
+destroy(this.m_enviadoafinanciero)
+destroy(this.m_aprobadorechazadof)
+destroy(this.m_nominasauxiliaresfinanciero)
+destroy(this.m_reporteauxiliar)
+end on
+
+type m_enviadoafinanciero from menu within m_financiero
+end type
+
+on m_enviadoafinanciero.create
+call super::create
+this.text = "ENVIADO A FINANCIERO"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_enviadoafinanciero.destroy
+call super::destroy
+end on
+
+event clicked;Open(w_analisis_rep_solic_x_tramite_etapa_180)
+end event
+
+type m_aprobadorechazadof from menu within m_financiero
+end type
+
+on m_aprobadorechazadof.create
+call super::create
+this.text = "APROBADO / RECHAZADO"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_aprobadorechazadof.destroy
+call super::destroy
+end on
+
+event clicked;Open(w_analisis_rep_solic_x_tramite_et_185_200)
+end event
+
+type m_nominasauxiliaresfinanciero from menu within m_financiero
+end type
+
+on m_nominasauxiliaresfinanciero.create
+call super::create
+this.text = "NOMINAS AUXILIARES FINANCIERO"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_nominasauxiliaresfinanciero.destroy
+call super::destroy
+end on
+
+event clicked;	open(w_analisis_rep_nominas_aux_entregas)
+end event
+
+type m_reporteauxiliar from menu within m_financiero
+end type
+
+event clicked;OPEN(w_analisis_rep_auxfinanciero)
+end event
+
+on m_reporteauxiliar.create
+call super::create
+this.text = "REPORTE AUXILIAR"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_reporteauxiliar.destroy
+call super::destroy
+end on
+
+type m_gerencia from menu within m_reportes
+m_solicitudesgerencia m_solicitudesgerencia
+m_solicitudesejecutivo m_solicitudesejecutivo
+end type
+
+on m_gerencia.create
+call super::create
+this.text = "GERENCIA"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+this.m_solicitudesgerencia=create m_solicitudesgerencia
+this.m_solicitudesejecutivo=create m_solicitudesejecutivo
+this.Item[UpperBound(this.Item)+1]=this.m_solicitudesgerencia
+this.Item[UpperBound(this.Item)+1]=this.m_solicitudesejecutivo
+end on
+
+on m_gerencia.destroy
+call super::destroy
+destroy(this.m_solicitudesgerencia)
+destroy(this.m_solicitudesejecutivo)
+end on
+
+type m_solicitudesgerencia from menu within m_gerencia
+end type
+
+on m_solicitudesgerencia.create
+call super::create
+this.text = "SOLICITUDES GERENCIA"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_solicitudesgerencia.destroy
+call super::destroy
+end on
+
+event clicked;Open(w_analisis_rep_gerencial_solcitudes)
+end event
+
+type m_solicitudesejecutivo from menu within m_gerencia
+end type
+
+on m_solicitudesejecutivo.create
+call super::create
+this.text = "SOLICITUDES EJECUTIVO"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_solicitudesejecutivo.destroy
+call super::destroy
+end on
+
+event clicked;Open(w_analisis_rep_solicitudes_analista_cambio)
+end event
+
+type m_presentacion from menu within m_reportes
+m_actasautorizacionresumen m_actasautorizacionresumen
+m_actasautorizacionindividual m_actasautorizacionindividual
+end type
+
+on m_presentacion.create
+call super::create
+this.text = "PRESENTACION"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+this.m_actasautorizacionresumen=create m_actasautorizacionresumen
+this.m_actasautorizacionindividual=create m_actasautorizacionindividual
+this.Item[UpperBound(this.Item)+1]=this.m_actasautorizacionresumen
+this.Item[UpperBound(this.Item)+1]=this.m_actasautorizacionindividual
+end on
+
+on m_presentacion.destroy
+call super::destroy
+destroy(this.m_actasautorizacionresumen)
+destroy(this.m_actasautorizacionindividual)
+end on
+
+type m_actasautorizacionresumen from menu within m_presentacion
+end type
+
+on m_actasautorizacionresumen.create
+call super::create
+this.text = "ACTAS AUTORIZACION RESUMEN~tF6"
+this.shortcut = 117
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_actasautorizacionresumen.destroy
+call super::destroy
+end on
+
+event clicked;Open(w_analisis_rep_solic_x_tramite_etapa_120)
+end event
+
+type m_actasautorizacionindividual from menu within m_presentacion
+end type
+
+on m_actasautorizacionindividual.create
+call super::create
+this.text = "ACTAS AUTORIZACION INDIVIDUAL~tF7"
+this.shortcut = 118
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_actasautorizacionindividual.destroy
+call super::destroy
+end on
+
+event clicked;Open(w_analisis_rep_solic_x_individ_etapa_120)
+end event
+
+type m_test from menu within menu_principal
+m_calvi m_calvi
+m_parametrización m_parametrización
+m_buscardpi m_buscardpi
+m_pensionado m_pensionado
+m_registro m_registro
+m_nomina m_nomina
+end type
+
+on m_test.create
+call super::create
+this.text = "TEST"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+this.m_calvi=create m_calvi
+this.m_parametrización=create m_parametrización
+this.m_buscardpi=create m_buscardpi
+this.m_pensionado=create m_pensionado
+this.m_registro=create m_registro
+this.m_nomina=create m_nomina
+this.Item[UpperBound(this.Item)+1]=this.m_calvi
+this.Item[UpperBound(this.Item)+1]=this.m_parametrización
+this.Item[UpperBound(this.Item)+1]=this.m_buscardpi
+this.Item[UpperBound(this.Item)+1]=this.m_pensionado
+this.Item[UpperBound(this.Item)+1]=this.m_registro
+this.Item[UpperBound(this.Item)+1]=this.m_nomina
+end on
+
+on m_test.destroy
+call super::destroy
+destroy(this.m_calvi)
+destroy(this.m_parametrización)
+destroy(this.m_buscardpi)
+destroy(this.m_pensionado)
+destroy(this.m_registro)
+destroy(this.m_nomina)
+end on
+
+type m_calvi from menu within m_test
+end type
+
+event clicked;if gi_unidad =9 then
+	Open (w_analisis_cal_vejez)
+else
+	Messagebox("Advertencia","No cuenta con los permisos necesarios")
+end if
+end event
+
+on m_calvi.create
+call super::create
+this.text = "CAlVI"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_calvi.destroy
+call super::destroy
+end on
+
+type m_parametrización from menu within m_test
+end type
+
+event clicked;if gi_unidad =9 then
+	Open (w_parametrizar)
+else
+	Messagebox("Advertencia","No cuenta con los permisos necesarios")
+end if
+end event
+
+on m_parametrización.create
+call super::create
+this.text = "Parametrización"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_parametrización.destroy
+call super::destroy
+end on
+
+type m_buscardpi from menu within m_test
+end type
+
+on m_buscardpi.create
+call super::create
+this.text = "Buscar DPI"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_buscardpi.destroy
+call super::destroy
+end on
+
+event clicked;
+if gi_unidad =9 then
+	Open (w_buscardpi)
+else
+	Messagebox("Advertencia","No cuenta con los permisos necesarios")
+end if
+
+end event
+
+type m_pensionado from menu within m_test
+end type
+
+event clicked;
+if gi_unidad =9 then
+	Open (w_pensionados)
+else
+	Messagebox("Advertencia","No cuenta con los permisos necesarios")
+end if
+
+end event
+
+on m_pensionado.create
+call super::create
+this.text = "Pensionado"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_pensionado.destroy
+call super::destroy
+end on
+
+type m_registro from menu within m_test
+end type
+
+event clicked;
+if gi_unidad =9 then
+	Open (w_registroactividad)
+else
+	Messagebox("Advertencia","No cuenta con los permisos necesarios")
+end if
+
+end event
+
+on m_registro.create
+call super::create
+this.text = "Registro"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_registro.destroy
+call super::destroy
+end on
+
+type m_nomina from menu within m_test
+end type
+
+on m_nomina.create
+call super::create
+this.text = "nomina"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_nomina.destroy
+call super::destroy
+end on
+
+event clicked;if gi_unidad =9 then
+	Open (w_nomina)
+else
+	Messagebox("Advertencia","No cuenta con los permisos necesarios")
+end if
+
+end event
+

@@ -1,0 +1,21 @@
+﻿$PBExportHeader$f_db_get_etapa_actual.srf
+global type f_db_get_etapa_actual from function_object
+end type
+
+forward prototypes
+global function integer f_db_get_etapa_actual (string as_dpi, ref long al_solicitud)
+end prototypes
+
+global function integer f_db_get_etapa_actual (string as_dpi, ref long al_solicitud);datetime ldt_fecha_db
+
+integer li_etapa
+
+select etapa, No_Solicitud
+into :li_etapa, :al_solicitud
+from solicitudes 
+where dpi = :as_dpi and etapa < 210
+using SQLCA;
+
+return li_etapa
+end function
+

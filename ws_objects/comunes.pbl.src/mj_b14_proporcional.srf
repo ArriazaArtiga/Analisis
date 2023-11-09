@@ -1,0 +1,91 @@
+﻿$PBExportHeader$mj_b14_proporcional.srf
+global type mj_b14_proporcional from function_object
+end type
+
+forward prototypes
+global function decimal mj_b14_proporcional (decimal pension, date f_fallece, date f_upago, date f_ib14, date f_fb14)
+end prototypes
+
+global function decimal mj_b14_proporcional (decimal pension, date f_fallece, date f_upago, date f_ib14, date f_fb14);decimal resultado
+integer  dias_año,dias, años, i
+boolean bisiesto
+string cadena
+date  año_inicial, año_final
+
+
+
+if  f_ib14 < f_fallece and f_fb14 > f_fallece and f_ib14 < f_upago and f_fb14 < f_upago and f_fallece < f_upago then	
+    	if pension <> 0 then 
+		bisiesto = false
+		resultado=0
+		años =(year(f_fb14) - year(f_fallece))
+  	
+		for i = 1 to años
+			año_inicial = date(string(year(f_fallece)+i)+'-02-01')
+			año_final = date(string((year(f_fallece)+i))+'-03-01')
+			dias_año= daysafter(año_inicial , año_final)
+		
+			if dias_año > 28 then
+				bisiesto = true
+			end if
+		next
+		
+		if bisiesto then
+			if day(f_fallece)=1 then
+				dias = (daysafter(f_fallece, f_fb14)+1)-1
+			else
+				dias = (daysafter(f_fallece, f_fb14))-1
+			end if
+		else					
+			if day(f_fallece)=1 then
+				dias = daysafter(f_fallece, f_fb14)+1
+			else
+				dias = daysafter(f_fallece, f_fb14)
+			end if
+		end if
+		resultado=(pension/365) * (dias)
+	end if	
+	cadena = "El número de dias calculado es: "+string(dias)
+	messagebox("Bono Proporcional",cadena)
+end if 
+
+
+if f_ib14 < f_fallece and f_fb14 > f_fallece and f_ib14 < f_upago and f_fb14 = f_upago and f_fallece < f_upago then
+	 	if pension <> 0 then 
+		bisiesto = false
+		resultado=0
+		años =(year(f_fb14) - year(f_fallece))
+  	
+		for i = 1 to años
+			año_inicial = date(string(year(f_fallece)+i)+'-02-01')
+			año_final = date(string((year(f_fallece)+i))+'-03-01')
+			dias_año= daysafter(año_inicial , año_final)
+		
+			if dias_año > 28 then
+				bisiesto = true
+			end if
+		next
+		
+		if bisiesto then
+			if day(f_fallece)=1 then
+				dias = (daysafter(f_fallece, f_fb14)+1)-1
+			else
+				dias = (daysafter(f_fallece, f_fb14))-1
+			end if
+		else					
+			if day(f_fallece)=1 then
+				dias = daysafter(f_fallece, f_fb14)+1
+			else
+				dias = daysafter(f_fallece, f_fb14)
+			end if
+		end if
+		resultado=(pension/365) * (dias)
+	end if	
+	cadena = "El número de dias calculado es: "+string(dias)
+	messagebox("Bono Proporcional..",cadena)
+end if 
+return resultado 
+
+
+end function
+

@@ -1,0 +1,17 @@
+﻿$PBExportHeader$f_db_del_solicitud_etapa.srf
+global type f_db_del_solicitud_etapa from function_object
+end type
+
+forward prototypes
+global subroutine f_db_del_solicitud_etapa (string as_dpi, long al_solicitud, integer ai_etapa_nueva)
+end prototypes
+
+global subroutine f_db_del_solicitud_etapa (string as_dpi, long al_solicitud, integer ai_etapa_nueva);DELETE FROM Solicitud_Etapas   
+WHERE 	No_Solicitud = :al_solicitud and
+			DPI = :as_dpi and
+			Etapa > :ai_etapa_nueva
+USING SQLCA;
+
+Return;
+end subroutine
+

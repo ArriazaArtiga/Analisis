@@ -1,0 +1,19 @@
+﻿$PBExportHeader$f_db_get_solicitud_subtipo_cv.srf
+global type f_db_get_solicitud_subtipo_cv from function_object
+end type
+
+forward prototypes
+global function string f_db_get_solicitud_subtipo_cv (string as_dpi)
+end prototypes
+
+global function string f_db_get_solicitud_subtipo_cv (string as_dpi);String ls_subtipo_cv
+
+select 	b.SubTipo_CV
+into 		:ls_subtipo_cv
+from		solicitudes b
+where	(b.DPI = :as_dpi and b.etapa <210)
+using SQLCA;
+
+return ls_subtipo_cv
+end function
+

@@ -1,0 +1,34 @@
+﻿$PBExportHeader$f_dias_mes.srf
+global type f_dias_mes from function_object
+end type
+
+forward prototypes
+global function integer f_dias_mes (datetime adt_fecha)
+end prototypes
+
+global function integer f_dias_mes (datetime adt_fecha);integer li_dia, li_mes, li_anio, li_dias
+
+li_mes = month(date(adt_fecha))
+li_anio = year(date(adt_fecha))
+
+if li_mes = 1 or li_mes = 3 or li_mes = 5 or li_mes = 7 or li_mes = 8 or li_mes = 10 or li_mes = 12 then
+	li_dia = 31
+else
+	if li_mes = 4 or li_mes = 6 or li_mes = 9 or li_mes = 11 then
+		li_dia = 30
+	else
+		if mod(li_anio, 400) = 0 then
+			li_dia = 29
+		else
+			if mod(li_anio, 4) = 0 and mod(li_anio, 100) <> 0 then
+				li_dia = 29
+			else
+				li_dia = 28
+			end if
+		end if
+	end if
+end if
+
+Return li_dia
+end function
+

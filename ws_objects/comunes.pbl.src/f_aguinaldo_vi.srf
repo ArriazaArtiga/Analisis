@@ -1,0 +1,24 @@
+﻿$PBExportHeader$f_aguinaldo_vi.srf
+global type f_aguinaldo_vi from function_object
+end type
+
+forward prototypes
+global function decimal f_aguinaldo_vi (string _dpi, integer _sol)
+end prototypes
+
+global function decimal f_aguinaldo_vi (string _dpi, integer _sol);decimal ldc_monto
+
+SELECT        MontoAguinaldo
+into :ldc_monto
+FROM            Solicitud_VI
+WHERE        (DPI = :_dpi) and
+(Solicitud = :_sol)
+using SQLCA;
+
+if isnull(ldc_monto) then
+	ldc_monto = 0.00
+end if
+
+return round(ldc_monto,2)
+end function
+

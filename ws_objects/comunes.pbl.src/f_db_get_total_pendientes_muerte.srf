@@ -1,0 +1,26 @@
+﻿$PBExportHeader$f_db_get_total_pendientes_muerte.srf
+global type f_db_get_total_pendientes_muerte from function_object
+end type
+
+forward prototypes
+global function decimal f_db_get_total_pendientes_muerte (string as_dpi)
+end prototypes
+
+global function decimal f_db_get_total_pendientes_muerte (string as_dpi);Decimal ldc_total, ldc_suma1
+
+select isnull(sum(round(a.Monto_Pendiente,2)),0.00)
+into :ldc_suma1
+from Detalle_Beneficiarios a,
+	 Declaracion_Beneficiarios b
+where 
+	 b.idFormulario = a.idFormulario and
+	 b.Status = '1' and
+	 a.Pendiente = '1' and
+	 b.DPI_Contribuyente = :as_dpi
+using sqlca;
+
+ldc_total = ldc_suma1
+
+Return ldc_total
+end function
+

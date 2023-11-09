@@ -1,0 +1,19 @@
+﻿$PBExportHeader$f_db_get_usuario_analista.srf
+global type f_db_get_usuario_analista from function_object
+end type
+
+forward prototypes
+global function string f_db_get_usuario_analista (long al_idanalista)
+end prototypes
+
+global function string f_db_get_usuario_analista (long al_idanalista);String ls_analista
+
+select  	b.usuario 
+into 		:ls_analista
+from		Ejecutivos_Analisis b
+where   	b.idEjecutivo = :al_idanalista
+using 		SQLCA;
+
+Return ls_analista
+end function
+

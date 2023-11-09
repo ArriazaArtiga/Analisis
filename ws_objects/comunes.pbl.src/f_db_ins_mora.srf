@@ -1,0 +1,15 @@
+﻿$PBExportHeader$f_db_ins_mora.srf
+global type f_db_ins_mora from function_object
+end type
+
+forward prototypes
+global subroutine f_db_ins_mora (integer ai_depto, integer ai_muni, integer ai_ent_muni, integer ai_mes, integer ai_anio, string as_tipo_pago, decimal adc_monto_pagar, decimal adc_monto_mora, decimal adc_monto_intereses, string as_convenio)
+end prototypes
+
+global subroutine f_db_ins_mora (integer ai_depto, integer ai_muni, integer ai_ent_muni, integer ai_mes, integer ai_anio, string as_tipo_pago, decimal adc_monto_pagar, decimal adc_monto_mora, decimal adc_monto_intereses, string as_convenio);insert 	rmuni_mora (Depto,Muni,Correlativo,Mes,Anio,Tipo_Pago,Monto_Pagar,Monto_Mora,Monto_Intereses,Convenio,Status,Status_Convenio) 
+values 	(:ai_depto,:ai_muni,:ai_ent_muni,:ai_mes,:ai_anio,:as_tipo_pago,:adc_monto_pagar,:adc_monto_mora,:adc_monto_intereses,:as_convenio,'1','0')
+using SQLCA;
+
+return
+end subroutine
+

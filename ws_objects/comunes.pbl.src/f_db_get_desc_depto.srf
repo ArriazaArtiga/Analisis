@@ -1,0 +1,19 @@
+﻿$PBExportHeader$f_db_get_desc_depto.srf
+global type f_db_get_desc_depto from function_object
+end type
+
+forward prototypes
+global function string f_db_get_desc_depto (integer ai_depto)
+end prototypes
+
+global function string f_db_get_desc_depto (integer ai_depto);string ls_nombre
+
+select nombre
+into :ls_nombre 
+from Departamentos 
+where depto = :ai_depto
+using SQLCA;
+
+return ls_nombre
+end function
+

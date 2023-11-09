@@ -1,0 +1,22 @@
+﻿$PBExportHeader$f_db_get_no_docto.srf
+global type f_db_get_no_docto from function_object
+end type
+
+forward prototypes
+global function string f_db_get_no_docto (long al_solicitud, string as_dpi, string as_tipo_docto, string as_unidad)
+end prototypes
+
+global function string f_db_get_no_docto (long al_solicitud, string as_dpi, string as_tipo_docto, string as_unidad);String ls_no_docto
+
+select  	a.No_Documento
+into 		:ls_no_docto
+from		Solicitud_Documentos_expediente a
+where   	a.No_Solicitud = :al_solicitud
+and		a.dpi = :as_dpi
+and		a.tipo_documento = :as_tipo_docto
+//and		a.unidad = :as_unidad
+using 		SQLCA;
+
+Return ls_no_docto
+end function
+

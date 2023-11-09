@@ -1,0 +1,100 @@
+﻿$PBExportHeader$f_txt_antes_b14_recibo.srf
+global type f_txt_antes_b14_recibo from function_object
+end type
+
+forward prototypes
+global function string f_txt_antes_b14_recibo (datetime adt_fecha_inicio_calculo, datetime adt_fecha_resolucion, datetime adt_fecha_solicitud, datetime adt_fecha_entrega_cargo)
+end prototypes
+
+global function string f_txt_antes_b14_recibo (datetime adt_fecha_inicio_calculo, datetime adt_fecha_resolucion, datetime adt_fecha_solicitud, datetime adt_fecha_entrega_cargo);string ls_resultado
+integer li_dif_meses
+
+// Entrega de cargo = 24/10/2019
+// Fecha resolucion = 15/06/2022
+// Fecha inicio calculo = 25/05/2022
+// Fecha Solicitud = 10/01/2022
+
+if adt_fecha_inicio_calculo  <  adt_fecha_resolucion then
+	if day(date(adt_fecha_entrega_cargo)) > day(date(adt_fecha_solicitud)) then
+		li_dif_meses =  f_diferencia_meses(adt_fecha_entrega_cargo,adt_fecha_solicitud) - 1  // 2 meses
+	else
+		if ((day(date(adt_fecha_entrega_cargo)) = 28 or day(date(adt_fecha_entrega_cargo)) = 29) and month(date(adt_fecha_entrega_cargo)) = 2) and (day(date(adt_fecha_solicitud)) = 31 and month(date(adt_fecha_solicitud)) = 5)  then
+			li_dif_meses =  f_diferencia_meses(adt_fecha_entrega_cargo,adt_fecha_solicitud) - 1
+		else
+			li_dif_meses =  f_diferencia_meses(adt_fecha_entrega_cargo,adt_fecha_solicitud)
+		end if
+	end if
+	//messagebox('li_dif_meses',li_dif_meses)
+	// correcion 09/06/2022 mahm
+	if li_dif_meses > 13 then 
+		if month(date(adt_fecha_resolucion)) - month(date(adt_fecha_inicio_calculo)) = 1 then
+			ls_resultado = f_meses_letras(month(date(adt_fecha_resolucion))) + ' del ' + string(year(date(adt_fecha_resolucion)))
+		else
+			//quitar asignacion
+			ls_resultado = f_meses_letras(month(date(adt_fecha_inicio_calculo))) + ' del ' + string(year(date(adt_fecha_inicio_calculo)))
+		end if
+	// fin correcion 09/06/2022
+	else
+		if adt_fecha_inicio_calculo = adt_fecha_resolucion and day(date(adt_fecha_resolucion)) = 1 then
+			ls_resultado = f_meses_letras(month(date(adt_fecha_inicio_calculo))) + ' del ' + string(year(date(adt_fecha_inicio_calculo)))
+		else
+			if month(date(adt_fecha_inicio_calculo)) = month(date(adt_fecha_resolucion)) and year(date(adt_fecha_inicio_calculo)) = year(date(adt_fecha_resolucion)) then
+				ls_resultado = f_meses_letras(month(date(adt_fecha_inicio_calculo))) + ' del ' + string(year(date(adt_fecha_inicio_calculo)))
+			else
+				if  adt_fecha_inicio_calculo  <  adt_fecha_resolucion then
+					if month(date(adt_fecha_inicio_calculo))+1 = month(date(adt_fecha_resolucion))  and year(date(adt_fecha_inicio_calculo)) = year(date(adt_fecha_resolucion)) then
+						if f_fecha_fin_mes(month(date(adt_fecha_inicio_calculo)),year(date(adt_fecha_inicio_calculo)))= adt_fecha_inicio_calculo then
+							ls_resultado = f_meses_letras(month(date(adt_fecha_resolucion))) + ' del ' + string(year(date(adt_fecha_resolucion)))
+						else
+							if f_fecha_ini_mes(month(date(adt_fecha_inicio_calculo)),year(date(adt_fecha_inicio_calculo))) = adt_fecha_inicio_calculo then
+							//if month(date(adt_fecha_inicio_calculo)) - month(date(adt_fecha_resolucion)) > 1 then
+								ls_resultado = f_meses_letras(month(date(adt_fecha_inicio_calculo))) + ' del ' + string(year(date(adt_fecha_inicio_calculo)))+ ' a ' + f_meses_letras(month(date(adt_fecha_resolucion))) + ' del ' + string(year(date(adt_fecha_resolucion)))
+							else
+								ls_resultado = f_meses_letras(month(date(adt_fecha_resolucion))) + ' del ' + string(year(date(adt_fecha_resolucion)))
+							end if
+						end if
+					else
+						if f_diferencia_meses(adt_fecha_inicio_calculo,adt_fecha_resolucion) > 1 then
+							if month(date(adt_fecha_inicio_calculo)) = 12 and day(date(adt_fecha_inicio_calculo)) > 1 then
+								ls_resultado = ' enero del ' + string((year(date(adt_fecha_inicio_calculo)))+1) + ' a ' + f_meses_letras(month(date(adt_fecha_resolucion))) + ' del ' + string(year(date(adt_fecha_resolucion)))
+							else
+								if month(date(adt_fecha_resolucion)) = 1 then
+									ls_resultado = ' enero del ' + string((year(date(adt_fecha_inicio_calculo)))+1)
+								else
+									ls_resultado = f_meses_letras(month(date(adt_fecha_inicio_calculo))) + ' del ' + string((year(date(adt_fecha_inicio_calculo)))) + ' a ' + f_meses_letras(month(date(adt_fecha_resolucion))) + ' del ' + string(year(date(adt_fecha_resolucion)))
+								end if
+								if day(date(adt_fecha_inicio_calculo)) = 1 and month(date(adt_fecha_inicio_calculo)) <> 12 then
+									ls_resultado = f_meses_letras(month(date(adt_fecha_inicio_calculo))) + ' del ' + string(year(date(adt_fecha_inicio_calculo)))+ ' a ' + f_meses_letras(month(date(adt_fecha_resolucion))) + ' del ' + string(year(date(adt_fecha_resolucion)))
+								else
+									if month(date(adt_fecha_inicio_calculo)) <> 12 then
+										ls_resultado = f_meses_letras(month(date(adt_fecha_inicio_calculo))+1) + ' del ' + string(year(date(adt_fecha_inicio_calculo)))+ ' a ' + f_meses_letras(month(date(adt_fecha_resolucion))) + ' del ' + string(year(date(adt_fecha_resolucion)))
+									else
+										ls_resultado = f_meses_letras(month(date(adt_fecha_inicio_calculo))) + ' del ' + string(year(date(adt_fecha_inicio_calculo)))+ ' a ' + f_meses_letras(month(date(adt_fecha_resolucion))) + ' del ' + string(year(date(adt_fecha_resolucion)))
+									end if
+								end if
+							end if
+						else
+							if month(date(adt_fecha_inicio_calculo)) = 12 and month(date(adt_fecha_resolucion)) = 1 then
+								ls_resultado = f_meses_letras(month(date(adt_fecha_inicio_calculo))) + ' del ' + string((year(date(adt_fecha_inicio_calculo)))) + ' a ' + f_meses_letras(month(date(adt_fecha_resolucion))) + ' del ' + string(year(date(adt_fecha_resolucion)))
+							else
+								ls_resultado = f_meses_letras(month(date(adt_fecha_resolucion))) + ' del ' + string(year(date(adt_fecha_resolucion)))
+							end if
+						end if
+					end if
+				end if
+			end if
+		end if
+	end if			
+else
+	if adt_fecha_inicio_calculo  =  adt_fecha_resolucion then
+		ls_resultado = f_meses_letras(month(date(adt_fecha_inicio_calculo))) + ' del ' + string(year(date(adt_fecha_inicio_calculo)))
+	else
+		ls_resultado = 'Periodo Acumulado'
+	end if
+end if
+
+
+return ls_resultado
+
+end function
+

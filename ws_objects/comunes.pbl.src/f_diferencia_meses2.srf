@@ -1,0 +1,23 @@
+﻿$PBExportHeader$f_diferencia_meses2.srf
+global type f_diferencia_meses2 from function_object
+end type
+
+forward prototypes
+global function integer f_diferencia_meses2 (datetime f_inicial, datetime f_final)
+end prototypes
+
+global function integer f_diferencia_meses2 (datetime f_inicial, datetime f_final);integer valor
+date  v_inicial, v_final
+long dias
+
+v_inicial = date(f_inicial)
+v_final = date (f_final)
+
+dias = DaysAfter(v_inicial, v_final)
+valor = round( int(dias) /30,0)
+
+
+
+return valor
+end function
+

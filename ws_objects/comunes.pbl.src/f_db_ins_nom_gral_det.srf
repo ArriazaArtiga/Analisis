@@ -1,0 +1,30 @@
+﻿$PBExportHeader$f_db_ins_nom_gral_det.srf
+global type f_db_ins_nom_gral_det from function_object
+end type
+
+forward prototypes
+global subroutine f_db_ins_nom_gral_det (string as_nomen_gral, integer ai_tipo_pensionado, string as_resolucion, string as_dpi, string as_ctabco, integer ai_anios, integer ai_meses, integer ai_dias, decimal adc_monto)
+end prototypes
+
+global subroutine f_db_ins_nom_gral_det (string as_nomen_gral, integer ai_tipo_pensionado, string as_resolucion, string as_dpi, string as_ctabco, integer ai_anios, integer ai_meses, integer ai_dias, decimal adc_monto);Integer li_linea, li_corrdet
+
+select max(Correlativo_Detalle)
+into :li_linea
+from Nomina_General_Detalle 
+where Nomenclatura_General = :as_nomen_gral
+using SQLCA;
+
+commit;
+if isnull(li_linea) then
+	li_linea = 0
+end if
+
+li_corrdet = li_linea + 1
+insert 	Nomina_General_Detalle (Nomenclatura_General,Correlativo_Detalle,Tipo_Pensionado,Resolucion,DPI,Cuenta_Banco,Años_Laborados,Meses_Laborados,Dias_Laborados,Monto_Pension) 
+values 	(:as_nomen_gral,:li_corrdet,:ai_tipo_pensionado,:as_resolucion,:as_dpi,:as_ctabco,:ai_anios,:ai_meses,:ai_dias,:adc_monto)
+using SQLCA;
+
+commit;
+Return
+end subroutine
+

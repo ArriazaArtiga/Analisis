@@ -1,0 +1,27 @@
+﻿$PBExportHeader$f_recibo_linea2.srf
+global type f_recibo_linea2 from function_object
+end type
+
+forward prototypes
+global function decimal f_recibo_linea2 (datetime adt_fecha_inicio_calculo, datetime adt_fecha_resolucion, decimal adc_pension)
+end prototypes
+
+global function decimal f_recibo_linea2 (datetime adt_fecha_inicio_calculo, datetime adt_fecha_resolucion, decimal adc_pension);Decimal ldc_meses_pago
+
+if adt_fecha_inicio_calculo = adt_fecha_resolucion and day(date(adt_fecha_resolucion)) = 1  then
+	ldc_meses_pago = round(adc_pension,2)
+else
+	if day(date(adt_fecha_inicio_calculo)) = 1 then
+		if adt_fecha_inicio_calculo  <  adt_fecha_resolucion then
+			ldc_meses_pago = round(adc_pension * (f_diferencia_meses( adt_fecha_inicio_calculo , adt_fecha_resolucion )+1),2)
+		else
+			ldc_meses_pago = 0.00
+		end if
+	else
+		ldc_meses_pago = round(adc_pension * (f_diferencia_meses( adt_fecha_inicio_calculo , adt_fecha_resolucion )),2)
+	end if
+end if
+
+Return round (ldc_meses_pago,2)
+end function
+

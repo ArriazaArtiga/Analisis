@@ -1,0 +1,30 @@
+﻿$PBExportHeader$f_aux_fechasol.srf
+global type f_aux_fechasol from function_object
+end type
+
+forward prototypes
+global function datetime f_aux_fechasol (string as_dpi, integer as_sol)
+end prototypes
+
+global function datetime f_aux_fechasol (string as_dpi, integer as_sol);
+Datetime f_sol
+
+
+  SELECT   
+  		f.fecha
+        
+	INTO
+
+		:f_sol
+      FROM  
+         solicitudes f  
+ 
+   WHERE
+         ( f.no_solicitud = :as_sol ) and  
+       
+         ( f.DPI = :as_dpi )     
+using SQLCA;
+
+return f_sol
+end function
+

@@ -1,0 +1,25 @@
+﻿$PBExportHeader$f_db_get_tiempo_servicio.srf
+global type f_db_get_tiempo_servicio from function_object
+end type
+
+forward prototypes
+global subroutine f_db_get_tiempo_servicio (string as_dpi, long al_no_solic)
+global subroutine f_db_get_tiempo_servicio (string as_dpi, long al_no_solic, ref integer ai_anio, ref integer ai_mes, ref integer ai_dia)
+end prototypes
+
+global subroutine f_db_get_tiempo_servicio (string as_dpi, long al_no_solic);
+
+return
+end subroutine
+
+global subroutine f_db_get_tiempo_servicio (string as_dpi, long al_no_solic, ref integer ai_anio, ref integer ai_mes, ref integer ai_dia);
+Select anio,mes,dias 
+into :ai_anio, :ai_mes, :ai_dia
+from Solicitud_Tiempo_Servicio 
+where No_Solicitud = :al_no_solic 
+and DPI = :as_dpi
+using SQLCA;
+
+return
+end subroutine
+

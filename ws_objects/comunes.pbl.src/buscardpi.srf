@@ -1,0 +1,24 @@
+﻿$PBExportHeader$buscardpi.srf
+global type buscardpi from function_object
+end type
+
+forward prototypes
+global function string buscardpi (string resolucion)
+end prototypes
+
+global function string buscardpi (string resolucion);string  CUI
+
+
+SELECT          DPI
+INTO :CUI
+FROM            Solicitudes
+WHERE        (Referencia_Solicitud = :resolucion) OR (DPI =:resolucion)
+using 		SQLCA;
+
+if trim(CUI)= "" then 
+	CUI="No se encontro CUI"
+end if 
+
+RETURN CUI
+end function
+

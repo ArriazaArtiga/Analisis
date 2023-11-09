@@ -1,0 +1,19 @@
+﻿$PBExportHeader$f_recibo_linea1.srf
+global type f_recibo_linea1 from function_object
+end type
+
+forward prototypes
+global function decimal f_recibo_linea1 (datetime adt_fecha_inicio_calculo, string as_dpi, decimal adc_pension, long al_solicitud)
+end prototypes
+
+global function decimal f_recibo_linea1 (datetime adt_fecha_inicio_calculo, string as_dpi, decimal adc_pension, long al_solicitud);Decimal ldc_dias_pago
+
+if adt_fecha_inicio_calculo > f_fecha_ini_mes(month(date(adt_fecha_inicio_calculo)), year(date(adt_fecha_inicio_calculo))) then
+	ldc_dias_pago = f_db_get_monto_pension_dias_pago_new( as_dpi, adc_pension, al_solicitud  )
+else 
+	ldc_dias_pago = 0.00
+end if
+
+Return round (ldc_dias_pago,2)
+end function
+

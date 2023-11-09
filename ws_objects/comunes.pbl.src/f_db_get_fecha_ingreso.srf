@@ -1,0 +1,19 @@
+﻿$PBExportHeader$f_db_get_fecha_ingreso.srf
+global type f_db_get_fecha_ingreso from function_object
+end type
+
+forward prototypes
+global function datetime f_db_get_fecha_ingreso (string as_dpi)
+end prototypes
+
+global function datetime f_db_get_fecha_ingreso (string as_dpi);datetime ldt_fecha_ingreso
+
+select fecha_ingreso
+into :ldt_fecha_ingreso
+from contribuyentes 
+where DPI = :as_dpi
+using SQLCA;
+
+return ldt_fecha_ingreso
+end function
+

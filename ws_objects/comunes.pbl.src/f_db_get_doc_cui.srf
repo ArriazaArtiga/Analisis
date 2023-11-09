@@ -1,0 +1,19 @@
+﻿$PBExportHeader$f_db_get_doc_cui.srf
+global type f_db_get_doc_cui from function_object
+end type
+
+forward prototypes
+global function string f_db_get_doc_cui (integer doc)
+end prototypes
+
+global function string f_db_get_doc_cui (integer doc);string ll_cui
+
+SELECT top 1 DPI  
+INTO :ll_cui
+FROM Solicitud_Documentos_Expediente 
+WHERE iddocumento = :doc
+using SQLCA;
+
+return ll_cui
+end function
+

@@ -1,0 +1,149 @@
+﻿$PBExportHeader$d_analisis_rep_sva_res_jd_part2_x.srd
+release 12.5;
+datawindow(units=0 timer_interval=0 color=1073741824 brushmode=0 transparency=0 gradient.angle=0 gradient.color=8421504 gradient.focus=0 gradient.repetition.count=0 gradient.repetition.length=100 gradient.repetition.mode=0 gradient.scale=100 gradient.spread=100 gradient.transparency=0 picture.blur=0 picture.clip.bottom=0 picture.clip.left=0 picture.clip.right=0 picture.clip.top=0 picture.mode=0 picture.scale.x=100 picture.scale.y=100 picture.transparency=0 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 2 print.margin.left = 110 print.margin.right = 110 print.margin.top = 120 print.margin.bottom = 100 print.paper.source = 0 print.paper.size = 5 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.background=no print.preview.background=no print.preview.outline=yes hidegrayline=no showbackcoloronxp=no picture.file="" )
+header(height=0 color="536870912" transparency="0" gradient.color="8421504" gradient.transparency="0" gradient.angle="0" brushmode="0" gradient.repetition.mode="0" gradient.repetition.count="0" gradient.repetition.length="100" gradient.focus="0" gradient.scale="100" gradient.spread="100" )
+summary(height=0 color="536870912" transparency="0" gradient.color="8421504" gradient.transparency="0" gradient.angle="0" brushmode="0" gradient.repetition.mode="0" gradient.repetition.count="0" gradient.repetition.length="100" gradient.focus="0" gradient.scale="100" gradient.spread="100" )
+footer(height=0 color="536870912" transparency="0" gradient.color="8421504" gradient.transparency="0" gradient.angle="0" brushmode="0" gradient.repetition.mode="0" gradient.repetition.count="0" gradient.repetition.length="100" gradient.focus="0" gradient.scale="100" gradient.spread="100" )
+detail(height=1980 color="536870912" transparency="0" gradient.color="8421504" gradient.transparency="0" gradient.angle="0" brushmode="0" gradient.repetition.mode="0" gradient.repetition.count="0" gradient.repetition.length="100" gradient.focus="0" gradient.scale="100" gradient.spread="100" )
+table(column=(type=char(2) updatewhereclause=yes name=solicitudes_tipo_tramite dbname="solicitudes.tipo_tramite" dbalias="f.tipo_tramite" )
+ column=(type=char(26) updatewhereclause=yes name=descripcion_tramite dbname="descripcion_tramite" )
+ column=(type=char(1) updatewhereclause=yes name=solicitudes_subtipo_tramite dbname="solicitudes.subtipo_tramite" dbalias="f.subtipo_tramite" )
+ column=(type=char(50) updatewhereclause=yes name=municipio dbname="municipio" )
+ column=(type=char(30) updatewhereclause=yes name=departamento dbname="departamento" )
+ column=(type=char(30) updatewhereclause=yes name=contribuyentes_nombres dbname="contribuyentes.nombres" dbalias="a.nombres" )
+ column=(type=char(100) updatewhereclause=yes name=contribuyentes_apellidos dbname="contribuyentes.apellidos" dbalias="a.apellidos" )
+ column=(type=char(100) updatewhereclause=yes name=contribuyentes_casada dbname="contribuyentes.casada" dbalias="a.casada" )
+ column=(type=char(15) updatewhereclause=yes name=contribuyentes_dpi dbname="contribuyentes.dpi" dbalias="a.dpi" )
+ column=(type=char(50) updatewhereclause=yes name=puesto dbname="puesto" )
+ column=(type=char(100) updatewhereclause=yes name=entidad_municipal dbname="entidad_municipal" )
+ column=(type=decimal(0) updatewhereclause=yes name=solicitudes_no_solicitud dbname="solicitudes.no_solicitud" dbalias="f.no_solicitud" )
+ column=(type=char(100) updatewhereclause=yes name=solicitudes_direccion_notificaciones dbname="solicitudes.direccion_notificaciones" dbalias="f.direccion_notificaciones" )
+ column=(type=char(12) updatewhereclause=yes name=solicitudes_referencia_solicitud dbname="solicitudes.referencia_solicitud" dbalias="f.referencia_solicitud" )
+ column=(type=datetime updatewhereclause=yes name=solicitudes_fecha_resolucion dbname="solicitudes.fecha_resolucion" dbalias="f.fecha_resolucion" )
+ column=(type=datetime updatewhereclause=yes name=fecha_solicitud dbname="fecha_solicitud" )
+ column=(type=datetime updatewhereclause=yes name=solicitud_prestacion_muerte_fecha_fallecimiento dbname="solicitud_prestacion_muerte.fecha_fallecimiento" dbalias="g.fecha_fallecimiento" )
+ column=(type=long updatewhereclause=yes name=edad dbname="edad" )
+ column=(type=datetime updatewhereclause=yes name=solicitudes_fecha_entrega_cargo dbname="solicitudes.fecha_entrega_cargo" dbalias="f.fecha_entrega_cargo" )
+ column=(type=datetime updatewhereclause=yes name=solicitud_prestacion_muerte_fecha_ultimo_pago dbname="solicitud_prestacion_muerte.fecha_ultimo_pago" dbalias="g.fecha_ultimo_pago" )
+ column=(type=char(300) updatewhereclause=yes name=solicitud_prestacion_muerte_solicita dbname="solicitud_prestacion_muerte.solicita" dbalias="g.solicita" )
+ column=(type=decimal(4) updatewhereclause=yes name=pensión_inicial dbname="pensión_inicial" )
+ column=(type=decimal(4) updatewhereclause=yes name=salario dbname="salario" )
+ column=(type=decimal(2) updatewhereclause=yes name=pensión_máxima dbname="pensión_máxima" )
+ column=(type=decimal(0) updatewhereclause=yes name=anio_lab_plan dbname="anio_lab_plan" )
+ column=(type=decimal(0) updatewhereclause=yes name=mes_lab_plan dbname="mes_lab_plan" )
+ column=(type=decimal(0) updatewhereclause=yes name=dias_lab_plan dbname="dias_lab_plan" )
+ column=(type=decimal(0) updatewhereclause=yes name=anio_lab_muni dbname="anio_lab_muni" )
+ column=(type=decimal(0) updatewhereclause=yes name=mes_lab_muni dbname="mes_lab_muni" )
+ column=(type=decimal(0) updatewhereclause=yes name=dias_lab_muni dbname="dias_lab_muni" )
+ column=(type=long updatewhereclause=yes name=porcentaje dbname="porcentaje" )
+ column=(type=char(1) updatewhereclause=yes name=solicitud_documentos_expediente_tipo_documento dbname="solicitud_documentos_expediente.tipo_documento" dbalias="h.tipo_documento" )
+ column=(type=datetime updatewhereclause=yes name=solicitud_documentos_expediente_fecha_documento dbname="solicitud_documentos_expediente.fecha_documento" dbalias="h.fecha_documento" )
+ column=(type=datetime updatewhereclause=yes name=solicitud_documentos_expediente_fecha_inicio_calculo dbname="solicitud_documentos_expediente.fecha_inicio_calculo" dbalias="h.fecha_inicio_calculo" )
+ column=(type=char(15) updatewhereclause=yes name=solicitud_documentos_expediente_no_documento dbname="solicitud_documentos_expediente.no_documento" dbalias="h.no_documento" )
+ column=(type=datetime updatewhereclause=yes name=solicitud_documentos_expediente_fecha_pension dbname="solicitud_documentos_expediente.fecha_pension" dbalias="h.fecha_pension" )
+ column=(type=long updatewhereclause=yes name=rango_meses_ini_fin dbname="rango_meses_ini_fin" )
+ column=(type=decimal(4) updatewhereclause=yes name=solicitud_documentos_expediente_monto_inscripcion dbname="solicitud_documentos_expediente.monto_inscripcion" dbalias="h.monto_inscripcion" )
+ column=(type=decimal(4) updatewhereclause=yes name=solicitud_documentos_expediente_monto_aux_postumo dbname="solicitud_documentos_expediente.monto_aux_postumo" dbalias="h.monto_aux_postumo" )
+ column=(type=decimal(4) updatewhereclause=yes name=solicitud_documentos_expediente_monto_bono14 dbname="solicitud_documentos_expediente.monto_bono14" dbalias="h.monto_bono14" )
+ column=(type=decimal(4) updatewhereclause=yes name=solicitud_documentos_expediente_monto_aguinaldo dbname="solicitud_documentos_expediente.monto_aguinaldo" dbalias="h.monto_aguinaldo" )
+ column=(type=decimal(0) updatewhereclause=yes name=solicitud_documentos_expediente_total_folios dbname="solicitud_documentos_expediente.total_folios" dbalias="h.total_folios" )
+ retrieve="  SELECT f.tipo_tramite,   
+          Case f.Tipo_Tramite 
+			when '01' then 'Pensión por Vejez' 
+			when '02' then 'Pensión por Invalidez' 
+			when '03' then 'Contribución Voluntaria'
+			when '04' then 'Prestación Muerte Jubilado'
+			when '05' then 'Prestación Muerte Activo'
+		end as 'Descripcion_Tramite',   
+		f.SubTipo_Tramite,
+         c.Nombre as 'Municipio',   
+         d.Nombre as 'Departamento',   
+         a.nombres,   
+         a.apellidos,   
+         a.casada,   
+         a.dpi,   
+		b.descripcion as 'Puesto',
+         Case a.Correlativo 
+			when 1 then 'Municipalidad' 
+			else (select z.nombre from Corporacion_Empresa_Municipal z where z.Depto = a.Depto and z.Muni = a.Muni and z.Correlativo = a.Correlativo ) 
+		 end as 'Entidad_Municipal',
+		f.no_solicitud,
+		f.direccion_notificaciones,
+         f.referencia_solicitud,   
+         f.fecha_resolucion,
+		f.fecha as 'Fecha_Solicitud',   
+		g.fecha_fallecimiento,
+		case when datepart(mm,g.Fecha_Fallecimiento) > DATEPART(mm,a.fecha_nacimiento)
+			then  DATEDIFF(yy,a.Fecha_Nacimiento,g.Fecha_Fallecimiento)
+			else  case when datepart(mm,g.Fecha_Fallecimiento) = DATEPART(mm,a.fecha_nacimiento) and DATEPART(dd,g.Fecha_Fallecimiento) >= DATEPART(dd,a.fecha_nacimiento)
+						then  DATEDIFF(yy,a.Fecha_Nacimiento,g.Fecha_Fallecimiento)
+						else   DATEDIFF(yy,a.Fecha_Nacimiento,g.Fecha_Fallecimiento) - 1
+					end
+ 		end as 'Edad',
+         f.fecha_entrega_cargo,
+		g.Fecha_Ultimo_Pago,   
+		g.Solicita,
+         round(a.Pension_Calculada,2) as 'Pensión_Inicial',   
+		a.salario as 'Salario',
+		3623.00 as 'Pensión_Máxima',
+		e.Anio as 'Anio_Lab_Plan',
+		e.Mes as 'Mes_Lab_Plan',
+		e.Dias as 'Dias_Lab_Plan',
+		e.Anio1 as 'Anio_Lab_Muni',
+		e.Mes1 as 'Mes_Lab_Muni',
+		e.Dias1 as 'Dias_Lab_Muni',
+		Case f.Tipo_Tramite when '02' then 80 end as 'Porcentaje',
+         h.tipo_documento,   
+         h.fecha_documento,   
+         h.fecha_inicio_calculo,   
+		h.no_documento,
+		h.fecha_pension,
+		DATEDIFF(mm,h.fecha_inicio_calculo,h.fecha_documento) as 'Rango_Meses_ini_fin',
+         h.monto_inscripcion,   
+         h.monto_aux_postumo,   
+         h.monto_bono14,   
+         h.monto_aguinaldo,
+		h.total_folios  
+    FROM contribuyentes a,   
+         contribuyentes_puestos b,   
+         municipios c,   
+         departamentos d,   
+         solicitud_tiempo_servicio e,   
+         solicitudes f,   
+		Solicitud_Prestacion_Muerte g,
+         solicitud_documentos_expediente h
+   WHERE ( b.idpuesto = a.puesto ) and  
+         ( c.depto = a.depto ) and  
+         ( c.muni = a.muni ) and  
+         ( d.depto = a.depto ) and  
+         ( e.dpi = a.dpi ) and  
+         ( e.no_solicitud = f.no_solicitud ) and  
+         ( h.dpi = a.dpi ) and  
+         ( h.no_solicitud = f.no_solicitud ) and  
+         ( f.dpi = a.dpi ) and  
+		f.No_Solicitud = g.No_Solicitud and
+		f.DPI = g.DPI and
+         ( ( h.tipo_documento = '3 ' ) AND f.etapa < 210 and
+         ( a.DPI = :as_dpi ) )    
+ 
+" arguments=(("as_dpi", string)) )
+compute(band=detail alignment="3" expression="'c) Conforme el Artículo 11 numeral 2 y 12 del Decreto No. 37-92 del Congreso de la República de Guatemala, Ley de Impuesto de Timbres Fiscales y de Papel Sellado Especial para Protocolo, el (la)(s) solicitante(s) queda(n) exenta(s) de la reposición de timbres fiscales.'"border="0" color="33554432" x="443" y="36" height="220" width="2848" format="[GENERAL]" html.valueishtml="0"  name=parrafo8 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" transparency="0" )
+compute(band=detail alignment="3" expression="'d) Notifíquese a el (la) (los) interesado(a)(s), al Contador General del Plan de Prestaciones del Empleado Municipal, y en su oportunidad, archívise el presente expediente.'"border="0" color="33554432" x="443" y="292" height="188" width="2848" format="[GENERAL]" html.valueishtml="0"  name=parrafo9 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" transparency="0" )
+line(band=detail x1="443" y1="1052" x2="1390" y2="1052"  name=l_1 visible="1" pen.style="0" pen.width="9" pen.color="134217750"  background.mode="2" background.color="1073741824" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" )
+line(band=detail x1="2158" y1="1052" x2="3104" y2="1052"  name=l_4 visible="1" pen.style="0" pen.width="9" pen.color="134217750"  background.mode="2" background.color="1073741824" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" )
+compute(band=detail alignment="3" expression="'En la ciudad de Guatemala, al ' + lower(f_fecha_letras_com( solicitud_documentos_expediente_fecha_documento )) + '. Consta de ' +  solicitud_documentos_expediente_total_folios + ' folios.'"border="0" color="33554432" x="443" y="516" height="188" width="2848" format="[GENERAL]" html.valueishtml="0"  name=parrafo12 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" transparency="0" )
+line(band=detail x1="443" y1="1472" x2="1390" y2="1472"  name=l_3 visible="1" pen.style="0" pen.width="9" pen.color="134217750"  background.mode="1" background.color="536870912" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" )
+line(band=detail x1="2158" y1="1472" x2="3104" y2="1472"  name=l_2 visible="1" pen.style="0" pen.width="9" pen.color="134217750"  background.mode="2" background.color="1073741824" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" )
+column(band=detail id=33 alignment="0" tabsequence=32766 border="0" color="33554432" x="434" y="736" height="64" width="1083" format="[shortdate] [time]" html.valueishtml="0"  name=solicitud_documentos_expediente_fecha_documento visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" transparency="0" )
+column(band=detail id=42 alignment="2" tabsequence=32766 border="0" color="33554432" x="1979" y="736" height="64" width="585" format="[general]" html.valueishtml="0"  name=solicitud_documentos_expediente_total_folios visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" transparency="0" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

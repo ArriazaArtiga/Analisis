@@ -1,0 +1,39 @@
+﻿$PBExportHeader$f_db_get_suma_sueldos.srf
+global type f_db_get_suma_sueldos from function_object
+end type
+
+forward prototypes
+global function decimal f_db_get_suma_sueldos (string as_dpi)
+end prototypes
+
+global function decimal f_db_get_suma_sueldos (string as_dpi);Long il_solic
+Decimal ldc_suma_sueldos, ldc_tot_anio1, ldc_tot_anio2, ldc_tot_anio3, ldc_tot_anio4, ldc_tot_anio5, ldc_tot_anio6, ldc_tot_anio7, ldc_tot_anio8
+
+select No_Solicitud
+into :il_solic
+from Solicitudes
+where DPI = :as_dpi and
+		 etapa < 210
+using sqlca;
+
+select sum(monto_anio1),sum(monto_anio2),sum(monto_anio3),sum(monto_anio4),sum(monto_anio5),sum(monto_anio6),sum(monto_anio7),sum(monto_anio8)
+into :ldc_tot_anio1, :ldc_tot_anio2, :ldc_tot_anio3, :ldc_tot_anio4, :ldc_tot_anio5, :ldc_tot_anio6, :ldc_tot_anio7, :ldc_tot_anio8
+from Solicitud_Detalle_Pagos
+where DPI = :as_dpi
+and No_Solicitud = :il_solic
+using sqlca;
+
+if isnull(ldc_tot_anio1) then ldc_tot_anio1 = 0
+if isnull(ldc_tot_anio2) then ldc_tot_anio2 = 0
+if isnull(ldc_tot_anio3) then ldc_tot_anio3 = 0
+if isnull(ldc_tot_anio4) then ldc_tot_anio4 = 0
+if isnull(ldc_tot_anio5) then ldc_tot_anio5 = 0
+if isnull(ldc_tot_anio6) then ldc_tot_anio6 = 0
+if isnull(ldc_tot_anio7) then ldc_tot_anio7 = 0
+if isnull(ldc_tot_anio8) then ldc_tot_anio8 = 0
+
+ldc_suma_sueldos = (ldc_tot_anio1 + ldc_tot_anio2 + ldc_tot_anio3 + ldc_tot_anio4 + ldc_tot_anio5 + ldc_tot_anio6 + ldc_tot_anio7 + ldc_tot_anio8) 
+
+return ldc_suma_sueldos
+end function
+

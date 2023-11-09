@@ -1,0 +1,20 @@
+﻿$PBExportHeader$f_db_solicita_pm.srf
+global type f_db_solicita_pm from function_object
+end type
+
+forward prototypes
+global function string f_db_solicita_pm (string as_dpi, long al_no_solic)
+end prototypes
+
+global function string f_db_solicita_pm (string as_dpi, long al_no_solic);String ls_solicita
+
+Select solicita 
+into :ls_solicita
+from Solicitud_Prestacion_Muerte 
+where DPI = :as_dpi and
+		 no_solicitud = :al_no_solic
+using SQLCA;
+
+Return ls_solicita
+end function
+

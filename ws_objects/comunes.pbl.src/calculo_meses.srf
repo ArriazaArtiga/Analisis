@@ -1,0 +1,19 @@
+﻿$PBExportHeader$calculo_meses.srf
+global type calculo_meses from function_object
+end type
+
+forward prototypes
+global function integer calculo_meses (date fecha1, date fecha2)
+end prototypes
+
+global function integer calculo_meses (date fecha1, date fecha2);integer li_meses
+
+select DATEDIFF(mm,:fecha1, :fecha2)
+into :li_meses 
+from Etapas 
+where idEtapa = 10
+using SQLCA;
+
+return li_meses
+end function
+

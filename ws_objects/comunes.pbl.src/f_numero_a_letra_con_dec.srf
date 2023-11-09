@@ -1,0 +1,442 @@
+﻿$PBExportHeader$f_numero_a_letra_con_dec.srf
+global type f_numero_a_letra_con_dec from function_object
+end type
+
+forward prototypes
+global function string f_numero_a_letra_con_dec (string tot_le)
+end prototypes
+
+global function string f_numero_a_letra_con_dec (string tot_le);String   Mill_l, Cient_l, Letras, Cent_le, Tot_let, Decen_l, Unida_l, Cent_L
+Double   Numero
+Integer li_pos1, li_pos2
+String ls_seg1, ls_seg2, ls_seg3, ls_decimales_letras
+
+li_pos1 = Pos( Tot_le, '.', 1 )
+li_pos2 = Pos(Tot_le, '.', li_pos1+1)
+
+ls_seg1 = Mid ( Tot_le, 1 , li_pos1 - 1 )
+ls_seg2 = Mid ( Tot_le, li_pos1, 1 )
+ls_seg3 = Mid ( Tot_le, li_pos1+1, len(Tot_le))
+
+Cent_l = ls_seg3
+
+
+Tot_le   =   Right(Tot_Le,12)
+//Cent_l   =   ''
+
+If Len(Tot_Le) =  10 then
+	numero  =  Double(Left(Tot_Le,len(tot_le) - 10))
+	tot_le  =  Right(tot_le,10)
+	numero  =  Double(left(tot_le,1))
+	tot_le  =  Right(tot_le,9)
+Else
+	Numero = 0
+end if
+//Messagebox("Numero  ", Numero)
+letras  =  ''
+mill_l  =  ''
+if numero > 0 then
+   choose case numero
+      case 9
+           mill_l='NUEVE MILLONES'
+      case 8
+           mill_l='OCHO MILLONES'
+      case 7
+           mill_l='SIETE MILLONES'
+      case 6
+           mill_l='SEIS MILLONES'
+      case 5
+           mill_l='CINCO MILLONES'
+      case 4
+           mill_l='CUATRO MILLONES'
+      case 3
+           mill_l='TRES MILLONES'
+      case 2
+           mill_l='DOS MILLONES'
+      case 1
+           mill_l='UN MILLON'
+   end choose
+   letras=letras+mill_l+' '
+end if
+
+
+//tot_let = left(tot_le,4)
+if len(tot_le) > 6 and len(tot_le) <= 9 then
+	numero = double(left(tot_le,len(tot_le)-6))
+   tot_le = right(tot_le,6)
+//	numero = integer(left(tot_le,1))
+Else
+	numero = 0
+end if
+//numero=val(substr(tot_le,2,3))
+cient_l = ''
+if numero > 0 then
+   if numero >= 100 then
+		   if numero >= 900 then
+		        cient_l='NOVECIENTOS'
+		        numero = numero - 900
+			end if
+		   if numero >= 800 then
+		        cient_l='OCHOCIENTOS'
+		        numero=numero - 800
+			end if
+		   if numero >= 700 then
+		        cient_l='SETECIENTOS'
+		        numero=numero - 700
+			end if
+		   if numero >= 600 then
+		        cient_l='SEISCIENTOS'
+		        numero=numero - 600
+			end if
+		   if numero >= 500 then
+		        cient_l='QUINIENTOS'
+		        numero=numero - 500
+			end if
+		   if numero >= 400 then
+		        cient_l='CUATROCIENTOS'
+		        numero=numero - 400
+			end if
+		   if numero >= 300 then
+		        cient_l='TRESCIENTOS'
+		        numero=numero - 300
+			end if
+		   if numero >= 200 then
+		        cient_l='DOSCIENTOS'
+		        numero=numero - 200
+			end if
+		   if numero >= 100 then
+		        if numero > 100 then
+		           cient_l='CIENTO'
+		        else
+		           cient_l='CIEN'
+		        end if
+		        numero=numero - 100
+			end if
+		letras=letras+cient_l+' '
+//		retu  cientos
+   end if
+decen_l = ''
+   if numero >= 10 then
+   	if numero >= 90 then
+	        if numero > 90 then
+	           decen_l='NOVENTA Y'
+	        else
+	           decen_l='NOVENTA'
+	        end if
+	        numero=numero - 90
+		end if
+	   if numero >= 80 then
+	        if numero > 80 then
+	           decen_l='OCHENTA Y'
+   	     else
+      	     decen_l='OCHENTA'
+	        end if
+	        numero=numero - 80
+		end if
+	   if numero >= 70 then
+	        if numero > 70 then
+   	        decen_l='SETENTA Y'
+      	  else
+         	  decen_l='SETENTA'
+	        end if
+   	     numero=numero - 70
+		end if
+	   if numero >= 60 then
+   	     if numero > 60 then
+      	     decen_l='SESENTA Y'
+	        else
+   	        decen_l='SESENTA'
+      	  end if
+	        numero=numero - 60
+		end if
+   	if numero >= 50 then
+      	  if numero > 50 then
+         	  decen_l='CINCUENTA Y'
+	        else
+   	        decen_l='CINCUENTA'
+	        end if
+   	     numero=numero - 50
+		end if
+	   if numero >= 40 then
+   	     if numero > 40 then
+      	     decen_l='CUARENTA Y'
+	        else
+   	        decen_l='CUARENTA'
+	        end if
+   	     numero=numero - 40
+		end if
+	   if numero >= 30 then
+   	     if numero > 30 then
+	           decen_l='TREINTA Y'
+   	     else
+	           decen_l='TREINTA'
+   	     end if
+	        numero=numero - 30
+		end if
+	   if numero >= 20 then
+   	     if numero > 20 then
+	           decen_l='VEINTI'
+   	     else
+	           decen_l='VEINTE'
+   	     end if
+	        numero=numero - 20
+		end if
+	   if numero >= 10 then
+      	     if numero > 15 then
+	                decen_l='DIECI'
+   	             numero=numero - 10
+					end if
+      	     if numero = 10 then
+         	       decen_l='DIEZ'
+	                numero=numero - 10
+					end if
+   	        if numero = 15 then
+      	          decen_l='QUINCE'
+         	       numero=numero - 15
+					end if
+	           if numero = 14 then
+   	             decen_l='CATORCE'
+      	          numero=numero - 14
+					end if
+         	  if numero = 13 then
+	                decen_l='TRECE'
+   	             numero=numero - 13
+					end if
+      	      if numero = 12 then
+         	       decen_l='DOCE'
+	                numero=numero - 12
+					end if
+   	         if numero = 11 then
+      	          decen_l='ONCE'
+         	       numero=numero - 11
+					end if
+		end if
+letras=letras+decen_l+' '
+// retu decenas
+   end if
+   if numero >= 1 then
+		choose case numero
+		   case  9
+		        unida_l='NUEVE'
+		   case  8
+		        unida_l='OCHO'
+		   case  7
+		        unida_l='SIETE'
+		   case  6
+		        unida_l='SEIS'
+		   case  5
+		        unida_l='CINCO'
+		   case  4
+		        unida_l='CUATRO'
+		   case  3
+		        unida_l='TRES'
+		   case  2
+		        unida_l='DOS'
+		   case  1
+		        unida_l='UNO'
+		end choose
+//      do unidades
+   end if
+letras=letras+unida_l+' '
+	unida_l = ''
+	If POS(letras,'UNO') > 0 then
+		letras = left(letras,len(letras)-4)+'UN '
+//      letras = substr(letras,1,len(letras)-4)+
+   End if
+   letras=letras+'MIL'+' '
+end if
+//numero=val(substr(tot_le,5,3))
+
+if len(tot_le) > 3 and len(tot_le) <= 6 then
+	numero = double(left(tot_le,len(tot_le)-3))
+	tot_le = right(tot_le,3)
+//	numero = integer(left(tot_le,1))
+Else
+	numero = 0
+end if
+
+//tot_let = left(tot_le,8)
+//numero = integer(right(tot_let,3))
+cient_l = ''
+if numero > 0 then
+	if numero >= 100 then
+		   if numero >= 900 then
+		        cient_l='NOVECIENTOS'
+		        numero = numero - 900
+			end if
+		   if numero >= 800 then
+		        cient_l='OCHOCIENTOS'
+		        numero=numero - 800
+			end if
+		   if numero >= 700 then
+		        cient_l='SETECIENTOS'
+		        numero=numero - 700
+			end if
+		   if numero >= 600 then
+		        cient_l='SEISCIENTOS'
+		        numero=numero - 600
+			end if
+		   if numero >= 500 then
+		        cient_l='QUINIENTOS'
+		        numero=numero - 500
+			end if
+		   if numero >= 400 then
+		        cient_l='CUATROCIENTOS'
+		        numero=numero - 400
+			end if
+		   if numero >= 300 then
+		        cient_l='TRESCIENTOS'
+		        numero=numero - 300
+			end if
+		   if numero >= 200 then
+		        cient_l='DOSCIENTOS'
+		        numero=numero - 200
+			end if
+		   if numero >= 100 then
+		        if numero > 100 then
+		           cient_l='CIENTO'
+		        else
+		           cient_l='CIEN'
+		        end if
+		        numero=numero - 100
+			end if
+		letras=letras+cient_l+' '
+   end if
+	decen_l = ''
+   if numero >= 10 then
+   	if numero >= 90 then
+	        if numero > 90 then
+	           decen_l='NOVENTA Y'
+	        else
+	           decen_l='NOVENTA'
+	        end if
+	        numero=numero - 90
+		end if
+	   if numero >= 80 then
+	        if numero > 80 then
+	           decen_l='OCHENTA Y'
+   	     else
+      	     decen_l='OCHENTA'
+	        end if
+	        numero=numero - 80
+		end if
+	   if numero >= 70 then
+	        if numero > 70 then
+   	        decen_l='SETENTA Y'
+      	  else
+         	  decen_l='SETENTA'
+	        end if
+   	     numero=numero - 70
+		end if
+	   if numero >= 60 then
+   	     if numero > 60 then
+      	     decen_l='SESENTA Y'
+	        else
+   	        decen_l='SESENTA'
+      	  end if
+	        numero=numero - 60
+		end if
+   	if numero >= 50 then
+      	  if numero > 50 then
+         	  decen_l='CINCUENTA Y'
+	        else
+   	        decen_l='CINCUENTA'
+	        end if
+   	     numero=numero - 50
+		end if
+	   if numero >= 40 then
+   	     if numero > 40 then
+      	     decen_l='CUARENTA Y'
+	        else
+   	        decen_l='CUARENTA'
+	        end if
+   	     numero=numero - 40
+		end if
+	   if numero >= 30 then
+   	     if numero > 30 then
+	           decen_l='TREINTA Y'
+   	     else
+	           decen_l='TREINTA'
+   	     end if
+	        numero=numero - 30
+		end if
+	   if numero >= 20 then
+   	     if numero > 20 then
+	           decen_l='VEINTI'
+   	     else
+	           decen_l='VEINTE'
+   	     end if
+	        numero=numero - 20
+		end if
+	   if numero >= 10 then
+      	     if numero > 15 then
+	                decen_l='DIECI'
+   	             numero=numero - 10
+					end if
+      	     if numero = 10 then
+         	       decen_l='DIEZ'
+	                numero=numero - 10
+					end if
+   	        if numero = 15 then
+      	          decen_l='QUINCE'
+         	       numero=numero - 15
+					end if
+	           if numero = 14 then
+   	             decen_l='CATORCE'
+      	          numero=numero - 14
+					end if
+         	  if numero = 13 then
+	                decen_l='TRECE'
+   	             numero=numero - 13
+					end if
+      	      if numero = 12 then
+         	       decen_l='DOCE'
+	                numero=numero - 12
+					end if
+   	         if numero = 11 then
+      	          decen_l='ONCE'
+         	       numero=numero - 11
+					end if
+		end if
+letras=letras+decen_l+' '
+//      do decenas
+   end if
+unida_l = ''
+   if numero >= 1 then
+		choose case numero
+		   case  9
+		        unida_l='NUEVE'
+		   case  8
+		        unida_l='OCHO'
+		   case  7
+		        unida_l='SIETE'
+		   case  6
+		        unida_l='SEIS'
+		   case  5
+		        unida_l='CINCO'
+		   case  4
+		        unida_l='CUATRO'
+		   case  3
+		        unida_l='TRES'
+		   case  2
+		        unida_l='DOS'
+		   case  1
+		        unida_l='UNO'
+		end choose
+
+//      do unidades
+   end if
+end if
+
+if integer(Cent_l) = 0 or isnull(Cent_l) then
+	ls_decimales_letras = ''
+else
+	ls_decimales_letras = ' punto ' + f_numero_simple(integer(Cent_l))
+end if
+
+letras=TRIM(letras)+' '+TRIM(unida_l)+ ls_decimales_letras
+
+//letras=letras+unida_l+' '
+return lower(letras)
+end function
+

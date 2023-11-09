@@ -1,0 +1,16 @@
+﻿$PBExportHeader$f_db_upd_contribuyente_pension.srf
+global type f_db_upd_contribuyente_pension from function_object
+end type
+
+forward prototypes
+global function integer f_db_upd_contribuyente_pension (string as_dpi, decimal adc_pension)
+end prototypes
+
+global function integer f_db_upd_contribuyente_pension (string as_dpi, decimal adc_pension);update contribuyentes
+set pension_inicial = :adc_pension
+where dpi = :as_dpi 
+using SQLCA;
+
+return 1
+end function
+

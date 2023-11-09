@@ -1,0 +1,82 @@
+1745816101901
+1910926810920
+
+  SELECT f.tipo_tramite,   
+         Case f.Tipo_Tramite when '01' then 'Pensión por Vejez' when '02' then 'Pensión por Invalidez' end as 'Descripcion_Tramite',   
+         c.Nombre as 'Municipio',   
+         d.Nombre as 'Departamento',   
+         a.nombres,   
+         a.apellidos,   
+         a.casada,   
+         a.dpi,   
+         f.referencia_solicitud,   
+         f.fecha_resolucion,   
+         f.fecha_entrega_cargo,   
+         round(a.Pension_Inicial,2) as 'Pensión_Inicial',   
+         h.tipo_documento,   
+         h.fecha_documento,   
+         h.fecha_inicio_calculo,   
+		DATEDIFF(mm,h.fecha_inicio_calculo, f.fecha_resolucion) as 'Rango_Meses_ini_fin',
+         ISNULL(h.monto_inscripcion,0.00) as 'monto_inscripcion',
+         ISNULL(h.monto_aux_postumo,0.00) as 'monto_aux_postumo',
+         h.monto_bono14,   
+         h.monto_aguinaldo,
+		Case a.Correlativo 
+			when 1 then 'Municipalidad' 
+			else (select z.nombre from Corporacion_Empresa_Municipal z where z.Depto = a.Depto and z.Muni = a.Muni and z.Correlativo = a.Correlativo ) 
+		end as 'Entidad_Municipal',
+		f.fecha as 'Fecha_Solicitud',
+		f.No_Solicitud
+    FROM contribuyentes a,   
+         contribuyentes_puestos b,   
+         municipios c,   
+         departamentos d,   
+         solicitud_tiempo_servicio e,   
+         solicitudes f,   
+         solicitud_documentos_expediente h  
+   WHERE ( b.idpuesto = a.puesto ) and  
+         ( c.depto = a.depto ) and  
+         ( c.muni = a.muni ) and  
+         ( d.depto = a.depto ) and  
+         ( e.dpi = a.dpi ) and  
+         ( e.no_solicitud = f.no_solicitud ) and  
+         ( h.dpi = a.dpi ) and  
+         ( h.no_solicitud = f.no_solicitud ) and  
+         ( f.dpi = a.dpi ) and  
+         ( ( h.tipo_documento = '7 ' ) AND  
+		( f.etapa < 210 ) and
+         ( a.DPI = :as_dpi ) )    
+
+
+:s_dpi,
+		:s_resolucion,
+		:f_resolucion,
+		:f_entregacargo,
+		:pension,
+		:f_iniciocalculo,
+		:aux,
+		:aux_men
+
+
+
+
+
+
+
+
+
+if(   solicitud_documentos_expediente_fecha_inicio_calculo > f_fecha_ini_mes(month(  solicitud_documentos_expediente_fecha_inicio_calculo ),year(  solicitud_documentos_expediente_fecha_inicio_calculo )), f_db_get_dias_pago_new( contribuyentes_dpi,  solicitudes_no_solicitud  ) + ' Dias de ' + lower(f_fecha_meses_letras_com(  solicitud_documentos_expediente_fecha_inicio_calculo )), '' )
+ string(f_recibo_linea1( solicitud_documentos_expediente_fecha_inicio_calculo, contribuyentes_dpi,  pensión_inicial, solicitudes_no_solicitud  ),"###,###.00")
+
+
+f_txt_antes_b14_recibo( solicitud_documentos_expediente_fecha_inicio_calculo,  solicitudes_fecha_resolucion, fecha_solicitud,  solicitudes_fecha_entrega_cargo  )
+string(f_recibo_linea2( solicitud_documentos_expediente_fecha_inicio_calculo , solicitudes_fecha_resolucion , pensión_inicial ),"###,###.00")
+
+
+
+f_recibo_linea4_etiqueta( solicitud_documentos_expediente_fecha_inicio_calculo,  b14_past ,    b14_present  , solicitudes_fecha_resolucion , pensión_inicial,  contribuyentes_dpi )
+string(f_recibo_linea4(  solicitud_documentos_expediente_fecha_inicio_calculo ,  b14_past ,  b14_present ,   solicitudes_fecha_resolucion ,pensión_inicial ,  contribuyentes_dpi ,  solicitudes_no_solicitud ),"###,###.00")
+
+
+'(-) Auxilio Póstumo de ' + if(month(solicitud_documentos_expediente_fecha_inicio_calculo) = month(solicitudes_fecha_resolucion) and year(solicitud_documentos_expediente_fecha_inicio_calculo) = year(solicitudes_fecha_resolucion), lower(f_fecha_meses_letras_com(  solicitudes_fecha_resolucion   )) ,lower(f_fecha_meses_letras_com(   solicitud_documentos_expediente_fecha_inicio_calculo )) + ' a ' + lower(f_fecha_meses_letras_com(  solicitudes_fecha_resolucion   )))
+'( ' + string( solicitud_documentos_expediente_monto_aux_postumo * ( rango_meses_ini_fin + 1),"###,###.00") + ' )'

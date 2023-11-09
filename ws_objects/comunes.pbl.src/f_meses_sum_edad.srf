@@ -1,0 +1,30 @@
+﻿$PBExportHeader$f_meses_sum_edad.srf
+global type f_meses_sum_edad from function_object
+end type
+
+forward prototypes
+global function integer f_meses_sum_edad (datetime adt_fecha_ini, datetime adt_fecha_nacimiento, integer ai_meses)
+end prototypes
+
+global function integer f_meses_sum_edad (datetime adt_fecha_ini, datetime adt_fecha_nacimiento, integer ai_meses);integer li_meses
+datetime ldt_fecha_fin
+
+if month(date(adt_fecha_ini)) = 1 then
+	li_meses = 12 + month(date(adt_fecha_nacimiento))
+else
+	select DATEADD(mm,:ai_meses - 1, :adt_fecha_ini)
+	into :ldt_fecha_fin 
+	from Etapas 
+	where idEtapa = 10
+	using SQLCA;
+
+	if month(date(ldt_fecha_fin)) < month(date(adt_fecha_nacimiento )) then
+		li_meses = month(date(adt_fecha_nacimiento )) - month(date(ldt_fecha_fin))
+	else
+		li_meses = 0
+	end if
+end if
+
+return li_meses
+end function
+

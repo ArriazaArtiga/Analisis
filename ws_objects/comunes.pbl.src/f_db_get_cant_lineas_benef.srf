@@ -1,0 +1,47 @@
+﻿$PBExportHeader$f_db_get_cant_lineas_benef.srf
+global type f_db_get_cant_lineas_benef from function_object
+end type
+
+forward prototypes
+global function integer f_db_get_cant_lineas_benef (string as_dpi)
+end prototypes
+
+global function integer f_db_get_cant_lineas_benef (string as_dpi);Integer li_cant_lineas, li_tipo, li_tipo1, li_tipo2
+String ls_idformulario
+
+select idformulario
+into :ls_idformulario
+from Declaracion_Beneficiarios
+where DPI_Contribuyente = :as_dpi
+using SQLCA;
+
+select COUNT(tipo)
+into :li_tipo
+from Detalle_Beneficiarios
+where idFormulario = :ls_idformulario
+and Tipo = 1
+using SQLCA;
+
+select COUNT(tipo1)
+into :li_tipo1
+from Detalle_Beneficiarios
+where idFormulario = :ls_idformulario
+and Tipo1 = 1
+using SQLCA;
+
+select COUNT(tipo2)
+into :li_tipo2
+from Detalle_Beneficiarios
+where idFormulario = :ls_idformulario
+and Tipo2 = 1
+using SQLCA;
+
+if isnull(li_tipo) then li_tipo = 0
+if isnull(li_tipo1) then li_tipo1 = 0
+if isnull(li_tipo2) then li_tipo2 = 0
+
+li_cant_lineas = 3 + li_tipo + li_tipo1 + li_tipo2
+
+return li_cant_lineas
+end function
+

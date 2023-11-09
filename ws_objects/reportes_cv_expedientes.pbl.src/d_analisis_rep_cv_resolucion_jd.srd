@@ -1,0 +1,156 @@
+﻿$PBExportHeader$d_analisis_rep_cv_resolucion_jd.srd
+release 12.5;
+datawindow(units=0 timer_interval=0 color=1073741824 brushmode=0 transparency=0 gradient.angle=0 gradient.color=8421504 gradient.focus=0 gradient.repetition.count=0 gradient.repetition.length=100 gradient.repetition.mode=0 gradient.scale=100 gradient.spread=100 gradient.transparency=0 picture.blur=0 picture.clip.bottom=0 picture.clip.left=0 picture.clip.right=0 picture.clip.top=0 picture.mode=0 picture.scale.x=100 picture.scale.y=100 picture.transparency=0 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 2 print.margin.left = 110 print.margin.right = 110 print.margin.top = 120 print.margin.bottom = 100 print.paper.source = 0 print.paper.size = 5 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.background=no print.preview.background=no print.preview.outline=yes hidegrayline=no showbackcoloronxp=no picture.file="" )
+header(height=0 color="536870912" transparency="0" gradient.color="8421504" gradient.transparency="0" gradient.angle="0" brushmode="0" gradient.repetition.mode="0" gradient.repetition.count="0" gradient.repetition.length="100" gradient.focus="0" gradient.scale="100" gradient.spread="100" )
+summary(height=0 color="536870912" transparency="0" gradient.color="8421504" gradient.transparency="0" gradient.angle="0" brushmode="0" gradient.repetition.mode="0" gradient.repetition.count="0" gradient.repetition.length="100" gradient.focus="0" gradient.scale="100" gradient.spread="100" )
+footer(height=0 color="536870912" transparency="0" gradient.color="8421504" gradient.transparency="0" gradient.angle="0" brushmode="0" gradient.repetition.mode="0" gradient.repetition.count="0" gradient.repetition.length="100" gradient.focus="0" gradient.scale="100" gradient.spread="100" )
+detail(height=7768 color="536870912" transparency="0" gradient.color="8421504" gradient.transparency="0" gradient.angle="0" brushmode="0" gradient.repetition.mode="0" gradient.repetition.count="0" gradient.repetition.length="100" gradient.focus="0" gradient.scale="100" gradient.spread="100" )
+table(column=(type=char(2) updatewhereclause=yes name=solicitudes_tipo_tramite dbname="tipo_tramite" )
+ column=(type=char(24) updatewhereclause=yes name=descripcion_tramite dbname="descripcion_tramite" )
+ column=(type=char(50) updatewhereclause=yes name=municipio dbname="municipio" )
+ column=(type=char(30) updatewhereclause=yes name=departamento dbname="departamento" )
+ column=(type=char(232) updatewhereclause=yes name=contribuyentes_nombres dbname="nombres" )
+ column=(type=char(15) updatewhereclause=yes name=contribuyentes_dpi dbname="dpi" )
+ column=(type=char(150) updatewhereclause=yes name=puesto dbname="puesto" )
+ column=(type=char(100) updatewhereclause=yes name=entidad_municipal dbname="entidad_municipal" )
+ column=(type=decimal(0) updatewhereclause=yes name=solicitudes_no_solicitud dbname="no_solicitud" )
+ column=(type=char(100) updatewhereclause=yes name=solicitudes_direccion_notificaciones dbname="direccion_notificaciones" )
+ column=(type=char(12) updatewhereclause=yes name=solicitudes_referencia_solicitud dbname="referencia_solicitud" )
+ column=(type=datetime updatewhereclause=yes name=solicitudes_fecha_resolucion dbname="fecha_resolucion" )
+ column=(type=datetime updatewhereclause=yes name=fecha_solicitud dbname="fecha_solicitud" )
+ column=(type=char(50) updatewhereclause=yes name=munires dbname="munires" )
+ column=(type=long updatewhereclause=yes name=edad dbname="edad" )
+ column=(type=datetime updatewhereclause=yes name=solicitudes_fecha_entrega_cargo dbname="fecha_entrega_cargo" )
+ column=(type=decimal(4) updatewhereclause=yes name=pensión_inicial dbname="pensión_inicial" )
+ column=(type=decimal(2) updatewhereclause=yes name=pensión_máxima dbname="pensión_máxima" )
+ column=(type=decimal(0) updatewhereclause=yes name=anio_lab_plan dbname="anio_lab_plan" )
+ column=(type=decimal(0) updatewhereclause=yes name=mes_lab_plan dbname="mes_lab_plan" )
+ column=(type=decimal(0) updatewhereclause=yes name=dias_lab_plan dbname="dias_lab_plan" )
+ column=(type=decimal(0) updatewhereclause=yes name=anio_lab_muni dbname="anio_lab_muni" )
+ column=(type=decimal(0) updatewhereclause=yes name=mes_lab_muni dbname="mes_lab_muni" )
+ column=(type=decimal(0) updatewhereclause=yes name=dias_lab_muni dbname="dias_lab_muni" )
+ column=(type=long updatewhereclause=yes name=porcentaje dbname="porcentaje" )
+ column=(type=char(1) updatewhereclause=yes name=solicitud_documentos_expediente_tipo_documento dbname="tipo_documento" )
+ column=(type=datetime updatewhereclause=yes name=solicitud_documentos_expediente_fecha_documento dbname="fecha_documento" )
+ column=(type=datetime updatewhereclause=yes name=solicitud_documentos_expediente_fecha_inicio_calculo dbname="fecha_inicio_calculo" )
+ column=(type=datetime updatewhereclause=yes name=fecha_inicio dbname="fecha_inicio" )
+ column=(type=datetime updatewhereclause=yes name=fecha_inicio1 dbname="fecha_inicio1" )
+ column=(type=datetime updatewhereclause=yes name=fecha_fin dbname="fecha_fin" )
+ column=(type=char(15) updatewhereclause=yes name=solicitud_documentos_expediente_no_documento dbname="no_documento" )
+ column=(type=datetime updatewhereclause=yes name=solicitud_documentos_expediente_fecha_pension dbname="fecha_pension" )
+ column=(type=long updatewhereclause=yes name=rango_meses_ini_fin dbname="rango_meses_ini_fin" )
+ column=(type=decimal(4) updatewhereclause=yes name=solicitud_documentos_expediente_monto_inscripcion dbname="monto_inscripcion" )
+ column=(type=decimal(4) updatewhereclause=yes name=solicitud_documentos_expediente_monto_aux_postumo dbname="monto_aux_postumo" )
+ column=(type=decimal(4) updatewhereclause=yes name=solicitud_documentos_expediente_monto_bono14 dbname="monto_bono14" )
+ column=(type=decimal(4) updatewhereclause=yes name=solicitud_documentos_expediente_monto_aguinaldo dbname="monto_aguinaldo" )
+ column=(type=decimal(0) updatewhereclause=yes name=solicitud_documentos_expediente_total_folios dbname="total_folios" )
+ column=(type=decimal(0) updatewhereclause=yes name=ts_edad dbname="ts_edad" )
+ column=(type=decimal(0) updatewhereclause=yes name=valor_ts_edad dbname="valor_ts_edad" )
+ column=(type=decimal(2) updatewhereclause=yes name=meses_pago dbname="meses_pago" )
+ column=(type=decimal(2) updatewhereclause=yes name=cuota_laboral dbname="cuota_laboral" )
+ column=(type=decimal(2) updatewhereclause=yes name=cuota_patronal dbname="cuota_patronal" )
+ column=(type=decimal(2) updatewhereclause=yes name=monto_cv dbname="monto_cv" )
+ retrieve="SELECT 
+		f.tipo_tramite,   
+        Case f.Tipo_Tramite when '01' then 'Pensión por Vejez' when '02' then 'Pensión por Invalidez' when '03' then 'Contribuyente Voluntario'end as 'Descripcion_Tramite',   
+        c.Nombre as 'Municipio',   
+        d.Nombre as 'Departamento',   
+        a.Nombres + ' ' + a.Apellidos + ' ' + ISNULL(a.Casada,'') as Nombres,  
+        a.dpi,   
+		b.descripcion as 'Puesto',
+         (select z.nombre from Corporacion_Empresa_Municipal z where z.Depto = a.Depto and z.Muni = a.Muni and z.Correlativo = a.Correlativo ) as 'Entidad_Municipal',  
+		f.no_solicitud,
+		f.direccion_notificaciones,
+        f.referencia_solicitud,   
+        f.fecha_resolucion,
+		f.fecha as 'Fecha_Solicitud',   
+		(select z.nombre from Municipios z where z.Depto = f.Departamento and z.Muni = f.Municipio) as 'MuniRes',
+		case when datepart(mm,f.fecha_resolucion) > DATEPART(mm,a.fecha_nacimiento)
+			then  DATEDIFF(yy,a.Fecha_Nacimiento,f.fecha_resolucion)
+			else  case when datepart(mm,f.fecha_resolucion) = DATEPART(mm,a.fecha_nacimiento) and DATEPART(dd,f.fecha_resolucion) >= DATEPART(dd,a.fecha_nacimiento)
+						then  DATEDIFF(yy,a.Fecha_Nacimiento,f.fecha_resolucion)
+						else   DATEDIFF(yy,a.Fecha_Nacimiento,f.fecha_resolucion) - 1
+					end
+ 		end as 'Edad',
+        f.fecha_entrega_cargo,   
+        round(a.Pension_Inicial,2) as 'Pensión_Inicial',   
+		3623.00 as 'Pensión_Máxima',
+		e.Anio as 'Anio_Lab_Plan',
+		e.Mes as 'Mes_Lab_Plan',
+		e.Dias as 'Dias_Lab_Plan',
+		e.Anio1 as 'Anio_Lab_Muni',
+		e.Mes1 as 'Mes_Lab_Muni',
+		e.Dias1 as 'Dias_Lab_Muni',
+		Case f.Tipo_Tramite when '02' then 80 else 0 end as 'Porcentaje',
+        h.tipo_documento,   
+        h.fecha_documento,   
+         h.fecha_inicio_calculo,  
+		h.Fecha_Inicio_Calculo as 'Fecha_Inicio',
+		DATEADD(dd,1,h.Fecha_Inicio_Calculo) as 'Fecha_Inicio1',
+		DATEADD(mm,g.Monto_Anio1,h.Fecha_Inicio_Calculo) as 'Fecha_Fin', 
+		h.no_documento,
+		h.fecha_pension,
+		DATEDIFF(mm,h.fecha_inicio_calculo,h.fecha_documento) as 'Rango_Meses_ini_fin',
+        h.monto_inscripcion,   
+        h.monto_aux_postumo,   
+        h.monto_bono14,   
+        h.monto_aguinaldo,
+		h.total_folios,
+		g.Anio1 as 'TS_Edad',
+		g.Anio2 as 'Valor_TS_Edad',
+		g.Monto_Anio1 as 'Meses_Pago',
+		g.Monto_Anio2 as 'Cuota_Laboral',
+		g.Monto_Anio3 as 'Cuota_Patronal',
+		g.Monto_Anio4 as 'Monto_CV'
+FROM	contribuyentes a,   
+        contribuyentes_puestos b,   
+        municipios c,   
+        departamentos d,   
+        solicitud_tiempo_servicio e,   
+        solicitudes f,
+		Solicitud_Detalle_Pagos g,
+        solicitud_documentos_expediente h  
+WHERE	( b.idpuesto = a.puesto ) and  
+        ( c.depto = a.depto ) and  
+        ( c.muni = a.muni ) and  
+        ( d.depto = a.depto ) and  
+        ( e.dpi = a.dpi ) and  
+        ( e.no_solicitud = f.no_solicitud ) and  
+        ( h.dpi = a.dpi ) and  
+        ( h.no_solicitud = f.no_solicitud ) and  
+		( g.dpi = a.dpi ) and  
+        ( g.no_solicitud = f.no_solicitud ) and  
+        ( f.dpi = a.dpi ) and  
+        ( ( h.tipo_documento = '3 ' ) AND f.etapa < 210 and
+         ( a.DPI = :as_dpi ) )    
+ 
+" retrieve.asneeded=yes data.storage=disk arguments=(("as_dpi", string)) )
+text(band=detail alignment="2" text="CONSIDERANDO" border="0" color="33554432" x="517" y="1060" height="72" width="2811" html.valueishtml="0"  name=t_1 visible="1"  font.face="Calibri" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="2" background.color="1073741824" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" transparency="0" )
+compute(band=detail alignment="2" expression="'RESOLUCION DE JUNTA DIRECTIVA
+PLAN DE PRESTACIONES DEL EMPLEADO MUNICIPAL
+NUMERO ' +  solicitudes_referencia_solicitud + ' ACTA ' +  solicitud_documentos_expediente_no_documento + ' DE FECHA ' + upper(f_fecha_letras_com( solicitud_documentos_expediente_fecha_documento ))"border="0" color="33554432" x="517" y="772" height="220" width="2811" format="[GENERAL]" html.valueishtml="0"  name=titulo visible="1"  font.face="Calibri" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" transparency="0" )
+compute(band=detail alignment="3" expression="'Que el señor(a) '+contribuyentes_nombres+ ' de '+f_numero_simple(edad) + ' años de edad,  ' +  puesto + ' de la (el) ' +  entidad_municipal + ',  Departamento de  ' +  departamento + ',  con  domicilio en ' +  solicitudes_direccion_notificaciones + ', ' +  munires + ', ' +  departamento + ' ha presentado solicitud para que se le acepte como ' +  descripcion_tramite + ',  la  que  fue  admitida para su trámite con fecha ' + lower(f_fecha_letras_com(  fecha_solicitud  )) + '.'"border="0" color="33554432" x="517" y="1188" height="380" width="2811" format="[GENERAL]" html.valueishtml="0"  name=parrafo2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" transparency="0" )
+text(band=detail alignment="2" text="CONSIDERANDO" border="0" color="33554432" x="517" y="1624" height="72" width="2811" html.valueishtml="0"  name=t_2 visible="1"  font.face="Calibri" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="2" background.color="1073741824" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" transparency="0" )
+compute(band=detail alignment="3" expression="'Que la solicitud de autorización para ser Contribuyente Voluntario, se  justifica o tiene su asidero con los atestados presentados: a) Certificación de nacimiento por medio de la cual prueba que tiene ' + f_numero_simple(edad) + ' años de edad, b) Certificación de servicios prestados en '+ entidad_municipal +' donde laboró ' + f_numero_simple( anio_lab_plan ) + ' año(s), ' + f_numero_simple( mes_lab_plan ) + ' mes(es) y ' + f_numero_simple( dias_lab_plan ) + ' día(s), la cual consigna '  + f_numero_simple( meses_pago ) + ' meses, para llegar a los '+ valor_ts_edad +  ' años de servicio establecidos en el Artículo No.5 '+ ' del reglamento, debiendo cancelar en forma mensual del ' +  f_fecha_letras_com(  fecha_inicio1  ) + ' al ' + f_fecha_letras_com( if( (day( fecha_inicio1 )=28 or day( fecha_inicio1 )=29) and month( fecha_inicio1 )=2, f_fecha_fin_mes(month( fecha_fin ),year( fecha_fin )),  f_fecha_fin_mes(month(fecha_fin),year(fecha_fin)  )  ) ) + ', la cantidad de ' + f_letras_sinquetzales( string(monto_cv,~"###,###.00~") ) + ' Quetzales (Q. ' + string(monto_cv,~"###,###.00~") + ' ) que corresponden a los conceptos de cuota laboral ' + f_letras_sinquetzales( string( cuota_laboral ,~"###,###.00~") ) + ' Quetzales (Q. ' + string( cuota_laboral ,~"###,###.00~") + ' ) y cuota patronal de ' + f_letras_sinquetzales( string( cuota_patronal ,~"###,###.00~") ) + ' Quetzales (Q. ' + string( cuota_patronal ,~"###,###.00~") + ' ).'"border="0" color="33554432" x="517" y="1752" height="652" width="2811" format="[GENERAL]" html.valueishtml="0"  name=parrafo3 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" transparency="0" )
+compute(band=detail alignment="3" expression="'Que el(la) solicitante satisface administrativamente los presupuestos o requisitos establecidos por la Ley Orgánica del Plan de Prestaciones del Empleado Municipal y su Reglamento, adicionalmente constan los dictámenes de Auditoría Interna y Asesoría Jurídica de la Institución, ambos de fecha ' + f_fecha_letras_com(f_db_get_fecha_docto( solicitudes_no_solicitud , contribuyentes_dpi ,'2','4')) + ', quienes se pronuncian favorablemente sobre la aprobación de la liquidación número ' +  solicitudes_referencia_solicitud + ' de la misma fecha, así como el otorgamiento del beneficio solicitado.'"border="0" color="33554432" x="517" y="2596" height="476" width="2811" format="[GENERAL]" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" transparency="0" )
+text(band=detail alignment="2" text="CONSIDERANDO" border="0" color="33554432" x="517" y="2456" height="72" width="2811" html.valueishtml="0"  name=t_3 visible="1"  font.face="Calibri" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="2" background.color="1073741824" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" transparency="0" )
+text(band=detail alignment="2" text="POR TANTO" border="0" color="33554432" x="517" y="3128" height="72" width="2811" html.valueishtml="0"  name=t_4 visible="1"  font.face="Calibri" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="2" background.color="1073741824" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" transparency="0" )
+compute(band=detail alignment="3" expression="'La Junta Directiva del Plan de Prestaciones del Empleado Municipal, en uso de sus facultades legales y con base a lo estipulado en el Artículo 12 literales a, b y f del Decreto 44-94 del Congreso de la Republica y 32 del Reglamento a la Ley Orgánica del Plan de Prestaciones del Empleado Municipal:'"border="0" color="33554432" x="517" y="3268" height="316" width="2811" format="[GENERAL]" html.valueishtml="0"  name=compute_5 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" transparency="0" )
+text(band=detail alignment="2" text="RESUELVE" border="0" color="33554432" x="517" y="3652" height="72" width="2811" html.valueishtml="0"  name=t_5 visible="1"  font.face="Calibri" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="2" background.color="1073741824" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" transparency="0" )
+compute(band=detail alignment="3" expression="'a) Aprueba la siguiente liquidación número ' +  solicitudes_referencia_solicitud + ' de fecha ' + lower(f_fecha_letras_com( f_db_get_fecha_docto( solicitudes_no_solicitud , contribuyentes_dpi ,'9','5'))) + ', elaborada por ' + f_db_get_analista1(3, solicitudes_no_solicitud ) + ' del Plan de Prestaciones del Empleado Municipal.'"border="0" color="33554432" x="517" y="3792" height="284" width="2811" format="[GENERAL]" html.valueishtml="0"  name=compute_6 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" transparency="0" )
+compute(band=detail alignment="3" expression="'b) Autorizar al señor(a) ' +  contribuyentes_nombres + ' ser Contribuyente Voluntario por el término de ' + f_numero_simple( meses_pago ) + ' meses, para llegar a los ' + valor_ts_edad + ' años de servicio' +' establecidos en el Artículo No.5 ' + 'del Reglamento, debiendo cancelar en forma mensual del ' + f_fecha_letras_com(  fecha_inicio1  ) + ' al ' + f_fecha_letras_com( if( (day( fecha_inicio1 )=28 or day( fecha_inicio1 )=29) and month( fecha_inicio1 )=2, f_fecha_fin_mes(month( fecha_fin ),year( fecha_fin )),  f_fecha_fin_mes(month(fecha_fin),year(fecha_fin)  )  ) )  + ', la cantidad de ' + f_letras_sinquetzales( string(monto_cv,~"###,###.00~") ) + ' Quetzales (Q. ' + string(monto_cv,~"###,###.00~") + ' ) que corresponden a los conceptos de cuota laboral ' + f_letras_sinquetzales( string( cuota_laboral ,~"###,###.00~") ) + ' Quetzales (Q. ' + string( cuota_laboral ,~"###,###.00~") + ' ) y cuota patronal de ' + f_letras_sinquetzales( string( cuota_patronal ,~"###,###.00~") ) + ' Quetzales (Q. ' + string( cuota_patronal ,~"###,###.00~") + ' ).'"border="0" color="33554432" x="517" y="4144" height="732" width="2811" format="[GENERAL]" html.valueishtml="0"  name=parrafo7 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" transparency="0" )
+compute(band=detail alignment="0" expression="'Página ' + page() + ' de ' + pageCount()"enabled="0" border="0" color="33554432" x="114" y="612" height="80" width="3250" format="[general]" html.valueishtml="0"  name=page_1 visible="1"  font.face="Calibri" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" transparency="0" )
+compute(band=detail alignment="0" expression="'Página 2 de 2, Continuación Resolución de Junta Directiva - ' +    solicitudes_referencia_solicitud + '. ' "border="0" color="33554432" x="114" y="5892" height="188" width="3287" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Calibri" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" transparency="0" )
+compute(band=detail alignment="3" expression="'Notifíquese al interesado, al Contador General del Plan de Prestaciones del Empleado Municipal, y en su oportunidad, archívese, el presente expediente.'"border="0" color="33554432" x="517" y="6116" height="188" width="2811" format="[GENERAL]" html.valueishtml="0"  name=parrafo11 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" transparency="0" )
+compute(band=detail alignment="3" expression="'En la ciudad de Guatemala, al ' + lower(f_fecha_letras_com( solicitud_documentos_expediente_fecha_documento )) + '. Consta de ' +  solicitud_documentos_expediente_total_folios + ' folios.'"border="0" color="33554432" x="517" y="6372" height="188" width="2811" format="[GENERAL]" html.valueishtml="0"  name=parrafo12 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" transparency="0" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

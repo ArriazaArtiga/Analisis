@@ -1,0 +1,29 @@
+﻿$PBExportHeader$f_db_get_monto_deuda_patronal.srf
+global type f_db_get_monto_deuda_patronal from function_object
+end type
+
+forward prototypes
+global function decimal f_db_get_monto_deuda_patronal (integer ai_depto, integer ai_muni, integer ai_ent_muni, integer ai_mes, integer ai_anio, string as_tipo_pago, ref integer ai_cant_meses)
+end prototypes
+
+global function decimal f_db_get_monto_deuda_patronal (integer ai_depto, integer ai_muni, integer ai_ent_muni, integer ai_mes, integer ai_anio, string as_tipo_pago, ref integer ai_cant_meses);decimal ldc_monto
+
+Select sum(monto_mora), count(monto_mora)
+into :ldc_monto, :ai_cant_meses
+from rmuni_mora
+where depto = :ai_depto
+and muni = :ai_muni
+and correlativo = :ai_ent_muni
+and mes = :ai_mes
+and anio = :ai_anio
+and tipo_pago in ('1','C') /*= :as_tipo_pago*/
+and status = '1'
+using SQLCA;
+
+if isnull(ldc_monto) then
+	ldc_monto = 0.00
+end if
+
+return ldc_monto
+end function
+

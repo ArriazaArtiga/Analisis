@@ -1,0 +1,24 @@
+﻿$PBExportHeader$f_db_get_existe_resolucion.srf
+global type f_db_get_existe_resolucion from function_object
+end type
+
+forward prototypes
+global function integer f_db_get_existe_resolucion (string as_resolucion)
+end prototypes
+
+global function integer f_db_get_existe_resolucion (string as_resolucion);integer li_existe
+
+select COUNT(No_Solicitud)
+into :li_existe
+from Solicitudes
+where Referencia_Solicitud = :as_resolucion
+and Etapa <> 300
+using SQLCA;
+
+If isnull(li_existe) then
+	li_existe = 0
+End if
+
+return li_existe
+end function
+

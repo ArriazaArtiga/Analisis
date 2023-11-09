@@ -1,0 +1,16 @@
+﻿$PBExportHeader$f_upd_nom_amp_cierre.srf
+global type f_upd_nom_amp_cierre from function_object
+end type
+
+forward prototypes
+global subroutine f_upd_nom_amp_cierre ()
+end prototypes
+
+global subroutine f_upd_nom_amp_cierre ();UPDATE	Nomina_Ampliacion_Encabezado
+SET		Nomina_Ampliacion_Encabezado.Estado_Nomina = 2
+WHERE	Nomina_Ampliacion_Encabezado.Estado_Nomina = 1
+USING SQLCA;
+
+Return
+end subroutine
+

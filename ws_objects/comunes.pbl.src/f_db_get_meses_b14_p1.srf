@@ -1,0 +1,19 @@
+﻿$PBExportHeader$f_db_get_meses_b14_p1.srf
+global type f_db_get_meses_b14_p1 from function_object
+end type
+
+forward prototypes
+global function integer f_db_get_meses_b14_p1 (datetime adt_fecha_ini, datetime adt_fecha_fin)
+end prototypes
+
+global function integer f_db_get_meses_b14_p1 (datetime adt_fecha_ini, datetime adt_fecha_fin);Integer li_meses
+			
+select  	DATEDIFF(mm,DATEADD(mm,1,:adt_fecha_ini),:adt_fecha_fin)
+into 		:li_meses
+from		Etapas a
+where   	a.idEtapa = 10
+using 		SQLCA;
+
+Return li_meses
+end function
+

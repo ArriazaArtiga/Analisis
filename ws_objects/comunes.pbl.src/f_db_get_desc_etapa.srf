@@ -1,0 +1,19 @@
+﻿$PBExportHeader$f_db_get_desc_etapa.srf
+global type f_db_get_desc_etapa from function_object
+end type
+
+forward prototypes
+global function string f_db_get_desc_etapa (integer ai_etapa)
+end prototypes
+
+global function string f_db_get_desc_etapa (integer ai_etapa);string ls_descripcion
+
+select descripcion
+into :ls_descripcion 
+from etapas 
+where idetapa = :ai_etapa
+using SQLCA;
+
+return ls_descripcion
+end function
+

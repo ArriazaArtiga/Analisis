@@ -1,0 +1,19 @@
+﻿$PBExportHeader$f_db_get_subestado_contribuyente.srf
+global type f_db_get_subestado_contribuyente from function_object
+end type
+
+forward prototypes
+global function integer f_db_get_subestado_contribuyente (string as_dpi)
+end prototypes
+
+global function integer f_db_get_subestado_contribuyente (string as_dpi);integer li_subestado
+
+select subestado
+into :li_subestado
+from contribuyentes 
+where DPI = :as_dpi
+using SQLCA;
+
+return li_subestado
+end function
+

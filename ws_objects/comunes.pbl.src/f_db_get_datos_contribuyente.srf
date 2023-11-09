@@ -1,0 +1,19 @@
+﻿$PBExportHeader$f_db_get_datos_contribuyente.srf
+global type f_db_get_datos_contribuyente from function_object
+end type
+
+forward prototypes
+global function string f_db_get_datos_contribuyente (string as_dpi, ref string as_apellidos, ref string as_casada, ref integer ai_depto, ref integer ai_muni, ref integer ai_correlativo, ref datetime adt_fecha_ingreso)
+end prototypes
+
+global function string f_db_get_datos_contribuyente (string as_dpi, ref string as_apellidos, ref string as_casada, ref integer ai_depto, ref integer ai_muni, ref integer ai_correlativo, ref datetime adt_fecha_ingreso);String ls_nombres
+
+select apellidos, casada, nombres, depto, muni, correlativo, fecha_ingreso 
+into :as_apellidos, :as_casada, :ls_nombres, :ai_depto, :ai_muni, :ai_correlativo, :adt_fecha_ingreso
+from contribuyentes 
+where DPI = :as_dpi
+using SQLCA;
+
+return ls_nombres
+end function
+

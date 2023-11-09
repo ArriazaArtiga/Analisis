@@ -1,0 +1,98 @@
+﻿$PBExportHeader$f_monto_beneficiarios.srf
+global type f_monto_beneficiarios from function_object
+end type
+
+forward prototypes
+global function any f_monto_beneficiarios (decimal porcentajebeneficiario[], decimal monto)
+end prototypes
+
+global function any f_monto_beneficiarios (decimal porcentajebeneficiario[], decimal monto);Decimal Corresponde[], Asignado[],PorcentajeTotal,MontoTotalCorrespondiente,MontoTotalAsignado,Memoria,dato
+Integer i, posicion
+//se asigna valores
+Memoria = monto
+//messagebox("",""+string(monto))
+dato = 0
+posicion = 1
+/**************************************************************************************************/
+//El arreglo se ingresa a un bucle para obtener cada porcentaje del beneficiario
+for i=1 to upperbound(porcentajebeneficiario) 
+	//Se verifica y se obtiene el porcentaje mayor
+	if dato < porcentajebeneficiario[i] then
+		//Se le asigna a dato el porcenaje mayor
+		dato = porcentajebeneficiario[i]
+		//a la variable posición se le asigna la posición  del porcentaje mayor del arreglo
+		posicion = i
+	//si no exite porcentaje mayor o todos los porcentajes son iguales se asigna la primera posición del arreglo para hacer los descuentos
+	end if
+	
+	//en cada ciclo o vuelta del bucle se suman los porcentajes
+	PorcentajeTotal += porcentajebeneficiario[i]
+	//la variable corresponde se le asigna el calculo del monto del beneficiario, este es el dato real (con el numero de decimales infinito)
+	Corresponde[i] = (monto/100) * porcentajebeneficiario[i]
+	//en cada ciclo o vuelta del bucle se suman los montos
+	MontoTotalCorrespondiente += Corresponde[i]
+	//en cada ciclo o vuelta del bucle se asigna una posicion y se asigna valor redondeado a dos decimales
+	Asignado[i] = round(Corresponde[i],2)
+	//a memoria se le resta en cada ciclo o vuelta el valor a asignar
+	Memoria -= Asignado[i]
+	//en cada ciclo o vuelta del bucle se suman los montos asignados
+	MontoTotalAsignado += Asignado[i]	
+//fin del bucle
+
+next
+//messagebox("Normal",string(memoria))
+//messagebox("Valor Absoluto",string(abs(memoria)))
+//messagebox("Signo -1 o  1",string(sign(memoria)))
+/**************************************************************************************************/
+
+//se valida si el PorcentajeTotal es mayor al 100% (el cual no debe sobrepasar, tiene que ser menor o igual a 100%)
+if PorcentajeTotal > 100 then
+	messagebox("Advertencia","La suma del porcentaje de los beneficiarios sobre pasa el 100% de los beneficios")
+	//se asigna el valor de cero, en caso de algun error
+	
+	for i=1 to upperbound(Asignado)
+		Asignado[i] = 0
+	next
+	
+	// se retorna el arreglo de los montos a asignar
+	return Asignado[]
+
+else
+	if PorcentajeTotal = 100 then 
+	//se verfican los montos que corresponderian al asignado
+		
+		If MontoTotalAsignado>MontoTotalCorrespondiente then
+			//se le suman los decimales al monto de lo sobrantes a la posicion con el porcentaje mayor
+			Asignado[posicion] -= abs(Memoria)
+			//se cuadra el total asignado 
+			MontoTotalAsignado -= abs(Memoria)
+		end if
+			
+		if  MontoTotalAsignado<MontoTotalCorrespondiente then
+			//messagebox('',string(Memoria))
+		//se verfican los montos que corresponderian al asignado, si es menor o igual
+			//se le resta los decimales al monto de lo sobrantes a la posicion con el porcentaje mayor
+			Asignado[posicion] += abs(Memoria)
+			//se cuadra el total asignado 
+			MontoTotalAsignado += abs(Memoria)
+		end if
+		
+		//se retorna los montos a asignar
+		return Asignado[]
+	else
+			//en caso de no exceder o estar por debajo del 100%
+			return Asignado[]
+
+	end if
+
+	
+	
+	//al ser igual al 100%
+	if PorcentajeTotal <= 100 then
+		
+		
+	end if
+		
+end if
+end function
+

@@ -1,0 +1,34 @@
+﻿$PBExportHeader$f_db_get_edad_contribuyente.srf
+global type f_db_get_edad_contribuyente from function_object
+end type
+
+forward prototypes
+global function integer f_db_get_edad_contribuyente (string as_dpi)
+end prototypes
+
+global function integer f_db_get_edad_contribuyente (string as_dpi);DateTime ldt_fecha_nacimiento
+Integer li_edad
+
+select Fecha_Nacimiento
+into :ldt_fecha_nacimiento
+from Contribuyentes
+where DPI = :as_dpi
+using SQLCA;
+
+If isnull(ldt_fecha_nacimiento) Then
+	li_edad = 0
+else
+	select case when datepart(mm,getdate()) < datepart(mm,fecha_nacimiento)
+			        then DATEDIFF(yy,Fecha_Nacimiento,GETDATE()) - 1
+			        else DATEDIFF(yy,Fecha_Nacimiento,GETDATE())
+		     end
+	into :li_edad
+	from Contribuyentes
+	where DPI = :as_dpi
+	using SQLCA;
+end if
+
+
+Return li_edad
+end function
+

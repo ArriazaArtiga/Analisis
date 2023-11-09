@@ -1,0 +1,19 @@
+﻿$PBExportHeader$f_db_get_contribuyente.srf
+global type f_db_get_contribuyente from function_object
+end type
+
+forward prototypes
+global function integer f_db_get_contribuyente (string as_dpi)
+end prototypes
+
+global function integer f_db_get_contribuyente (string as_dpi);Integer li_existe
+
+select count(DPI)
+into :li_existe
+from contribuyentes 
+where DPI = :as_dpi
+using SQLCA;
+
+return li_existe
+end function
+

@@ -1,0 +1,38 @@
+﻿$PBExportHeader$f_db_genera_no_solicitud.srf
+global type f_db_genera_no_solicitud from function_object
+end type
+
+forward prototypes
+global function long f_db_genera_no_solicitud (integer ai_tabla)
+end prototypes
+
+global function long f_db_genera_no_solicitud (integer ai_tabla);long ll_no_solicitud
+
+choose case ai_tabla
+	case 1
+		Update solicitud_correlativos 
+		Set   Solicitudes = Solicitudes + 1
+		Using sqlca;
+
+		Commit;
+
+		Select Solicitudes
+		into :ll_no_solicitud 
+		from  solicitud_correlativos
+		using sqlca;
+	case 2
+		Update solicitud_correlativos
+		Set   Documentos = documentos + 1
+		Using sqlca;
+
+		Commit;
+
+		Select Documentos
+		into :ll_no_solicitud 
+		from  solicitud_correlativos
+		using sqlca;
+end choose
+
+return ll_no_solicitud
+end function
+

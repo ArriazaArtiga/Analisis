@@ -1,0 +1,104 @@
+﻿$PBExportHeader$f_recibo_linea4_etiqueta.srf
+global type f_recibo_linea4_etiqueta from function_object
+end type
+
+forward prototypes
+global function string f_recibo_linea4_etiqueta (datetime adt_fecha_inicio_calculo, datetime b14_past, datetime b14_present, datetime adt_fecha_resolucion, decimal adc_pension, string as_dpi)
+end prototypes
+
+global function string f_recibo_linea4_etiqueta (datetime adt_fecha_inicio_calculo, datetime b14_past, datetime b14_present, datetime adt_fecha_resolucion, decimal adc_pension, string as_dpi);int year_
+date ib14
+string etiqueta
+etiqueta='No aplica bono proporcional'
+ib14 = date(string(year(date(adt_fecha_inicio_calculo)))+'-12-01')
+if ib14 > date(adt_fecha_inicio_calculo) then
+	ib14 = date(string(year(date(adt_fecha_inicio_calculo))-1)+'-12-01')
+end if
+
+year_ = year(ib14)
+
+if month(date(adt_fecha_resolucion)) = 6 or  month(date(adt_fecha_resolucion)) = 7 then
+		etiqueta = 'Bono 14 proporcional '  +string( year_ )  + '-' + string(year( date(  b14_present  ) ) ) 
+elseif year(date(adt_fecha_inicio_calculo)) <> year(date(adt_fecha_resolucion)) and month(date(adt_fecha_resolucion)) = 11 or  month(date(adt_fecha_resolucion)) = 12  then
+	etiqueta = 'Bono 14 proporcional '  +string( year_ )  + '-' + string(year( date(  b14_present  ) ) ) 
+elseif month(date(adt_fecha_inicio_calculo))> 0 and  month(date(adt_fecha_inicio_calculo))<7 and year(date(adt_fecha_inicio_calculo)) = year(date(adt_fecha_resolucion)) and month(date(adt_fecha_resolucion)) = 11 or  month(date(adt_fecha_resolucion)) = 12 then
+	etiqueta = 'Bono 14 proporcional '  +string( year_ )  + '-' + string(year( date(  b14_present  ) ) ) 
+else
+	etiqueta='No aplica bono proporcional'
+end if
+
+return etiqueta 
+
+
+/*
+decimal ldc_agui, ldc_agui_act
+datetime ldt_fecha_b14_1, ldt_fecha_b14_2, ldt_b14_ini, ldt_b14_fin
+date ld_fecha
+string ls_anio, ls_etiqueta
+ls_etiqueta = 'No aplica bono 14 proporcional'
+ls_anio = string(year(date(adt_fecha_inicio_calculo)))
+ld_fecha = date(string('30/06/' + ls_anio))
+ldt_fecha_b14_1 = datetime(ld_fecha)
+
+ls_anio = string(year(date(adt_fecha_resolucion)))
+ld_fecha = date(string('30/06/' + ls_anio))
+ldt_fecha_b14_2 = datetime(ld_fecha)
+
+if adt_fecha_inicio_calculo < ldt_fecha_b14_1 then
+	ls_anio = string(year(date(adt_fecha_inicio_calculo)) - 1)
+	ld_fecha = date(string('30/06/' + ls_anio))
+	ldt_fecha_b14_1 = datetime(ld_fecha)
+end if
+
+if adt_fecha_inicio_calculo > ldt_fecha_b14_2 then
+	ls_anio = string(year(date(adt_fecha_inicio_calculo)) + 1)
+	ld_fecha = date(string('30/06/' + ls_anio))
+	ldt_fecha_b14_1 = datetime(ld_fecha)
+end if
+
+if adt_fecha_resolucion < ldt_fecha_b14_2 then
+	ls_anio = string(year(date(adt_fecha_resolucion)) - 1)
+	ld_fecha = date(string('30/06/' + ls_anio))
+	ldt_fecha_b14_2 = datetime(ld_fecha)
+end if
+
+//if adt_fecha_inicio_calculo > ldt_fecha_b14_2 then
+//	ls_anio = string(year(date(adt_fecha_resolucion)) + 1)
+//	ld_fecha = date(string('30/06/' + ls_anio))
+//	ldt_fecha_b14_2 = datetime(ld_fecha)
+//end if
+
+if ldt_fecha_b14_1 > ldt_fecha_b14_2 then
+	ldc_agui = 0
+else
+	if ldt_fecha_b14_1 = ldt_fecha_b14_2 then
+		ls_etiqueta = 'No aplica bono 14 proporcional'
+		//if month(date(adt_fecha_inicio_calculo)) >= 7 and month(date(adt_fecha_resolucion)) < 7  then
+		//else
+		if ldt_fecha_b14_1 <> ldt_fecha_b14_2 then
+			If year( date( adt_fecha_inicio_calculo  ) ) = year( date(  adt_fecha_resolucion  ) ) then
+				ls_etiqueta = 'Bono 14 proporcional ' + string(year( date( adt_fecha_inicio_calculo  ) ) - 1 ) + '-' + string(year( date(  adt_fecha_resolucion  ) ) )
+			else
+				If year( date( adt_fecha_inicio_calculo  ) ) < year( date(  adt_fecha_resolucion  ) ) then
+					if ldt_fecha_b14_1 = ldt_fecha_b14_2 then
+						ls_etiqueta = 'Bono 14 proporcional ' + string(year( date( adt_fecha_inicio_calculo  ) ) - 1 ) + '-' + string(year( date(  adt_fecha_resolucion  ) ) - 1 )
+					else
+						ls_etiqueta = 'Bono 14 proporcional ' + string(year( date( adt_fecha_inicio_calculo  ) ) ) + '-' + string(year( date(  adt_fecha_resolucion  ) ) )
+					end if
+				else
+					If adt_fecha_inicio_calculo < ldt_fecha_b14_1 then
+						ls_etiqueta = 'Bono 14 proporcional ' + string(year( date( adt_fecha_inicio_calculo  ) ) - 1 ) + '-' + string(year( date(  adt_fecha_inicio_calculo  ) ) )
+					else
+						ls_etiqueta = 'Bono 14 proporcional ' + string(year( date( adt_fecha_inicio_calculo  ) ) ) + '-' + string(year( date(  adt_fecha_resolucion  ) ) )
+					end if
+				end if
+			end if
+		end if
+	else
+		ls_etiqueta = 'Bono 14 proporcional ' + string(year( date( ldt_fecha_b14_1  ) ) ) + '-' + string(year( date(  ldt_fecha_b14_2  ) ) )
+	end if
+end if
+
+return ls_etiqueta*/
+end function
+

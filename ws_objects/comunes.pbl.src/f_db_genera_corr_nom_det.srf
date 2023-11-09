@@ -1,0 +1,55 @@
+﻿$PBExportHeader$f_db_genera_corr_nom_det.srf
+global type f_db_genera_corr_nom_det from function_object
+end type
+
+forward prototypes
+global function integer f_db_genera_corr_nom_det (integer ai_nomina)
+end prototypes
+
+global function integer f_db_genera_corr_nom_det (integer ai_nomina);Integer li_correlativo, li_max_corr
+
+choose case ai_nomina
+	case 1 //General
+		Select max(Correlativo_Detalle)
+		into :li_max_corr 
+		from  Nomina_General_Detalle
+		using sqlca;
+		if isnull(li_max_corr) then li_max_corr = 0		
+	case 2 //Extraordinaria
+		Select max(Correlativo_Detalle)
+		into :li_max_corr 
+		from  Nomina_Extraordinaria_Detalle
+		using sqlca;
+		if isnull(li_max_corr) then li_max_corr = 0
+	case 3 //Ampliación
+		Select max(Correlativo_Detalle)
+		into :li_max_corr 
+		from  Nomina_Ampliacion_Detalle
+		using sqlca;
+		if isnull(li_max_corr) then li_max_corr = 0	
+	case 4 //Muerte Jubilado
+		Select max(Correlativo_Detalle)
+		into :li_max_corr 
+		from  Nomina_Muerte_Jubilado_Detalle
+		using sqlca;
+		if isnull(li_max_corr) then li_max_corr = 0			
+	case 5 //Reincorporación Pensionados
+		Select max(Correlativo_Detalle)
+		into :li_max_corr 
+		from  Nomina_Reinc_Pen_Detalle
+		using sqlca;
+		if isnull(li_max_corr) then li_max_corr = 0			
+	case 6 //Reincorporación Trabajo
+		Select max(Correlativo_Detalle)
+		into :li_max_corr 
+		from  Nomina_Reinc_Detalle
+		using sqlca;
+		if isnull(li_max_corr) then li_max_corr = 0		
+end choose
+
+li_correlativo = li_max_corr + 1
+Commit;
+
+return li_correlativo
+end function
+

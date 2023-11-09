@@ -1,0 +1,29 @@
+﻿$PBExportHeader$f_db_get_monto_ingresos.srf
+global type f_db_get_monto_ingresos from function_object
+end type
+
+forward prototypes
+global function decimal f_db_get_monto_ingresos (integer ai_depto, integer ai_muni, integer ai_ent_muni, integer ai_mes, integer ai_anio)
+end prototypes
+
+global function decimal f_db_get_monto_ingresos (integer ai_depto, integer ai_muni, integer ai_ent_muni, integer ai_mes, integer ai_anio);decimal ldc_monto
+
+Select sum(monto)
+into :ldc_monto
+from rmuni_boleta7b
+where depto = :ai_depto
+and muni = :ai_muni
+and correlativo = :ai_ent_muni
+and datepart(mm,fecha_cobro) = :ai_mes
+and datepart(yy,fecha_cobro) = :ai_anio
+and tipo_pago in ('1','2')
+and estado = '1'
+using SQLCA;
+
+if isnull(ldc_monto) then
+	ldc_monto = 0
+end if
+
+return ldc_monto
+end function
+

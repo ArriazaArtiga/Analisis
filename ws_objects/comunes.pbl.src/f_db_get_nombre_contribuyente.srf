@@ -1,0 +1,19 @@
+﻿$PBExportHeader$f_db_get_nombre_contribuyente.srf
+global type f_db_get_nombre_contribuyente from function_object
+end type
+
+forward prototypes
+global function string f_db_get_nombre_contribuyente (string as_dpi)
+end prototypes
+
+global function string f_db_get_nombre_contribuyente (string as_dpi);String ls_nombres
+
+select nombres + ' ' + apellidos + ' ' + isnull(casada,'')
+into :ls_nombres
+from contribuyentes 
+where DPI = :as_dpi
+using SQLCA;
+
+return ls_nombres
+end function
+

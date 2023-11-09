@@ -1,0 +1,27 @@
+﻿$PBExportHeader$f_db_get_nomina_extraordinaria.srf
+global type f_db_get_nomina_extraordinaria from function_object
+end type
+
+forward prototypes
+global function integer f_db_get_nomina_extraordinaria (ref string as_nomextr)
+end prototypes
+
+global function integer f_db_get_nomina_extraordinaria (ref string as_nomextr);Integer li_existe
+
+select count(Nomenclatura_Extraordinaria)
+into :li_existe
+from Nomina_Extraordinaria_Encabezado 
+where Estado_Nomina = 1
+using SQLCA;
+
+If li_existe > 0 Then
+	select Nomenclatura_Extraordinaria
+	into :as_nomextr
+	from Nomina_Extraordinaria_Encabezado 
+	where Estado_Nomina = 1
+	using SQLCA;
+End If
+Commit;
+Return li_existe
+end function
+

@@ -1,0 +1,71 @@
+﻿$PBExportHeader$f_aux_cal_vejez2.srf
+global type f_aux_cal_vejez2 from function_object
+end type
+
+forward prototypes
+global function e_vejez f_aux_cal_vejez2 (string as_dpi)
+end prototypes
+
+global function e_vejez f_aux_cal_vejez2 (string as_dpi);e_vejez st
+
+SELECT 
+	  Solicitud
+      ,DPI
+      ,IdDoc
+      ,Resolución
+      ,FechaResolucion
+      ,EntregaCargo
+      ,InicioCalculo
+      ,PensionMensual
+      ,TextDiasAcum
+      ,TextPeriodoAcum
+      ,MontoDiasAcum
+      ,MontoPeriodoAcum
+      ,Bono
+      ,TextBono
+      ,MontoBono
+      ,Aguinaldo
+      ,TextAguinaldo
+      ,MontoAguinaldo
+      ,MontoAuxPostumo
+      ,TextAuxPostPeriodo
+      ,MontoAuxPostPeriodo
+      ,Total
+	  ,DiasBono
+	  ,DiasAguinaldo
+INTO
+	  :st.Solicitud
+      ,:st.DPI
+      ,:st.IdDoc
+      ,:st.Resolucion
+      ,:st.FechaResolucion
+      ,:st.EntregaCargo
+      ,:st.InicioCalculo
+      ,:st.PensionMensual
+      ,:st.TextDiasAcum
+      ,:st.TextPeriodoAcum
+      ,:st.MontoDiasAcum
+      ,:st.MontoPeriodoAcum
+      ,:st.Bono
+      ,:st.TextBono
+      ,:st.MontoBono
+      ,:st.Aguinaldo
+      ,:st.TextAguinaldo
+      ,:st.MontoAguinaldo
+      ,:st.MontoAuxPostumo
+      ,:st.TextAuxPostPeriodo
+      ,:st.MontoAuxPostPeriodo
+      ,:st.Total
+	  ,:st.DiasBono
+	  ,:st.DiasAguinaldo
+FROM Solicitud_VI
+       
+WHERE
+         (DPI = :as_dpi ) 
+using SQLCA;
+
+
+
+return st
+end function
+

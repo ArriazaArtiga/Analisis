@@ -1,0 +1,22 @@
+﻿$PBExportHeader$f_db_ins_nomina_extraordinaria.srf
+global type f_db_ins_nomina_extraordinaria from function_object
+end type
+
+forward prototypes
+global subroutine f_db_ins_nomina_extraordinaria ()
+end prototypes
+
+global subroutine f_db_ins_nomina_extraordinaria ();String ls_nomenextr, ls_descripcion
+Datetime ldt_fecha
+
+ls_nomenextr = f_db_genera_nomen_nomi(2)
+ls_descripcion = 'Nómina extraordinaria de vejez e invalidez'
+ldt_fecha = DateTime(today())
+
+insert 	Nomina_Extraordinaria_Encabezado (Nomenclatura_Extraordinaria,Descripcion,Fecha,Estado_Nomina,Nomenclatura_General) 
+values 	(:ls_nomenextr,:ls_descripcion,:ldt_fecha,1,'NGR')
+using SQLCA;
+
+Return
+end subroutine
+

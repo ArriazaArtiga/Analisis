@@ -1,0 +1,32 @@
+﻿$PBExportHeader$f_db_get_analista1.srf
+global type f_db_get_analista1 from function_object
+end type
+
+forward prototypes
+global function string f_db_get_analista1 (integer tipo, long solicitud)
+end prototypes
+
+global function string f_db_get_analista1 (integer tipo, long solicitud);String cadena, nombre,apellido, puesto
+
+select  	b.Nombre,b.Apellidos, b.Puesto
+into 		:nombre, :apellido, :puesto
+from		Solicitud_Etapas a,
+			Ejecutivos_Analisis b
+where   	a.idEjecutivo = b.idEjecutivo 
+and		a.No_Solicitud = :solicitud
+and		a.etapa = 40
+using 		SQLCA;
+
+if (tipo=1) then
+	cadena = puesto+", "+nombre+" "+apellido
+	return cadena
+elseif (tipo=2) then
+	cadena = puesto
+	return cadena
+else
+    cadena = nombre+" "+apellido+", "+puesto
+	return cadena
+end if
+
+end function
+
