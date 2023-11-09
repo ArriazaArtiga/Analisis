@@ -6,6 +6,8 @@ type tab_1 from tab within w_nomina
 end type
 type tabpage_1 from userobject within tab_1
 end type
+type cb_5 from commandbutton within tabpage_1
+end type
 type st_3 from statictext within tabpage_1
 end type
 type st_2 from statictext within tabpage_1
@@ -21,6 +23,7 @@ end type
 type gb_1 from groupbox within tabpage_1
 end type
 type tabpage_1 from userobject within tab_1
+cb_5 cb_5
 st_3 st_3
 st_2 st_2
 st_1 st_1
@@ -210,6 +213,7 @@ long backcolor = 67108864
 string text = "Parametros"
 long tabtextcolor = 33554432
 long picturemaskcolor = 536870912
+cb_5 cb_5
 st_3 st_3
 st_2 st_2
 st_1 st_1
@@ -220,6 +224,7 @@ gb_1 gb_1
 end type
 
 on tabpage_1.create
+this.cb_5=create cb_5
 this.st_3=create st_3
 this.st_2=create st_2
 this.st_1=create st_1
@@ -227,7 +232,8 @@ this.mes=create mes
 this.al=create al
 this.del=create del
 this.gb_1=create gb_1
-this.Control[]={this.st_3,&
+this.Control[]={this.cb_5,&
+this.st_3,&
 this.st_2,&
 this.st_1,&
 this.mes,&
@@ -237,6 +243,7 @@ this.gb_1}
 end on
 
 on tabpage_1.destroy
+destroy(this.cb_5)
 destroy(this.st_3)
 destroy(this.st_2)
 destroy(this.st_1)
@@ -245,6 +252,21 @@ destroy(this.al)
 destroy(this.del)
 destroy(this.gb_1)
 end on
+
+type cb_5 from commandbutton within tabpage_1
+integer x = 567
+integer y = 1108
+integer width = 402
+integer height = 112
+integer taborder = 40
+integer textsize = -10
+integer weight = 400
+fontcharset fontcharset = ansi!
+fontpitch fontpitch = variable!
+fontfamily fontfamily = swiss!
+string facename = "Tahoma"
+string text = "none"
+end type
 
 type st_3 from statictext within tabpage_1
 integer x = 430
@@ -350,7 +372,7 @@ boolean enabled = false
 string customformat = "dd/mm/yyyy"
 date maxdate = Date("2999-12-31")
 date mindate = Date("1800-01-01")
-datetime value = DateTime(Date("2023-10-31"), Time("11:45:47.000000"))
+datetime value = DateTime(Date("2023-11-09"), Time("12:47:34.000000"))
 integer textsize = -10
 fontcharset fontcharset = ansi!
 fontpitch fontpitch = variable!
