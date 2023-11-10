@@ -344,7 +344,7 @@ If dwo.name  =  "b_cambio" Then
 				Messagebox("Atencion", "Unidad de Analisis es la única que puede cambiar estas etapas",Information!)
 			End if 
 		case 60                              /* Enviado a Auditoría Interna */
-			if gi_unidad = 7 or  gi_unidad = 8  or  gi_unidad = 9 then 			
+			if gi_unidad = 5 or gi_unidad = 7 or  gi_unidad = 8  or  gi_unidad = 9 then 			
 				If li_etapa_cambio = 65 or li_etapa_cambio = 300 Then
 					lb_aceptado = True
 				Else
@@ -366,7 +366,7 @@ If dwo.name  =  "b_cambio" Then
 				Messagebox("Atencion" ,"Auditoria Interna es la unidad autorizada para este cambio de etapa",Information!)
 			end if
 		case 70           /* Recibido de Auditoría Interna sin Vo. Bo. */
-			If gi_unidad = 7 or  gi_unidad = 8  or gi_unidad = 9 then 
+			If gi_unidad = 5 or gi_unidad = 7 or  gi_unidad = 8  or gi_unidad = 9 then 
 				If (li_etapa_cambio = 50 ) or li_etapa_cambio = 300 Then
 					lb_aceptado = True
 				Else
@@ -377,7 +377,7 @@ If dwo.name  =  "b_cambio" Then
 				Messagebox("Atencion", "Unidad de Analisis es la única que puede cambiar estas etapas",Information!)
 			End if 
 		case 80        /* Recibido de Auditoría Interna con Dictamen */
-			if  gi_unidad = 7 or  gi_unidad = 8  or  gi_unidad = 9 then 
+			if gi_unidad = 5 or gi_unidad = 7 or  gi_unidad = 8  or  gi_unidad = 9 then 
 				If li_etapa_cambio = 90 or li_etapa_cambio = 300 Then
 					lb_aceptado = True
 				Else
