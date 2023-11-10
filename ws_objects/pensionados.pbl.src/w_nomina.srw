@@ -261,8 +261,13 @@ destroy(this.gb_1)
 end on
 
 type cb_6 from commandbutton within tabpage_1
+//<<<<<<< HEAD
 integer x = 2263
 integer y = 1140
+//=======
+integer x = 1280
+integer y = 1160
+//>>>>>>> Master
 integer width = 402
 integer height = 112
 integer taborder = 50
@@ -394,7 +399,11 @@ boolean enabled = false
 string customformat = "dd/mm/yyyy"
 date maxdate = Date("2999-12-31")
 date mindate = Date("1800-01-01")
+//<<<<<<< HEAD
 datetime value = DateTime(Date("2023-11-10"), Time("13:38:06.000000"))
+//=======
+datetime value = DateTime(Date("2023-11-10"), Time("13:36:17.000000"))
+//>>>>>>> Master
 integer textsize = -10
 fontcharset fontcharset = ansi!
 fontpitch fontpitch = variable!
