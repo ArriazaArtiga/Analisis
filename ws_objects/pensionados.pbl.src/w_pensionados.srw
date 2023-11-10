@@ -3,6 +3,8 @@ $PBExportComments$Ver todos los pensionados activos
 forward
 global type w_pensionados from window
 end type
+type cb_1 from commandbutton within w_pensionados
+end type
 type rb_4 from radiobutton within w_pensionados
 end type
 type rb_3 from radiobutton within w_pensionados
@@ -41,6 +43,7 @@ boolean resizable = true
 long backcolor = 67108864
 string icon = "AppIcon!"
 boolean center = true
+cb_1 cb_1
 rb_4 rb_4
 rb_3 rb_3
 rb_2 rb_2
@@ -57,6 +60,7 @@ end type
 global w_pensionados w_pensionados
 
 on w_pensionados.create
+this.cb_1=create cb_1
 this.rb_4=create rb_4
 this.rb_3=create rb_3
 this.rb_2=create rb_2
@@ -69,7 +73,8 @@ this.cb_2=create cb_2
 this.dw_1=create dw_1
 this.gb_1=create gb_1
 this.gb_2=create gb_2
-this.Control[]={this.rb_4,&
+this.Control[]={this.cb_1,&
+this.rb_4,&
 this.rb_3,&
 this.rb_2,&
 this.rb_1,&
@@ -84,6 +89,7 @@ this.gb_2}
 end on
 
 on w_pensionados.destroy
+destroy(this.cb_1)
 destroy(this.rb_4)
 destroy(this.rb_3)
 destroy(this.rb_2)
@@ -103,6 +109,21 @@ event open;long filas
 filas = dw_1.rowcount( )
 sle_5.text = string(filas)
 end event
+
+type cb_1 from commandbutton within w_pensionados
+integer x = 1774
+integer y = 156
+integer width = 402
+integer height = 112
+integer taborder = 50
+integer textsize = -10
+integer weight = 400
+fontcharset fontcharset = ansi!
+fontpitch fontpitch = variable!
+fontfamily fontfamily = swiss!
+string facename = "Tahoma"
+string text = "none"
+end type
 
 type rb_4 from radiobutton within w_pensionados
 integer x = 1253
