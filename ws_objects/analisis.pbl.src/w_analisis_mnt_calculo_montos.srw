@@ -161,7 +161,7 @@ Integer respuesta, li_anios, li_i, li_j, li_k, li_edad, li_meses_b14, li_meses_a
 Datetime ldt_fecha_fallecimiento, ldt_fecha_ultimo_pago, ldt_fecha_ini_b14, ldt_fecha_ini_agui, ldt_fecha_b14_prov,ldt_fecha_agui_prov, ldt_fecha_b14_fin_prov, ldt_fecha_agui_fin_prov, ldt_fecha_agui_fin_prop, ldt_fecha_b14_fin_prop,ldt_fecha_fin_p1,  ldt_fecha_resol, ldt_fecha_acuerdo, ldt_fecha_acuerdo1, ldt_fecha_inicio_pension
 Decimal ldc_prestacion_muerte_inicial, ldc_pension_dias_pago, ldc_pension_dias_pago_suma, ldc_meses_pago, ldc_meses_pago_suma, ldc_monto_b14, ldc_prestacion_neta, ldc_prestacion, ldc_prestamo, ldc_salario_prom, ldc_pensiones_pendientes, ldc_pensiones_pendientes1, ldc_pension_maxima,	ldc_prestacion_aux,ldc_monto_agui, ldc_dias_pend, ldc_dias_pend1, ldc_total_pend, ldc_monto_b14_pend, ldc_monto_agui_pend,ldc_monto_b14_prov, ldc_monto_b14_prov1, ldc_monto_b14_prov2,ldc_monto_agui_prov, ldc_monto_agui_prov1,ldc_monto_agui_prov2, ldc_monto_diario,ldc_monto_b14_p1, ldc_monto_b14_p2, ldc_monto_agui_p1, ldc_monto_agui_p2, ldc_tot_benef, ldc_tot_benef1,ldc_tot_benef2,ldc_monto_benef, ldc_monto_benef1, ldc_monto_benef2, ldc_monto_benef3,ldc_tot_gasfun, ldc_tot_auxpos, ldc_tot_penspen, ldc_pension1, ldc_pension2, ldc_prestacion_gf, ldc_monto_reintegro, ldc_monto_descuento,Pendiente[], MontoPendiente[],PrestacionMuerte[], GastosFunerarios[], AuxilioPostumo[], BenefPendientes[], MontoPrestacionMuerte[], MontoGastosFunerarios[], MontoAuxilioPostumo[], MontoBenefPendientes[]
 
-decimal pension1,pension2,pension3, b14Provisional,b14Proporcional,aguiProvisionado, aguiProporcional 
+decimal pension1,pension2,pension3, b14Provisional,b14Proporcional,aguiProvisionado, aguiProporcional, precalculo
 date f_fallece, f_upago, f_ipension1,f_fpension1,f_ipension2,f_fpension2,f_ib14,f_fb14,f_iagui,f_fagui
 
 /*****************************************/
@@ -235,7 +235,10 @@ ldt_fecha_agui_fin_prop 	= datetime(dw_solicitud_pagos.object.solicitud_prestaci
 	/*    Calculo Prestación Muerte Inicial                            */
 	/*****************************************/
 	if li_anios > 0 then
-		dw_solicitud_pagos.object.prestacion_muerte[ll_row] = f_calculo_pm_inicial_mj1(li_anios,ldt_fecha_fallecimiento,ldt_fecha_fin_p1,ldc_pension1,ldc_pension2,ldc_pension_maxima)
+		precalculo = f_calculo_pm_inicial_mj1(li_anios,ldt_fecha_fallecimiento,ldt_fecha_fin_p1,ldc_pension1,ldc_pension2,ldc_pension_maxima)
+		dw_solicitud_pagos.object.monto_meses[ll_row] = f_calculo_pm_inicial_mj2(li_meses_lab,ldt_fecha_fallecimiento,ldt_fecha_fin_p1,ldc_pension1,ldc_pension2,ldc_pension_maxima)
+		precalculo += dw_solicitud_pagos.object.monto_meses[ll_row]
+		dw_solicitud_pagos.object.prestacion_muerte[ll_row] = precalculo
 	else
 		dw_solicitud_pagos.object.monto_meses[ll_row] = f_calculo_pm_inicial_mj2(li_meses_lab,ldt_fecha_fallecimiento,ldt_fecha_fin_p1,ldc_pension1,ldc_pension2,ldc_pension_maxima)
 		dw_solicitud_pagos.object.prestacion_muerte[ll_row] = dw_solicitud_pagos.object.monto_meses[ll_row]
