@@ -266,7 +266,7 @@ If dwo.name  =  "b_cambio" Then
 	li_etapa_cambio   =   This.Object.idEtapa[row]
 	choose case ii_etapa_actual
 		case 10       /* Recepcion solicitud */
-			if  gi_unidad = 7 or  gi_unidad = 7 or  gi_unidad = 9 then 
+			if  gi_unidad = 7 or  gi_unidad = 8 or  gi_unidad = 9 then 
 				If li_etapa_cambio = 20 or li_etapa_cambio = 300 Then
 					/* cambio aceptado */
 					lb_aceptado = True
@@ -278,7 +278,7 @@ If dwo.name  =  "b_cambio" Then
 				Messagebox("Atencion" ,"Analisis es la unidad autorizada para este cambio de etapa",Information!)
 			End If
 		case 20 /* Documentos Requisitos Completados */
-			if  gi_unidad = 7 or  gi_unidad = 7 or  gi_unidad = 9 then
+			if  gi_unidad = 7 or  gi_unidad = 8 or  gi_unidad = 9 then
 				If li_etapa_cambio = 30 or li_etapa_cambio = 300 Then
 					lb_aceptado = True
 				Else
@@ -289,7 +289,7 @@ If dwo.name  =  "b_cambio" Then
 				Messagebox("Atencion" ,"Analisis es la unidad autorizada para este cambio de etapa",Information!)
 			End if
 		case 30 /* Dar Ingreso al Expediente */
-			if  gi_unidad = 7 or  gi_unidad = 7 or  gi_unidad = 9 then 
+			if  gi_unidad = 7 or  gi_unidad = 8 or  gi_unidad = 9 then 
 				If li_etapa_cambio = 40 or li_etapa_cambio = 300 Then
 					lb_aceptado = True
 				Else
@@ -344,7 +344,7 @@ If dwo.name  =  "b_cambio" Then
 				Messagebox("Atencion", "Unidad de Analisis es la única que puede cambiar estas etapas",Information!)
 			End if 
 		case 60                              /* Enviado a Auditoría Interna */
-			if gi_unidad = 5 or gi_unidad = 7 or  gi_unidad = 8  or  gi_unidad = 9 then 			
+			if gi_unidad = 7 or  gi_unidad = 8  or  gi_unidad = 9 then 			
 				If li_etapa_cambio = 65 or li_etapa_cambio = 300 Then
 					lb_aceptado = True
 				Else
@@ -388,7 +388,7 @@ If dwo.name  =  "b_cambio" Then
 				Messagebox("Atencion", "Unidad de Analisis es la unidad autorizada para estas etapas",Information!)
 			End if
 		case 90 /* Enviado a Jurídico */
-			if gi_unidad    =    6 or gi_unidad = 7 or  gi_unidad = 8  or  gi_unidad = 9 then
+			if  gi_unidad = 7 or  gi_unidad = 8  or  gi_unidad = 9 then
 				If li_etapa_cambio = 95 or li_etapa_cambio = 300 Then
 					lb_aceptado = True
 				Else
