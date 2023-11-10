@@ -3,6 +3,8 @@ $PBExportComments$Ver todos los pensionados activos
 forward
 global type w_pensionados_m from window
 end type
+type cb_3 from commandbutton within w_pensionados_m
+end type
 type cb_2 from commandbutton within w_pensionados_m
 end type
 type cb_1 from commandbutton within w_pensionados_m
@@ -23,6 +25,7 @@ boolean resizable = true
 long backcolor = 67108864
 string icon = "AppIcon!"
 boolean center = true
+cb_3 cb_3
 cb_2 cb_2
 cb_1 cb_1
 dw_1 dw_1
@@ -30,15 +33,18 @@ end type
 global w_pensionados_m w_pensionados_m
 
 on w_pensionados_m.create
+this.cb_3=create cb_3
 this.cb_2=create cb_2
 this.cb_1=create cb_1
 this.dw_1=create dw_1
-this.Control[]={this.cb_2,&
+this.Control[]={this.cb_3,&
+this.cb_2,&
 this.cb_1,&
 this.dw_1}
 end on
 
 on w_pensionados_m.destroy
+destroy(this.cb_3)
 destroy(this.cb_2)
 destroy(this.cb_1)
 destroy(this.dw_1)
@@ -58,6 +64,21 @@ else
 	dw_1.object.pensionados_modifica[i_rows] = gs_userid+" | " +string(Today())+" | "+string(Now())
 end if 
 end event
+
+type cb_3 from commandbutton within w_pensionados_m
+integer x = 2066
+integer y = 588
+integer width = 402
+integer height = 112
+integer taborder = 40
+integer textsize = -10
+integer weight = 400
+fontcharset fontcharset = ansi!
+fontpitch fontpitch = variable!
+fontfamily fontfamily = swiss!
+string facename = "Tahoma"
+string text = "none"
+end type
 
 type cb_2 from commandbutton within w_pensionados_m
 integer x = 2071
