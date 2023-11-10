@@ -388,7 +388,7 @@ If dwo.name  =  "b_cambio" Then
 				Messagebox("Atencion", "Unidad de Analisis es la unidad autorizada para estas etapas",Information!)
 			End if
 		case 90 /* Enviado a Jurídico */
-			if  gi_unidad = 7 or  gi_unidad = 8  or  gi_unidad = 9 then
+			if gi_unidad = 6 or gi_unidad = 7 or  gi_unidad = 8  or  gi_unidad = 9 then
 				If li_etapa_cambio = 95 or li_etapa_cambio = 300 Then
 					lb_aceptado = True
 				Else
@@ -410,7 +410,7 @@ If dwo.name  =  "b_cambio" Then
 				Messagebox("Atencion" ,"Juridico es la unidad autorizada para este cambio de etapa",Information!)
 			end if
 		case 100       /* Recibido de Jurídico sin Vo. Bo. */
-			if  gi_unidad = 7 or  gi_unidad = 8  or  gi_unidad = 9  then
+			if  gi_unidad = 6 or gi_unidad = 7 or  gi_unidad = 8  or  gi_unidad = 9  then
 				If (li_etapa_cambio = 50) or li_etapa_cambio = 300 Then
 					lb_aceptado = True
 				Else
@@ -421,7 +421,7 @@ If dwo.name  =  "b_cambio" Then
 				Messagebox("Atencion", "Analisis es la unidad que puede cambiar estas etapas",Information!)
 			end if
 		case 110           /* Recibido de Jurídico con Dictamen */  
-			if gi_unidad = 7 or  gi_unidad = 8 or  gi_unidad = 9 then 
+			if gi_unidad = 6 or gi_unidad = 7 or  gi_unidad = 8 or  gi_unidad = 9 then 
 					If li_etapa_cambio = 120 or li_etapa_cambio = 300 Then
 						lb_aceptado = True
 					Else
