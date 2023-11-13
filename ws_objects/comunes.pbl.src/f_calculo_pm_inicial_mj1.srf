@@ -28,7 +28,7 @@ else
 
 	end if
 end if
-
+//messagebox("Años",string(ldc_prestacion_muerte))
 Return ldc_prestacion_muerte
 end function
 

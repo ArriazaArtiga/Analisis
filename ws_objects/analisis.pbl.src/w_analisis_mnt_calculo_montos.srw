@@ -238,10 +238,13 @@ ldt_fecha_agui_fin_prop 	= datetime(dw_solicitud_pagos.object.solicitud_prestaci
 		precalculo = f_calculo_pm_inicial_mj1(li_anios,ldt_fecha_fallecimiento,ldt_fecha_fin_p1,ldc_pension1,ldc_pension2,ldc_pension_maxima)
 		dw_solicitud_pagos.object.monto_meses[ll_row] = f_calculo_pm_inicial_mj2(li_meses_lab,ldt_fecha_fallecimiento,ldt_fecha_fin_p1,ldc_pension1,ldc_pension2,ldc_pension_maxima)
 		precalculo += dw_solicitud_pagos.object.monto_meses[ll_row]
+		precalculo += f_calculo_pm_inicial_mj3(li_dias_lab,ldt_fecha_fallecimiento,ldt_fecha_fin_p1,ldc_pension1,ldc_pension2,ldc_pension_maxima)
 		dw_solicitud_pagos.object.prestacion_muerte[ll_row] = precalculo
 	else
 		dw_solicitud_pagos.object.monto_meses[ll_row] = f_calculo_pm_inicial_mj2(li_meses_lab,ldt_fecha_fallecimiento,ldt_fecha_fin_p1,ldc_pension1,ldc_pension2,ldc_pension_maxima)
-		dw_solicitud_pagos.object.prestacion_muerte[ll_row] = dw_solicitud_pagos.object.monto_meses[ll_row]
+		precalculo +=  dw_solicitud_pagos.object.monto_meses[ll_row]
+		precalculo += f_calculo_pm_inicial_mj3(li_dias_lab,ldt_fecha_fallecimiento,ldt_fecha_fin_p1,ldc_pension1,ldc_pension2,ldc_pension_maxima)
+		dw_solicitud_pagos.object.prestacion_muerte[ll_row] = precalculo
 	end if
 	
 	ldc_prestacion_muerte_inicial = dw_solicitud_pagos.object.prestacion_muerte[ll_row]
@@ -358,88 +361,7 @@ ldt_fecha_agui_fin_prop 	= datetime(dw_solicitud_pagos.object.solicitud_prestaci
 	
 	
 
-/*
-	if ldt_fecha_fallecimiento = ldt_fecha_ultimo_pago then
-		ldc_meses_pago = 0.00
-		dw_solicitud_pagos.object.monto_meses[ll_row] = ldc_meses_pago
-	
-	else
-		if month(date(ldt_fecha_fallecimiento)) = month(date(ldt_fecha_ultimo_pago)) and year(date(ldt_fecha_fallecimiento)) = year(date(ldt_fecha_ultimo_pago))then
-			ldc_meses_pago = 0.00
-			dw_solicitud_pagos.object.monto_meses[ll_row] = ldc_meses_pago
-			
-		else
-			if ldt_fecha_fallecimiento  <  ldt_fecha_ultimo_pago  then
-				if ldt_fecha_fallecimiento <= dw_solicitud_pagos.object.fecha_fin_p1[ll_row] and dw_solicitud_pagos.object.fecha_fin_p1[ll_row] <= ldt_fecha_ultimo_pago then
-					if month(date(ldt_fecha_fallecimiento))+1 = month(date(ldt_fecha_ultimo_pago)) and year(date(ldt_fecha_fallecimiento)) = year(date(ldt_fecha_ultimo_pago)) then
-						
-						if li_diferencia_meses5  =  0 then
-							ldc_meses_pago = 0.00
-							li_diferencia_meses5 = 0
-						else
-							ldc_meses_pago = (round(dw_solicitud_pagos.object.solicitud_prestacion_muerte_monto_pension[ll_row] * (li_diferencia_meses),2)) + (round(dw_solicitud_pagos.object.solicitud_prestacion_muerte_monto_pension2[ll_row] * (li_diferencia_meses1),2))
-							
-						end if
-					else
-						ldc_meses_pago = (round(dw_solicitud_pagos.object.solicitud_prestacion_muerte_monto_pension[ll_row] * (li_diferencia_meses),2)) + (round(dw_solicitud_pagos.object.solicitud_prestacion_muerte_monto_pension2[ll_row] * (li_diferencia_meses1),2))
-						
-					end if
-				else
-					if month(date(ldt_fecha_fallecimiento))+1 = month(date(ldt_fecha_ultimo_pago)) and year(date(ldt_fecha_fallecimiento)) = year(date(ldt_fecha_ultimo_pago)) then
-						ldc_meses_pago = round(dw_solicitud_pagos.object.solicitud_prestacion_muerte_monto_pension2[ll_row] * (abs(li_diferencia_meses2)-1),2)
-					else
-						ldc_meses_pago = round(dw_solicitud_pagos.object.solicitud_prestacion_muerte_monto_pension2[ll_row] * ((li_diferencia_meses2 * -1 )-1),2)
-					end if
-				end if
-				if ldc_pension1 <> 0 and ldc_pension2 = 0 then
-					ldc_meses_pago = round(ldc_pension1 * (li_diferencia_meses5),2)
-				end if
-				ldc_meses_pago_suma = 0.00
-				dw_solicitud_pagos.object.monto_meses[ll_row] = ldc_meses_pago
-				dw_solicitud_pagos.object.monto_meses_suma[ll_row] = 0.00
-			else
-				if ldt_fecha_fallecimiento < ldt_fecha_fin_p1 and ldt_fecha_ultimo_pago < ldt_fecha_fin_p1 then
-					li_diferencia_meses  = f_diferencia_meses( ldt_fecha_ultimo_pago, ldt_fecha_fallecimiento )-1
-					if li_diferencia_meses = 1 then
-						li_diferencia_meses = 0
-					end if
-					if  ldt_fecha_fallecimiento < ldt_fecha_ultimo_pago then
-						ldc_meses_pago_suma = (round(ldc_pension1 * ((li_diferencia_meses)+1),2))
-						//aca le agregue mas +1 dpi:1649581772209 porque no calculava el mes de enero
-					else
-						ldc_meses_pago_suma = (round(ldc_pension1 * ((li_diferencia_meses)),2))
-					end if 
-				else
-					
-					li_diferencia_meses  = f_diferencia_meses( ldt_fecha_ultimo_pago, dw_solicitud_pagos.object.fecha_fin_p1[ll_row] )
-					li_diferencia_meses1 = f_diferencia_meses( dw_solicitud_pagos.object.fecha_fin_p1[ll_row], ldt_fecha_fallecimiento ) - 1
-					if ldt_fecha_ultimo_pago <= dw_solicitud_pagos.object.fecha_fin_p1[ll_row] and dw_solicitud_pagos.object.fecha_fin_p1[ll_row] <= ldt_fecha_fallecimiento then
-						if month(date(ldt_fecha_fallecimiento))+1 = month(date(ldt_fecha_ultimo_pago)) and year(date(ldt_fecha_fallecimiento)) = year(date(ldt_fecha_ultimo_pago)) then
-							ldc_meses_pago_suma = (round(dw_solicitud_pagos.object.solicitud_prestacion_muerte_monto_pension[ll_row] * (li_diferencia_meses),2)) + (round(dw_solicitud_pagos.object.solicitud_prestacion_muerte_monto_pension2[ll_row] * (li_diferencia_meses1),2))
-						else
-							ldc_meses_pago_suma = (round(dw_solicitud_pagos.object.solicitud_prestacion_muerte_monto_pension[ll_row] * (li_diferencia_meses),2)) + (round(dw_solicitud_pagos.object.solicitud_prestacion_muerte_monto_pension2[ll_row] * (li_diferencia_meses1),2))
-					end if
-					else					
-						if month(date(ldt_fecha_fallecimiento))+1 = month(date(ldt_fecha_ultimo_pago)) and year(date(ldt_fecha_fallecimiento)) = year(date(ldt_fecha_ultimo_pago)) then
-							ldc_meses_pago_suma = round(dw_solicitud_pagos.object.solicitud_prestacion_muerte_monto_pension2[ll_row] * (li_diferencia_meses2),2)
-						else
-							ldc_meses_pago_suma = round(dw_solicitud_pagos.object.solicitud_prestacion_muerte_monto_pension2[ll_row] * (li_diferencia_meses2),2)
-						end if
-					
-						if ldc_meses_pago_suma < 0 Then
-							ldc_meses_pago_suma = 0.00
-							
-						end if
-					end if
-				end if
-				ldc_meses_pago = 0.00
-				dw_solicitud_pagos.object.monto_meses[ll_row] = 0.00
-				dw_solicitud_pagos.object.monto_meses_suma[ll_row] = ldc_meses_pago_suma
-				
-			
-			end if
-		end if
-	end if*/
+
 	//***************************//
 	// calculo para los  bonos
 	//***************************//
@@ -606,21 +528,7 @@ ldt_fecha_agui_fin_prop 	= datetime(dw_solicitud_pagos.object.solicitud_prestaci
 	
 // totaliza la prestacion neta
 	ldc_prestacion_neta = round(ldc_prestacion_muerte_inicial - (round(ldc_pension_dias_pago,2) + round(ldc_meses_pago,2)  + round(ldc_prestamo,2) + round(ldc_monto_descuento,2) ),2) + round(ldc_pensiones_pendientes,2) + round(ldc_dias_pend,2) + round(ldc_monto_b14_prov,2) + round(ldc_monto_agui_prov,2) + round(ldc_pension_dias_pago_suma,2) + round(ldc_meses_pago_suma,2) + round(ldc_monto_reintegro,2)+dw_solicitud_pagos.object.bonounicorein[ll_row]-dw_solicitud_pagos.object.bonounicodesc[ll_row]
-	/*messagebox("ldc_prestacion_muerte_inicial",string(ldc_prestacion_muerte_inicial))
-	messagebox("ldc_pension_dias_pago",string(ldc_pension_dias_pago))
-	messagebox("ldc_meses_pago",string(ldc_meses_pago))
-	messagebox("ldc_monto_descuento",string(ldc_monto_descuento))
-	messagebox("ldc_prestamo",string(ldc_prestamo))
-	messagebox("ldc_pensiones_pendientes",string(ldc_pensiones_pendientes))
-	messagebox("ldc_dias_pend",string(ldc_dias_pend))
-	messagebox("ldc_monto_b14_prov",string(ldc_monto_b14_prov))
-	messagebox("ldc_monto_agui_prov",string(ldc_monto_agui_prov))
-	messagebox("ldc_pension_dias_pago_suma",string(ldc_pension_dias_pago_suma))
-	messagebox("ldc_meses_pago_suma",string(ldc_meses_pago_suma))
-	messagebox("ldc_monto_reintegro",string(ldc_monto_reintegro))
-	messagebox("dw_solicitud_pagos.object.bonounicorein[ll_row]",string(dw_solicitud_pagos.object.bonounicorein[ll_row]))
-	messagebox("dw_solicitud_pagos.object.bonounicodesc[ll_row]",string(dw_solicitud_pagos.object.bonounicodesc[ll_row]))
-	messagebox("ldc_prestacion_neta",string(ldc_prestacion_neta))*/
+
 	dw_solicitud_pagos.object.prestacion_muerte_neta[ll_row] = ldc_prestacion_neta
 
 	// Calcula las prestaciones por beneficiarios

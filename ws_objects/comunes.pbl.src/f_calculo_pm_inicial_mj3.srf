@@ -1,35 +1,35 @@
-﻿$PBExportHeader$f_calculo_pm_inicial_mj2.srf
-global type f_calculo_pm_inicial_mj2 from function_object
+﻿$PBExportHeader$f_calculo_pm_inicial_mj3.srf
+global type f_calculo_pm_inicial_mj3 from function_object
 end type
 
 forward prototypes
-global function decimal f_calculo_pm_inicial_mj2 (integer ai_meses_lab, datetime adt_fecha_fallecimiento, datetime adt_fecha_fin_p1, decimal adc_pension1, integer adc_pension2, decimal adc_pension_maxima)
+global function decimal f_calculo_pm_inicial_mj3 (integer ai_dias_lab, datetime adt_fecha_fallecimiento, datetime adt_fecha_fin_p1, decimal adc_pension1, integer adc_pension2, decimal adc_pension_maxima)
 end prototypes
 
-global function decimal f_calculo_pm_inicial_mj2 (integer ai_meses_lab, datetime adt_fecha_fallecimiento, datetime adt_fecha_fin_p1, decimal adc_pension1, integer adc_pension2, decimal adc_pension_maxima);Decimal ldc_pm_monto_meses
+global function decimal f_calculo_pm_inicial_mj3 (integer ai_dias_lab, datetime adt_fecha_fallecimiento, datetime adt_fecha_fin_p1, decimal adc_pension1, integer adc_pension2, decimal adc_pension_maxima);Decimal ldc_pm_monto_dias
 string cadena
 //dw_solicitud_pagos.object.solicitud_prestacion_muerte_prestacion_muerte[ll_row] = f_calculo_pm_inicial_mj2(ldt_fecha_fallecimiento,ldt_fecha_fin_p1,ldc_pension1,ldc_pension2,ldc_pension_maxima)
 If adt_fecha_fallecimiento <= adt_fecha_fin_p1 then
 	if adc_pension1 <= adc_pension_maxima then
-		ldc_pm_monto_meses = (round(ai_meses_lab * (adc_pension1/12),2)) 
+		ldc_pm_monto_dias = (round(ai_dias_lab * (adc_pension1/365),2)) 
 		//dw_solicitud_pagos.object.solicitud_prestacion_muerte_prestacion_muerte[ll_row] = dw_solicitud_pagos.object.solicitud_prestacion_muerte_monto_meses[ll_row]
 	else
-		ldc_pm_monto_meses = (round(ai_meses_lab * (adc_pension_maxima/12),2)) 
+		ldc_pm_monto_dias = (round(ai_dias_lab * (adc_pension_maxima/365),2)) 
 		//dw_solicitud_pagos.object.solicitud_prestacion_muerte_prestacion_muerte[ll_row] = dw_solicitud_pagos.object.solicitud_prestacion_muerte_monto_meses[ll_row]
 	end if
 else
 	if adc_pension2 <= adc_pension_maxima then
-		ldc_pm_monto_meses = (round(ai_meses_lab * (adc_pension2/12),2)) 
+		ldc_pm_monto_dias = (round(ai_dias_lab * (adc_pension2/365),2)) 
 		//dw_solicitud_pagos.object.solicitud_prestacion_muerte_prestacion_muerte[ll_row] = dw_solicitud_pagos.object.solicitud_prestacion_muerte_monto_meses[ll_row]
 	else
-		ldc_pm_monto_meses = (round(ai_meses_lab * (adc_pension_maxima/12),2)) 
+		ldc_pm_monto_dias = (round(ai_dias_lab * (adc_pension_maxima/365),2)) 
 		//dw_solicitud_pagos.object.solicitud_prestacion_muerte_prestacion_muerte[ll_row] = dw_solicitud_pagos.object.solicitud_prestacion_muerte_monto_meses[ll_row]
 	end if
 end if
-//cadena = 'meses: '+string(ai_meses_lab)+', fecha fallecimiento: '+string(adt_fecha_fallecimiento)+', fecha pension 1: '+ string(adt_fecha_fin_p1)
+//cadena = 'meses: '+string(ai_dias_lab)+', fecha fallecimiento: '+string(adt_fecha_fallecimiento)+', fecha pension 1: '+ string(adt_fecha_fin_p1)
 //cadena += ', pension 1: '+string(adc_pension1)+', pension 2: '+ string(adc_pension2)
-//cadena += ', Monto de los meses: '+string(ldc_pm_monto_meses)
+//cadena += ', Monto de los dias: '+string(ldc_pm_monto_dias)
 //messagebox('',cadena)
-Return ldc_pm_monto_meses
+Return ldc_pm_monto_dias
 end function
 

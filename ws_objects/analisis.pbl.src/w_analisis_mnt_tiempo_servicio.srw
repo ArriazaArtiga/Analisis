@@ -25,7 +25,7 @@ global type w_analisis_mnt_tiempo_servicio from window
 integer x = 1289
 integer y = 120
 integer width = 4018
-integer height = 616
+integer height = 876
 boolean titlebar = true
 string title = ".:. PPEM SIG - Módulo Análisis - Mantenimiento Tiempo Servicio .:."
 boolean controlmenu = true
@@ -287,7 +287,7 @@ type dw_tiempo_servicio from datawindow within w_analisis_mnt_tiempo_servicio
 integer x = 37
 integer y = 32
 integer width = 3346
-integer height = 452
+integer height = 544
 integer taborder = 10
 string title = "none"
 string dataobject = "d_analisis_mnt_tiempo_servicio"
