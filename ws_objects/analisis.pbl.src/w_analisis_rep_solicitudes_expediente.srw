@@ -246,6 +246,7 @@ xx = f_db_get_solicitud_subtipo_cv(cui)
 	dw_report.Retrieve(cui)
 	dw_report.visible = true
 	commit;
+	sle_buscar.enabled = true
 end event
 
 type cbx_historico from checkbox within w_analisis_rep_solicitudes_expediente
@@ -558,6 +559,8 @@ commit;
 //	ib_hay_detalle = false
 //end if
 //
+
+sle_buscar.enabled = true
 
 
 
