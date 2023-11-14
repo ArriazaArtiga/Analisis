@@ -14,7 +14,7 @@ from		Solicitud_Documentos_expediente a
 where   	a.No_Solicitud = :al_solicitud
 and		a.dpi = :as_dpi
 and		a.tipo_documento = :as_tipo_docto
-and		a.unidad = :as_unidad
+//and		a.unidad = :as_unidad
 using 		SQLCA;
 
 Return ll_total_folios
