@@ -15,8 +15,6 @@ type pb_documentos from picturebutton within w_analisis_rep_solicitudes_expedien
 end type
 type st_1 from statictext within w_analisis_rep_solicitudes_expediente
 end type
-type pb_buscar1 from picturebutton within w_analisis_rep_solicitudes_expediente
-end type
 type pb_buscar from picturebutton within w_analisis_rep_solicitudes_expediente
 end type
 type sle_buscar from singlelineedit within w_analisis_rep_solicitudes_expediente
@@ -36,13 +34,11 @@ end forward
 global type w_analisis_rep_solicitudes_expediente from window
 integer x = 1550
 integer y = 120
-integer width = 4155
-integer height = 3140
+integer width = 3931
+integer height = 3116
 boolean titlebar = true
 boolean controlmenu = true
-boolean minbox = true
-boolean maxbox = true
-boolean resizable = true
+windowtype windowtype = response!
 long backcolor = 32895212
 string icon = "AppIcon!"
 boolean center = true
@@ -52,7 +48,6 @@ cbx_historico cbx_historico
 pb_anios_pago pb_anios_pago
 pb_documentos pb_documentos
 st_1 st_1
-pb_buscar1 pb_buscar1
 pb_buscar pb_buscar
 sle_buscar sle_buscar
 pb_imprimir pb_imprimir
@@ -81,7 +76,6 @@ this.cbx_historico=create cbx_historico
 this.pb_anios_pago=create pb_anios_pago
 this.pb_documentos=create pb_documentos
 this.st_1=create st_1
-this.pb_buscar1=create pb_buscar1
 this.pb_buscar=create pb_buscar
 this.sle_buscar=create sle_buscar
 this.pb_imprimir=create pb_imprimir
@@ -95,7 +89,6 @@ this.cbx_historico,&
 this.pb_anios_pago,&
 this.pb_documentos,&
 this.st_1,&
-this.pb_buscar1,&
 this.pb_buscar,&
 this.sle_buscar,&
 this.pb_imprimir,&
@@ -112,7 +105,6 @@ destroy(this.cbx_historico)
 destroy(this.pb_anios_pago)
 destroy(this.pb_documentos)
 destroy(this.st_1)
-destroy(this.pb_buscar1)
 destroy(this.pb_buscar)
 destroy(this.sle_buscar)
 destroy(this.pb_imprimir)
@@ -133,11 +125,11 @@ event open;Long ll_row
 	dw_report.SetTransObject(sqlca)
 	dw_1.SetTransObject(sqlca)
 	dw_1.visible = false
-	dw_report.Modify("DataWindow.Print.Preview=Yes")
+	//dw_report.Modify("DataWindow.Print.Preview=Yes")
 	/*dw_report.Modify("datawindow.print.preview.zoom = " + String(ii_CurrentZoom))*/
 //	This.title = "Detail Report For " + trim(iuo_parm.is_Title) + " Example (Zoom: " + String(ii_CurrentZoom) + "%)"
 //	Post Event ue_postopen()
-	SetPointer(hourglass!)
+	//SetPointer(hourglass!)
 //	dw_report.retrieve()
 //	ll_row = dw_deptos.InsertRow(0)
 //	dw_deptos.ScrollToRow(ll_row)
@@ -154,21 +146,20 @@ end event
 type dw_1 from datawindow within w_analisis_rep_solicitudes_expediente
 boolean visible = false
 integer x = 224
-integer y = 264
+integer y = 344
 integer width = 1577
 integer height = 660
 integer taborder = 40
 string title = "none"
 string dataobject = "dwg_menu_expedientes"
 boolean vscrollbar = true
-boolean border = false
-borderstyle borderstyle = stylelowered!
+borderstyle borderstyle = styleraised!
 end type
 
 type pb_generar from picturebutton within w_analisis_rep_solicitudes_expediente
 boolean visible = false
 integer x = 2011
-integer y = 352
+integer y = 488
 integer width = 402
 integer height = 100
 integer taborder = 30
@@ -372,94 +363,6 @@ alignment alignment = right!
 boolean focusrectangle = false
 end type
 
-type pb_buscar1 from picturebutton within w_analisis_rep_solicitudes_expediente
-integer x = 1550
-integer y = 108
-integer width = 110
-integer height = 96
-integer taborder = 20
-integer textsize = -11
-integer weight = 400
-fontcharset fontcharset = ansi!
-fontpitch fontpitch = variable!
-fontfamily fontfamily = swiss!
-string facename = "Calibri"
-string picturename = "Z:\Analisis\Resources\iconos\buscar.png"
-vtextalign vtextalign = vcenter!
-long backcolor = 0
-end type
-
-event clicked;Long ll_rows, ll_rows_detalle
-String ls_tramite
-
-dw_report.SetFocus()
-il_solicitud = f_db_get_solicitud(is_dpi)
-ls_tramite = f_db_get_solicitud_tramite(is_dpi)
-is_tramite = ls_tramite
-is_subtipo_cv = f_db_get_solicitud_subtipo_cv(is_dpi)
-
-pb_documentos.visible = true
-gb_doctos.visible = true
-
-
-choose case ls_tramite
-	case '01'  /* Vejez */
-		gb_doctos.text = 'Documentos Vejez'
-		dw_report.DataObject = "d_analisis_rep_cmp_nomina"
-	case '02'  /* Invalidez */
-		gb_doctos.text = 'Documentos Invalidez'
-		dw_report.DataObject = "d_analisis_rep_inv_cmp_nomina"
-	case '03'  /* CV */
-		
-		if is_subtipo_cv = '1' Then
-			gb_doctos.text = 'Documentos Contribución Voluntaria - Vejez'
-		else
-			gb_doctos.text = 'Documentos Contribución Voluntaria - Invalidez'
-		end if
-		dw_report.DataObject = "d_analisis_rep_cv_nomina"
-	case '04'  /* Muerte Jubilado */
-		gb_doctos.text = 'Documentos Muerte Jubilado'
-		dw_report.DataObject = "d_analisis_rep_mj_nomina"
-	case '05'  /* Muerte Activo */
-		gb_doctos.text = 'Documentos Muerte Activo'
-		dw_report.DataObject = "d_analisis_rep_ma_nomina"
-	case '06'  /* SV jubilado */
-		gb_doctos.text = 'Documentos Seguro Vida Jubilado'
-		dw_report.DataObject = "d_analisis_rep_svj_nomina"
-		//dw_report.DataObject = "d_analisis_rep_inv_cmp_nomina"
-	case '07'  /* SV activo */
-		gb_doctos.text = 'Documentos Seguro Vida Activo'
-		dw_report.DataObject = "d_analisis_rep_sva_nomina"
-	case '08'  /* aux postumo */
-		gb_doctos.text = 'Documentos Auxilio Póstumo'
-		//dw_report.DataObject = "d_analisis_rep_inv_cmp_nomina"
-	case '09'  /* gastos fun */
-		gb_doctos.text = 'Documentos Gastos Funerarios'
-		dw_report.DataObject = "d_analisis_rep_gf_nomina"
-end choose
-dw_report.SetTransObject(sqlca)
-dw_report.Modify("DataWindow.Print.Preview=Yes")
-ll_rows = dw_report.retrieve(is_dpi)
-commit;
-
-//f_db_get_contribuyente()
-
-//f_db_get_solicitud()
-
-
-//ll_rows_detalle = dw_detalle_requisitos.retrieve(is_dpi)
-
-//if not isnull(ll_rows_detalle) then
-//	ib_hay_detalle = true
-//else
-//	ib_hay_detalle = false
-//end if
-//
-
-
-
-end event
-
 type pb_buscar from picturebutton within w_analisis_rep_solicitudes_expediente
 integer x = 1655
 integer y = 108
@@ -482,7 +385,7 @@ end type
 event clicked;Long ll_rows, ll_rows_detalle
 String ls_tramite, cui
 
-dw_report.SetFocus()
+//dw_report.SetFocus()
 cui = buscardpi(is_dpi)
 
 il_solicitud = f_db_get_solicitud(cui)
@@ -492,9 +395,10 @@ is_subtipo_cv = f_db_get_solicitud_subtipo_cv(cui)
 is_auxpost = f_db_get_solicitud_auxilio_postumo(cui)
 
 //messagebox('ls_auxpost',ls_auxpost)
-
+sle_buscar.visible = true
 pb_documentos.visible = true
 gb_doctos.visible = true
+
 gb_acciones.visible = true
 pb_generar.visible = true
 dw_1.visible = true
@@ -560,15 +464,15 @@ commit;
 //end if
 //
 
-sle_buscar.enabled = true
 
 
 
 end event
 
 type sle_buscar from singlelineedit within w_analisis_rep_solicitudes_expediente
-integer x = 361
-integer y = 108
+event presionarenter pbm_keydown
+integer x = 370
+integer y = 100
 integer width = 1120
 integer height = 112
 integer taborder = 10
@@ -583,6 +487,95 @@ borderstyle borderstyle = stylelowered!
 boolean hideselection = false
 end type
 
+event presionarenter;IF KeyDown(KeyEnter!) THEN
+
+Long ll_rows, ll_rows_detalle
+String ls_tramite, cui
+
+//dw_report.SetFocus()
+cui = buscardpi(is_dpi)
+
+il_solicitud = f_db_get_solicitud(cui)
+ls_tramite = f_db_get_solicitud_tramite(cui)
+is_tramite = ls_tramite
+is_subtipo_cv = f_db_get_solicitud_subtipo_cv(cui)
+is_auxpost = f_db_get_solicitud_auxilio_postumo(cui)
+
+//messagebox('ls_auxpost',ls_auxpost)
+sle_buscar.visible = true
+pb_documentos.visible = true
+gb_doctos.visible = true
+
+gb_acciones.visible = true
+pb_generar.visible = true
+dw_1.visible = true
+dw_1.SetTransObject(sqlca)
+dw_1.retrieve(gi_unidad,is_tramite)
+
+choose case ls_tramite
+	case '01'  /* Vejez */
+		gb_doctos.text = 'Documentos Vejez'
+		//dw_report.DataObject = "d_analisis_rep_cmp_nomina"
+	case '02'  /* Invalidez */
+		gb_doctos.text = 'Documentos Invalidez'
+		//dw_report.DataObject = "d_analisis_rep_inv_cmp_nomina"
+	case '03'  /* CV */
+		if is_subtipo_cv = '1' Then
+			gb_doctos.text = 'Documentos Contribución Voluntaria - Vejez'
+		else
+			gb_doctos.text = 'Documentos Contribución Voluntaria - Invalidez'
+		end if
+	//	dw_report.DataObject = "d_analisis_rep_cv_nomina"
+	case '04'  /* Muerte Jubilado */
+		
+		gb_doctos.text = 'Documentos Muerte Pensionado'
+	//	dw_report.DataObject = "d_analisis_rep_mj_nomina"
+	case '05'  /* Muerte Activo */
+		
+		gb_doctos.text = 'Documentos Muerte Activo'
+	//	dw_report.DataObject = "d_analisis_rep_ma_nomina"
+	case '06'  /* SV jubilado */
+		
+		gb_doctos.text = 'Documentos Seguro Vida Jubilado'
+	//	dw_report.DataObject = "d_analisis_rep_svj_nomina"
+		//dw_report.DataObject = "d_analisis_rep_inv_cmp_nomina"
+	case '07'  /* SV activo */
+		
+		gb_doctos.text = 'Documentos Seguro Vida Activo'
+		dw_report.DataObject = "d_analisis_rep_sva_nomina"
+	case '08'  /* aux postumo */
+		gb_doctos.text = 'Documentos Auxilio Póstumo'
+		//dw_report.DataObject = "d_analisis_rep_inv_cmp_nomina"
+	case '09'  /* gastos fun */
+		
+		gb_doctos.text = 'Documentos Gastos Funerarios'
+		//dw_report.DataObject = "d_analisis_rep_gf_nomina"
+end choose
+//dw_report.SetTransObject(sqlca)
+//dw_report.Modify("DataWindow.Print.Preview=Yes")
+//ll_rows = dw_report.retrieve(cui)
+commit;
+
+
+//f_db_get_contribuyente()
+
+//f_db_get_solicitud()
+
+
+//ll_rows_detalle = dw_detalle_requisitos.retrieve(is_dpi)
+
+//if not isnull(ll_rows_detalle) then
+//	ib_hay_detalle = true
+//else
+//	ib_hay_detalle = false
+//end if
+//
+
+
+
+END IF
+end event
+
 event modified;is_dpi = This.text
 
 If isnull (is_dpi) Then
@@ -593,7 +586,7 @@ end event
 type pb_imprimir from picturebutton within w_analisis_rep_solicitudes_expediente
 boolean visible = false
 integer x = 2007
-integer y = 468
+integer y = 604
 integer width = 402
 integer height = 100
 integer taborder = 90
@@ -619,7 +612,7 @@ end event
 type pb_salir from picturebutton within w_analisis_rep_solicitudes_expediente
 boolean visible = false
 integer x = 2016
-integer y = 580
+integer y = 716
 integer width = 402
 integer height = 100
 integer taborder = 100
@@ -658,7 +651,7 @@ end type
 type gb_acciones from groupbox within w_analisis_rep_solicitudes_expediente
 boolean visible = false
 integer x = 1952
-integer y = 268
+integer y = 404
 integer width = 553
 integer height = 516
 integer taborder = 110
@@ -676,9 +669,9 @@ end type
 type gb_doctos from groupbox within w_analisis_rep_solicitudes_expediente
 boolean visible = false
 integer x = 37
-integer y = 28
-integer width = 3867
-integer height = 940
+integer y = 244
+integer width = 3835
+integer height = 788
 integer taborder = 140
 integer textsize = -10
 integer weight = 400
