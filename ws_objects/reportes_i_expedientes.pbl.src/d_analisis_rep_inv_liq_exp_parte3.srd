@@ -107,9 +107,9 @@ contenido en el Decreto Legislativo 44-94, y Artículos 10, 11 y 12, del Reglame
 + f_letras_sinquetzales(string(round( tot_salarios  ,2),~"###,###.00~")) + ' Quetzales con '
  + f_letras_centavos(string(round( tot_salarios  ,2),~"###,###.00~")) 
  + ' (Q. ' +  string(round( tot_salarios  ,2),~"###,###.00~") + ' )' 
- + if( pensión_inicial  >= pensión_máxima ,', le corresponde en concepto de pensión por invalidez la cantidad de ' + f_letras_sinquetzales(string(round(  pensión_inicial ,2),~"###,###.00~")) + ' Quetzales con '
- + f_letras_centavos(string(round(  pensión_inicial ,2),~"###,###.00~")) 
- + ' (Q. ' +  string(round(  pensión_inicial ,2),~"###,###.00~") + ' )' 
+ + if( pensión_inicial  >= pensión_máxima ,', le corresponde en concepto de pensión por invalidez la cantidad de ' + f_letras_sinquetzales(string(round(  tot_salarios * 0.80 ,2),~"###,###.00~")) + ' Quetzales con '
+ + f_letras_centavos(string(round(  tot_salarios  * 0.80 ,2),~"###,###.00~")) 
+ + ' (Q. ' +  string(round(  tot_salarios * 0.80,2),~"###,###.00~") + ' )' 
  + ', sin embargo por disposión de junta directiva en acta No. 81-2015 de fecha 02 de septiembre del año dos mil quince se fija la pensión máxima, ', '') 
  + ' quedando la pensión con la cantidad de ' + f_letras_sinquetzales(string( pensión_inicial ,~"###,###.00~")) 
  + ' quetzales ' 
