@@ -234,11 +234,14 @@ ldt_fecha_agui_fin_prop 	= datetime(dw_solicitud_pagos.object.solicitud_prestaci
 		/*****************************************/
 	/*    Calculo Prestación Muerte Inicial                            */
 	/*****************************************/
-	if li_anios > 0 then
+	if li_anios > 0 and li_anios < 15 then
 		precalculo = f_calculo_pm_inicial_mj1(li_anios,ldt_fecha_fallecimiento,ldt_fecha_fin_p1,ldc_pension1,ldc_pension2,ldc_pension_maxima)
 		dw_solicitud_pagos.object.monto_meses[ll_row] = f_calculo_pm_inicial_mj2(li_meses_lab,ldt_fecha_fallecimiento,ldt_fecha_fin_p1,ldc_pension1,ldc_pension2,ldc_pension_maxima)
 		precalculo += dw_solicitud_pagos.object.monto_meses[ll_row]
 		precalculo += f_calculo_pm_inicial_mj3(li_dias_lab,ldt_fecha_fallecimiento,ldt_fecha_fin_p1,ldc_pension1,ldc_pension2,ldc_pension_maxima)
+		dw_solicitud_pagos.object.prestacion_muerte[ll_row] = precalculo
+	elseif li_anios = 15 then
+		precalculo = f_calculo_pm_inicial_mj1(li_anios,ldt_fecha_fallecimiento,ldt_fecha_fin_p1,ldc_pension1,ldc_pension2,ldc_pension_maxima)
 		dw_solicitud_pagos.object.prestacion_muerte[ll_row] = precalculo
 	else
 		dw_solicitud_pagos.object.monto_meses[ll_row] = f_calculo_pm_inicial_mj2(li_meses_lab,ldt_fecha_fallecimiento,ldt_fecha_fin_p1,ldc_pension1,ldc_pension2,ldc_pension_maxima)
