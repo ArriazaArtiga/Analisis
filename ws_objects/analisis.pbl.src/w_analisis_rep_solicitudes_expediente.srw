@@ -178,6 +178,8 @@ end type
 
 event clicked;integer id, respuesta, li_cant_lineas
 string cui , ls_tramite, reporte, xx
+
+
 pb_imprimir.visible = true
 pb_salir.visible = true
 cui = buscardpi(is_dpi)
@@ -196,6 +198,7 @@ xx = f_db_get_solicitud_subtipo_cv(cui)
 				reporte = f_linkmenu_reportesexp(id,ls_tramite, 2)
 			else
 				reporte = f_linkmenu_reportesexp(id,ls_tramite, 1) 
+				
 			end if
 		case 4
 			if xx = '2' and Is_tramite = '03' Then

@@ -39,7 +39,13 @@ integer height = 3800
 integer taborder = 10
 string title = "none"
 string dataobject = "preuba"
-boolean livescroll = true
-borderstyle borderstyle = stylelowered!
+boolean hscrollbar = true
+boolean vscrollbar = true
+boolean hsplitscroll = true
+borderstyle borderstyle = styleraised!
 end type
+
+event constructor;this.settransobject( SQLCA)
+this.retrieve('2730198211805',' 800-ma-2023')
+end event
 
