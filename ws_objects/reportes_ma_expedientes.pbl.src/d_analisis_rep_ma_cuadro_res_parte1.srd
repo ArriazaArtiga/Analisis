@@ -1,5 +1,5 @@
 ﻿$PBExportHeader$d_analisis_rep_ma_cuadro_res_parte1.srd
-release 12.5;
+release 22;
 datawindow(units=0 timer_interval=0 color=16777215 brushmode=5 transparency=0 gradient.angle=0 gradient.color=16777215 gradient.focus=0 gradient.repetition.count=0 gradient.repetition.length=100 gradient.repetition.mode=0 gradient.scale=100 gradient.spread=100 gradient.transparency=0 picture.blur=0 picture.clip.bottom=0 picture.clip.left=0 picture.clip.right=0 picture.clip.top=0 picture.mode=0 picture.scale.x=100 picture.scale.y=100 picture.transparency=0 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 2 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 5 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.background=no print.preview.background=no print.preview.outline=yes hidegrayline=no showbackcoloronxp=no picture.file="" )
 header(height=1188 color="536870912" transparency="0" gradient.color="8421504" gradient.transparency="0" gradient.angle="0" brushmode="0" gradient.repetition.mode="0" gradient.repetition.count="0" gradient.repetition.length="100" gradient.focus="0" gradient.scale="100" gradient.spread="100" )
 summary(height=0 color="536870912" transparency="0" gradient.color="8421504" gradient.transparency="0" gradient.angle="0" brushmode="0" gradient.repetition.mode="0" gradient.repetition.count="0" gradient.repetition.length="100" gradient.focus="0" gradient.scale="100" gradient.spread="100" )
@@ -9,7 +9,7 @@ table(column=(type=char(232) updatewhereclause=yes name=nombres dbname="nombres"
  column=(type=char(30) updatewhereclause=yes name=descripcion_tramite dbname="descripcion_tramite" )
  column=(type=decimal(0) update=yes updatewhereclause=yes name=solicitud_prestacion_muerte_no_solicitud dbname="no_solicitud" )
  column=(type=char(15) update=yes updatewhereclause=yes name=solicitud_prestacion_muerte_dpi dbname="dpi" )
- column=(type=char(50) update=yes updatewhereclause=yes name=solicitud_prestacion_muerte_causa_fallecimiento dbname="causa_fallecimiento" )
+ column=(type=char(200) update=yes updatewhereclause=yes name=solicitud_prestacion_muerte_causa_fallecimiento dbname="causa_fallecimiento" )
  column=(type=datetime update=yes updatewhereclause=yes name=solicitud_prestacion_muerte_fecha_fallecimiento dbname="fecha_fallecimiento" )
  column=(type=char(100) update=yes updatewhereclause=yes name=solicitud_prestacion_muerte_lugar_fallecimiento dbname="lugar_fallecimiento" )
  column=(type=datetime update=yes updatewhereclause=yes name=solicitud_prestacion_muerte_fecha_ultimo_pago dbname="fecha_ultimo_pago" )
@@ -68,7 +68,7 @@ table(column=(type=char(232) updatewhereclause=yes name=nombres dbname="nombres"
          ( solicitudes.dpi = contribuyentes.dpi ) and  
 		( h.dpi = contribuyentes.dpi ) and  
 		( h.no_solicitud = solicitudes.no_solicitud ) and 
-		( h.tipo_documento = '3 ' ) and
+		( h.tipo_documento = '9 ' ) and
          ( ( solicitud_prestacion_muerte.dpi = :as_dpi ) AND  
          ( solicitudes.etapa < 210 ) )    
 " arguments=(("as_dpi", string)) )
@@ -114,6 +114,6 @@ xsltgen()
 jsgen()
 export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0  template=(comment="" encoding="UTF-8" name="untitled" xml="<?xml version=~"1.0~" encoding=~"UTF-16LE~" standalone=~"no~"?><d_analisis_rep_ma_cuadro_res_parte1><d_analisis_rep_ma_cuadro_res_parte1_row __pbband=~"detail~"><nombres>nombres</nombres><descripcion_tramite>descripcion_tramite</descripcion_tramite><solicitud_prestacion_muerte_no_solicitud>solicitud_prestacion_muerte_no_solicitud</solicitud_prestacion_muerte_no_solicitud><solicitud_prestacion_muerte_dpi>solicitud_prestacion_muerte_dpi</solicitud_prestacion_muerte_dpi><solicitud_prestacion_muerte_causa_fallecimiento>solicitud_prestacion_muerte_causa_fallecimiento</solicitud_prestacion_muerte_causa_fallecimiento><solicitud_prestacion_muerte_fecha_fallecimiento>solicitud_prestacion_muerte_fecha_fallecimiento</solicitud_prestacion_muerte_fecha_fallecimiento><solicitud_prestacion_muerte_lugar_fallecimiento>solicitud_prestacion_muerte_lugar_fallecimiento</solicitud_prestacion_muerte_lugar_fallecimiento><solicitud_prestacion_muerte_fecha_ultimo_pago>solicitud_prestacion_muerte_fecha_ultimo_pago</solicitud_prestacion_muerte_fecha_ultimo_pago><solicitud_prestacion_muerte_monto_pension>solicitud_prestacion_muerte_monto_pension</solicitud_prestacion_muerte_monto_pension><solicitud_prestacion_muerte_fecha_b14>solicitud_prestacion_muerte_fecha_b14</solicitud_prestacion_muerte_fecha_b14><solicitud_prestacion_muerte_fecha_agui>solicitud_prestacion_muerte_fecha_agui</solicitud_prestacion_muerte_fecha_agui><solicitud_prestacion_muerte_prestacion_muerte>solicitud_prestacion_muerte_prestacion_muerte</solicitud_prestacion_muerte_prestacion_muerte><solicitud_prestacion_muerte_monto_dias_mes>solicitud_prestacion_muerte_monto_dias_mes</solicitud_prestacion_muerte_monto_dias_mes><solicitud_prestacion_muerte_monto_meses>solicitud_prestacion_muerte_monto_meses</solicitud_prestacion_muerte_monto_meses><solicitud_prestacion_muerte_monto_b14>solicitud_prestacion_muerte_monto_b14</solicitud_prestacion_muerte_monto_b14><solicitud_prestacion_muerte_monto_agui>solicitud_prestacion_muerte_monto_agui</solicitud_prestacion_muerte_monto_agui><solicitud_prestacion_muerte_prestacion_muerte_neta>solicitud_prestacion_muerte_prestacion_muerte_neta</solicitud_prestacion_muerte_prestacion_muerte_neta><boletas_reintegro>boletas_reintegro</boletas_reintegro><monto_reintegro>monto_reintegro</monto_reintegro><contribuyentes_fecha_nacimiento>contribuyentes_fecha_nacimiento</contribuyentes_fecha_nacimiento><no_documento>no_documento</no_documento><fecha_documento>fecha_documento</fecha_documento><solicitudes_referencia_solicitud>solicitudes_referencia_solicitud</solicitudes_referencia_solicitud><solicitudes_fecha_resolucion>solicitudes_fecha_resolucion</solicitudes_fecha_resolucion></d_analisis_rep_ma_cuadro_res_parte1_row></d_analisis_rep_ma_cuadro_res_parte1>"))
 import.xml()
-export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.pdf(method=0 distill.custompostscript="0" nativepdf.customsize=0 nativepdf.customorientation=0 nativepdf.pdfstandard=0 nativepdf.useprintspec=no )
 export.xhtml()
  
