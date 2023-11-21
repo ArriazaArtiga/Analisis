@@ -167,6 +167,8 @@ type m_registro from menu within m_test
 end type
 type m_nomina from menu within m_test
 end type
+type m_prueba from menu within m_test
+end type
 type m_test from menu within menu_principal
 m_calvi m_calvi
 m_parametrización m_parametrización
@@ -174,6 +176,7 @@ m_buscardpi m_buscardpi
 m_pensionado m_pensionado
 m_registro m_registro
 m_nomina m_nomina
+m_prueba m_prueba
 end type
 global type menu_principal from menu
 m_mantenimiento m_mantenimiento
@@ -1714,6 +1717,7 @@ m_buscardpi m_buscardpi
 m_pensionado m_pensionado
 m_registro m_registro
 m_nomina m_nomina
+m_prueba m_prueba
 end type
 
 on m_test.create
@@ -1739,12 +1743,14 @@ this.m_buscardpi=create m_buscardpi
 this.m_pensionado=create m_pensionado
 this.m_registro=create m_registro
 this.m_nomina=create m_nomina
+this.m_prueba=create m_prueba
 this.Item[UpperBound(this.Item)+1]=this.m_calvi
 this.Item[UpperBound(this.Item)+1]=this.m_parametrización
 this.Item[UpperBound(this.Item)+1]=this.m_buscardpi
 this.Item[UpperBound(this.Item)+1]=this.m_pensionado
 this.Item[UpperBound(this.Item)+1]=this.m_registro
 this.Item[UpperBound(this.Item)+1]=this.m_nomina
+this.Item[UpperBound(this.Item)+1]=this.m_prueba
 end on
 
 on m_test.destroy
@@ -1755,6 +1761,7 @@ destroy(this.m_buscardpi)
 destroy(this.m_pensionado)
 destroy(this.m_registro)
 destroy(this.m_nomina)
+destroy(this.m_prueba)
 end on
 
 type m_calvi from menu within m_test
@@ -1961,4 +1968,38 @@ else
 end if
 
 end event
+
+type m_prueba from menu within m_test
+end type
+
+event clicked;if gi_unidad =9 then
+	Open (w_prueba)
+else
+	Messagebox("Advertencia","No cuenta con los permisos necesarios")
+end if
+
+end event
+
+on m_prueba.create
+call super::create
+this.text = "prueba"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_prueba.destroy
+call super::destroy
+end on
 
