@@ -5,30 +5,31 @@ header(height=0 color="536870912" transparency="0" gradient.color="8421504" grad
 summary(height=0 color="536870912" transparency="0" gradient.color="8421504" gradient.transparency="0" gradient.angle="0" brushmode="0" gradient.repetition.mode="0" gradient.repetition.count="0" gradient.repetition.length="100" gradient.focus="0" gradient.scale="100" gradient.spread="100" )
 footer(height=0 color="536870912" transparency="0" gradient.color="8421504" gradient.transparency="0" gradient.angle="0" brushmode="0" gradient.repetition.mode="0" gradient.repetition.count="0" gradient.repetition.length="100" gradient.focus="0" gradient.scale="100" gradient.spread="100" )
 detail(height=2724 color="536870912" transparency="0" gradient.color="8421504" gradient.transparency="0" gradient.angle="0" brushmode="0" gradient.repetition.mode="0" gradient.repetition.count="0" gradient.repetition.length="100" gradient.focus="0" gradient.scale="100" gradient.spread="100" )
-table(column=(type=char(30) updatewhereclause=yes name=contribuyentes_nombres dbname="contribuyentes.nombres" )
- column=(type=char(100) updatewhereclause=yes name=contribuyentes_apellidos dbname="contribuyentes.apellidos" )
- column=(type=char(100) updatewhereclause=yes name=contribuyentes_casada dbname="contribuyentes.casada" )
- column=(type=char(15) updatewhereclause=yes name=contribuyentes_dpi dbname="contribuyentes.dpi" )
- column=(type=datetime updatewhereclause=yes name=contribuyentes_fecha_nacimiento dbname="contribuyentes.fecha_nacimiento" )
+table(column=(type=char(30) updatewhereclause=yes name=contribuyentes_nombres dbname="nombres" )
+ column=(type=char(100) updatewhereclause=yes name=contribuyentes_apellidos dbname="apellidos" )
+ column=(type=char(100) updatewhereclause=yes name=contribuyentes_casada dbname="casada" )
+ column=(type=char(15) updatewhereclause=yes name=contribuyentes_dpi dbname="dpi" )
+ column=(type=datetime updatewhereclause=yes name=contribuyentes_fecha_nacimiento dbname="fecha_nacimiento" )
  column=(type=long updatewhereclause=yes name=edad dbname="edad" )
- column=(type=datetime updatewhereclause=yes name=contribuyentes_fecha_ingreso dbname="contribuyentes.fecha_ingreso" )
- column=(type=datetime updatewhereclause=yes name=solicitudes_fecha_entrega_cargo dbname="solicitudes.fecha_entrega_cargo" )
- column=(type=char(50) updatewhereclause=yes name=contribuyentes_puestos_descripcion dbname="contribuyentes_puestos.descripcion" )
- column=(type=char(50) updatewhereclause=yes name=municipios_nombre dbname="municipios.nombre" )
- column=(type=char(30) updatewhereclause=yes name=departamentos_nombre dbname="departamentos.nombre" )
- column=(type=char(12) updatewhereclause=yes name=solicitudes_referencia_solicitud dbname="solicitudes.referencia_solicitud" )
- column=(type=char(2) updatewhereclause=yes name=solicitudes_tipo_tramite dbname="solicitudes.tipo_tramite" )
+ column=(type=datetime updatewhereclause=yes name=contribuyentes_fecha_ingreso dbname="fecha_ingreso" )
+ column=(type=datetime updatewhereclause=yes name=solicitudes_fecha_entrega_cargo dbname="fecha_entrega_cargo" )
+ column=(type=char(150) updatewhereclause=yes name=contribuyentes_puestos_descripcion dbname="descripcion" )
+ column=(type=char(50) updatewhereclause=yes name=municipios_nombre dbname="nombre" )
+ column=(type=char(30) updatewhereclause=yes name=departamentos_nombre dbname="nombre" )
+ column=(type=char(12) updatewhereclause=yes name=solicitudes_referencia_solicitud dbname="referencia_solicitud" )
+ column=(type=char(2) updatewhereclause=yes name=solicitudes_tipo_tramite dbname="tipo_tramite" )
  column=(type=char(30) updatewhereclause=yes name=descripcion_tramite dbname="descripcion_tramite" )
  column=(type=long updatewhereclause=yes name=porcentaje dbname="porcentaje" )
  column=(type=long updatewhereclause=yes name=no_salarios dbname="no_salarios" )
  column=(type=decimal(2) updatewhereclause=yes name=tot_salarios dbname="tot_salarios" )
  column=(type=decimal(4) updatewhereclause=yes name=pensión_inicial dbname="pensión_inicial" )
  column=(type=decimal(2) updatewhereclause=yes name=pensión_máxima dbname="pensión_máxima" )
- column=(type=datetime updatewhereclause=yes name=contribuyentes_fecha_pension_inicial dbname="contribuyentes.fecha_pension_inicial" )
- column=(type=char(1) updatewhereclause=yes name=solicitud_documentos_expediente_tipo_documento dbname="solicitud_documentos_expediente.tipo_documento" )
- column=(type=datetime updatewhereclause=yes name=solicitud_documentos_expediente_fecha_documento dbname="solicitud_documentos_expediente.fecha_documento" )
- column=(type=datetime updatewhereclause=yes name=solicitud_documentos_expediente_fecha_pension dbname="solicitud_documentos_expediente.fecha_pension" )
- column=(type=decimal(0) updatewhereclause=yes name=solicitud_documentos_expediente_idejecutivo dbname="solicitud_documentos_expediente.idejecutivo" )
+ column=(type=datetime updatewhereclause=yes name=contribuyentes_fecha_pension_inicial dbname="fecha_pension_inicial" )
+ column=(type=char(2) updatewhereclause=yes name=solicitud_documentos_expediente_tipo_documento dbname="tipo_documento" )
+ column=(type=char(15) updatewhereclause=yes name=no_documento dbname="no_documento" )
+ column=(type=datetime updatewhereclause=yes name=solicitud_documentos_expediente_fecha_documento dbname="fecha_documento" )
+ column=(type=datetime updatewhereclause=yes name=solicitud_documentos_expediente_fecha_pension dbname="fecha_pension" )
+ column=(type=decimal(0) updatewhereclause=yes name=solicitud_documentos_expediente_idejecutivo dbname="idejecutivo" )
  column=(type=decimal(0) updatewhereclause=yes name=mes_inicial dbname="mes_inicial" )
  retrieve="select	a.Nombres,
 		a.Apellidos,
@@ -65,6 +66,7 @@ table(column=(type=char(30) updatewhereclause=yes name=contribuyentes_nombres db
 		3623.00 as 'Pensión_Máxima',
 		a.fecha_pension_inicial,
 		h.tipo_documento,
+		h.no_documento,
 		h.fecha_documento,
 		h.fecha_pension,
 		h.idejecutivo,
@@ -81,7 +83,7 @@ where	b.idPuesto = a.Puesto and
 		d.Depto = a.Depto and
 		h.DPI = a.DPI and
 		h.no_solicitud = f.no_solicitud and
-		h.tipo_documento = '9' and
+		h.tipo_documento = '2' and
 		f.DPI = a.DPI and
 		f.etapa < 210 and
 		a.DPI = :as_dpi
@@ -95,7 +97,7 @@ compute(band=detail alignment="2" expression="'Vo.Bo. __________________________
 "border="0" color="33554432" x="882" y="1400" height="92" width="1239" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Calibri" font.height="-11" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" transparency="0" )
 compute(band=detail alignment="0" expression="f_db_get_nombre_gerente()"border="0" color="33554432" x="992" y="1500" height="72" width="1129" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Calibri" font.height="-11" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" transparency="0" )
 text(band=detail alignment="2" text="Gerente Interino" border="0" color="33554432" x="992" y="1584" height="72" width="1129" html.valueishtml="0"  name=t_1 visible="1"  font.face="Calibri" font.height="-11" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" transparency="0" )
-compute(band=detail alignment="0" expression="'Nota: Esta liquidación corresponde al pago pendiente de prestación por Gastos Funerarios y Prestación por Beneficio Póstumo Gratuito, según liquidación ' + solicitudes_referencia_solicitud +  ' de fecha ' +  lower(f_fecha_letras_com( solicitud_documentos_expediente_fecha_pension )) +  '.'
+compute(band=detail alignment="0" expression="'Nota: Esta liquidación corresponde al pago pendiente de prestación por Gastos Funerarios y Prestación por Beneficio Póstumo Gratuito, según liquidación ' +  no_documento +  ' de fecha ' +  lower(f_fecha_letras_com(  solicitud_documentos_expediente_fecha_documento )) +  '.'
 "border="0" color="33554432" x="247" y="1864" height="792" width="3058" format="[GENERAL]" html.valueishtml="0"  name=compute_5 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" background.transparency="0" background.gradient.color="8421504" background.gradient.transparency="0" background.gradient.angle="0" background.brushmode="0" background.gradient.repetition.mode="0" background.gradient.repetition.count="0" background.gradient.repetition.length="100" background.gradient.focus="0" background.gradient.scale="100" background.gradient.spread="100" tooltip.backcolor="134217752" tooltip.delay.initial="0" tooltip.delay.visible="32000" tooltip.enabled="0" tooltip.hasclosebutton="0" tooltip.icon="0" tooltip.isbubble="0" tooltip.maxwidth="0" tooltip.textcolor="134217751" tooltip.transparency="0" transparency="0" )
 htmltable(border="1" )
 htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
