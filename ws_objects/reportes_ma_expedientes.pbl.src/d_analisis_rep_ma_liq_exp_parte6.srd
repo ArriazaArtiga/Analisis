@@ -96,7 +96,7 @@ where	b.idPuesto = a.Puesto and
 		e.no_solicitud = f.no_solicitud and
 		h.DPI = a.DPI and
 		h.no_solicitud = f.no_solicitud and
-		h.tipo_documento = '9' and
+		h.tipo_documento = '2' and
 		f.DPI = a.DPI and
 		f.etapa < 210 and
 		a.DPI = :as_dpi
