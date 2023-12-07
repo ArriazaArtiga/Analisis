@@ -234,7 +234,7 @@ destroy(this.m_reportes)
 destroy(this.m_test)
 end on
 
-event clicked;open(w_nomina)
+event clicked;open(w_rep_180)
 end event
 
 type m_mantenimiento from menu within menu_principal
@@ -1973,7 +1973,7 @@ type m_prueba from menu within m_test
 end type
 
 event clicked;if gi_unidad =9 then
-	Open (w_prueba)
+	Open (w_rep_180)
 else
 	Messagebox("Advertencia","No cuenta con los permisos necesarios")
 end if
