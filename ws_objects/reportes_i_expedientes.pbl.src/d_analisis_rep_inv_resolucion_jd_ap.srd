@@ -147,9 +147,9 @@ compute(band=detail alignment="3" expression="'a) Aprobar la liquidación númer
 compute(band=detail alignment="3" expression="'b) Otorgar pensión por invlidez al señor(a) ' 
 +  contribuyentes_nombres + ' ' +  contribuyentes_apellidos + '' + if(isNull( contribuyentes_casada ), '',  contribuyentes_casada ) 
 + if( pensión_inicial  = pensión_máxima ,', le corresponde en concepto de pensión por invalidez la cantidad de ' 
-+ lower(f_letras_sinquetzales(string(  pensión_inicial ,~"###,##0.00~"))) + ' quetzales con ' 
-+ f_letras_centavos(string( pensión_inicial ,~"###,##0.00~")) 
-+ ' (Q. ' + string( pensión_inicial ,~"###,##0.00~" ) 
++ lower(f_letras_sinquetzales(string(   salario ,~"###,##0.00~"))) + ' quetzales con ' 
++ f_letras_centavos(string(  salario ,~"###,##0.00~")) 
++ ' (Q. ' + string(  salario ,~"###,##0.00~" ) 
 + ' ), sin embargo por disposición de junta directiva en acta No. 81-2015 de fecha 02 de septiembre del año dos mil quince se fija la pensión máxima, ', 
 if( pensión_inicial =  500,', le corresponde en concepto de pensión por invalidez la cantidad de ' + lower(f_letras_sinquetzales(string( pensión_inicial ,~"###,##0.00~"))) 
 + ' quetzales con ' + f_letras_centavos(string( pensión_inicial ,~"###,##0.00~")) + ' (Q. ' + string( pensión_inicial ,~"###,##0.00~" ) 
