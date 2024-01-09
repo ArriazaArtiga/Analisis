@@ -38,7 +38,7 @@ Integer sol
    WHERE 
 		a.DPI= f.DPI and
 		f.No_Solicitud = h.No_Solicitud and
-         ((  h.tipo_documento = '8' ) OR (  h.tipo_documento = '8' )) AND  
+         ((  h.tipo_documento = '7' ) OR (  h.tipo_documento = '8' )) AND  
 		( f.etapa < 200 ) and
          ( a.DPI = :as_dpi )  
 using SQLCA;

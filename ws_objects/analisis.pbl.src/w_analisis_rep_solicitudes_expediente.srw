@@ -207,18 +207,27 @@ xx = f_db_get_solicitud_subtipo_cv(cui)
 				reporte = f_linkmenu_reportesexp(id,ls_tramite, 1) 
 			end if
 		case 7  // Recibo Cáculo
-			respuesta = MessageBox("¿Modificar?", "¿Desea modificar el recibo de cálculos?", Question!, YesNo!, 2)
-			if respuesta = 1 then
-				OpenWithParm(w_analisis_cal_vejez, cui)
+			if Is_tramite = '01' or Is_tramite = '02'  Then
+				respuesta = MessageBox("¿Modificar?", "¿Desea modificar el recibo de cálculos?", Question!, YesNo!, 2)
+				if respuesta = 1 then
+					OpenWithParm(w_analisis_cal_vejez, cui)
+				else
+					reporte = f_linkmenu_reportesexp(id,ls_tramite, 2)
+				end if
 			else
-				reporte = f_linkmenu_reportesexp(id,ls_tramite, 2)
+					reporte = f_linkmenu_reportesexp(id,ls_tramite, 1)
 			end if
+			
 		case 8  // Recibo Cáculo 1er. Pago
-			respuesta = MessageBox("¿Modificar?", "¿Desea modificar el recibo de cálculos?", Question!, YesNo!, 2)
-			if respuesta = 1 then
-				OpenWithParm(w_analisis_cal_vejez, cui)
+			if Is_tramite = '01' or Is_tramite = '02' Then
+				respuesta = MessageBox("¿Modificar?", "¿Desea modificar el recibo de cálculos?", Question!, YesNo!, 2)
+				if respuesta = 1 then
+					OpenWithParm(w_analisis_cal_vejez, cui)
+				else
+					reporte = f_linkmenu_reportesexp(id,ls_tramite, 2)
+				end if
 			else
-				reporte = f_linkmenu_reportesexp(id,ls_tramite, 2)
+					reporte = f_linkmenu_reportesexp(id,ls_tramite, 1)
 			end if
 		case 9  // Resolución
 			if xx = '1' and Is_tramite = '02'  Then
