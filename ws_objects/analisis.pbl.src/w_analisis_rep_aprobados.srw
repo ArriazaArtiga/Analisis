@@ -2,13 +2,13 @@
 forward
 global type w_analisis_rep_aprobados from window
 end type
+type ddlb_1 from dropdownlistbox within w_analisis_rep_aprobados
+end type
 type grabar from picturebutton within w_analisis_rep_aprobados
 end type
 type imprimir from picturebutton within w_analisis_rep_aprobados
 end type
 type dw_1 from datawindow within w_analisis_rep_aprobados
-end type
-type em_1 from editmask within w_analisis_rep_aprobados
 end type
 type cb_1 from commandbutton within w_analisis_rep_aprobados
 end type
@@ -28,38 +28,55 @@ boolean resizable = true
 long backcolor = 67108864
 string icon = "AppIcon!"
 boolean center = true
+ddlb_1 ddlb_1
 grabar grabar
 imprimir imprimir
 dw_1 dw_1
-em_1 em_1
 cb_1 cb_1
 gb_acciones gb_acciones
 end type
 global w_analisis_rep_aprobados w_analisis_rep_aprobados
 
 on w_analisis_rep_aprobados.create
+this.ddlb_1=create ddlb_1
 this.grabar=create grabar
 this.imprimir=create imprimir
 this.dw_1=create dw_1
-this.em_1=create em_1
 this.cb_1=create cb_1
 this.gb_acciones=create gb_acciones
-this.Control[]={this.grabar,&
+this.Control[]={this.ddlb_1,&
+this.grabar,&
 this.imprimir,&
 this.dw_1,&
-this.em_1,&
 this.cb_1,&
 this.gb_acciones}
 end on
 
 on w_analisis_rep_aprobados.destroy
+destroy(this.ddlb_1)
 destroy(this.grabar)
 destroy(this.imprimir)
 destroy(this.dw_1)
-destroy(this.em_1)
 destroy(this.cb_1)
 destroy(this.gb_acciones)
 end on
+
+type ddlb_1 from dropdownlistbox within w_analisis_rep_aprobados
+integer x = 55
+integer y = 32
+integer width = 567
+integer height = 400
+integer taborder = 20
+integer textsize = -10
+integer weight = 400
+fontcharset fontcharset = ansi!
+fontpitch fontpitch = variable!
+fontfamily fontfamily = swiss!
+string facename = "Tahoma"
+long textcolor = 33554432
+string item[] = {"80","110"}
+borderstyle borderstyle = stylelowered!
+end type
 
 type grabar from picturebutton within w_analisis_rep_aprobados
 integer x = 3913
@@ -122,28 +139,9 @@ boolean livescroll = true
 borderstyle borderstyle = stylelowered!
 end type
 
-type em_1 from editmask within w_analisis_rep_aprobados
-integer x = 59
-integer y = 56
-integer width = 402
-integer height = 112
-integer taborder = 10
-integer textsize = -10
-integer weight = 400
-fontcharset fontcharset = ansi!
-fontpitch fontpitch = variable!
-fontfamily fontfamily = swiss!
-string facename = "Tahoma"
-long textcolor = 33554432
-string text = "none"
-borderstyle borderstyle = stylelowered!
-string mask = "#####"
-string minmax = "4~~4"
-end type
-
 type cb_1 from commandbutton within w_analisis_rep_aprobados
-integer x = 1408
-integer y = 60
+integer x = 681
+integer y = 32
 integer width = 402
 integer height = 112
 integer taborder = 10
@@ -158,7 +156,7 @@ end type
 
 event clicked;	dw_1.SetTransObject(sqlca)
 	dw_1.Modify("DataWindow.Print.Preview=Yes")
-	dw_1.retrieve(integer(em_1.text))
+	dw_1.retrieve(integer(ddlb_1.text))
 end event
 
 type gb_acciones from groupbox within w_analisis_rep_aprobados

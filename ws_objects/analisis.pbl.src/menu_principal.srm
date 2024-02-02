@@ -38,6 +38,8 @@ type m_cierrenominapensionados from menu within m_procesos
 end type
 type m_cierrepagos from menu within m_procesos
 end type
+type m_verificaciones from menu within m_procesos
+end type
 type m_procesos from menu within menu_principal
 m_calculomontos m_calculomontos
 m_cambioetapa m_cambioetapa
@@ -45,6 +47,7 @@ m_regresodeetapa m_regresodeetapa
 m_cambiossubestado m_cambiossubestado
 m_cierrenominapensionados m_cierrenominapensionados
 m_cierrepagos m_cierrepagos
+m_verificaciones m_verificaciones
 end type
 type m_pensionados0 from menu within menu_principal
 end type
@@ -95,9 +98,12 @@ type m_enviadoaauditoria from menu within m_auditoria
 end type
 type m_aprobadorechazadoa from menu within m_auditoria
 end type
+type m_historicoaprobado from menu within m_auditoria
+end type
 type m_auditoria from menu within m_reportes
 m_enviadoaauditoria m_enviadoaauditoria
 m_aprobadorechazadoa m_aprobadorechazadoa
+m_historicoaprobado m_historicoaprobado
 end type
 type m_juridico from menu within m_reportes
 end type
@@ -105,9 +111,12 @@ type m_enviadoajuridico from menu within m_juridico
 end type
 type m_aprobadorechazadoj from menu within m_juridico
 end type
+type m_historicoaprobado0 from menu within m_juridico
+end type
 type m_juridico from menu within m_reportes
 m_enviadoajuridico m_enviadoajuridico
 m_aprobadorechazadoj m_aprobadorechazadoj
+m_historicoaprobado0 m_historicoaprobado0
 end type
 type m_financiero from menu within m_reportes
 end type
@@ -482,6 +491,7 @@ m_regresodeetapa m_regresodeetapa
 m_cambiossubestado m_cambiossubestado
 m_cierrenominapensionados m_cierrenominapensionados
 m_cierrepagos m_cierrepagos
+m_verificaciones m_verificaciones
 end type
 
 on m_procesos.create
@@ -510,12 +520,14 @@ this.m_regresodeetapa=create m_regresodeetapa
 this.m_cambiossubestado=create m_cambiossubestado
 this.m_cierrenominapensionados=create m_cierrenominapensionados
 this.m_cierrepagos=create m_cierrepagos
+this.m_verificaciones=create m_verificaciones
 this.Item[UpperBound(this.Item)+1]=this.m_calculomontos
 this.Item[UpperBound(this.Item)+1]=this.m_cambioetapa
 this.Item[UpperBound(this.Item)+1]=this.m_regresodeetapa
 this.Item[UpperBound(this.Item)+1]=this.m_cambiossubestado
 this.Item[UpperBound(this.Item)+1]=this.m_cierrenominapensionados
 this.Item[UpperBound(this.Item)+1]=this.m_cierrepagos
+this.Item[UpperBound(this.Item)+1]=this.m_verificaciones
 end on
 
 on m_procesos.destroy
@@ -526,6 +538,7 @@ destroy(this.m_regresodeetapa)
 destroy(this.m_cambiossubestado)
 destroy(this.m_cierrenominapensionados)
 destroy(this.m_cierrepagos)
+destroy(this.m_verificaciones)
 end on
 
 type m_calculomontos from menu within m_procesos
@@ -656,6 +669,7 @@ end type
 
 on m_cierrenominapensionados.create
 call super::create
+this.visible = false
 this.text = "CIERRE NOMINA PENSIONADOS"
 this.menustyle = contemporarymenu!
 this.menutextcolor = 134217735
@@ -688,6 +702,7 @@ end event
 
 on m_cierrepagos.create
 call super::create
+this.visible = false
 this.text = "CIERRE PAGOS"
 this.menustyle = contemporarymenu!
 this.menutextcolor = 134217735
@@ -708,6 +723,35 @@ end on
 on m_cierrepagos.destroy
 call super::destroy
 end on
+
+type m_verificaciones from menu within m_procesos
+end type
+
+on m_verificaciones.create
+call super::create
+this.text = "VERIFICACIONES"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_verificaciones.destroy
+call super::destroy
+end on
+
+event clicked;open(w_analisis_verificacion)
+end event
 
 type m_pensionados0 from menu within menu_principal
 m_nuevopensionado m_nuevopensionado
@@ -1187,6 +1231,7 @@ end event
 type m_auditoria from menu within m_reportes
 m_enviadoaauditoria m_enviadoaauditoria
 m_aprobadorechazadoa m_aprobadorechazadoa
+m_historicoaprobado m_historicoaprobado
 end type
 
 on m_auditoria.create
@@ -1208,14 +1253,17 @@ this.toolbarbackcolor = 15780518
 this.toolbarhighlightcolor = 134217857
 this.m_enviadoaauditoria=create m_enviadoaauditoria
 this.m_aprobadorechazadoa=create m_aprobadorechazadoa
+this.m_historicoaprobado=create m_historicoaprobado
 this.Item[UpperBound(this.Item)+1]=this.m_enviadoaauditoria
 this.Item[UpperBound(this.Item)+1]=this.m_aprobadorechazadoa
+this.Item[UpperBound(this.Item)+1]=this.m_historicoaprobado
 end on
 
 on m_auditoria.destroy
 call super::destroy
 destroy(this.m_enviadoaauditoria)
 destroy(this.m_aprobadorechazadoa)
+destroy(this.m_historicoaprobado)
 end on
 
 type m_enviadoaauditoria from menu within m_auditoria
@@ -1276,9 +1324,39 @@ end on
 event clicked;Open(w_analisis_rep_solic_x_tramite_et_70_80)
 end event
 
+type m_historicoaprobado from menu within m_auditoria
+end type
+
+event clicked;	Open (w_analisis_rep_aprobados)
+end event
+
+on m_historicoaprobado.create
+call super::create
+this.text = "HISTORICO APROBADO"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_historicoaprobado.destroy
+call super::destroy
+end on
+
 type m_juridico from menu within m_reportes
 m_enviadoajuridico m_enviadoajuridico
 m_aprobadorechazadoj m_aprobadorechazadoj
+m_historicoaprobado0 m_historicoaprobado0
 end type
 
 on m_juridico.create
@@ -1300,14 +1378,17 @@ this.toolbarbackcolor = 15780518
 this.toolbarhighlightcolor = 134217857
 this.m_enviadoajuridico=create m_enviadoajuridico
 this.m_aprobadorechazadoj=create m_aprobadorechazadoj
+this.m_historicoaprobado0=create m_historicoaprobado0
 this.Item[UpperBound(this.Item)+1]=this.m_enviadoajuridico
 this.Item[UpperBound(this.Item)+1]=this.m_aprobadorechazadoj
+this.Item[UpperBound(this.Item)+1]=this.m_historicoaprobado0
 end on
 
 on m_juridico.destroy
 call super::destroy
 destroy(this.m_enviadoajuridico)
 destroy(this.m_aprobadorechazadoj)
+destroy(this.m_historicoaprobado0)
 end on
 
 type m_enviadoajuridico from menu within m_juridico
@@ -1367,6 +1448,35 @@ end on
 
 event clicked;Open(w_analisis_rep_solic_x_tramite_et_100_110)
 end event
+
+type m_historicoaprobado0 from menu within m_juridico
+end type
+
+event clicked;	Open (w_analisis_rep_aprobados)
+end event
+
+on m_historicoaprobado0.create
+call super::create
+this.text = "HISTORICO APROBADO"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_historicoaprobado0.destroy
+call super::destroy
+end on
 
 type m_financiero from menu within m_reportes
 m_enviadoafinanciero m_enviadoafinanciero
