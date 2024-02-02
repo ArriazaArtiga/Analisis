@@ -236,9 +236,12 @@ ldt_fecha_agui_fin_prop 	= datetime(dw_solicitud_pagos.object.solicitud_prestaci
 	/*****************************************/
 	if li_anios > 0 and li_anios < 15 then
 		precalculo = f_calculo_pm_inicial_mj1(li_anios,ldt_fecha_fallecimiento,ldt_fecha_fin_p1,ldc_pension1,ldc_pension2,ldc_pension_maxima)
+		messagebox('',string(precalculo))
 		dw_solicitud_pagos.object.monto_meses[ll_row] = f_calculo_pm_inicial_mj2(li_meses_lab,ldt_fecha_fallecimiento,ldt_fecha_fin_p1,ldc_pension1,ldc_pension2,ldc_pension_maxima)
+		messagebox('',string(dw_solicitud_pagos.object.monto_meses[ll_row]))
 		precalculo += dw_solicitud_pagos.object.monto_meses[ll_row]
 		precalculo += f_calculo_pm_inicial_mj3(li_dias_lab,ldt_fecha_fallecimiento,ldt_fecha_fin_p1,ldc_pension1,ldc_pension2,ldc_pension_maxima)
+		messagebox('',string( f_calculo_pm_inicial_mj3(li_dias_lab,ldt_fecha_fallecimiento,ldt_fecha_fin_p1,ldc_pension1,ldc_pension2,ldc_pension_maxima)))
 		dw_solicitud_pagos.object.prestacion_muerte[ll_row] = precalculo
 	elseif li_anios = 15 then
 		precalculo = f_calculo_pm_inicial_mj1(li_anios,ldt_fecha_fallecimiento,ldt_fecha_fin_p1,ldc_pension1,ldc_pension2,ldc_pension_maxima)
@@ -251,7 +254,7 @@ ldt_fecha_agui_fin_prop 	= datetime(dw_solicitud_pagos.object.solicitud_prestaci
 	end if
 	
 	ldc_prestacion_muerte_inicial = dw_solicitud_pagos.object.prestacion_muerte[ll_row]
-    
+    //messagebox('x',string(dw_solicitud_pagos.object.monto_meses[ll_row]))
 	 /*****************************************/
 	// calculo de dias de pension pagada                              */
 	/*****************************************/
@@ -315,8 +318,10 @@ ldt_fecha_agui_fin_prop 	= datetime(dw_solicitud_pagos.object.solicitud_prestaci
 				subtotalA =f_diferencia_meses( ldt_fecha_fallecimiento,ldt_fecha_fin_p1) * pension1
 				subtotalB = (f_diferencia_meses( ldt_fecha_fin_p1,ldt_fecha_ultimo_pago)) * pension2
 				ldc_meses_pago = round(subtotalA+subtotalB,2)
+				messagebox('x2',string(ldc_meses_pago))
 				
 			end if
+			
 				
 		else
 			if year(f_fallece) <> year(f_upago)then
@@ -324,7 +329,7 @@ ldt_fecha_agui_fin_prop 	= datetime(dw_solicitud_pagos.object.solicitud_prestaci
 			else
 				ldc_meses_pago =  round(( f_diferencia_meses( ldt_fecha_fallecimiento,ldt_fecha_ultimo_pago))* pension1,2)
 			end if 
-		
+			
 		end if
 	elseif f_fallece > f_upago then
 		if pension1 <>0 and pension2 <> 0 and  f_fpension1 > f_upago then
@@ -344,6 +349,7 @@ ldt_fecha_agui_fin_prop 	= datetime(dw_solicitud_pagos.object.solicitud_prestaci
 				ldc_meses_pago_suma =   round(( (f_diferencia_meses( ldt_fecha_ultimo_pago,ldt_fecha_fallecimiento)-1) * pension1),2)
 			else 
 				ldc_meses_pago_suma =   round(( (f_diferencia_meses( ldt_fecha_fallecimiento,ldt_fecha_ultimo_pago)) * pension1),2)
+
 		
 			end if
 			
@@ -359,7 +365,9 @@ ldt_fecha_agui_fin_prop 	= datetime(dw_solicitud_pagos.object.solicitud_prestaci
 		ldc_meses_pago_suma= 0
 	end if 
 	dw_solicitud_pagos.object.monto_meses[ll_row] = ldc_meses_pago
+	
 	dw_solicitud_pagos.object.monto_meses_suma[ll_row] = ldc_meses_pago_suma
+	//messagebox('x',string(dw_solicitud_pagos.object.monto_meses_suma[ll_row]))
 	/**************************************************************************/
 	
 	

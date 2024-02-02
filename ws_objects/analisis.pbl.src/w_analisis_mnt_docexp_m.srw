@@ -93,21 +93,29 @@ string text = "Eliminar"
 end type
 
 event clicked;long id
-if dw_1.rowcount( ) =0 then
-	return
-else 
+string unidad
+unidad = dw_1.getitemstring( dw_1.getrow(),4 )
+
+if gi_unidad =integer(unidad) or  gi_unidad =9  then
+	if dw_1.rowcount( ) =0 then
+		return
+	else 
 		dw_1.deleterow( dw_1.getrow( ) )
 		dw_1.update( )
 		parametros.dt.settransobject( SQLCA)
 		parametros.dt.retrieve(parametros.sl_solicitud, parametros.ss_dpi )
-end if
-If SQLCA.SQLCODE = 0 Then
-   Commit Using SQLCA; // Se realizan los cambios
-Else
-   RollBack Using SQLCA; // Ocurrio un error, no se guardan los cambios
-End If
+	end if
+	If SQLCA.SQLCODE = 0 Then
+  	 Commit Using SQLCA; // Se realizan los cambios
+	Else
+  	 RollBack Using SQLCA; // Ocurrio un error, no se guardan los cambios
+	End If
 
-close(parent)
+	close(parent)
+
+else
+	Messagebox("Advertencia","No cuenta con los permisos necesarios, coloque la unidad que le corresponde")
+end if
 end event
 
 type dw_1 from datawindow within w_analisis_mnt_docexp_m
@@ -180,17 +188,28 @@ string facename = "Tahoma"
 string text = "Guardar"
 end type
 
-event clicked;string cui
+event clicked;string cui, unidad
 long sol
+
+unidad = dw_1.getitemstring( dw_1.getrow(),4 )
+
+
 sol = parametros.sl_solicitud
 cui = parametros.ss_dpi
-if dw_1.update() = 1 then
-	parametros.dt.settransobject(sqlca)
-	parametros.dt.retrieve(sol,cui)
-	close(parent)
+
+
+if gi_unidad =integer(unidad) or  gi_unidad =9  then
+	if dw_1.update() = 1 then
+		parametros.dt.settransobject(sqlca)
+		parametros.dt.retrieve(sol,cui)
+		close(parent)
 	
+	else
+		messagebox("Error","El registro no se a guardado en el sistema")
+	end if
 else
-	messagebox("Error","El registro no se a guardado en el sistema")
+	Messagebox("Advertencia","No cuenta con los permisos necesarios, coloque la unidad que le corresponde")
 end if
+
 end event
 
