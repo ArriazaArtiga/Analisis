@@ -29,8 +29,8 @@ end type
 end forward
 
 global type w_analisis_verificacion from window
-integer width = 3456
-integer height = 1764
+integer width = 3762
+integer height = 2160
 boolean titlebar = true
 string title = "Verificaciones"
 boolean controlmenu = true
@@ -101,7 +101,7 @@ event open;dw_1.SetTransObject(sqlca)
 end event
 
 type cb_7 from commandbutton within w_analisis_verificacion
-integer x = 2944
+integer x = 3209
 integer y = 980
 integer width = 402
 integer height = 112
@@ -112,11 +112,11 @@ fontcharset fontcharset = ansi!
 fontpitch fontpitch = variable!
 fontfamily fontfamily = swiss!
 string facename = "Tahoma"
-string text = "Nuevo"
+string text = "Agregar"
 end type
 
 type cb_6 from commandbutton within w_analisis_verificacion
-integer x = 2944
+integer x = 3209
 integer y = 1148
 integer width = 402
 integer height = 112
@@ -131,7 +131,7 @@ string text = "Modificar"
 end type
 
 type cb_4 from commandbutton within w_analisis_verificacion
-integer x = 2944
+integer x = 3109
 integer y = 608
 integer width = 402
 integer height = 112
@@ -146,7 +146,7 @@ string text = "Borrar"
 end type
 
 type cb_3 from commandbutton within w_analisis_verificacion
-integer x = 2944
+integer x = 3109
 integer y = 440
 integer width = 402
 integer height = 112
@@ -161,7 +161,7 @@ string text = "Modificar"
 end type
 
 type cb_2 from commandbutton within w_analisis_verificacion
-integer x = 2944
+integer x = 3109
 integer y = 272
 integer width = 402
 integer height = 112
@@ -177,19 +177,22 @@ end type
 
 type dw_2 from datawindow within w_analisis_verificacion
 integer x = 46
-integer y = 1024
-integer width = 2843
-integer height = 400
+integer y = 1028
+integer width = 3045
+integer height = 948
 integer taborder = 40
 string title = "none"
+string dataobject = "grid_detalleverificacion"
+boolean hscrollbar = true
+boolean vscrollbar = true
 boolean livescroll = true
 borderstyle borderstyle = stylelowered!
 end type
 
 type dw_1 from datawindow within w_analisis_verificacion
-integer x = 50
-integer y = 280
-integer width = 2825
+integer x = 55
+integer y = 276
+integer width = 2903
 integer height = 448
 integer taborder = 30
 string title = "none"
@@ -199,9 +202,9 @@ borderstyle borderstyle = stylelowered!
 end type
 
 type cb_1 from commandbutton within w_analisis_verificacion
-integer x = 1632
+integer x = 1403
 integer y = 60
-integer width = 402
+integer width = 631
 integer height = 112
 integer taborder = 30
 integer textsize = -10
@@ -210,7 +213,7 @@ fontcharset fontcharset = ansi!
 fontpitch fontpitch = variable!
 fontfamily fontfamily = swiss!
 string facename = "Tahoma"
-string text = "none"
+string text = "Reporte"
 end type
 
 event clicked;messagebox("s",string(codigo.text))
@@ -232,11 +235,13 @@ string picturename = "Search1!"
 vtextalign vtextalign = vcenter!
 end type
 
-event clicked;messagebox("s",string(codigo.text))
-dw_1.visible = true
-dw_1.SetTransObject(sqlca)
-dw_1.retrieve(codigo.text)
-
+event clicked;	dw_1.SetTransObject(sqlca)
+	dw_1.Modify("DataWindow.Print.Preview=Yes")
+	dw_1.retrieve(codigo.text)
+	
+	dw_2.SetTransObject(sqlca)
+	dw_2.Modify("DataWindow.Print.Preview=Yes")
+	dw_2.retrieve(codigo.text)
 end event
 
 type codigo from singlelineedit within w_analisis_verificacion
@@ -252,7 +257,6 @@ fontpitch fontpitch = variable!
 fontfamily fontfamily = swiss!
 string facename = "Tahoma"
 long textcolor = 33554432
-string text = "none"
 borderstyle borderstyle = stylelowered!
 string placeholder = "Codigo de Verificacion"
 end type
@@ -260,7 +264,7 @@ end type
 type gb_1 from groupbox within w_analisis_verificacion
 integer x = 23
 integer y = 180
-integer width = 3360
+integer width = 3625
 integer height = 624
 integer taborder = 30
 integer textsize = -10
@@ -277,8 +281,8 @@ end type
 type gb_2 from groupbox within w_analisis_verificacion
 integer x = 23
 integer y = 880
-integer width = 3360
-integer height = 624
+integer width = 3630
+integer height = 1132
 integer taborder = 40
 integer textsize = -10
 integer weight = 400
