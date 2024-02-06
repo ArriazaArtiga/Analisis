@@ -29,17 +29,17 @@ end type
 end forward
 
 global type w_analisis_verificacion from window
-integer width = 3762
-integer height = 2160
+integer width = 3735
+integer height = 2136
 boolean titlebar = true
 string title = "Verificaciones"
 boolean controlmenu = true
-boolean minbox = true
-boolean maxbox = true
-boolean resizable = true
+windowtype windowtype = response!
 long backcolor = 67108864
 string icon = "AppIcon!"
 boolean center = true
+windowanimationstyle closeanimation = fadeanimation!
+windowdockstate windowdockstate = windowdockstatetabbedwindow!
 cb_7 cb_7
 cb_6 cb_6
 cb_4 cb_4
@@ -98,14 +98,15 @@ destroy(this.gb_2)
 end on
 
 event open;dw_1.SetTransObject(sqlca)
+dw_2.SetTransObject(sqlca)
 end event
 
 type cb_7 from commandbutton within w_analisis_verificacion
-integer x = 3209
-integer y = 980
+integer x = 3177
+integer y = 820
 integer width = 402
 integer height = 112
-integer taborder = 40
+integer taborder = 60
 integer textsize = -10
 integer weight = 400
 fontcharset fontcharset = ansi!
@@ -116,11 +117,11 @@ string text = "Agregar"
 end type
 
 type cb_6 from commandbutton within w_analisis_verificacion
-integer x = 3209
-integer y = 1148
+integer x = 3177
+integer y = 940
 integer width = 402
 integer height = 112
-integer taborder = 40
+integer taborder = 70
 integer textsize = -10
 integer weight = 400
 fontcharset fontcharset = ansi!
@@ -132,10 +133,10 @@ end type
 
 type cb_4 from commandbutton within w_analisis_verificacion
 integer x = 3109
-integer y = 608
+integer y = 472
 integer width = 402
 integer height = 112
-integer taborder = 40
+integer taborder = 80
 integer textsize = -10
 integer weight = 400
 fontcharset fontcharset = ansi!
@@ -147,10 +148,10 @@ end type
 
 type cb_3 from commandbutton within w_analisis_verificacion
 integer x = 3109
-integer y = 440
+integer y = 364
 integer width = 402
 integer height = 112
-integer taborder = 40
+integer taborder = 90
 integer textsize = -10
 integer weight = 400
 fontcharset fontcharset = ansi!
@@ -162,10 +163,10 @@ end type
 
 type cb_2 from commandbutton within w_analisis_verificacion
 integer x = 3109
-integer y = 272
+integer y = 256
 integer width = 402
 integer height = 112
-integer taborder = 40
+integer taborder = 100
 integer textsize = -10
 integer weight = 400
 fontcharset fontcharset = ansi!
@@ -177,10 +178,10 @@ end type
 
 type dw_2 from datawindow within w_analisis_verificacion
 integer x = 46
-integer y = 1028
+integer y = 720
 integer width = 3045
-integer height = 948
-integer taborder = 40
+integer height = 1256
+integer taborder = 110
 string title = "none"
 string dataobject = "grid_detalleverificacion"
 boolean hscrollbar = true
@@ -193,7 +194,7 @@ type dw_1 from datawindow within w_analisis_verificacion
 integer x = 55
 integer y = 276
 integer width = 2903
-integer height = 448
+integer height = 292
 integer taborder = 30
 string title = "none"
 string dataobject = "freefrom_encabezadoverificacion"
@@ -206,7 +207,7 @@ integer x = 1403
 integer y = 60
 integer width = 631
 integer height = 112
-integer taborder = 30
+integer taborder = 40
 integer textsize = -10
 integer weight = 400
 fontcharset fontcharset = ansi!
@@ -235,13 +236,15 @@ string picturename = "Search1!"
 vtextalign vtextalign = vcenter!
 end type
 
-event clicked;	dw_1.SetTransObject(sqlca)
+event clicked;	messagebox('!',codigo.text)
+	dw_1.SetTransObject(sqlca)
 	dw_1.Modify("DataWindow.Print.Preview=Yes")
 	dw_1.retrieve(codigo.text)
 	
 	dw_2.SetTransObject(sqlca)
 	dw_2.Modify("DataWindow.Print.Preview=Yes")
 	dw_2.retrieve(codigo.text)
+	messagebox('!',codigo.text)
 end event
 
 type codigo from singlelineedit within w_analisis_verificacion
@@ -258,15 +261,14 @@ fontfamily fontfamily = swiss!
 string facename = "Tahoma"
 long textcolor = 33554432
 borderstyle borderstyle = stylelowered!
-string placeholder = "Codigo de Verificacion"
 end type
 
 type gb_1 from groupbox within w_analisis_verificacion
 integer x = 23
 integer y = 180
 integer width = 3625
-integer height = 624
-integer taborder = 30
+integer height = 424
+integer taborder = 50
 integer textsize = -10
 integer weight = 400
 fontcharset fontcharset = ansi!
@@ -280,10 +282,10 @@ end type
 
 type gb_2 from groupbox within w_analisis_verificacion
 integer x = 23
-integer y = 880
+integer y = 628
 integer width = 3630
-integer height = 1132
-integer taborder = 40
+integer height = 1384
+integer taborder = 120
 integer textsize = -10
 integer weight = 400
 fontcharset fontcharset = ansi!
