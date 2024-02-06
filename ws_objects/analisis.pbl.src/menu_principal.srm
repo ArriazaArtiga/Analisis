@@ -750,7 +750,7 @@ on m_verificaciones.destroy
 call super::destroy
 end on
 
-event clicked;open(w_analisis_verificacion)
+event clicked;open( w_analisis_verificacion )
 end event
 
 type m_pensionados0 from menu within menu_principal
