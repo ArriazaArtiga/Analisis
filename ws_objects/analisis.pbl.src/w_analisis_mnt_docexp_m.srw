@@ -191,9 +191,7 @@ end type
 event clicked;string cui, unidad
 long sol
 
-unidad = dw_1.getitemstring( dw_1.getrow(),4 )
-
-
+unidad = dw_1.getitemstring( dw_1.getrow(),2 )
 sol = parametros.sl_solicitud
 cui = parametros.ss_dpi
 
