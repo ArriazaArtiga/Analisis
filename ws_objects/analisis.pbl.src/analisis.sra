@@ -16,14 +16,20 @@ Integer gi_unidad
 
 n_analisis_connectservice gnv_connect
 
+e_verificacion parametros
 
 end variables
+
 global type analisis from application
 string appname = "analisis"
 string appruntimeversion = "22.0.0.1892"
 end type
 global analisis analisis
 
+type prototypes
+Function Long WNetGetUser (Ref String lpName, Ref String lpUserName, Ref Long lpnLength) Library "mpr" Alias For "WNetGetUserA"
+Function Long GetComputerName (Ref String lpBuffer, Ref Long nSize) Library "kernel32" Alias For "GetComputerNameA"
+end prototypes
 on analisis.create
 appname="analisis"
 message=create message

@@ -160,7 +160,10 @@ inv_sheetmgt = Create n_analisis_sheetmanager
 
 this.Post Event ue_postopen ( )
 
+
 open (w_analisis_welcome) 
+
+
 end event
 
 on w_analisis_frame.create

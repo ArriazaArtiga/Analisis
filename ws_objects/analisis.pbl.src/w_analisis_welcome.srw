@@ -49,6 +49,10 @@ ln_1 ln_1
 end type
 global w_analisis_welcome w_analisis_welcome
 
+type prototypes
+
+end prototypes
+
 on w_analisis_welcome.create
 this.pb_cancelar=create pb_cancelar
 this.pb_aceptar=create pb_aceptar
@@ -84,6 +88,12 @@ destroy(this.st_sistema)
 destroy(this.st_empresa)
 destroy(this.ln_1)
 end on
+
+event open;string ls_namehost , ls_user
+ls_namehost = f_pc()
+
+//messagebox('',string(ls_namehost))
+end event
 
 type pb_cancelar from picturebutton within w_analisis_welcome
 integer x = 2080
