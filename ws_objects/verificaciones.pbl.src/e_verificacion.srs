@@ -2,7 +2,7 @@
 global type e_verificacion from structure
 	string		codigo
 	string		cui
-	datawindow		objetoA
-	datawindow		objetoB
+	datawindow		objetoa
+	datawindow		objetob
 end type
 
