@@ -521,7 +521,10 @@ long backcolor = 16777215
 end type
 
 event clicked;Long ll_solicitud, ll_row_se
-Integer li_row,li_row_det
+Integer li_row,li_row_det, contador
+contador =  dw_detalle_requisitos.rowcount()
+
+if f_resolucion_existe(trim(dw_solicitudes.object.solicitudes_referencia_solicitud[contador]))<>1 then
 
 IF dw_solicitudes.Update() = 1 THEN	
 	COMMIT using SQLCA;	
@@ -557,6 +560,12 @@ IF dw_solicitudes.Update() = 1 THEN
 ELSE	
 	ROLLBACK using SQLCA;
 END IF
+
+else 
+	MessageBox("Grabar","La resolución ya existe en el sistema")
+	ROLLBACK using SQLCA;
+end if 
+
 end event
 
 type pb_nuevo from picturebutton within w_analisis_mnt_solicitudes
