@@ -1,0 +1,8 @@
+﻿$PBExportHeader$e_verificacion.srs
+global type e_verificacion from structure
+	string		codigo
+	string		cui
+	datawindow		objetoa
+	datawindow		objetob
+end type
+
