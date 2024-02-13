@@ -1,0 +1,15 @@
+﻿$PBExportHeader$f_resolucion_existe.srf
+global type f_resolucion_existe from function_object
+end type
+
+forward prototypes
+global function integer f_resolucion_existe (string resolucion)
+end prototypes
+
+global function integer f_resolucion_existe (string resolucion);integer existe
+existe = 0
+SELECT 1 into :existe FROM Solicitudes   WHERE referencia_solicitud = :resolucion
+using SQLCA;
+return existe
+end function
+
