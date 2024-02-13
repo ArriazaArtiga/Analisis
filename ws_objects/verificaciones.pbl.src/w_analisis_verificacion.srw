@@ -52,6 +52,7 @@ global w_analisis_verificacion w_analisis_verificacion
 type variables
 e_verificacion parametros
 end variables
+
 on w_analisis_verificacion.create
 this.editar=create editar
 this.cb_5=create cb_5
@@ -125,9 +126,9 @@ end type
 
 event clicked;if f_existeverificacion(codigo.text) then
 	dw_1.settransobject(SQLCA)
-	dw_1.retrieve(codigo.text)
+	dw_1.retrieve(trim(codigo.text))
 	dw_2.settransobject(SQLCA)
-	dw_2.retrieve(codigo.text)
+	dw_2.retrieve(trim(codigo.text))
 	modificar.visible=true
 	agregar.visible=true
 else
@@ -181,8 +182,8 @@ if dw_1.rowcount( ) >0 then
 	parametros.objeto_a = dw_1
 	OpenWithParm(w_analisis_verificacion_enc,parametros)
 end if
-dw_1.SetTransObject(SQLCA)
-dw_1.retrieve(parametros.codigo)
+dw_2.SetTransObject(SQLCA)
+dw_2.retrieve(parametros.codigo)
 end event
 
 type nuevo from commandbutton within w_analisis_verificacion
@@ -204,6 +205,8 @@ end type
 event clicked;parametros.codigo='...!'
 parametros.objeto_a = dw_1
 OpenWithParm(w_analisis_verificacion_enc,parametros)
+dw_1.settransobject(SQLCA)
+dw_1.retrieve(trim(codigo.text))
 end event
 
 type dw_2 from datawindow within w_analisis_verificacion

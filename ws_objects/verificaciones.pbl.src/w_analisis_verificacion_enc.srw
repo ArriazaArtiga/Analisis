@@ -53,8 +53,7 @@ destroy(this.cb_1)
 destroy(this.dw_1)
 end on
 
-event open;
-string id, xx
+event open;string id, xx
 long i_rows
 parametros = message.powerobjectparm
 //messagebox("",id)
@@ -62,13 +61,14 @@ dw_1.settransobject(sqlca)
 if parametros.codigo = "...!"  then 
 	dw_1.insertrow(1)
 	i_rows = dw_1.getrow( )
-	//messagebox("",string(parametros.sl_solicitud)+"-"+string(parametros.ss_dpi)+"-"+"-"+string(parametros.doc))
+	dw_1.object.activo[i_rows]= 1
+	dw_1.object.user_add[i_rows] = gs_userid+" | " +string(Today())+" | "+string(Now())
 		
 else 
 	
 	dw_1.retrieve(parametros.codigo)
 	i_rows = dw_1.getrow( )
-	//dw_1.object.pensionados_modifica[i_rows] = gs_userid+" | " +string(Today())+" | "+string(Now())
+	dw_1.object.user_update[i_rows] = gs_userid+" | " +string(Today())+" | "+string(Now())
 end if 
 end event
 
@@ -87,26 +87,25 @@ string facename = "Tahoma"
 string text = "Eliminar"
 end type
 
-event clicked;/*long id
-string unidad
-unidad = dw_1.getitemstring( dw_1.getrow(),4 )
+event clicked;string cui, unidad
+long i_rows
 
 if gi_unidad =integer(unidad) or  gi_unidad =9  then
-	if dw_1.rowcount( ) =0 then
-		return
-	else 
-		dw_1.deleterow( dw_1.getrow( ) )
-		dw_1.update( )
-		parametros.dt.settransobject( SQLCA)
-		parametros.dt.retrieve(parametros.sl_solicitud, parametros.ss_dpi )
+	i_rows = dw_1.getrow( )
+	dw_1.object.user_delete[i_rows] = gs_userid+" | " +string(Today())+" | "+string(Now())
+	dw_1.object.activo[i_rows] = 0
+	if dw_1.update() = 1 then
+		parametros.objeto_a.settransobject(sqlca)
+		parametros.objeto_a.retrieve(parametros.codigo)
+		close(parent)
+	
+	else
+		messagebox("Error","El registro no se a eliminado del sistema")
 	end if
-	If SQLCA.SQLCODE = 0 Then
-  	 Commit Using SQLCA; // Se realizan los cambios
-	Else
-  	 RollBack Using SQLCA; // Ocurrio un error, no se guardan los cambios
-	End If
+else
+	Messagebox("Advertencia","No cuenta con los permisos necesarios, coloque la unidad que le corresponde")
+end if
 
-	close(parent)*/
 end event
 
 type cb_2 from commandbutton within w_analisis_verificacion_enc
@@ -162,11 +161,14 @@ end event
 type dw_1 from datawindow within w_analisis_verificacion_enc
 integer x = 41
 integer y = 48
-integer width = 2734
+integer width = 2729
 integer height = 268
 integer taborder = 10
 string title = "none"
 string dataobject = "freefrom_encabezadoverificacion"
 borderstyle borderstyle = stylelowered!
 end type
+
+event itemchanged;dw_1.settransobject( sqlca)
+end event
 
