@@ -12,7 +12,6 @@ select COUNT(No_Solicitud)
 into :li_existe
 from Solicitudes
 where Referencia_Solicitud = :as_resolucion
-and Etapa <> 300
 using SQLCA;
 
 If isnull(li_existe) then
