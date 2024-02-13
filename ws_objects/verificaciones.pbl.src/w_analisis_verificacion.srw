@@ -25,7 +25,7 @@ end type
 end forward
 
 global type w_analisis_verificacion from window
-integer width = 4754
+integer width = 4489
 integer height = 2668
 boolean titlebar = true
 string title = "Verificaciones"
@@ -109,6 +109,18 @@ string facename = "Tahoma"
 string text = "Editar"
 end type
 
+event clicked;string id
+if dw_1.rowcount( ) >0 then
+	id = dw_1.getitemstring( dw_1.getrow(),2)
+	//messagebox("Info",""+string(id))
+	parametros.codigo=string(id)
+	parametros.objeto_b = dw_2
+	OpenWithParm(w_analisis_verificacion_det,parametros)
+end if
+dw_2.SetTransObject(SQLCA)
+dw_2.retrieve(parametros.codigo)
+end event
+
 type cb_5 from commandbutton within w_analisis_verificacion
 integer x = 1088
 integer y = 32
@@ -155,7 +167,12 @@ string text = "Agregar"
 end type
 
 event clicked;editar.visible= true
-
+parametros.codigo='...!'
+parametros.ver = dw_1.object.cod_ver[1]
+parametros.objeto_b = dw_2
+OpenWithParm(w_analisis_verificacion_det,parametros)
+dw_2.settransobject(SQLCA)
+dw_2.retrieve(trim(codigo.text))
 end event
 
 type modificar from commandbutton within w_analisis_verificacion
@@ -182,8 +199,8 @@ if dw_1.rowcount( ) >0 then
 	parametros.objeto_a = dw_1
 	OpenWithParm(w_analisis_verificacion_enc,parametros)
 end if
-dw_2.SetTransObject(SQLCA)
-dw_2.retrieve(parametros.codigo)
+dw_1.SetTransObject(SQLCA)
+dw_1.retrieve(parametros.codigo)
 end event
 
 type nuevo from commandbutton within w_analisis_verificacion

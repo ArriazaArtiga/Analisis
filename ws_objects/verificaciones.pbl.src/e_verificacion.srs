@@ -4,5 +4,6 @@ global type e_verificacion from structure
 	string		cui
 	datawindow		objeto_a
 	datawindow		objeto_b
+	string		ver
 end type
 
