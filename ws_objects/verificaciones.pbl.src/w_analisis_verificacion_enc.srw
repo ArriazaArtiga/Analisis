@@ -34,6 +34,7 @@ global w_analisis_verificacion_enc w_analisis_verificacion_enc
 type variables
 e_verificacion parametros
 end variables
+
 on w_analisis_verificacion_enc.create
 this.cb_3=create cb_3
 this.cb_2=create cb_2
@@ -141,18 +142,12 @@ string facename = "Tahoma"
 string text = "Guardar"
 end type
 
-event clicked;/*string cui, unidad
-long sol
-
-unidad = dw_1.getitemstring( dw_1.getrow(),2 )
-sol = parametros.sl_solicitud
-cui = parametros.ss_dpi
-
+event clicked;string cui, unidad
 
 if gi_unidad =integer(unidad) or  gi_unidad =9  then
 	if dw_1.update() = 1 then
-		parametros.dt.settransobject(sqlca)
-		parametros.dt.retrieve(sol,cui)
+		parametros.objeto_a.settransobject(sqlca)
+		parametros.objeto_a.retrieve(parametros.codigo)
 		close(parent)
 	
 	else
@@ -161,7 +156,7 @@ if gi_unidad =integer(unidad) or  gi_unidad =9  then
 else
 	Messagebox("Advertencia","No cuenta con los permisos necesarios, coloque la unidad que le corresponde")
 end if
-*/
+
 end event
 
 type dw_1 from datawindow within w_analisis_verificacion_enc
