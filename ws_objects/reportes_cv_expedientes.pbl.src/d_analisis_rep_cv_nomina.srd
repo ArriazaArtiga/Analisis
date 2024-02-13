@@ -5,21 +5,21 @@ header(height=0 color="536870912" transparency="0" gradient.color="8421504" grad
 summary(height=0 color="536870912" transparency="0" gradient.color="8421504" gradient.transparency="0" gradient.angle="0" brushmode="0" gradient.repetition.mode="0" gradient.repetition.count="0" gradient.repetition.length="100" gradient.focus="0" gradient.scale="100" gradient.spread="100" )
 footer(height=0 color="536870912" transparency="0" gradient.color="8421504" gradient.transparency="0" gradient.angle="0" brushmode="0" gradient.repetition.mode="0" gradient.repetition.count="0" gradient.repetition.length="100" gradient.focus="0" gradient.scale="100" gradient.spread="100" )
 detail(height=3044 color="536870912" transparency="0" gradient.color="8421504" gradient.transparency="0" gradient.angle="0" brushmode="0" gradient.repetition.mode="0" gradient.repetition.count="0" gradient.repetition.length="100" gradient.focus="0" gradient.scale="100" gradient.spread="100" )
-table(column=(type=decimal(0) updatewhereclause=yes name=solicitudes_no_solicitud dbname="solicitudes.no_solicitud" )
- column=(type=char(15) updatewhereclause=yes name=solicitudes_dpi dbname="solicitudes.dpi" )
- column=(type=datetime updatewhereclause=yes name=solicitudes_fecha dbname="solicitudes.fecha" )
- column=(type=decimal(0) updatewhereclause=yes name=contribuyentes_depto dbname="contribuyentes.depto" )
- column=(type=decimal(0) updatewhereclause=yes name=contribuyentes_muni dbname="contribuyentes.muni" )
- column=(type=decimal(0) updatewhereclause=yes name=contribuyentes_correlativo dbname="contribuyentes.correlativo" )
- column=(type=char(100) updatewhereclause=yes name=contribuyentes_apellidos dbname="contribuyentes.apellidos" )
- column=(type=char(100) updatewhereclause=yes name=contribuyentes_casada dbname="contribuyentes.casada" )
- column=(type=char(30) updatewhereclause=yes name=contribuyentes_nombres dbname="contribuyentes.nombres" )
- column=(type=decimal(4) updatewhereclause=yes name=contribuyentes_salario dbname="contribuyentes.salario" )
- column=(type=char(15) updatewhereclause=yes name=solicitud_documentos_expediente_no_documento dbname="solicitud_documentos_expediente.no_documento" )
- column=(type=datetime updatewhereclause=yes name=solicitud_documentos_expediente_fecha_documento dbname="solicitud_documentos_expediente.fecha_documento" )
- column=(type=datetime updatewhereclause=yes name=solicitud_documentos_expediente_fecha_pension dbname="solicitud_documentos_expediente.fecha_pension" )
- column=(type=decimal(4) updatewhereclause=yes name=solicitud_documentos_expediente_monto_pension dbname="solicitud_documentos_expediente.monto_pension" )
- column=(type=char(50) updatewhereclause=yes name=contribuyentes_puestos_descripcion dbname="contribuyentes_puestos.descripcion" )
+table(column=(type=decimal(0) updatewhereclause=yes name=solicitudes_no_solicitud dbname="solicitudes.no_solicitud" dbalias=".no_solicitud" )
+ column=(type=char(15) updatewhereclause=yes name=solicitudes_dpi dbname="solicitudes.dpi" dbalias=".dpi" )
+ column=(type=datetime updatewhereclause=yes name=solicitudes_fecha dbname="solicitudes.fecha" dbalias=".fecha" )
+ column=(type=decimal(0) updatewhereclause=yes name=contribuyentes_depto dbname="contribuyentes.depto" dbalias=".depto" )
+ column=(type=decimal(0) updatewhereclause=yes name=contribuyentes_muni dbname="contribuyentes.muni" dbalias=".muni" )
+ column=(type=decimal(0) updatewhereclause=yes name=contribuyentes_correlativo dbname="contribuyentes.correlativo" dbalias=".correlativo" )
+ column=(type=char(100) updatewhereclause=yes name=contribuyentes_apellidos dbname="contribuyentes.apellidos" dbalias=".apellidos" )
+ column=(type=char(100) updatewhereclause=yes name=contribuyentes_casada dbname="contribuyentes.casada" dbalias=".casada" )
+ column=(type=char(30) updatewhereclause=yes name=contribuyentes_nombres dbname="contribuyentes.nombres" dbalias=".nombres" )
+ column=(type=decimal(4) updatewhereclause=yes name=contribuyentes_salario dbname="contribuyentes.salario" dbalias=".salario" )
+ column=(type=char(15) updatewhereclause=yes name=solicitud_documentos_expediente_no_documento dbname="solicitud_documentos_expediente.no_documento" dbalias="c.no_documento" )
+ column=(type=datetime updatewhereclause=yes name=solicitud_documentos_expediente_fecha_documento dbname="solicitud_documentos_expediente.fecha_documento" dbalias="c.fecha_documento" )
+ column=(type=datetime updatewhereclause=yes name=solicitud_documentos_expediente_fecha_pension dbname="solicitud_documentos_expediente.fecha_pension" dbalias="c.fecha_pension" )
+ column=(type=decimal(4) updatewhereclause=yes name=solicitud_documentos_expediente_monto_pension dbname="solicitud_documentos_expediente.monto_pension" dbalias="c.monto_pension" )
+ column=(type=char(150) updatewhereclause=yes name=contribuyentes_puestos_descripcion dbname="contribuyentes_puestos.descripcion" dbalias="e.descripcion" )
  retrieve="  SELECT solicitudes.no_solicitud,   
          solicitudes.dpi,   
          solicitudes.fecha,   
@@ -43,7 +43,7 @@ table(column=(type=decimal(0) updatewhereclause=yes name=solicitudes_no_solicitu
 		 solicitudes.DPI = c.DPI and
 		 solicitudes.No_Solicitud = c.No_Solicitud and
 		 e.idPuesto = contribuyentes.Puesto and
-		 c.tipo_documento = '8' and
+		 c.tipo_documento = '1' and
 		 solicitudes.etapa < 210 and
          ( ( solicitudes.dpi = :as_dpi ) )    
 " arguments=(("as_dpi", string)) )
