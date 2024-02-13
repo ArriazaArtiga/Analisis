@@ -31,6 +31,9 @@ dw_1 dw_1
 end type
 global w_analisis_verificacion_enc w_analisis_verificacion_enc
 
+type variables
+e_verificacion parametros
+end variables
 on w_analisis_verificacion_enc.create
 this.cb_3=create cb_3
 this.cb_2=create cb_2

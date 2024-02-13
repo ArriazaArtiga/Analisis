@@ -49,6 +49,9 @@ gb_2 gb_2
 end type
 global w_analisis_verificacion w_analisis_verificacion
 
+type variables
+e_verificacion parametros
+end variables
 on w_analisis_verificacion.create
 this.editar=create editar
 this.cb_5=create cb_5
