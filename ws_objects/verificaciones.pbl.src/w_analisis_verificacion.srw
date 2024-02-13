@@ -2,13 +2,15 @@
 forward
 global type w_analisis_verificacion from window
 end type
-type cb_4 from commandbutton within w_analisis_verificacion
+type editar from commandbutton within w_analisis_verificacion
 end type
-type cb_3 from commandbutton within w_analisis_verificacion
+type cb_5 from commandbutton within w_analisis_verificacion
 end type
-type cb_2 from commandbutton within w_analisis_verificacion
+type agregar from commandbutton within w_analisis_verificacion
 end type
-type cb_1 from commandbutton within w_analisis_verificacion
+type modificar from commandbutton within w_analisis_verificacion
+end type
+type nuevo from commandbutton within w_analisis_verificacion
 end type
 type dw_2 from datawindow within w_analisis_verificacion
 end type
@@ -34,10 +36,11 @@ boolean resizable = true
 long backcolor = 67108864
 string icon = "AppIcon!"
 boolean center = true
-cb_4 cb_4
-cb_3 cb_3
-cb_2 cb_2
-cb_1 cb_1
+editar editar
+cb_5 cb_5
+agregar agregar
+modificar modificar
+nuevo nuevo
 dw_2 dw_2
 dw_1 dw_1
 codigo codigo
@@ -47,19 +50,21 @@ end type
 global w_analisis_verificacion w_analisis_verificacion
 
 on w_analisis_verificacion.create
-this.cb_4=create cb_4
-this.cb_3=create cb_3
-this.cb_2=create cb_2
-this.cb_1=create cb_1
+this.editar=create editar
+this.cb_5=create cb_5
+this.agregar=create agregar
+this.modificar=create modificar
+this.nuevo=create nuevo
 this.dw_2=create dw_2
 this.dw_1=create dw_1
 this.codigo=create codigo
 this.gb_1=create gb_1
 this.gb_2=create gb_2
-this.Control[]={this.cb_4,&
-this.cb_3,&
-this.cb_2,&
-this.cb_1,&
+this.Control[]={this.editar,&
+this.cb_5,&
+this.agregar,&
+this.modificar,&
+this.nuevo,&
 this.dw_2,&
 this.dw_1,&
 this.codigo,&
@@ -68,10 +73,11 @@ this.gb_2}
 end on
 
 on w_analisis_verificacion.destroy
-destroy(this.cb_4)
-destroy(this.cb_3)
-destroy(this.cb_2)
-destroy(this.cb_1)
+destroy(this.editar)
+destroy(this.cb_5)
+destroy(this.agregar)
+destroy(this.modificar)
+destroy(this.nuevo)
 destroy(this.dw_2)
 destroy(this.dw_1)
 destroy(this.codigo)
@@ -83,7 +89,53 @@ event open;dw_1.settransobject( sqlca)
 dw_2.settransobject( sqlca)
 end event
 
-type cb_4 from commandbutton within w_analisis_verificacion
+type editar from commandbutton within w_analisis_verificacion
+boolean visible = false
+integer x = 4014
+integer y = 940
+integer width = 402
+integer height = 112
+integer taborder = 60
+integer textsize = -10
+integer weight = 400
+fontcharset fontcharset = ansi!
+fontpitch fontpitch = variable!
+fontfamily fontfamily = swiss!
+string facename = "Tahoma"
+string text = "Editar"
+end type
+
+type cb_5 from commandbutton within w_analisis_verificacion
+integer x = 1088
+integer y = 32
+integer width = 402
+integer height = 112
+integer taborder = 20
+integer textsize = -10
+integer weight = 400
+fontcharset fontcharset = ansi!
+fontpitch fontpitch = variable!
+fontfamily fontfamily = swiss!
+string facename = "Tahoma"
+string text = "Buscar"
+end type
+
+event clicked;if f_existeverificacion(codigo.text) then
+	dw_1.settransobject(SQLCA)
+	dw_1.retrieve(codigo.text)
+	dw_2.settransobject(SQLCA)
+	dw_2.retrieve(codigo.text)
+	modificar.visible=true
+	agregar.visible=true
+else
+	nuevo.visible=true
+	agregar.visible= true
+	messagebox('Error','No existe la verificación buscada')
+end if 
+end event
+
+type agregar from commandbutton within w_analisis_verificacion
+boolean visible = false
 integer x = 4005
 integer y = 804
 integer width = 402
@@ -98,22 +150,12 @@ string facename = "Tahoma"
 string text = "Agregar"
 end type
 
-type cb_3 from commandbutton within w_analisis_verificacion
-integer x = 4018
-integer y = 560
-integer width = 393
-integer height = 112
-integer taborder = 50
-integer textsize = -10
-integer weight = 400
-fontcharset fontcharset = ansi!
-fontpitch fontpitch = variable!
-fontfamily fontfamily = swiss!
-string facename = "Tahoma"
-string text = "Salir"
-end type
+event clicked;editar.visible= true
 
-type cb_2 from commandbutton within w_analisis_verificacion
+end event
+
+type modificar from commandbutton within w_analisis_verificacion
+boolean visible = false
 integer x = 4018
 integer y = 424
 integer width = 402
@@ -125,10 +167,23 @@ fontcharset fontcharset = ansi!
 fontpitch fontpitch = variable!
 fontfamily fontfamily = swiss!
 string facename = "Tahoma"
-string text = "Grabar"
+string text = "Modificar"
 end type
 
-type cb_1 from commandbutton within w_analisis_verificacion
+event clicked;string id
+if dw_1.rowcount( ) >0 then
+	id = dw_1.getitemstring( dw_1.getrow(),2)
+	//messagebox("Info",""+string(id))
+	parametros.codigo=string(id)
+	parametros.objeto_a = dw_1
+	OpenWithParm(w_analisis_verificacion_enc,parametros)
+end if
+dw_1.SetTransObject(SQLCA)
+dw_1.retrieve(parametros.codigo)
+end event
+
+type nuevo from commandbutton within w_analisis_verificacion
+boolean visible = false
 integer x = 4018
 integer y = 292
 integer width = 402
@@ -143,11 +198,9 @@ string facename = "Tahoma"
 string text = "Nuevo"
 end type
 
-event clicked;if dw_1.update() = 1 then
-	messagebox("Error","El registro se a guardado en el sistema")
-else
-	messagebox("Error","El registro no se a guardado en el sistema")
-end if
+event clicked;parametros.codigo='...!'
+parametros.objeto_a = dw_1
+OpenWithParm(w_analisis_verificacion_enc,parametros)
 end event
 
 type dw_2 from datawindow within w_analisis_verificacion
@@ -169,7 +222,7 @@ integer width = 3762
 integer height = 272
 integer taborder = 30
 string title = "none"
-string dataobject = "freefrom_encabezadoverificacion"
+string dataobject = "grid_encabezadoverificacion"
 boolean livescroll = true
 borderstyle borderstyle = stylelowered!
 end type

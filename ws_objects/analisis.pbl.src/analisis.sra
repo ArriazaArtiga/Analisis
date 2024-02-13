@@ -16,7 +16,7 @@ Integer gi_unidad
 
 n_analisis_connectservice gnv_connect
 
-
+e_verificacion parametros
 end variables
 global type analisis from application
 string appname = "analisis"
