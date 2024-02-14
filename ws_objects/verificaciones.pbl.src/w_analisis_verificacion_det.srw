@@ -114,8 +114,8 @@ if gi_unidad =integer(unidad) or  gi_unidad =9  then
 	dw_1.object.user_delete[i_rows] = gs_userid+" | " +string(Today())+" | "+string(Now())
 	dw_1.object.activo[i_rows] = 0
 	if dw_1.update() = 1 then
-		parametros.objeto_a.settransobject(sqlca)
-		parametros.objeto_a.retrieve(parametros.codigo)
+		parametros.objeto_b.settransobject(sqlca)
+		parametros.objeto_b.retrieve(parametros.ver)
 		close(parent)
 	
 	else
