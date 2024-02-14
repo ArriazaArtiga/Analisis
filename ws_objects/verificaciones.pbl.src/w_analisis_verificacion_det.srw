@@ -162,8 +162,9 @@ event clicked;string cui, unidad
 
 if gi_unidad =integer(unidad) or  gi_unidad =9  then
 	if dw_1.update() = 1 then
-		parametros.objeto_a.settransobject(sqlca)
-		parametros.objeto_a.retrieve(parametros.codigo)
+		parametros.objeto_b.settransobject(sqlca)
+		//parametros.ver = dw_1.object.cod_ver[1]
+		parametros.objeto_b.retrieve(parametros.ver)
 		close(parent)
 	
 	else

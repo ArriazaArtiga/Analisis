@@ -109,9 +109,9 @@ string facename = "Tahoma"
 string text = "Editar"
 end type
 
-event clicked;string id
+event clicked;long id
 if dw_1.rowcount( ) >0 then
-	id = dw_1.getitemstring( dw_1.getrow(),2)
+	id = dw_1.getitemnumber( dw_1.getrow(),1)
 	//messagebox("Info",""+string(id))
 	parametros.codigo=string(id)
 	parametros.objeto_b = dw_2
