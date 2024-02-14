@@ -2,6 +2,14 @@
 forward
 global type w_analisis_verificacion from window
 end type
+type meses from statictext within w_analisis_verificacion
+end type
+type annos from statictext within w_analisis_verificacion
+end type
+type st_2 from statictext within w_analisis_verificacion
+end type
+type st_1 from statictext within w_analisis_verificacion
+end type
 type editar from commandbutton within w_analisis_verificacion
 end type
 type cb_5 from commandbutton within w_analisis_verificacion
@@ -22,6 +30,8 @@ type gb_1 from groupbox within w_analisis_verificacion
 end type
 type gb_2 from groupbox within w_analisis_verificacion
 end type
+type gb_3 from groupbox within w_analisis_verificacion
+end type
 end forward
 
 global type w_analisis_verificacion from window
@@ -36,6 +46,10 @@ boolean resizable = true
 long backcolor = 67108864
 string icon = "AppIcon!"
 boolean center = true
+meses meses
+annos annos
+st_2 st_2
+st_1 st_1
 editar editar
 cb_5 cb_5
 agregar agregar
@@ -46,6 +60,7 @@ dw_1 dw_1
 codigo codigo
 gb_1 gb_1
 gb_2 gb_2
+gb_3 gb_3
 end type
 global w_analisis_verificacion w_analisis_verificacion
 
@@ -54,6 +69,10 @@ e_verificacion parametros
 end variables
 
 on w_analisis_verificacion.create
+this.meses=create meses
+this.annos=create annos
+this.st_2=create st_2
+this.st_1=create st_1
 this.editar=create editar
 this.cb_5=create cb_5
 this.agregar=create agregar
@@ -64,7 +83,12 @@ this.dw_1=create dw_1
 this.codigo=create codigo
 this.gb_1=create gb_1
 this.gb_2=create gb_2
-this.Control[]={this.editar,&
+this.gb_3=create gb_3
+this.Control[]={this.meses,&
+this.annos,&
+this.st_2,&
+this.st_1,&
+this.editar,&
 this.cb_5,&
 this.agregar,&
 this.modificar,&
@@ -73,10 +97,15 @@ this.dw_2,&
 this.dw_1,&
 this.codigo,&
 this.gb_1,&
-this.gb_2}
+this.gb_2,&
+this.gb_3}
 end on
 
 on w_analisis_verificacion.destroy
+destroy(this.meses)
+destroy(this.annos)
+destroy(this.st_2)
+destroy(this.st_1)
 destroy(this.editar)
 destroy(this.cb_5)
 destroy(this.agregar)
@@ -87,11 +116,80 @@ destroy(this.dw_1)
 destroy(this.codigo)
 destroy(this.gb_1)
 destroy(this.gb_2)
+destroy(this.gb_3)
 end on
 
 event open;dw_1.settransobject( sqlca)
 dw_2.settransobject( sqlca)
 end event
+
+type meses from statictext within w_analisis_verificacion
+integer x = 3625
+integer y = 524
+integer width = 201
+integer height = 64
+integer textsize = -10
+integer weight = 400
+fontcharset fontcharset = ansi!
+fontpitch fontpitch = variable!
+fontfamily fontfamily = swiss!
+string facename = "Tahoma"
+long textcolor = 33554432
+long backcolor = 67108864
+string text = "0"
+boolean focusrectangle = false
+end type
+
+type annos from statictext within w_analisis_verificacion
+integer x = 3625
+integer y = 428
+integer width = 183
+integer height = 64
+integer textsize = -10
+integer weight = 400
+fontcharset fontcharset = ansi!
+fontpitch fontpitch = variable!
+fontfamily fontfamily = swiss!
+string facename = "Tahoma"
+long textcolor = 33554432
+long backcolor = 67108864
+string text = "0"
+boolean focusrectangle = false
+end type
+
+type st_2 from statictext within w_analisis_verificacion
+integer x = 3419
+integer y = 524
+integer width = 201
+integer height = 64
+integer textsize = -10
+integer weight = 400
+fontcharset fontcharset = ansi!
+fontpitch fontpitch = variable!
+fontfamily fontfamily = swiss!
+string facename = "Tahoma"
+long textcolor = 33554432
+long backcolor = 67108864
+string text = "Meses:"
+boolean focusrectangle = false
+end type
+
+type st_1 from statictext within w_analisis_verificacion
+integer x = 3419
+integer y = 428
+integer width = 183
+integer height = 64
+integer textsize = -10
+integer weight = 400
+fontcharset fontcharset = ansi!
+fontpitch fontpitch = variable!
+fontfamily fontfamily = swiss!
+string facename = "Tahoma"
+long textcolor = 33554432
+long backcolor = 67108864
+string text = "Años:"
+boolean focusrectangle = false
+end type
 
 type editar from commandbutton within w_analisis_verificacion
 boolean visible = false
@@ -194,8 +292,8 @@ end event
 
 type modificar from commandbutton within w_analisis_verificacion
 boolean visible = false
-integer x = 4018
-integer y = 424
+integer x = 3995
+integer y = 484
 integer width = 402
 integer height = 112
 integer taborder = 40
@@ -222,8 +320,8 @@ end event
 
 type nuevo from commandbutton within w_analisis_verificacion
 boolean visible = false
-integer x = 4018
-integer y = 292
+integer x = 3995
+integer y = 352
 integer width = 402
 integer height = 112
 integer taborder = 40
@@ -256,18 +354,20 @@ type dw_2 from datawindow within w_analisis_verificacion
 integer x = 146
 integer y = 836
 integer width = 3726
-integer height = 1436
+integer height = 1668
 integer taborder = 40
 string title = "none"
 string dataobject = "grid_detalleverificacion"
+boolean hscrollbar = true
+boolean vscrollbar = true
 boolean livescroll = true
 borderstyle borderstyle = stylelowered!
 end type
 
 type dw_1 from datawindow within w_analisis_verificacion
-integer x = 123
+integer x = 146
 integer y = 348
-integer width = 3762
+integer width = 3072
 integer height = 272
 integer taborder = 30
 string title = "none"
@@ -295,9 +395,9 @@ string placeholder = "Ingrese la verificación a buscar"
 end type
 
 type gb_1 from groupbox within w_analisis_verificacion
-integer x = 59
+integer x = 82
 integer y = 240
-integer width = 3895
+integer width = 3218
 integer height = 456
 integer taborder = 20
 integer textsize = -10
@@ -315,7 +415,7 @@ type gb_2 from groupbox within w_analisis_verificacion
 integer x = 73
 integer y = 724
 integer width = 3881
-integer height = 1600
+integer height = 1824
 integer taborder = 30
 integer textsize = -10
 integer weight = 400
@@ -326,5 +426,22 @@ string facename = "Tahoma"
 long textcolor = 33554432
 long backcolor = 67108864
 string text = "Registros"
+end type
+
+type gb_3 from groupbox within w_analisis_verificacion
+integer x = 3374
+integer y = 248
+integer width = 535
+integer height = 444
+integer taborder = 30
+integer textsize = -10
+integer weight = 400
+fontcharset fontcharset = ansi!
+fontpitch fontpitch = variable!
+fontfamily fontfamily = swiss!
+string facename = "Tahoma"
+long textcolor = 33554432
+long backcolor = 67108864
+string text = "Datos"
 end type
 
