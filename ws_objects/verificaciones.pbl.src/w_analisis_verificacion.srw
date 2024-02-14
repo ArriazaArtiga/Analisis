@@ -145,7 +145,7 @@ event clicked;if f_existeverificacion(codigo.text) then
 	agregar.visible=true
 else
 	nuevo.visible=true
-	agregar.visible= true
+	agregar.visible= false
 	messagebox('Error','No existe la verificación buscada')
 end if 
 end event
@@ -173,6 +173,13 @@ parametros.objeto_b = dw_2
 OpenWithParm(w_analisis_verificacion_det,parametros)
 dw_2.settransobject(SQLCA)
 dw_2.retrieve(trim(codigo.text))
+
+if dw_2.getrow( )>0 then
+	editar.visible = true
+else
+	editar.visible = false
+end if
+
 end event
 
 type modificar from commandbutton within w_analisis_verificacion
@@ -193,7 +200,7 @@ end type
 
 event clicked;string id
 if dw_1.rowcount( ) >0 then
-	id = dw_1.getitemstring( dw_1.getrow(),2)
+	id = dw_1.getitemstring( dw_1.getrow(),1)
 	//messagebox("Info",""+string(id))
 	parametros.codigo=string(id)
 	parametros.objeto_a = dw_1
@@ -224,6 +231,15 @@ parametros.objeto_a = dw_1
 OpenWithParm(w_analisis_verificacion_enc,parametros)
 dw_1.settransobject(SQLCA)
 dw_1.retrieve(trim(codigo.text))
+
+if dw_1.getrow( )>0 then
+	modificar.visible = true
+	agregar.visible = true
+else
+	modificar.visible= false
+	agregar.visible = false
+end if
+
 end event
 
 type dw_2 from datawindow within w_analisis_verificacion
@@ -267,10 +283,6 @@ long textcolor = 33554432
 borderstyle borderstyle = stylelowered!
 string placeholder = "Ingrese la verificación a buscar"
 end type
-
-event darenter;dw_1.retrieve(codigo.text )
-dw_2.retrieve(codigo.text )
-end event
 
 type gb_1 from groupbox within w_analisis_verificacion
 integer x = 59
