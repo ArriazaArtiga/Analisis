@@ -11,7 +11,7 @@ boolean existe
 existe = false
 
 SELECT count(*)  INTO :resultado FROM db_PPEM.dbo.Verificacion_Enc 
-WHERE Cod_ver = :codigo 
+WHERE Cod_ver = :codigo  and Activo = 1
 using SQLCA;
 
 if resultado > 0 then
