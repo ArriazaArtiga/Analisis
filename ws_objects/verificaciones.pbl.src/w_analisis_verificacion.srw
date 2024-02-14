@@ -235,7 +235,8 @@ string facename = "Tahoma"
 string text = "Buscar"
 end type
 
-event clicked;if f_existe_verificacion(codigo.text)= 1 then
+event clicked;integer i_r, resultadoA,resultadoB, mesesTotales,mesesRestantes, añosTotales
+if f_existe_verificacion(codigo.text)= 1 then
 	dw_1.settransobject(SQLCA)
 	dw_1.retrieve(trim(codigo.text))
 	dw_2.settransobject(SQLCA)
@@ -244,6 +245,15 @@ event clicked;if f_existe_verificacion(codigo.text)= 1 then
 	agregar.visible=true
 	if dw_2.getrow( )>0 then
 		editar.visible = true
+		
+		for i_r = 1 to dw_2.rowcount( )
+			resultadoA+= dw_2.object.verificacion_det_annos[i_r]
+			resultadoB+=dw_2.object.verificacion_det_meses[i_r]
+		next
+		mesesTotales =  ((resultadoA)*12)+resultadoB
+		mesesRestantes =  mod(mesesTotales,  12)
+		annos.text= string(truncate(mesesTotales/12,0) )
+		meses.text= string(mesesRestantes)
 	else
 		editar.visible = false
 	end if
@@ -286,6 +296,8 @@ if dw_2.getrow( )>0 then
 	editar.visible = true
 else
 	editar.visible = false
+	annos.text = string(dw_2.Object.annos.Sum())
+	meses.text = string(dw_2.Object.meses.Sum())
 end if
 
 end event
