@@ -2,6 +2,8 @@
 forward
 global type w_analisis_verificacion from window
 end type
+type cb_1 from commandbutton within w_analisis_verificacion
+end type
 type meses from statictext within w_analisis_verificacion
 end type
 type annos from statictext within w_analisis_verificacion
@@ -46,6 +48,7 @@ boolean resizable = true
 long backcolor = 67108864
 string icon = "AppIcon!"
 boolean center = true
+cb_1 cb_1
 meses meses
 annos annos
 st_2 st_2
@@ -69,6 +72,7 @@ e_verificacion parametros
 end variables
 
 on w_analisis_verificacion.create
+this.cb_1=create cb_1
 this.meses=create meses
 this.annos=create annos
 this.st_2=create st_2
@@ -84,7 +88,8 @@ this.codigo=create codigo
 this.gb_1=create gb_1
 this.gb_2=create gb_2
 this.gb_3=create gb_3
-this.Control[]={this.meses,&
+this.Control[]={this.cb_1,&
+this.meses,&
 this.annos,&
 this.st_2,&
 this.st_1,&
@@ -102,6 +107,7 @@ this.gb_3}
 end on
 
 on w_analisis_verificacion.destroy
+destroy(this.cb_1)
 destroy(this.meses)
 destroy(this.annos)
 destroy(this.st_2)
@@ -122,6 +128,21 @@ end on
 event open;dw_1.settransobject( sqlca)
 dw_2.settransobject( sqlca)
 end event
+
+type cb_1 from commandbutton within w_analisis_verificacion
+integer x = 1591
+integer y = 32
+integer width = 402
+integer height = 112
+integer taborder = 20
+integer textsize = -10
+integer weight = 400
+fontcharset fontcharset = ansi!
+fontpitch fontpitch = variable!
+fontfamily fontfamily = swiss!
+string facename = "Tahoma"
+string text = "Reporte"
+end type
 
 type meses from statictext within w_analisis_verificacion
 integer x = 3625
