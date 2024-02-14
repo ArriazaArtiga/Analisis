@@ -1,0 +1,33 @@
+﻿$PBExportHeader$f_existe_verificacion.srf
+global type f_existe_verificacion from function_object
+end type
+
+forward prototypes
+global function integer f_existe_verificacion (string codigo)
+end prototypes
+
+global function integer f_existe_verificacion (string codigo);integer resultado,resultadoA, resultadoB
+resultadoA= 0
+resultadoB= 0
+resultado = 0
+
+SELECT count(*)  INTO :resultadoA FROM db_PPEM.dbo.Verificacion_Enc 
+WHERE Cod_ver = :codigo  and Activo = 1
+using SQLCA;
+
+SELECT count(*)  INTO :resultadoB FROM db_PPEM.dbo.Verificacion_Enc 
+WHERE Cod_ver = :codigo  and Activo = 0 or Activo is null
+
+using SQLCA;
+
+if resultadoA >0 then
+	resultado = 1
+elseif resultadoB > 0 then
+	resultado = 2
+end if
+	
+	
+
+return resultado
+end function
+

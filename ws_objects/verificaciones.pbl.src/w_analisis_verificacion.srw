@@ -136,17 +136,21 @@ string facename = "Tahoma"
 string text = "Buscar"
 end type
 
-event clicked;if f_existeverificacion(codigo.text) then
+event clicked;if f_existe_verificacion(codigo.text)= 1 then
 	dw_1.settransobject(SQLCA)
 	dw_1.retrieve(trim(codigo.text))
 	dw_2.settransobject(SQLCA)
 	dw_2.retrieve(trim(codigo.text))
 	modificar.visible=true
 	agregar.visible=true
+elseif f_existe_verificacion(codigo.text)= 2 then
+	nuevo.visible=true
+	agregar.visible= false
+	messagebox('Error','Ya existe un codigo de verificacion como este, se encuentra inactivo')
 else
 	nuevo.visible=true
 	agregar.visible= false
-	messagebox('Error','No existe la verificación buscada')
+	messagebox('Información','No existe la verificación buscada')
 end if 
 end event
 
@@ -202,7 +206,7 @@ event clicked;string id
 if dw_1.rowcount( ) >0 then
 	id = dw_1.getitemstring( dw_1.getrow(),1)
 	//messagebox("Info",""+string(id))
-	parametros.codigo=string(id)
+	parametros.codigo=id
 	parametros.objeto_a = dw_1
 	OpenWithParm(w_analisis_verificacion_enc,parametros)
 end if

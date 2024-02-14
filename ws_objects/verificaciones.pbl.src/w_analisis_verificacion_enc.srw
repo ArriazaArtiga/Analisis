@@ -14,7 +14,7 @@ end forward
 
 global type w_analisis_verificacion_enc from window
 integer width = 1947
-integer height = 1200
+integer height = 944
 boolean titlebar = true
 string title = "Encabezado de la Verificación"
 boolean controlmenu = true
@@ -73,8 +73,8 @@ end if
 end event
 
 type cb_3 from commandbutton within w_analisis_verificacion_enc
-integer x = 722
-integer y = 880
+integer x = 736
+integer y = 644
 integer width = 402
 integer height = 112
 integer taborder = 20
@@ -109,8 +109,8 @@ end if
 end event
 
 type cb_2 from commandbutton within w_analisis_verificacion_enc
-integer x = 1216
-integer y = 884
+integer x = 1230
+integer y = 648
 integer width = 402
 integer height = 112
 integer taborder = 20
@@ -127,8 +127,8 @@ event clicked;	close(parent)
 end event
 
 type cb_1 from commandbutton within w_analisis_verificacion_enc
-integer x = 201
-integer y = 880
+integer x = 215
+integer y = 644
 integer width = 402
 integer height = 112
 integer taborder = 20
@@ -162,7 +162,7 @@ type dw_1 from datawindow within w_analisis_verificacion_enc
 integer x = 174
 integer y = 48
 integer width = 1518
-integer height = 788
+integer height = 568
 integer taborder = 10
 string title = "none"
 string dataobject = "freefrom_encabezadoverificacion"
