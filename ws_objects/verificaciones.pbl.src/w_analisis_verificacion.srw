@@ -265,7 +265,7 @@ integer width = 3762
 integer height = 272
 integer taborder = 30
 string title = "none"
-string dataobject = "grid_encabezadoverificacion"
+string dataobject = "grid_encabezdoverificacion"
 boolean livescroll = true
 borderstyle borderstyle = stylelowered!
 end type

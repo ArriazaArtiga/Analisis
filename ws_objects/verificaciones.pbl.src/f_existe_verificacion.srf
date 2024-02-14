@@ -15,15 +15,17 @@ SELECT count(*)  INTO :resultadoA FROM db_PPEM.dbo.Verificacion_Enc
 WHERE Cod_ver = :codigo  and Activo = 1
 using SQLCA;
 
-SELECT count(*)  INTO :resultadoB FROM db_PPEM.dbo.Verificacion_Enc 
-WHERE Cod_ver = :codigo  and Activo = 0 or Activo is null
-
-using SQLCA;
-
 if resultadoA >0 then
 	resultado = 1
-elseif resultadoB > 0 then
-	resultado = 2
+else 
+	SELECT count(*)  INTO :resultadoB FROM db_PPEM.dbo.Verificacion_Enc 
+	WHERE Cod_ver = :codigo  and Activo = 0 or Activo is null
+	using SQLCA;
+	
+	if resultadoB > 0 then
+		resultado = 2
+	end if
+
 end if
 	
 	
