@@ -110,11 +110,12 @@ string text = "Editar"
 end type
 
 event clicked;long id
-if dw_1.rowcount( ) >0 then
-	id = dw_1.getitemnumber( dw_1.getrow(),1)
-	//messagebox("Info",""+string(id))
+if dw_2.rowcount( ) >0 then
+	
+	id = dw_2.getitemnumber( dw_2.getrow(),1 )
 	parametros.codigo=string(id)
 	parametros.objeto_b = dw_2
+	parametros.ver = dw_1.object.cod_ver[1]
 	OpenWithParm(w_analisis_verificacion_det,parametros)
 end if
 dw_2.SetTransObject(SQLCA)
@@ -143,6 +144,11 @@ event clicked;if f_existe_verificacion(codigo.text)= 1 then
 	dw_2.retrieve(trim(codigo.text))
 	modificar.visible=true
 	agregar.visible=true
+	if dw_2.getrow( )>0 then
+		editar.visible = true
+	else
+		editar.visible = false
+	end if
 elseif f_existe_verificacion(codigo.text)= 2 then
 	nuevo.visible=true
 	agregar.visible= false
