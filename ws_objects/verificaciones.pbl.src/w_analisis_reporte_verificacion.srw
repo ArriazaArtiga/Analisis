@@ -68,8 +68,9 @@ destroy(this.dw_1)
 end on
 
 type pb_2 from picturebutton within w_analisis_reporte_verificacion
-integer x = 2345
-integer y = 48
+boolean visible = false
+integer x = 1504
+integer y = 172
 integer width = 402
 integer height = 100
 integer taborder = 30
@@ -93,8 +94,9 @@ dw_1.SaveAs("", Pdf!, true)
 end event
 
 type pb_1 from picturebutton within w_analisis_reporte_verificacion
-integer x = 1906
-integer y = 48
+boolean visible = false
+integer x = 1065
+integer y = 172
 integer width = 402
 integer height = 100
 integer taborder = 20
@@ -119,7 +121,7 @@ end event
 
 type pb_generar from picturebutton within w_analisis_reporte_verificacion
 integer x = 1047
-integer y = 48
+integer y = 60
 integer width = 402
 integer height = 100
 integer taborder = 20
@@ -150,8 +152,8 @@ end if
 end event
 
 type pb_salir from picturebutton within w_analisis_reporte_verificacion
-integer x = 2802
-integer y = 48
+integer x = 1874
+integer y = 60
 integer width = 402
 integer height = 100
 integer taborder = 30
@@ -173,7 +175,7 @@ end event
 
 type pb_imprimir from picturebutton within w_analisis_reporte_verificacion
 integer x = 1463
-integer y = 48
+integer y = 60
 integer width = 402
 integer height = 100
 integer taborder = 20

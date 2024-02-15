@@ -92,6 +92,13 @@ m_pensionados m_pensionados
 m_resumensolicitudes m_resumensolicitudes
 m_solicitudesrevision m_solicitudesrevision
 end type
+type m_archivo from menu within m_reportes
+end type
+type m_verificaciones0 from menu within m_archivo
+end type
+type m_archivo from menu within m_reportes
+m_verificaciones0 m_verificaciones0
+end type
 type m_auditoria from menu within m_reportes
 end type
 type m_enviadoaauditoria from menu within m_auditoria
@@ -156,6 +163,7 @@ m_actasautorizacionindividual m_actasautorizacionindividual
 end type
 type m_reportes from menu within menu_principal
 m_analisis m_analisis
+m_archivo m_archivo
 m_auditoria m_auditoria
 m_juridico m_juridico
 m_financiero m_financiero
@@ -815,6 +823,7 @@ end on
 
 type m_reportes from menu within menu_principal
 m_analisis m_analisis
+m_archivo m_archivo
 m_auditoria m_auditoria
 m_juridico m_juridico
 m_financiero m_financiero
@@ -844,12 +853,14 @@ this.toolbartextcolor = 134217746
 this.toolbarbackcolor = 15780518
 this.toolbarhighlightcolor = 134217857
 this.m_analisis=create m_analisis
+this.m_archivo=create m_archivo
 this.m_auditoria=create m_auditoria
 this.m_juridico=create m_juridico
 this.m_financiero=create m_financiero
 this.m_gerencia=create m_gerencia
 this.m_presentacion=create m_presentacion
 this.Item[UpperBound(this.Item)+1]=this.m_analisis
+this.Item[UpperBound(this.Item)+1]=this.m_archivo
 this.Item[UpperBound(this.Item)+1]=this.m_auditoria
 this.Item[UpperBound(this.Item)+1]=this.m_juridico
 this.Item[UpperBound(this.Item)+1]=this.m_financiero
@@ -860,6 +871,7 @@ end on
 on m_reportes.destroy
 call super::destroy
 destroy(this.m_analisis)
+destroy(this.m_archivo)
 destroy(this.m_auditoria)
 destroy(this.m_juridico)
 destroy(this.m_financiero)
@@ -1227,6 +1239,65 @@ end on
 
 event clicked;Open(w_analisis_rep_solic_x_tramite_etapas_rev)
 end event
+
+type m_archivo from menu within m_reportes
+m_verificaciones0 m_verificaciones0
+end type
+
+on m_archivo.create
+call super::create
+this.text = "ARCHIVO"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+this.m_verificaciones0=create m_verificaciones0
+this.Item[UpperBound(this.Item)+1]=this.m_verificaciones0
+end on
+
+on m_archivo.destroy
+call super::destroy
+destroy(this.m_verificaciones0)
+end on
+
+type m_verificaciones0 from menu within m_archivo
+end type
+
+event clicked;open(w_analisis_reporte_verificacion)
+end event
+
+on m_verificaciones0.create
+call super::create
+this.text = "VERIFICACIONES"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_verificaciones0.destroy
+call super::destroy
+end on
 
 type m_auditoria from menu within m_reportes
 m_enviadoaauditoria m_enviadoaauditoria
