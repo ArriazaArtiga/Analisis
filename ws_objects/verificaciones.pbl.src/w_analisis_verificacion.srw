@@ -144,6 +144,9 @@ string facename = "Tahoma"
 string text = "Reporte"
 end type
 
+event clicked;open(w_analisis_reporte_verificacion)
+end event
+
 type meses from statictext within w_analisis_verificacion
 integer x = 3625
 integer y = 524
