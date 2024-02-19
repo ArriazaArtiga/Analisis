@@ -320,8 +320,6 @@ if dw_2.getrow( )>0 then
 	editar.visible = true
 else
 	editar.visible = false
-	annos.text = string(dw_2.Object.annos.Sum())
-	meses.text = string(dw_2.Object.meses.Sum())
 end if
 
 end event
@@ -373,8 +371,7 @@ end type
 event clicked;parametros.codigo='...!'
 parametros.objeto_a = dw_1
 OpenWithParm(w_analisis_verificacion_enc,parametros)
-dw_1.settransobject(SQLCA)
-dw_1.retrieve(trim(codigo.text))
+
 
 if dw_1.getrow( )>0 then
 	modificar.visible = true
@@ -384,6 +381,8 @@ else
 	agregar.visible = false
 end if
 
+dw_1.settransobject(SQLCA)
+dw_1.retrieve(trim(codigo.text))
 end event
 
 type dw_2 from datawindow within w_analisis_verificacion
@@ -399,6 +398,23 @@ boolean vscrollbar = true
 boolean livescroll = true
 borderstyle borderstyle = stylelowered!
 end type
+
+event itemchanged;long i_r, resultadoa, resultadob, mesestotales, mesesrestantes
+if this.getrow( )>0 then
+		editar.visible = true
+		
+		for i_r = 1 to this.rowcount( )
+			resultadoA+= this.object.verificacion_det_annos[i_r]
+			resultadoB+=this.object.verificacion_det_meses[i_r]
+		next
+		mesesTotales =  ((resultadoA)*12)+resultadoB
+		mesesRestantes =  mod(mesesTotales,  12)
+		annos.text= string(truncate(mesesTotales/12,0) )
+		meses.text= string(mesesRestantes)
+	else
+		editar.visible = false
+	end if
+end event
 
 type dw_1 from datawindow within w_analisis_verificacion
 integer x = 146

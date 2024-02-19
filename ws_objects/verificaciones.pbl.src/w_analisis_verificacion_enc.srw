@@ -95,6 +95,7 @@ if gi_unidad =integer(unidad) or  gi_unidad =9  then
 	dw_1.object.user_delete[i_rows] = gs_userid+" | " +string(Today())+" | "+string(Now())
 	dw_1.object.activo[i_rows] = 0
 	if dw_1.update() = 1 then
+		f_up_verdet(parametros.codigo)
 		parametros.objeto_a.settransobject(sqlca)
 		parametros.objeto_a.retrieve(parametros.codigo)
 		close(parent)
@@ -146,8 +147,7 @@ event clicked;string cui, unidad
 if gi_unidad =integer(unidad) or  gi_unidad =9  then
 	if dw_1.update() = 1 then
 		
-		parametros.objeto_a.settransobject(sqlca)
-		parametros.objeto_a.retrieve(parametros.codigo)
+	
 		close(parent)
 	
 	else
@@ -156,7 +156,8 @@ if gi_unidad =integer(unidad) or  gi_unidad =9  then
 else
 	Messagebox("Advertencia","No cuenta con los permisos necesarios, coloque la unidad que le corresponde")
 end if
-
+	parametros.objeto_a.settransobject(sqlca)
+	parametros.objeto_a.retrieve(parametros.codigo)
 end event
 
 type dw_1 from datawindow within w_analisis_verificacion_enc
