@@ -488,7 +488,9 @@ If dwo.name  =  "b_cambio" Then
 			end if 
 		case 165 /* Notificacion. */
 			If gi_unidad = 7 or  gi_unidad = 8  or  gi_unidad = 9 then
-				If li_etapa_cambio = 170 or li_etapa_cambio = 300 Then
+				If li_etapa_cambio = 170  or li_etapa_cambio = 300 Then
+					lb_aceptado = True
+				ElseIf li_etapa_cambio = 170 or li_etapa_cambio = 166 or li_etapa_cambio = 300 and  is_tramite = '03' Then
 					lb_aceptado = True
 				Else
 					messagebox('Error','Debe escoger etapa 180 o 300',StopSign!)
@@ -554,7 +556,7 @@ If dwo.name  =  "b_cambio" Then
 			end if 		
 		case 200 /* Recibido de Financiero. */
 			If is_tramite <> '03' Then
-				If gi_unidad = 7 or  gi_unidad = 8  or gi_unidad = 4 then
+				If gi_unidad = 7 or  gi_unidad = 8  or gi_unidad = 4 or gi_unidad = 9 then
 					If li_etapa_cambio = 210 or li_etapa_cambio = 300 Then
 						lb_aceptado = True
 					Else
@@ -565,7 +567,7 @@ If dwo.name  =  "b_cambio" Then
 					messagebox('Error','Financiero es la unidad autorizada para este cambio de etapa',StopSign!)
 				end if
 			Else
-				If gi_unidad = 7 or  gi_unidad = 8  or gi_unidad = 4 then
+				If gi_unidad = 7 or  gi_unidad = 8  or gi_unidad = 4 or gi_unidad = 9 then
 					If li_etapa_cambio = 220 or li_etapa_cambio = 300 Then
 						lb_aceptado = True
 					Else
