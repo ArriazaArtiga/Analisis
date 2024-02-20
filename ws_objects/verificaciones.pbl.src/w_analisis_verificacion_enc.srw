@@ -143,21 +143,18 @@ string text = "Guardar"
 end type
 
 event clicked;string cui, unidad
-
 if gi_unidad =integer(unidad) or  gi_unidad =9  then
 	if dw_1.update() = 1 then
-		
-	
+		parametros.objeto_a.settransobject(sqlca)
+		parametros.objeto_a.retrieve(parametros.codigo)
 		close(parent)
-	
 	else
 		messagebox("Error","El registro no se a guardado en el sistema")
 	end if
 else
 	Messagebox("Advertencia","No cuenta con los permisos necesarios, coloque la unidad que le corresponde")
 end if
-	parametros.objeto_a.settransobject(sqlca)
-	parametros.objeto_a.retrieve(parametros.codigo)
+
 end event
 
 type dw_1 from datawindow within w_analisis_verificacion_enc

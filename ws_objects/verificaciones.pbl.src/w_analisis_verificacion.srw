@@ -260,6 +260,8 @@ string text = "Buscar"
 end type
 
 event clicked;integer i_r, resultadoA,resultadoB, mesesTotales,mesesRestantes, añosTotales
+dw_1.reset()
+dw_2.reset()
 if f_existe_verificacion(codigo.text)= 1 then
 	dw_1.settransobject(SQLCA)
 	dw_1.retrieve(trim(codigo.text))
@@ -399,7 +401,24 @@ boolean livescroll = true
 borderstyle borderstyle = stylelowered!
 end type
 
-event itemchanged;long i_r, resultadoa, resultadob, mesestotales, mesesrestantes
+event editchanged;long i_r, resultadoa, resultadob, mesestotales, mesesrestantes
+if this.getrow( )>0 then
+		editar.visible = true
+		
+		for i_r = 1 to this.rowcount( )
+			resultadoA+= this.object.verificacion_det_annos[i_r]
+			resultadoB+=this.object.verificacion_det_meses[i_r]
+		next
+		mesesTotales =  ((resultadoA)*12)+resultadoB
+		mesesRestantes =  mod(mesesTotales,  12)
+		annos.text= string(truncate(mesesTotales/12,0) )
+		meses.text= string(mesesRestantes)
+	else
+		editar.visible = false
+	end if
+end event
+
+event retrieveend;long i_r, resultadoa, resultadob, mesestotales, mesesrestantes
 if this.getrow( )>0 then
 		editar.visible = true
 		
