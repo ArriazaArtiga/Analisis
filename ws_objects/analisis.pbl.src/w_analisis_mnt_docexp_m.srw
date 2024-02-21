@@ -94,7 +94,7 @@ end type
 
 event clicked;long id
 string unidad
-unidad = dw_1.getitemstring( dw_1.getrow(),4 )
+unidad = dw_1.getitemstring( dw_1.getrow(),2 )
 
 if gi_unidad =integer(unidad) or  gi_unidad =9  then
 	if dw_1.rowcount( ) =0 then
