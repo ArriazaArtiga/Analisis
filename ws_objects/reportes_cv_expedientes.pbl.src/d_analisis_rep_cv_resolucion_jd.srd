@@ -30,7 +30,7 @@ table(column=(type=char(2) updatewhereclause=yes name=solicitudes_tipo_tramite d
  column=(type=decimal(0) updatewhereclause=yes name=mes_lab_muni dbname="mes_lab_muni" )
  column=(type=decimal(0) updatewhereclause=yes name=dias_lab_muni dbname="dias_lab_muni" )
  column=(type=long updatewhereclause=yes name=porcentaje dbname="porcentaje" )
- column=(type=char(1) updatewhereclause=yes name=solicitud_documentos_expediente_tipo_documento dbname="tipo_documento" )
+ column=(type=char(2) updatewhereclause=yes name=solicitud_documentos_expediente_tipo_documento dbname="tipo_documento" )
  column=(type=datetime updatewhereclause=yes name=solicitud_documentos_expediente_fecha_documento dbname="fecha_documento" )
  column=(type=datetime updatewhereclause=yes name=solicitud_documentos_expediente_fecha_inicio_calculo dbname="fecha_inicio_calculo" )
  column=(type=datetime updatewhereclause=yes name=fecha_inicio dbname="fecha_inicio" )
@@ -121,7 +121,7 @@ WHERE	( b.idpuesto = a.puesto ) and
 		( g.dpi = a.dpi ) and  
         ( g.no_solicitud = f.no_solicitud ) and  
         ( f.dpi = a.dpi ) and  
-        ( ( h.tipo_documento = '3 ' ) AND f.etapa < 210 and
+        ( ( h.tipo_documento = '9 ' ) AND f.etapa < 210 and
          ( a.DPI = :as_dpi ) )    
  
 " retrieve.asneeded=yes data.storage=disk arguments=(("as_dpi", string)) )
