@@ -480,13 +480,26 @@ If dwo.name  =  "b_cambio" Then
 				If li_etapa_cambio = 165 or li_etapa_cambio = 300 Then
 					lb_aceptado = True
 				Else
-					messagebox('Error','Debe escoger etapa 180 o 300',StopSign!)
+					messagebox('Error','Debe escoger etapa 160 o 300',StopSign!)
 					lb_aceptado = False
 				End If
 			Else
 				messagebox('Error','Análisis es la unidad autorizada para este cambio de etapa',StopSign!)
 			end if 
 		case 165 /* Notificacion. */
+			If gi_unidad = 7 or  gi_unidad = 8  or  gi_unidad = 9 then
+				If li_etapa_cambio = 170  or li_etapa_cambio = 300 Then
+					lb_aceptado = True
+				ElseIf li_etapa_cambio = 170 or li_etapa_cambio = 166 or li_etapa_cambio = 300 and  is_tramite = '03' Then
+					lb_aceptado = True
+				Else
+					messagebox('Error','Debe escoger etapa 170 o 300',StopSign!)
+					lb_aceptado = False
+				End If
+			Else
+				messagebox('Error','Análisis es la unidad autorizada para este cambio de etapa',StopSign!)
+			end if
+		case 166 /* Notificacion. */
 			If gi_unidad = 7 or  gi_unidad = 8  or  gi_unidad = 9 then
 				If li_etapa_cambio = 170  or li_etapa_cambio = 300 Then
 					lb_aceptado = True
