@@ -31,7 +31,7 @@ if  f_ib14 < f_fallece and f_fb14 > f_fallece and f_ib14 < f_upago and f_fb14 > 
 		
 		if bisiesto then
 			if day(f_ib14)=1 then
-				dias = (daysafter(f_ib14, f_fallece)+1)-1
+				dias = (daysafter(f_ib14, f_fallece))
 
 			else
 				dias = (daysafter(f_ib14, f_fallece))-1
@@ -49,7 +49,7 @@ if  f_ib14 < f_fallece and f_fb14 > f_fallece and f_ib14 < f_upago and f_fb14 > 
 	end if 
 	cadena = "El número de dias calculado es: "+string(dias)
 
-	messagebox("Bono Provisional ...",cadena)
+	//messagebox("Bono Provisional ...",cadena)
 end if
 
 if f_ib14 < f_fallece and f_fb14 > f_fallece and f_ib14 < f_upago and f_fb14 > f_upago and f_fallece > f_upago then
@@ -89,7 +89,7 @@ if f_ib14 < f_fallece and f_fb14 > f_fallece and f_ib14 < f_upago and f_fb14 > f
 	end if 
 
 	cadena = "El número de dias calculado es: "+string(dias)
-	messagebox("Bono Provisional_....",cadena)
+	//messagebox("Bono Provisional_....",cadena)
 end if
 
 if f_ib14 < f_fallece and f_fb14 > f_fallece and f_ib14 < f_upago and f_fb14 = f_upago and f_fallece > f_upago then
@@ -125,7 +125,7 @@ if f_ib14 < f_fallece and f_fb14 > f_fallece and f_ib14 < f_upago and f_fb14 = f
 		resultado = (pension/365)*(dias)
 	end if 
 	cadena = "El número de dias calculado es: "+string(dias)
-	messagebox("Bono Provisional....",cadena)
+	//messagebox("Bono Provisional....",cadena)
 end if
 if  f_ib14 > f_fallece and f_fb14 > f_fallece and f_ib14 > f_upago and f_fb14 > f_upago and f_fallece > f_upago then
 	
@@ -161,7 +161,7 @@ if  f_ib14 > f_fallece and f_fb14 > f_fallece and f_ib14 > f_upago and f_fb14 > 
 		resultado = (pension/365)*(dias)
 	end if 
 	cadena = "El número de dias calculado es: "+string(dias)
-	messagebox("Bono Provisional......",cadena)
+	//messagebox("Bono Provisional......",cadena)
 end if
 
 return resultado 

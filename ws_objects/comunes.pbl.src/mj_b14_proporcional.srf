@@ -46,7 +46,7 @@ if  f_ib14 < f_fallece and f_fb14 > f_fallece and f_ib14 < f_upago and f_fb14 < 
 		resultado=(pension/365) * (dias)
 	end if	
 	cadena = "El número de dias calculado es: "+string(dias)
-	messagebox("Bono Proporcional",cadena)
+	//messagebox("Bono Proporcional",cadena)
 end if 
 
 
@@ -82,7 +82,7 @@ if f_ib14 < f_fallece and f_fb14 > f_fallece and f_ib14 < f_upago and f_fb14 = f
 		resultado=(pension/365) * (dias)
 	end if	
 	cadena = "El número de dias calculado es: "+string(dias)
-	messagebox("Bono Proporcional..",cadena)
+	//messagebox("Bono Proporcional..",cadena)
 end if 
 return resultado 
 

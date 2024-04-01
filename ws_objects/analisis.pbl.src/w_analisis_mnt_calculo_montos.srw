@@ -318,7 +318,7 @@ ldt_fecha_agui_fin_prop 	= datetime(dw_solicitud_pagos.object.solicitud_prestaci
 				subtotalA =f_diferencia_meses( ldt_fecha_fallecimiento,ldt_fecha_fin_p1) * pension1
 				subtotalB = (f_diferencia_meses( ldt_fecha_fin_p1,ldt_fecha_ultimo_pago)) * pension2
 				ldc_meses_pago = round(subtotalA+subtotalB,2)
-				messagebox('x2',string(ldc_meses_pago))
+				//messagebox('x2',string(ldc_meses_pago))
 				
 			end if
 			
