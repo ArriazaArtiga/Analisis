@@ -355,7 +355,7 @@ If dwo.name  =  "b_cambio" Then
 				Messagebox("Atencion", "Auditoria Interna es la unidad autorizada para estas etapas",Information!)
 			End if 	
 		case 65 /* Recepción Auditoría */
-			if gi_unidad = 5 or  gi_unidad = 9 then 
+			if gi_unidad = 5  or gi_unidad = 7 or   gi_unidad = 9 then 
 				If li_etapa_cambio = 70 or li_etapa_cambio = 80 Then
 					lb_aceptado = True
 				Else
@@ -432,7 +432,7 @@ If dwo.name  =  "b_cambio" Then
 					Messagebox("Atención", "Direccion  de Clases Pasivas son los encargados de cambiar esta etapa",Information!)
    			end if
 		case 120 /* Enviado a Gerencia */
-			If gi_unidad = 1  or  gi_unidad = 9 then
+			If gi_unidad = 1  or gi_unidad = 7 or   gi_unidad = 9 then
 				If li_etapa_cambio = 130 Then
 					lb_aceptado = True
 				Else
