@@ -91,10 +91,10 @@ table(column=(type=char(2) updatewhereclause=yes name=solicitudes_tipo_tramite d
 			When '01' Then Round(0.00,2)
 			When '02' Then Round(0.00,2)
 			When '03' Then Round(0.00,2)
-			When '04' Then isnull(( select top 1 sum( u.Monto1 ) from Declaracion_Beneficiarios v, Detalle_Beneficiarios u where a.DPI = v.DPI_Contribuyente and v.idFormulario = u.idFormulario and v.status = 1 and u.tipo1 = 1  ),0.00)
-			When '05' Then isnull(( select top 1 sum( u.Monto1 ) from Declaracion_Beneficiarios v, Detalle_Beneficiarios u where a.DPI = v.DPI_Contribuyente and v.idFormulario = u.idFormulario and v.status = 1 and u.tipo1 = 1   ),0.00)
-			When '06' Then isnull(( select top 1 sum( u.Monto1 ) from Declaracion_Beneficiarios v, Detalle_Beneficiarios u where a.DPI = v.DPI_Contribuyente and v.idFormulario = u.idFormulario and v.status = 1 and u.tipo1 = 1   ),0.00)
-			When '07' Then isnull(( select top 1 sum( u.Monto1 ) from Declaracion_Beneficiarios v, Detalle_Beneficiarios u where a.DPI = v.DPI_Contribuyente and v.idFormulario = u.idFormulario and v.status = 1  and u.tipo1 = 1 ),0.00)
+			When '04' Then isnull(( select top 1 sum( u.Monto1 ) from Declaracion_Beneficiarios v, Detalle_Beneficiarios u where a.DPI = v.DPI_Contribuyente and v.idFormulario = u.idFormulario and v.status = 1 and u.tipo2 = 1  ),0.00)
+			When '05' Then isnull(( select top 1 sum( u.Monto1 ) from Declaracion_Beneficiarios v, Detalle_Beneficiarios u where a.DPI = v.DPI_Contribuyente and v.idFormulario = u.idFormulario and v.status = 1 and u.tipo2 = 1   ),0.00)
+			When '06' Then isnull(( select top 1 sum( u.Monto1 ) from Declaracion_Beneficiarios v, Detalle_Beneficiarios u where a.DPI = v.DPI_Contribuyente and v.idFormulario = u.idFormulario and v.status = 1 and u.tipo2 = 1   ),0.00)
+			When '07' Then isnull(( select top 1 sum( u.Monto1 ) from Declaracion_Beneficiarios v, Detalle_Beneficiarios u where a.DPI = v.DPI_Contribuyente and v.idFormulario = u.idFormulario and v.status = 1  and u.tipo2 = 1 ),0.00)
 			When '09' Then round(0.00,2)
 		 End as 'Beneficio Póstumo',
  		 Case a.Tipo_Tramite
