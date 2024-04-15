@@ -798,18 +798,18 @@ if is_tramite = '05' Then // Muerte Activo
 		end if 
 		
 		If dw_solicitud_pagos.object.solicitud_prestacion_muerte_monto_pension[ll_row] > ll_max_monto then
-			dw_solicitud_pagos.object.monto_dias_mes[ll_row] = (li_dias_lab * (ll_max_monto/365))
-			dw_solicitud_pagos.object.solicitud_prestacion_muerte_monto_meses[ll_row] = (li_meses_lab * (ll_max_monto/12)) 
-			dw_solicitud_pagos.object.solicitud_prestacion_muerte_prestacion_muerte[ll_row] = (li_anios * ll_max_monto)
+			dw_solicitud_pagos.object.monto_dias_mes[ll_row] = round((li_dias_lab * (ll_max_monto/365)),2)
+			dw_solicitud_pagos.object.solicitud_prestacion_muerte_monto_meses[ll_row] = round((li_meses_lab * (ll_max_monto/12)),2) 
+			dw_solicitud_pagos.object.solicitud_prestacion_muerte_prestacion_muerte[ll_row] = round((li_anios * ll_max_monto),2)
 		Else
 			If dw_solicitud_pagos.object.solicitud_prestacion_muerte_monto_pension[ll_row] < ll_min_monto then
-				dw_solicitud_pagos.object.monto_dias_mes[ll_row] = (li_dias_lab * (ll_max_monto/365))
-				dw_solicitud_pagos.object.solicitud_prestacion_muerte_monto_meses[ll_row] = (li_meses_lab * (ll_min_monto/12))
-				dw_solicitud_pagos.object.solicitud_prestacion_muerte_prestacion_muerte[ll_row] = (li_anios * ll_min_monto)
+				dw_solicitud_pagos.object.monto_dias_mes[ll_row] = round((li_dias_lab * (ll_max_monto/365)),2)
+				dw_solicitud_pagos.object.solicitud_prestacion_muerte_monto_meses[ll_row] = round((li_meses_lab * (ll_min_monto/12)),2)
+				dw_solicitud_pagos.object.solicitud_prestacion_muerte_prestacion_muerte[ll_row] = round((li_anios * ll_min_monto),2)
 			else
-				dw_solicitud_pagos.object.monto_dias_mes[ll_row] = (li_dias_lab * (dw_solicitud_pagos.object.solicitud_prestacion_muerte_monto_pension[ll_row]/365))
-				dw_solicitud_pagos.object.solicitud_prestacion_muerte_monto_meses[ll_row] = (li_meses_lab * (dw_solicitud_pagos.object.solicitud_prestacion_muerte_monto_pension[ll_row]/12))
-				dw_solicitud_pagos.object.solicitud_prestacion_muerte_prestacion_muerte[ll_row] = (li_anios * dw_solicitud_pagos.object.solicitud_prestacion_muerte_monto_pension[ll_row])
+				dw_solicitud_pagos.object.monto_dias_mes[ll_row] = round((li_dias_lab * (dw_solicitud_pagos.object.solicitud_prestacion_muerte_monto_pension[ll_row]/365)),2)
+				dw_solicitud_pagos.object.solicitud_prestacion_muerte_monto_meses[ll_row] = round((li_meses_lab * (dw_solicitud_pagos.object.solicitud_prestacion_muerte_monto_pension[ll_row]/12)),2)
+				dw_solicitud_pagos.object.solicitud_prestacion_muerte_prestacion_muerte[ll_row] = round((li_anios * dw_solicitud_pagos.object.solicitud_prestacion_muerte_monto_pension[ll_row]),2)
 			end if
 		end if
 	end if
