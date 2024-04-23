@@ -28,13 +28,12 @@ end forward
 global type w_analisis_mnt_cambio_etapas from window
 integer x = 1550
 integer y = 120
-integer width = 3794
-integer height = 3968
+integer width = 3767
+integer height = 3944
 boolean titlebar = true
 boolean controlmenu = true
 boolean minbox = true
-boolean maxbox = true
-boolean resizable = true
+windowtype windowtype = popup!
 long backcolor = 32895212
 string icon = "AppIcon!"
 boolean center = true
