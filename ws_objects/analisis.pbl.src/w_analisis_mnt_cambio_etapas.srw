@@ -28,14 +28,17 @@ end forward
 global type w_analisis_mnt_cambio_etapas from window
 integer x = 1550
 integer y = 120
-integer width = 3767
-integer height = 3944
+integer width = 3813
+integer height = 3624
 boolean titlebar = true
 boolean controlmenu = true
 boolean minbox = true
+boolean maxbox = true
+boolean resizable = true
 windowtype windowtype = popup!
 long backcolor = 32895212
 string icon = "AppIcon!"
+boolean clientedge = true
 boolean center = true
 dw_detalle_requisitos dw_detalle_requisitos
 pb_salir pb_salir
@@ -106,14 +109,18 @@ end event
 type dw_detalle_requisitos from datawindow within w_analisis_mnt_cambio_etapas
 boolean visible = false
 integer x = 215
-integer y = 3064
+integer y = 2716
 integer width = 2967
 integer height = 752
 integer taborder = 40
 string title = "none"
 string dataobject = "d_analisis_mnt_det_requisitos_solicitudes2"
+boolean controlmenu = true
+boolean minbox = true
+boolean maxbox = true
 boolean hscrollbar = true
 boolean vscrollbar = true
+boolean resizable = true
 boolean livescroll = true
 borderstyle borderstyle = stylelowered!
 end type
@@ -246,7 +253,7 @@ type dw_cambio_etapa from datawindow within w_analisis_mnt_cambio_etapas
 integer x = 329
 integer y = 960
 integer width = 2702
-integer height = 2072
+integer height = 1732
 integer taborder = 20
 string title = "none"
 string dataobject = "d_analisis_mnt_cambio_etapas"
