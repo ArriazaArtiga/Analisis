@@ -1706,9 +1706,13 @@ Integer li_resp, li_servicio
 
 li_resp = MessageBox("¿Grabar?", "¿Ya reviso los cálculos?. ¿Desea Grabar?", Question!, YesNo!, 2)
 If li_resp = 1  Then
+	
 	if is_tramite = '03' then
+		f_db_upd_salario_contribuyente(is_dpi,dw_solicitud_pagos.object.salario[1])
+		COMMIT using SQLCA;	
 		if  dw_solicitud_pagos.object.meses_pago1[1]= 0 then
 			messagebox("Error", "No aplica para contribuyente voluntario")
+				
 		else
 			dw_solicitud_pagos.object.monto_anio1[1] = dw_solicitud_pagos.object.meses_pago1[1]
 		dw_solicitud_pagos.object.monto_anio2[1] = round(dw_solicitud_pagos.object.cuota_laboral[1],0)
@@ -1718,7 +1722,7 @@ If li_resp = 1  Then
 //		(salario1 + salario2 + salario3 + salario4 + salario5 + salario6 ) / 6
 		f_db_upd_salario_contribuyente(is_dpi,dw_solicitud_pagos.object.salario[1])
 		end if
-		
+	
 	end if
 
 	IF dw_solicitud_pagos.Update() = 1 THEN	
@@ -1735,6 +1739,8 @@ If li_resp = 1  Then
 				f_db_upd_salario_contribuyente02(dw_solicitud_pagos.object.porcentaje_pension[1],dw_solicitud_pagos.object.pension[1], is_dpi,dw_solicitud_pagos.object.promedio_anios[1])
 			case '03'
 				ldc_pension = dw_solicitud_pagos.object.pension[1]
+				f_db_upd_salario_contribuyente(is_dpi,dw_solicitud_pagos.object.salario[1])
+				
 			case '04'
 				ldc_pension = Truncate(dw_solicitud_pagos.object.solicitud_prestacion_muerte_monto_pension[1], 0)
 			case '05'

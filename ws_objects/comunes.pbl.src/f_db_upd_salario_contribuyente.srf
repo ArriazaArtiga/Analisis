@@ -10,7 +10,7 @@ global function integer f_db_upd_salario_contribuyente (string as_dpi, decimal a
 update 
 	Contribuyentes
 set
-	Salario = :adc_salario,
+	Salario = :adc_salario
 where 
 	dpi = :as_dpi 
 using SQLCA;
