@@ -9,15 +9,15 @@ end type
 end forward
 
 global type w_principal from window
-integer width = 5550
-integer height = 3444
+integer width = 5577
+integer height = 3468
 boolean titlebar = true
 string title = "w_principal"
 string menuname = "menu_principal"
 boolean controlmenu = true
 boolean minbox = true
+boolean resizable = true
 windowtype windowtype = popup!
-windowstate windowstate = maximized!
 long backcolor = 16777215
 string icon = "AppIcon!"
 boolean center = true
