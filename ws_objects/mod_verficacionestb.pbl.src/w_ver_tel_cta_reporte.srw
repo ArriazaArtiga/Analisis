@@ -9,8 +9,8 @@ end type
 end forward
 
 global type w_ver_tel_cta_reporte from window
-integer width = 4754
-integer height = 1980
+integer width = 4389
+integer height = 1484
 boolean titlebar = true
 string title = "Untitled"
 boolean controlmenu = true
@@ -43,8 +43,8 @@ destroy(this.dw_1)
 end on
 
 type cb_1 from commandbutton within w_ver_tel_cta_reporte
-integer x = 3817
-integer y = 1396
+integer x = 3922
+integer y = 40
 integer width = 402
 integer height = 112
 integer taborder = 20
@@ -54,7 +54,7 @@ fontcharset fontcharset = ansi!
 fontpitch fontpitch = variable!
 fontfamily fontfamily = swiss!
 string facename = "Tahoma"
-string text = "Excel"
+string text = "Descargar"
 end type
 
 event clicked;dw_1.SetTransObject(sqlca)
@@ -65,7 +65,7 @@ end event
 type dw_1 from datawindow within w_ver_tel_cta_reporte
 integer x = 27
 integer y = 32
-integer width = 4553
+integer width = 3863
 integer height = 1312
 integer taborder = 10
 string title = "Reporte"

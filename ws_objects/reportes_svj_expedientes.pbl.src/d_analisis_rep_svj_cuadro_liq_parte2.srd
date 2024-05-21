@@ -5,18 +5,18 @@ header(height=164 color="536870912" transparency="0" gradient.color="8421504" gr
 summary(height=84 color="536870912" transparency="0" gradient.color="8421504" gradient.transparency="0" gradient.angle="0" brushmode="0" gradient.repetition.mode="0" gradient.repetition.count="0" gradient.repetition.length="100" gradient.focus="0" gradient.scale="100" gradient.spread="100" )
 footer(height=0 color="536870912" transparency="0" gradient.color="8421504" gradient.transparency="0" gradient.angle="0" brushmode="0" gradient.repetition.mode="0" gradient.repetition.count="0" gradient.repetition.length="100" gradient.focus="0" gradient.scale="100" gradient.spread="100" )
 detail(height=80 color="536870912" transparency="0" gradient.color="8421504" gradient.transparency="0" gradient.angle="0" brushmode="0" gradient.repetition.mode="0" gradient.repetition.count="0" gradient.repetition.length="100" gradient.focus="0" gradient.scale="100" gradient.spread="100" )
-table(column=(type=char(15) updatewhereclause=yes name=declaracion_beneficiarios_dpi_contribuyente dbname="dpi_contribuyente" )
+table(column=(type=char(15) updatewhereclause=yes name=declaracion_beneficiarios_dpi_contribuyente dbname="declaracion_beneficiarios.dpi_contribuyente" dbalias="b.dpi_contribuyente" )
  column=(type=char(44) updatewhereclause=yes name=beneficio dbname="beneficio" )
  column=(type=char(254) updatewhereclause=yes name=nombre dbname="nombre" )
  column=(type=char(20) updatewhereclause=yes name=detalle_beneficiarios_cuenta_banco dbname="cuenta_banco" )
- column=(type=decimal(4) updatewhereclause=yes name=detalle_beneficiarios_porcentaje dbname="porcentaje" )
+ column=(type=decimal(4) updatewhereclause=yes name=detalle_beneficiarios_porcentaje dbname="detalle_beneficiarios.porcentaje" dbalias="a.porcentaje" )
  column=(type=decimal(4) updatewhereclause=yes name=detalle_beneficiarios_prestacion_muerte dbname="prestacion_muerte" )
- column=(type=char(1) updatewhereclause=yes name=detalle_beneficiarios_tipo dbname="tipo" )
+ column=(type=char(1) updatewhereclause=yes name=detalle_beneficiarios_tipo dbname="detalle_beneficiarios.tipo" dbalias="a.tipo" )
  column=(type=long updatewhereclause=yes name=caso dbname="caso" )
- column=(type=decimal(0) updatewhereclause=yes name=no_solicitud dbname="no_solicitud" )
+ column=(type=decimal(0) updatewhereclause=yes name=no_solicitud dbname="solicitudes.no_solicitud" dbalias="x.no_solicitud" )
  retrieve="SELECT 	b.dpi_contribuyente, 
 			beneficio = '1. Prestación por Fallecimiento',
-			nombre = a.nombre1 + ' ' + ISNULL(a.nombre2,'') + ' ' + a.apellido1 + ' ' + isnull(a.apellido2,'') + ' ' + isnull(a.apellidoc,''),
+			concat(a.nombre1,' ',a.nombre2,' ', a.apellido1, ' ', a.apellido2 , ' ' , a.apellidoc)nombre,
 			case a.tipo
 			when 1 then a.Cuenta_Banco
 			when 2 then 'Parte pendiente'
@@ -43,7 +43,7 @@ union
 
 SELECT	b.dpi_contribuyente, 
 			beneficio = '2. Prestación por Gastos Funerarios',
-			nombre = a.nombre1 + ' ' + ISNULL(a.nombre2,'') + ' ' + a.apellido1 + ' ' + isnull(a.apellido2,'') + ' ' + isnull(a.apellidoc,''),
+			concat(a.nombre1,' ',a.nombre2,' ', a.apellido1, ' ', a.apellido2 , ' ' , a.apellidoc)nombre,
 			case a.tipo1
 			when 1 then a.Cuenta_Banco
 			when 2 then 'Parte pendiente'
@@ -70,7 +70,7 @@ WHERE	(b.DPI_Contribuyente = x.DPI) and
 
 SELECT	b.dpi_contribuyente, 
 			beneficio = '3. Prestación por Beneficio Póstumo Gratuito',
-			nombre = a.nombre1 + ' ' + ISNULL(a.nombre2,'') + ' ' + a.apellido1 + ' ' + isnull(a.apellido2,'') + ' ' + isnull(a.apellidoc,''),
+			concat(a.nombre1,' ',a.nombre2,' ', a.apellido1, ' ', a.apellido2 , ' ' , a.apellidoc)nombre,
 			case a.tipo2
 			when 1 then a.Cuenta_Banco
 			when 2 then 'Parte pendiente'
