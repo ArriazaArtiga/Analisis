@@ -125,7 +125,8 @@ end if
 end event
 
 type lb_1 from listbox within w_ver_tel_cta
-integer y = 1380
+integer x = 59
+integer y = 1456
 integer width = 4768
 integer height = 560
 integer taborder = 40

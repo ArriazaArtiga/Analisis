@@ -12,7 +12,7 @@ global type w_ver_tel_cta_reporte from window
 integer width = 4389
 integer height = 1484
 boolean titlebar = true
-string title = "Untitled"
+string title = "Reporte de Cuentas Bancarias verificadas"
 boolean controlmenu = true
 boolean minbox = true
 boolean maxbox = true
@@ -59,7 +59,7 @@ end type
 
 event clicked;dw_1.SetTransObject(sqlca)
 dw_1.retrieve( )
-dw_1.SaveAs("", Excel!, true)
+dw_1.SaveAs("", XLSB!, true)
 end event
 
 type dw_1 from datawindow within w_ver_tel_cta_reporte
