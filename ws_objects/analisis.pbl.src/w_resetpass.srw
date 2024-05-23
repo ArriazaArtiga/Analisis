@@ -187,7 +187,7 @@ borderstyle borderstyle = stylelowered!
 end type
 
 type pb_cancelar from picturebutton within w_resetpass
-integer x = 2139
+integer x = 2080
 integer y = 1352
 integer width = 517
 integer height = 96
@@ -209,7 +209,7 @@ event clicked;HALT
 end event
 
 type pb_aceptar from picturebutton within w_resetpass
-integer x = 2139
+integer x = 2080
 integer y = 1224
 integer width = 517
 integer height = 96
@@ -273,7 +273,7 @@ Else
 					sle_2.backcolor=RGB(0, 255, 0)
 					sle_3.backcolor=RGB(0, 255, 0)
 					passencriptado = f_encriptar(sle_2.text)
-					update dbo.Usuarios set Passencript = :passencriptado, Actualizado_por=:gs_userid, Actualizado_el= getdate() where Usuario = :gs_userid
+					update dbo.Usuarios set Passencript = :passencriptado, Actualizado_por=:gs_userid, Actualizado_el= getdate(),Ucc= getdate() where Usuario = :gs_userid
 					using SQLCA;
 					commit;
 					messagebox('Info','Se ha cambiado la contraseña con exito')

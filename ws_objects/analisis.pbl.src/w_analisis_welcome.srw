@@ -132,6 +132,9 @@ event clicked;// 1) Instantiate the Transaction object
 //Local variable declarations
 String ls_database, ls_userid, ls_password
 Long ll_row, ll_rows, ll_i
+date UCC, hoy
+hoy = today()
+long dias
 
 //Assignment statements
 gs_userid = Trim ( sle_usuario.text )
@@ -161,8 +164,8 @@ IF ll_row = 0 THEN
 	MessageBox('Error', 'El usuario ' + gs_userid + ' no esta registrado',StopSign!,OK!)
 Else
 	
-		select a.Status,/*b.Sistema,b.Rol,b.Permisos,*/a.Descripcion,a.Unidad
-		into 	:gs_status,/* :gi_sistema, :gs_rol, :gs_permisos,*/ :gs_descripcion, :gi_unidad
+		select a.Status,/*b.Sistema,b.Rol,b.Permisos,*/a.Descripcion,a.Unidad,a.Ucc
+		into 	:gs_status,/* :gi_sistema, :gs_rol, :gs_permisos,*/ :gs_descripcion, :gi_unidad, :UCC
 		from 	dbo.Usuarios a/*,*/
 //				dbo.Usuarios_Sistemas b
 		where /*b.Usuario = a.Usuario*/
@@ -175,8 +178,13 @@ Else
 			Else
 				///w_analisis_frame.title = '.:. PPEM SIG - Módulo Análisis - Ver. 1.1.0.0  ----    Usuario: ' + gs_userid + ' - ' + gs_descripcion + ' - Fecha: ' + string(Today()) + ' .:.'
 				//open(w_calculos_express2)
-				OpenWithParm(w_principal, gs_descripcion)
-				w_principal.title = '.:. PPEM SIG - Módulo Análisis - Ver. 1.1.0.0  ----    Usuario: ' + gs_userid + ' - ' + gs_descripcion + ' - Fecha: ' + string(Today()) + ' © PPEM - SIG - 2016-2017 .:.'
+				dias = DaysAfter(UCC,hoy)
+				if dias<91 then
+					OpenWithParm(w_principal, gs_descripcion)
+					w_principal.title = '.:. PPEM SIG - Módulo Análisis - Ver. 1.1.0.0  ----    Usuario: ' + gs_userid + ' - ' + gs_descripcion + ' - Fecha: ' + string(Today()) + ' © PPEM - SIG - .:.'
+				else
+					Open(w_resetpass)
+				end if
 			END IF
 end if
 	
