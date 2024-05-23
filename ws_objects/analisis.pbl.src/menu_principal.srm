@@ -18,6 +18,8 @@ type m_nominasauxiliares from menu within m_mantenimiento
 end type
 type m_verificacionescta from menu within m_mantenimiento
 end type
+type m_cambiarcontraseña from menu within m_mantenimiento
+end type
 type m_mantenimiento from menu within menu_principal
 m_solicitudes m_solicitudes
 m_etapas m_etapas
@@ -26,6 +28,7 @@ m_requisitos m_requisitos
 m_usuarios m_usuarios
 m_nominasauxiliares m_nominasauxiliares
 m_verificacionescta m_verificacionescta
+m_cambiarcontraseña m_cambiarcontraseña
 end type
 type m_procesos from menu within menu_principal
 end type
@@ -268,6 +271,7 @@ m_requisitos m_requisitos
 m_usuarios m_usuarios
 m_nominasauxiliares m_nominasauxiliares
 m_verificacionescta m_verificacionescta
+m_cambiarcontraseña m_cambiarcontraseña
 end type
 
 on m_mantenimiento.create
@@ -300,6 +304,7 @@ this.m_requisitos=create m_requisitos
 this.m_usuarios=create m_usuarios
 this.m_nominasauxiliares=create m_nominasauxiliares
 this.m_verificacionescta=create m_verificacionescta
+this.m_cambiarcontraseña=create m_cambiarcontraseña
 this.Item[UpperBound(this.Item)+1]=this.m_solicitudes
 this.Item[UpperBound(this.Item)+1]=this.m_etapas
 this.Item[UpperBound(this.Item)+1]=this.m_1
@@ -307,6 +312,7 @@ this.Item[UpperBound(this.Item)+1]=this.m_requisitos
 this.Item[UpperBound(this.Item)+1]=this.m_usuarios
 this.Item[UpperBound(this.Item)+1]=this.m_nominasauxiliares
 this.Item[UpperBound(this.Item)+1]=this.m_verificacionescta
+this.Item[UpperBound(this.Item)+1]=this.m_cambiarcontraseña
 end on
 
 on m_mantenimiento.destroy
@@ -318,6 +324,7 @@ destroy(this.m_requisitos)
 destroy(this.m_usuarios)
 destroy(this.m_nominasauxiliares)
 destroy(this.m_verificacionescta)
+destroy(this.m_cambiarcontraseña)
 end on
 
 type m_solicitudes from menu within m_mantenimiento
@@ -527,6 +534,35 @@ end on
 
 event clicked;Open(w_ver_tel_cta)
 end event
+
+type m_cambiarcontraseña from menu within m_mantenimiento
+end type
+
+event clicked;open(w_resetpass)
+end event
+
+on m_cambiarcontraseña.create
+call super::create
+this.text = "CAMBIAR CONTRASEÑA"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_cambiarcontraseña.destroy
+call super::destroy
+end on
 
 type m_procesos from menu within menu_principal
 m_calculomontos m_calculomontos

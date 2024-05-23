@@ -1,0 +1,30 @@
+﻿$PBExportHeader$f_encriptar.srf
+global type f_encriptar from function_object
+end type
+
+forward prototypes
+global function string f_encriptar (string pass)
+end prototypes
+
+global function string f_encriptar (string pass);String ls_Message, ls_Algorithm, ls_Result
+n_bcrypt in_bc
+
+ls_Message = pass
+If ls_Message = "" Then
+	MessageBox("Edit Error", "The message is required!", StopSign!)
+	Return 'Contraseña Vacía'
+End If
+
+ls_Algorithm = 'SHA512'
+
+ls_Result = in_bc.of_HashToHex(ls_Algorithm, ls_Message)
+If IsNull(ls_Result) Then
+	MessageBox(in_bc.LastFunction + " Failed", &
+			in_bc.LastErrText, StopSign!)
+	Return in_bc.LastErrText
+End If
+
+return  ls_Result
+
+end function
+

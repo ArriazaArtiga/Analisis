@@ -59,7 +59,18 @@ end type
 
 event clicked;dw_1.SetTransObject(sqlca)
 dw_1.retrieve( )
-dw_1.SaveAs("", XLSB!, true)
+
+
+
+TRY
+	IF dw_1.SaveAs("", XLSB!, true) = 1 THEN
+		messagebox('Enhorabuena', 'La exportación ha sido exitosa')
+	ELSE 
+		messagebox('Error', 'La exportación no ha sido exitosa')
+	END IF
+CATCH (runtimeerror ex)
+    messagebox('Error', 'Error: '+string(ex))
+END TRY
 end event
 
 type dw_1 from datawindow within w_ver_tel_cta_reporte
