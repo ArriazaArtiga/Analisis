@@ -255,8 +255,8 @@ IF ll_row = 0 THEN
 	MessageBox('Error', 'El usuario ' + gs_userid + ' no esta registrado',StopSign!,OK!)
 Else
 	
-		select a.Status,/*b.Sistema,b.Rol,b.Permisos,*/a.Descripcion,a.Unidad
-		into 	:gs_status,/* :gi_sistema, :gs_rol, :gs_permisos,*/ :gs_descripcion, :gi_unidad
+		select a.Status,/*b.Sistema,b.Rol,b.Permisos,*/a.Descripcion
+		into 	:gs_status,/* :gi_sistema, :gs_rol, :gs_permisos,*/ :gs_descripcion
 		from 	dbo.Usuarios a/*,*/
 //				dbo.Usuarios_Sistemas b
 		where /*b.Usuario = a.Usuario*/
@@ -272,12 +272,18 @@ Else
 				if sle_2.text = sle_3.text then 
 					sle_2.backcolor=RGB(0, 255, 0)
 					sle_3.backcolor=RGB(0, 255, 0)
-					passencriptado = f_encriptar(sle_2.text)
-					update dbo.Usuarios set Passencript = :passencriptado, Actualizado_por=:gs_userid, Actualizado_el= getdate(),Ucc= getdate() where Usuario = :gs_userid
-					using SQLCA;
-					commit;
-					messagebox('Info','Se ha cambiado la contraseña con exito')
-					close(parent)
+					if f_encriptar(sle_2.text) = 'Contraseña Vacía' then
+						sle_2.backcolor=RGB(255, 0, 0)
+						sle_3.backcolor=RGB(255, 0, 0)
+						messagebox('Error','Contraseñas vacias')
+					else 
+						passencriptado = f_encriptar(sle_2.text)
+						update dbo.Usuarios set Passencript = :passencriptado, Actualizado_por=:gs_userid, Actualizado_el= getdate(), Ucc=getdate() where Usuario = :gs_userid
+						using SQLCA;
+						commit;
+						messagebox('Info','Se ha cambiado la contraseña con exito')
+						close(parent)
+					end if 
 				else
 					sle_2.backcolor=RGB(255, 0, 0)
 					sle_3.backcolor=RGB(255, 0, 0)
