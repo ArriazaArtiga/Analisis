@@ -2,6 +2,16 @@
 forward
 global type w_opciones_ma from window
 end type
+type sle_5 from singlelineedit within w_opciones_ma
+end type
+type sle_4 from singlelineedit within w_opciones_ma
+end type
+type sle_3 from singlelineedit within w_opciones_ma
+end type
+type sle_2 from singlelineedit within w_opciones_ma
+end type
+type sle_1 from singlelineedit within w_opciones_ma
+end type
 type ddlb_3 from dropdownlistbox within w_opciones_ma
 end type
 type ddlb_2 from dropdownlistbox within w_opciones_ma
@@ -32,6 +42,11 @@ boolean resizable = true
 long backcolor = 67108864
 string icon = "AppIcon!"
 boolean center = true
+sle_5 sle_5
+sle_4 sle_4
+sle_3 sle_3
+sle_2 sle_2
+sle_1 sle_1
 ddlb_3 ddlb_3
 ddlb_2 ddlb_2
 ddlb_1 ddlb_1
@@ -44,6 +59,11 @@ end type
 global w_opciones_ma w_opciones_ma
 
 on w_opciones_ma.create
+this.sle_5=create sle_5
+this.sle_4=create sle_4
+this.sle_3=create sle_3
+this.sle_2=create sle_2
+this.sle_1=create sle_1
 this.ddlb_3=create ddlb_3
 this.ddlb_2=create ddlb_2
 this.ddlb_1=create ddlb_1
@@ -52,7 +72,12 @@ this.st_4=create st_4
 this.st_3=create st_3
 this.st_2=create st_2
 this.st_1=create st_1
-this.Control[]={this.ddlb_3,&
+this.Control[]={this.sle_5,&
+this.sle_4,&
+this.sle_3,&
+this.sle_2,&
+this.sle_1,&
+this.ddlb_3,&
 this.ddlb_2,&
 this.ddlb_1,&
 this.st_5,&
@@ -63,6 +88,11 @@ this.st_1}
 end on
 
 on w_opciones_ma.destroy
+destroy(this.sle_5)
+destroy(this.sle_4)
+destroy(this.sle_3)
+destroy(this.sle_2)
+destroy(this.sle_1)
 destroy(this.ddlb_3)
 destroy(this.ddlb_2)
 destroy(this.ddlb_1)
@@ -72,6 +102,97 @@ destroy(this.st_3)
 destroy(this.st_2)
 destroy(this.st_1)
 end on
+
+event open;sle_2.text = mid(sle_1.text,1,8)
+sle_3.text = mid(sle_1.text,9,8)
+sle_4.text = mid(sle_1.text,17,8)
+sle_5.text = sle_2.text+';'+sle_3.text+';'+sle_4.text
+end event
+
+type sle_5 from singlelineedit within w_opciones_ma
+integer x = 1851
+integer y = 900
+integer width = 1285
+integer height = 112
+integer taborder = 30
+integer textsize = -10
+integer weight = 400
+fontcharset fontcharset = ansi!
+fontpitch fontpitch = variable!
+fontfamily fontfamily = swiss!
+string facename = "Tahoma"
+long textcolor = 33554432
+string text = "none"
+borderstyle borderstyle = stylelowered!
+end type
+
+type sle_4 from singlelineedit within w_opciones_ma
+integer x = 1001
+integer y = 1108
+integer width = 672
+integer height = 112
+integer taborder = 30
+integer textsize = -10
+integer weight = 400
+fontcharset fontcharset = ansi!
+fontpitch fontpitch = variable!
+fontfamily fontfamily = swiss!
+string facename = "Tahoma"
+long textcolor = 33554432
+string text = "none"
+borderstyle borderstyle = stylelowered!
+end type
+
+type sle_3 from singlelineedit within w_opciones_ma
+integer x = 1001
+integer y = 900
+integer width = 677
+integer height = 112
+integer taborder = 30
+integer textsize = -10
+integer weight = 400
+fontcharset fontcharset = ansi!
+fontpitch fontpitch = variable!
+fontfamily fontfamily = swiss!
+string facename = "Tahoma"
+long textcolor = 33554432
+string text = "none"
+borderstyle borderstyle = stylelowered!
+end type
+
+type sle_2 from singlelineedit within w_opciones_ma
+integer x = 1006
+integer y = 708
+integer width = 677
+integer height = 128
+integer taborder = 20
+integer textsize = -10
+integer weight = 400
+fontcharset fontcharset = ansi!
+fontpitch fontpitch = variable!
+fontfamily fontfamily = swiss!
+string facename = "Tahoma"
+long textcolor = 33554432
+string text = "none"
+borderstyle borderstyle = stylelowered!
+end type
+
+type sle_1 from singlelineedit within w_opciones_ma
+integer x = 55
+integer y = 896
+integer width = 809
+integer height = 112
+integer taborder = 20
+integer textsize = -10
+integer weight = 400
+fontcharset fontcharset = ansi!
+fontpitch fontpitch = variable!
+fontfamily fontfamily = swiss!
+string facename = "Tahoma"
+long textcolor = 33554432
+string text = "123456781234567812345678"
+borderstyle borderstyle = stylelowered!
+end type
 
 type ddlb_3 from dropdownlistbox within w_opciones_ma
 integer x = 1211

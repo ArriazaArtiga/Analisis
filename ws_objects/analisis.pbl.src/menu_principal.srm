@@ -18,7 +18,17 @@ type m_nominasauxiliares from menu within m_mantenimiento
 end type
 type m_verificacionescta from menu within m_mantenimiento
 end type
+type m_vicv from menu within m_verificacionescta
+end type
+type m_beneficiarios from menu within m_verificacionescta
+end type
+type m_verificacionescta from menu within m_mantenimiento
+m_vicv m_vicv
+m_beneficiarios m_beneficiarios
+end type
 type m_cambiarcontraseña from menu within m_mantenimiento
+end type
+type m_salir from menu within m_mantenimiento
 end type
 type m_mantenimiento from menu within menu_principal
 m_solicitudes m_solicitudes
@@ -29,6 +39,7 @@ m_usuarios m_usuarios
 m_nominasauxiliares m_nominasauxiliares
 m_verificacionescta m_verificacionescta
 m_cambiarcontraseña m_cambiarcontraseña
+m_salir m_salir
 end type
 type m_procesos from menu within menu_principal
 end type
@@ -272,6 +283,7 @@ m_usuarios m_usuarios
 m_nominasauxiliares m_nominasauxiliares
 m_verificacionescta m_verificacionescta
 m_cambiarcontraseña m_cambiarcontraseña
+m_salir m_salir
 end type
 
 on m_mantenimiento.create
@@ -305,6 +317,7 @@ this.m_usuarios=create m_usuarios
 this.m_nominasauxiliares=create m_nominasauxiliares
 this.m_verificacionescta=create m_verificacionescta
 this.m_cambiarcontraseña=create m_cambiarcontraseña
+this.m_salir=create m_salir
 this.Item[UpperBound(this.Item)+1]=this.m_solicitudes
 this.Item[UpperBound(this.Item)+1]=this.m_etapas
 this.Item[UpperBound(this.Item)+1]=this.m_1
@@ -313,6 +326,7 @@ this.Item[UpperBound(this.Item)+1]=this.m_usuarios
 this.Item[UpperBound(this.Item)+1]=this.m_nominasauxiliares
 this.Item[UpperBound(this.Item)+1]=this.m_verificacionescta
 this.Item[UpperBound(this.Item)+1]=this.m_cambiarcontraseña
+this.Item[UpperBound(this.Item)+1]=this.m_salir
 end on
 
 on m_mantenimiento.destroy
@@ -325,6 +339,7 @@ destroy(this.m_usuarios)
 destroy(this.m_nominasauxiliares)
 destroy(this.m_verificacionescta)
 destroy(this.m_cambiarcontraseña)
+destroy(this.m_salir)
 end on
 
 type m_solicitudes from menu within m_mantenimiento
@@ -507,6 +522,8 @@ event clicked;Open(w_analisis_mnt_nominas_auxiliares)
 end event
 
 type m_verificacionescta from menu within m_mantenimiento
+m_vicv m_vicv
+m_beneficiarios m_beneficiarios
 end type
 
 on m_verificacionescta.create
@@ -526,14 +543,75 @@ this.menubitmaps = true
 this.toolbartextcolor = 134217746
 this.toolbarbackcolor = 15780518
 this.toolbarhighlightcolor = 134217857
+this.m_vicv=create m_vicv
+this.m_beneficiarios=create m_beneficiarios
+this.Item[UpperBound(this.Item)+1]=this.m_vicv
+this.Item[UpperBound(this.Item)+1]=this.m_beneficiarios
 end on
 
 on m_verificacionescta.destroy
 call super::destroy
+destroy(this.m_vicv)
+destroy(this.m_beneficiarios)
 end on
+
+type m_vicv from menu within m_verificacionescta
+end type
 
 event clicked;Open(w_ver_tel_cta)
 end event
+
+on m_vicv.create
+call super::create
+this.text = "V-I-CV"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_vicv.destroy
+call super::destroy
+end on
+
+type m_beneficiarios from menu within m_verificacionescta
+end type
+
+event clicked;Open(w_ver_tel_cta_ben)
+end event
+
+on m_beneficiarios.create
+call super::create
+this.text = "Beneficiarios"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_beneficiarios.destroy
+call super::destroy
+end on
 
 type m_cambiarcontraseña from menu within m_mantenimiento
 end type
@@ -561,6 +639,35 @@ this.toolbarhighlightcolor = 134217857
 end on
 
 on m_cambiarcontraseña.destroy
+call super::destroy
+end on
+
+type m_salir from menu within m_mantenimiento
+end type
+
+event clicked;halt
+end event
+
+on m_salir.create
+call super::create
+this.text = "Salir"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_salir.destroy
 call super::destroy
 end on
 
