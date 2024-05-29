@@ -16,6 +16,7 @@ string title = "w_principal"
 string menuname = "menu_principal"
 boolean controlmenu = true
 boolean minbox = true
+boolean maxbox = true
 boolean resizable = true
 windowtype windowtype = popup!
 long backcolor = 16777215
