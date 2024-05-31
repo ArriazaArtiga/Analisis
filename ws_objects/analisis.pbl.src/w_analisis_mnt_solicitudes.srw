@@ -520,9 +520,28 @@ vtextalign vtextalign = vcenter!
 long backcolor = 16777215
 end type
 
-event clicked;Long ll_solicitud, ll_row_se
+event clicked;Long ll_solicitud, ll_row_se,validacion_retroactivo, fila
 Integer li_row,li_row_det
-
+datetime _nulo 
+fila = dw_solicitudes.getrow()
+if dw_solicitudes.object.tipo_tramite[fila] = '01' or dw_solicitudes.object.tipo_tramite[fila] = '02' then
+	if isnull(dw_solicitudes.object.solicitudes_fecha_entrega_cargo[fila]) or isnull( dw_solicitudes.object.fecha[fila]) then
+		messagebox('Error', 'Recuerde ingresar los datos de la fecha y la fecha de entrega de cargo')
+		return
+	else
+		validacion_retroactivo = f_pagofecharesolucion(dw_solicitudes.object.solicitudes_fecha_entrega_cargo[fila],  dw_solicitudes.object.fecha[fila])
+		
+	end if
+	if  validacion_retroactivo=2 then
+		messagebox('Error', 'Recuerde ingresar los datos de la fecha y la fecha de entrega de cargo')
+		return
+	elseif validacion_retroactivo = 1 then
+		//dw_solicitudes.object.solicitudes_fecha_resolucion[fila] = _nulo
+		dw_solicitudes.Modify("solicitudes_fecha_resolucion.Protect=1 ")
+	else
+		//No hace nada
+	end if
+end if 			
 IF dw_solicitudes.Update() = 1 THEN	
 	COMMIT using SQLCA;	
 	MessageBox("Grabar","El registro se grabó con éxito")
@@ -648,7 +667,7 @@ boolean originalsize = true
 vtextalign vtextalign = vcenter!
 end type
 
-event clicked;Long ll_rows, ll_rows_detalle
+event clicked;Long ll_rows, ll_rows_detalle, fila, validacion_retroactivo
 String ls_nombres, ls_apellidos, ls_casada, ls_declara_benef
 Integer li_depto, li_muni, li_correlativo
 DateTime ldt_fecha_ingreso
@@ -666,6 +685,23 @@ elseif	ll_rows = 0 then
 		Messagebox ("Atencion", "No se encontró ninguna solicitud para el DPI ingresado", Information! )
 else
 	ll_rows_detalle     =      dw_detalle_requisitos.retrieve(is_dpi)
+	fila = dw_solicitudes.getrow()
+	if dw_solicitudes.object.tipo_tramite[fila] = '01' or dw_solicitudes.object.tipo_tramite[fila] = '02' then
+		if isnull(dw_solicitudes.object.solicitudes_fecha_entrega_cargo[fila]) or isnull( dw_solicitudes.object.fecha[fila]) then
+			messagebox('Error', 'Recuerde ingresar los datos de la fecha y la fecha de entrega de cargo')
+		else
+			validacion_retroactivo = f_pagofecharesolucion(dw_solicitudes.object.solicitudes_fecha_entrega_cargo[fila],  dw_solicitudes.object.fecha[fila])
+		end if
+		if  validacion_retroactivo=2 then
+			messagebox('Error', 'Recuerde ingresar los datos de la fecha y la fecha de entrega de cargo')
+		
+		elseif validacion_retroactivo = 1 then
+			//dw_solicitudes.object.solicitudes_fecha_resolucion[fila] = _nulo
+			dw_solicitudes.Modify("solicitudes_fecha_resolucion.Protect=1 ")
+		else
+			//No hace nada
+		end if
+	end if 			
 	commit;
 	if ll_rows_detalle = 0 then 
 		ib_nuevo = True
@@ -784,7 +820,9 @@ idwch_municipio.settransobject(sqlca)
 idwch_municipio.retrieve()
 end event
 
-event itemchanged;Integer li_row, li_row_det, li_row_requisitos
+event itemchanged;Integer li_row, li_row_det, li_row_requisitos, validacion_retroactivo
+datetime _nulo
+validacion_retroactivo = 0
 
 This.AcceptText()
 
@@ -798,8 +836,30 @@ Choose case dwo.name
 				li_fila = row
 				ii_etapa = this.object.etapa[row]
 				il_solicitud = this.object.no_solicitud[row]
+				
+				if data = '01'  or data='02' then
+					validacion_retroactivo = f_pagofecharesolucion(this.object.solicitudes_fecha_entrega_cargo[row],this.object.fecha[row])
+					//messagebox('',string(validacion_retroactivo)+' '+data)
+					if  validacion_retroactivo=2 then
+						messagebox('Error', 'Recuerde ingresar los datos de la fecha y la fecha de entrega de cargo')
+						return
+					elseif validacion_retroactivo = 1 then
+						//this.object.solicitudes_fecha_resolucion[row] = _nulo
+						this.Modify("solicitudes_fecha_resolucion.Protect=1 ")
+						this.Modify("solicitudes_fecha_resolucion.Color =255")
+					else
+						// nada
+					end if 
+				else 
+					if integer(this.object.etapa[row]) > 150  then 
+								this.Modify("solicitudes_fecha_resolucion.Protect=1 ")
+						else
+							this.Modify("solicitudes_fecha_resolucion.Protect=0 ")
+						end if
+				end if
+				
 				postevent ("setear_tramite")
-	
+			
 	case 'solicitudes_referencia_solicitud'
 				li_fila = row
 				is_referencia = this.object.solicitudes_referencia_solicitud[row]

@@ -1,0 +1,30 @@
+﻿$PBExportHeader$f_pagofecharesolucion.srf
+global type f_pagofecharesolucion from function_object
+end type
+
+forward prototypes
+global function integer f_pagofecharesolucion (datetime inicio, datetime fin)
+end prototypes
+
+global function integer f_pagofecharesolucion (datetime inicio, datetime fin);int meses 
+
+			//verifica si el tramite es de vejez, calcula los dias entre las fechas
+	if isnull(inicio) or isnull(fin) then
+		return 2
+	else 
+		select DATEDIFF(mm,:inicio, :fin)
+		into :meses 
+		from Etapas 
+		where idEtapa = 10
+		using SQLCA;
+
+	end if 
+					
+	if meses > 3 then 				// si los meses son mayores a 3 retorna 1 de lo contrario 0
+		return 1
+	else
+		return 0
+	end if
+
+end function
+

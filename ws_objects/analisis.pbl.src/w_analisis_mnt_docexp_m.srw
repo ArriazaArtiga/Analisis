@@ -14,14 +14,12 @@ end type
 end forward
 
 global type w_analisis_mnt_docexp_m from window
-integer width = 2240
-integer height = 1980
+integer width = 2354
+integer height = 1956
 boolean titlebar = true
 string title = "Untitled"
 boolean controlmenu = true
-boolean minbox = true
-boolean maxbox = true
-boolean resizable = true
+windowtype windowtype = response!
 long backcolor = 134217732
 string icon = "AppIcon!"
 boolean center = true
@@ -63,22 +61,25 @@ parametros = message.powerobjectparm
 //messagebox("",id)
 dw_1.settransobject(sqlca)
 if parametros.doc = "..."  then 
+	dw_1.reset( )
 	dw_1.insertrow(1)
 	i_rows = dw_1.getrow( )
 	//messagebox("",string(parametros.sl_solicitud)+"-"+string(parametros.ss_dpi)+"-"+"-"+string(parametros.doc))
 	dw_1.object.no_solicitud[1]= parametros.sl_solicitud
 	dw_1.object.dpi[1] = parametros.ss_dpi
+		dw_1.object.create_at[1] = gs_userid+" | " +string(Today())+" | "+string(Now())
 	
 else 
 	xx = long(parametros.doc)
+	dw_1.reset( )
 	dw_1.retrieve(xx)
 	i_rows = dw_1.getrow( )
-	//dw_1.object.pensionados_modifica[i_rows] = gs_userid+" | " +string(Today())+" | "+string(Now())
+	dw_1.object.create_at[i_rows] = gs_userid+" | " +string(Today())+" | "+string(Now())
 end if 
 end event
 
 type cb_3 from commandbutton within w_analisis_mnt_docexp_m
-integer x = 1728
+integer x = 1842
 integer y = 268
 integer width = 402
 integer height = 112
@@ -121,16 +122,18 @@ end event
 type dw_1 from datawindow within w_analisis_mnt_docexp_m
 integer x = 91
 integer y = 32
-integer width = 1541
+integer width = 1595
 integer height = 1796
 integer taborder = 10
 string title = "none"
 string dataobject = "dwff_docexp"
+boolean controlmenu = true
 boolean livescroll = true
 borderstyle borderstyle = stylelowered!
 end type
 
 event constructor;integer dato
+this.reset( )
 this.settransobject(sqlca)
 this.scrolltorow( this.insertrow( 0 ) )
 dato = this.getchild( "tipo_documento",dwc_tipodoc)
@@ -156,11 +159,11 @@ end if
 end event
 
 type cb_2 from commandbutton within w_analisis_mnt_docexp_m
-integer x = 1733
+integer x = 1847
 integer y = 400
 integer width = 402
 integer height = 112
-integer taborder = 30
+integer taborder = 40
 integer textsize = -10
 integer weight = 400
 fontcharset fontcharset = ansi!
@@ -174,7 +177,7 @@ event clicked;close(parent)
 end event
 
 type cb_1 from commandbutton within w_analisis_mnt_docexp_m
-integer x = 1728
+integer x = 1842
 integer y = 148
 integer width = 402
 integer height = 112
@@ -189,22 +192,37 @@ string text = "Guardar"
 end type
 
 event clicked;string cui, unidad
-long sol
-
+long sol, fila
+decimal folio,ejecutivo
+fila = dw_1.getrow()
+folio = dw_1.object.no_folio[fila]
+ejecutivo = dw_1.object.idejecutivo[fila]
 unidad = dw_1.getitemstring( dw_1.getrow(),2 )
 sol = parametros.sl_solicitud
 cui = parametros.ss_dpi
 
 
 if gi_unidad =integer(unidad) or  gi_unidad =9  then
-	if dw_1.update() = 1 then
-		parametros.dt.settransobject(sqlca)
-		parametros.dt.retrieve(sol,cui)
-		close(parent)
-	
+	if  folio = 0 or ejecutivo = 0 then
+		messagebox('Error','Verifique que el numero de folio y idejecutivo este lleno')
+		return
+	elseif isnull(folio) or isnull(ejecutivo) then
+		messagebox('Error','Verifique que el numero de folio y idejecutivo este lleno')
+		return
 	else
-		messagebox("Error","El registro no se a guardado en el sistema")
+		if dw_1.update() = 1 then
+			if integer(dw_1.object.tipo_documento[fila])=9 then
+				f_upd_fecharesolucion(dw_1.object.no_solicitud[fila],dw_1.object.fecha_documento[fila] )
+			end if
+			parametros.dt.settransobject(sqlca)
+			parametros.dt.retrieve(sol,cui)
+			close(parent)
+	
+		else
+			messagebox("Error","El registro no se a guardado en el sistema")
+		end if
 	end if
+		
 else
 	Messagebox("Advertencia","No cuenta con los permisos necesarios, coloque la unidad que le corresponde")
 end if

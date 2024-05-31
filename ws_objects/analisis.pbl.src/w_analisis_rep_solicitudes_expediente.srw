@@ -34,11 +34,13 @@ end forward
 global type w_analisis_rep_solicitudes_expediente from window
 integer x = 1550
 integer y = 120
-integer width = 3931
-integer height = 3116
+integer width = 3959
+integer height = 3140
 boolean titlebar = true
 boolean controlmenu = true
-windowtype windowtype = response!
+boolean minbox = true
+boolean maxbox = true
+boolean resizable = true
 long backcolor = 32895212
 string icon = "AppIcon!"
 boolean center = true

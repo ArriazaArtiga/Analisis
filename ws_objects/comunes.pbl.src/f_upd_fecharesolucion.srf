@@ -1,0 +1,21 @@
+﻿$PBExportHeader$f_upd_fecharesolucion.srf
+global type f_upd_fecharesolucion from function_object
+end type
+
+forward prototypes
+global function boolean f_upd_fecharesolucion (integer solicitud, datetime fecha)
+end prototypes
+
+global function boolean f_upd_fecharesolucion (integer solicitud, datetime fecha);
+update 
+	Solicitudes
+set
+	Fecha_resolucion = :fecha
+where 
+	no_solicitud= :solicitud and DATEDIFF(MONTH, convert(date,fecha_entrega_cargo),   convert(date,fecha)) >3 and tipo_tramite in ('01','02')
+using SQLCA;
+
+return true
+
+end function
+
