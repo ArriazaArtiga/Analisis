@@ -152,11 +152,14 @@ type m_nominasauxiliaresfinanciero from menu within m_financiero
 end type
 type m_reporteauxiliar from menu within m_financiero
 end type
+type m_verificacion from menu within m_financiero
+end type
 type m_financiero from menu within m_reportes
 m_enviadoafinanciero m_enviadoafinanciero
 m_aprobadorechazadof m_aprobadorechazadof
 m_nominasauxiliaresfinanciero m_nominasauxiliaresfinanciero
 m_reporteauxiliar m_reporteauxiliar
+m_verificacion m_verificacion
 end type
 type m_gerencia from menu within m_reportes
 end type
@@ -1733,6 +1736,7 @@ m_enviadoafinanciero m_enviadoafinanciero
 m_aprobadorechazadof m_aprobadorechazadof
 m_nominasauxiliaresfinanciero m_nominasauxiliaresfinanciero
 m_reporteauxiliar m_reporteauxiliar
+m_verificacion m_verificacion
 end type
 
 on m_financiero.create
@@ -1757,10 +1761,12 @@ this.m_enviadoafinanciero=create m_enviadoafinanciero
 this.m_aprobadorechazadof=create m_aprobadorechazadof
 this.m_nominasauxiliaresfinanciero=create m_nominasauxiliaresfinanciero
 this.m_reporteauxiliar=create m_reporteauxiliar
+this.m_verificacion=create m_verificacion
 this.Item[UpperBound(this.Item)+1]=this.m_enviadoafinanciero
 this.Item[UpperBound(this.Item)+1]=this.m_aprobadorechazadof
 this.Item[UpperBound(this.Item)+1]=this.m_nominasauxiliaresfinanciero
 this.Item[UpperBound(this.Item)+1]=this.m_reporteauxiliar
+this.Item[UpperBound(this.Item)+1]=this.m_verificacion
 end on
 
 on m_financiero.destroy
@@ -1769,6 +1775,7 @@ destroy(this.m_enviadoafinanciero)
 destroy(this.m_aprobadorechazadof)
 destroy(this.m_nominasauxiliaresfinanciero)
 destroy(this.m_reporteauxiliar)
+destroy(this.m_verificacion)
 end on
 
 type m_enviadoafinanciero from menu within m_financiero
@@ -1884,6 +1891,35 @@ this.toolbarhighlightcolor = 134217857
 end on
 
 on m_reporteauxiliar.destroy
+call super::destroy
+end on
+
+type m_verificacion from menu within m_financiero
+end type
+
+event clicked;open( w_ver_tel_cta_reporte )
+end event
+
+on m_verificacion.create
+call super::create
+this.text = "VERIFICACION CUENTAS"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 16777215
+this.menuhighlightcolor = 134217741
+this.textsize = -10
+this.weight = 700
+this.facename = "Tahoma"
+this.titlebackcolor = 8421376
+this.bitmapbackcolor = 8421376
+this.menutitles = true
+this.menubitmaps = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 15780518
+this.toolbarhighlightcolor = 134217857
+end on
+
+on m_verificacion.destroy
 call super::destroy
 end on
 
