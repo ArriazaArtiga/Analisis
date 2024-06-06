@@ -3,8 +3,6 @@ $PBExportComments$Mantenimiento Departamentos
 forward
 global type w_analisis_rep_solicitudes_expediente from window
 end type
-type pb_1 from picturebutton within w_analisis_rep_solicitudes_expediente
-end type
 type dw_1 from datawindow within w_analisis_rep_solicitudes_expediente
 end type
 type pb_generar from picturebutton within w_analisis_rep_solicitudes_expediente
@@ -46,7 +44,6 @@ boolean resizable = true
 long backcolor = 32895212
 string icon = "AppIcon!"
 boolean center = true
-pb_1 pb_1
 dw_1 dw_1
 pb_generar pb_generar
 cbx_historico cbx_historico
@@ -75,7 +72,6 @@ DataWindowChild idwch_muni
 end variables
 
 on w_analisis_rep_solicitudes_expediente.create
-this.pb_1=create pb_1
 this.dw_1=create dw_1
 this.pb_generar=create pb_generar
 this.cbx_historico=create cbx_historico
@@ -89,8 +85,7 @@ this.pb_salir=create pb_salir
 this.dw_report=create dw_report
 this.gb_acciones=create gb_acciones
 this.gb_doctos=create gb_doctos
-this.Control[]={this.pb_1,&
-this.dw_1,&
+this.Control[]={this.dw_1,&
 this.pb_generar,&
 this.cbx_historico,&
 this.pb_anios_pago,&
@@ -106,7 +101,6 @@ this.gb_doctos}
 end on
 
 on w_analisis_rep_solicitudes_expediente.destroy
-destroy(this.pb_1)
 destroy(this.dw_1)
 destroy(this.pb_generar)
 destroy(this.cbx_historico)
@@ -151,66 +145,6 @@ event resize;//dw_report.width = newwidth - 174
 //dw_report.height = newheight - 784
 end event
 
-type pb_1 from picturebutton within w_analisis_rep_solicitudes_expediente
-boolean visible = false
-integer x = 2629
-integer y = 532
-integer width = 402
-integer height = 100
-integer taborder = 40
-integer textsize = -10
-integer weight = 400
-fontcharset fontcharset = ansi!
-fontpitch fontpitch = variable!
-fontfamily fontfamily = swiss!
-string facename = "Calibri"
-string text = "Generar"
-boolean originalsize = true
-vtextalign vtextalign = vcenter!
-long textcolor = 16777215
-long backcolor = 29397330
-end type
-
-event clicked;string cui,ls_tramite, xx, reporte
-integer id
-id = 9
-cui = buscardpi(is_dpi)
-ls_tramite = f_db_get_solicitud_tramite(cui)
-xx = f_db_get_solicitud_subtipo_cv(cui)
-
-choose case id 
-	case 9  // Resolución
-			if xx = '1' and Is_tramite = '02'  Then
-				reporte = f_linkmenu_reportesexp(id,ls_tramite, 1) //vejez
-			elseif xx = '1' and Is_tramite = '03'  Then
-				reporte = f_linkmenu_reportesexp(id,ls_tramite, 1) //vejez
-			else
-				reporte = f_linkmenu_reportesexp(id,ls_tramite, 1) 
-			end if
-			case else
-				reporte = ''
-			
-end choose	
-
-//reporte = f_linkmenu_reportesexp(id,ls_tramite, 2)		
-messagebox('',reporte)
-	dw_report.DataObject = trim(reporte)
-dw_report.SetTransObject(sqlca)
-	dw_report.Retrieve(cui)
-	commit;
-
-
-TRY
-	IF dw_report.SaveAs("", XLSB!, true) = 1 THEN
-		messagebox('Enhorabuena', 'La exportación ha sido exitosa')
-	ELSE 
-		messagebox('Error', 'La exportación no ha sido exitosa')
-	END IF
-CATCH (runtimeerror ex)
-    messagebox('Error', 'Error: '+string(ex))
-END TRY
-end event
-
 type dw_1 from datawindow within w_analisis_rep_solicitudes_expediente
 boolean visible = false
 integer x = 224
@@ -247,7 +181,6 @@ end type
 event clicked;integer id, respuesta, li_cant_lineas
 string cui , ls_tramite, reporte, xx
 
-pb_1.visible = true
 pb_imprimir.visible = true
 pb_salir.visible = true
 cui = buscardpi(is_dpi)
@@ -735,7 +668,7 @@ boolean visible = false
 integer x = 1952
 integer y = 404
 integer width = 553
-integer height = 516
+integer height = 472
 integer taborder = 110
 integer textsize = -12
 integer weight = 400
