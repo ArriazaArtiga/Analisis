@@ -669,7 +669,7 @@ end type
 
 event clicked;Long ll_rows, ll_rows_detalle, fila, validacion_retroactivo
 String ls_nombres, ls_apellidos, ls_casada, ls_declara_benef
-Integer li_depto, li_muni, li_correlativo
+Integer li_depto, li_muni, li_correlativo,li_row_requisitos
 DateTime ldt_fecha_ingreso
 
 dw_solicitudes.SetFocus()
@@ -685,6 +685,22 @@ elseif	ll_rows = 0 then
 		Messagebox ("Atencion", "No se encontró ninguna solicitud para el DPI ingresado", Information! )
 else
 	ll_rows_detalle     =      dw_detalle_requisitos.retrieve(is_dpi)
+	/*if ll_rows_detalle = 0 then
+		dw_detalle_requisitos.reset( )
+		li_row_requisitos = dw_requisitos.retrieve(this.object.tipo_tramite[ll_rows])
+		int li_row, li_row_det
+		for li_row=1 to li_row_requisitos
+			li_row_det = dw_detalle_requisitos.InsertRow(0)
+			dw_detalle_requisitos.ScrollToRow(li_row_det)
+			dw_detalle_requisitos.SetFocus()	
+			dw_detalle_requisitos.object.no_solicitud[li_row_det] = il_solicitud /*this.object.no_solicitud[li_fila]*/
+			dw_detalle_requisitos.object.dpi[li_row_det] = this.object.dpi[ll_rows]
+			dw_detalle_requisitos.object.requisito[li_row_det] = dw_requisitos.object.idrequisito[li_row]
+			dw_detalle_requisitos.object.tipo_tramite[li_row_det] = this.object.tipo_tramite[ll_rows]
+			dw_detalle_requisitos.object.recibido[li_row_det] = '0'
+			dw_detalle_requisitos.object.fecha[li_row_det] = f_db_get_fecha()
+		next
+	end if */
 	fila = dw_solicitudes.getrow()
 	if dw_solicitudes.object.tipo_tramite[fila] = '01' or dw_solicitudes.object.tipo_tramite[fila] = '02' then
 		if isnull(dw_solicitudes.object.solicitudes_fecha_entrega_cargo[fila]) or isnull( dw_solicitudes.object.fecha[fila]) then
