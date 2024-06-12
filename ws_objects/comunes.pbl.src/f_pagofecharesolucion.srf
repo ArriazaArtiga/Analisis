@@ -20,7 +20,7 @@ global function integer f_pagofecharesolucion (datetime inicio, datetime fin);in
 
 	end if 
 					
-	if meses > 3 then 				// si los meses son mayores a 3 retorna 1 de lo contrario 0
+	if meses >= 3 then 				// si los meses son mayores a 3 retorna 1 de lo contrario 0
 		return 1
 	else
 		return 0
