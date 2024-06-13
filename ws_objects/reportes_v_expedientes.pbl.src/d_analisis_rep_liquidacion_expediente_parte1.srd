@@ -5,39 +5,47 @@ header(height=1016 color="536870912" transparency="0" gradient.color="8421504" g
 summary(height=0 color="536870912" transparency="0" gradient.color="8421504" gradient.transparency="0" gradient.angle="0" brushmode="0" gradient.repetition.mode="0" gradient.repetition.count="0" gradient.repetition.length="100" gradient.focus="0" gradient.scale="100" gradient.spread="100" )
 footer(height=0 color="536870912" transparency="0" gradient.color="8421504" gradient.transparency="0" gradient.angle="0" brushmode="0" gradient.repetition.mode="0" gradient.repetition.count="0" gradient.repetition.length="100" gradient.focus="0" gradient.scale="100" gradient.spread="100" )
 detail(height=1508 color="536870912" transparency="0" gradient.color="8421504" gradient.transparency="0" gradient.angle="0" brushmode="0" gradient.repetition.mode="0" gradient.repetition.count="0" gradient.repetition.length="100" gradient.focus="0" gradient.scale="100" gradient.spread="100" height.autosize=yes )
-table(column=(type=char(30) updatewhereclause=yes name=contribuyentes_nombres dbname="nombres" )
- column=(type=char(100) updatewhereclause=yes name=contribuyentes_apellidos dbname="apellidos" )
- column=(type=char(100) updatewhereclause=yes name=contribuyentes_casada dbname="casada" )
- column=(type=char(15) updatewhereclause=yes name=contribuyentes_dpi dbname="dpi" )
- column=(type=datetime updatewhereclause=yes name=contribuyentes_fecha_nacimiento dbname="fecha_nacimiento" )
+table(column=(type=char(30) updatewhereclause=yes name=contribuyentes_nombres dbname="contribuyentes.nombres" dbalias="a.nombres" )
+ column=(type=char(100) updatewhereclause=yes name=contribuyentes_apellidos dbname="contribuyentes.apellidos" dbalias="a.apellidos" )
+ column=(type=char(100) updatewhereclause=yes name=contribuyentes_casada dbname="contribuyentes.casada" dbalias="a.casada" )
+ column=(type=char(15) updatewhereclause=yes name=contribuyentes_dpi dbname="contribuyentes.dpi" dbalias="a.dpi" )
+ column=(type=datetime updatewhereclause=yes name=contribuyentes_fecha_nacimiento dbname="contribuyentes.fecha_nacimiento" dbalias="a.fecha_nacimiento" )
  column=(type=long updatewhereclause=yes name=edad dbname="edad" )
- column=(type=char(150) updatewhereclause=yes name=contribuyentes_puestos_descripcion dbname="descripcion" )
- column=(type=char(100) updatewhereclause=yes name=corporacion_empresa_municipal_nombre dbname="nombre" )
- column=(type=char(30) updatewhereclause=yes name=departamentos_nombre dbname="nombre" )
+ column=(type=char(150) updatewhereclause=yes name=contribuyentes_puestos_descripcion dbname="contribuyentes_puestos.descripcion" dbalias="b.descripcion" )
+ column=(type=char(100) updatewhereclause=yes name=corporacion_empresa_municipal_nombre dbname="corporacion_empresa_municipal.nombre" dbalias="c.nombre" )
+ column=(type=char(30) updatewhereclause=yes name=departamentos_nombre dbname="departamentos.nombre" dbalias="d.nombre" )
  column=(type=decimal(0) updatewhereclause=yes name=solicitud_tiempo_servicio_anio dbname="anio" )
  column=(type=decimal(0) updatewhereclause=yes name=solicitud_tiempo_servicio_mes dbname="mes" )
  column=(type=decimal(0) updatewhereclause=yes name=dias dbname="dias" )
- column=(type=char(12) updatewhereclause=yes name=solicitudes_referencia_solicitud dbname="referencia_solicitud" )
- column=(type=char(2) updatewhereclause=yes name=solicitudes_tipo_tramite dbname="tipo_tramite" )
+ column=(type=char(12) updatewhereclause=yes name=solicitudes_referencia_solicitud dbname="solicitudes.referencia_solicitud" dbalias="f.referencia_solicitud" )
+ column=(type=char(2) updatewhereclause=yes name=solicitudes_tipo_tramite dbname="solicitudes.tipo_tramite" dbalias="f.tipo_tramite" )
  column=(type=char(21) updatewhereclause=yes name=descripcion_tramite dbname="descripcion_tramite" )
  column=(type=number updatewhereclause=yes name=porcentaje dbname="porcentaje" )
  column=(type=long updatewhereclause=yes name=no_salarios dbname="no_salarios" )
  column=(type=decimal(4) updatewhereclause=yes name=tot_salarios dbname="tot_salarios" )
  column=(type=decimal(4) updatewhereclause=yes name=pensión_inicial dbname="pensión_inicial" )
- column=(type=datetime updatewhereclause=yes name=contribuyentes_fecha_pension_inicial dbname="fecha_pension_inicial" )
+ column=(type=datetime updatewhereclause=yes name=contribuyentes_fecha_pension_inicial dbname="contribuyentes.fecha_pension_inicial" dbalias="a.fecha_pension_inicial" )
  column=(type=decimal(0) updatewhereclause=yes name=mes_inicial dbname="mes_inicial" )
  retrieve="select	a.Nombres,
 		a.Apellidos,
 		a.Casada,
 		a.DPI,
 		a.Fecha_Nacimiento,
-		case when datepart(mm,f.fecha_resolucion) > DATEPART(mm,a.fecha_nacimiento)
-			then  DATEDIFF(yy,a.Fecha_Nacimiento,f.fecha_resolucion)
-			else  case when datepart(mm,f.fecha_resolucion) = DATEPART(mm,a.fecha_nacimiento) and DATEPART(dd,f.fecha_resolucion) >= DATEPART(dd,a.fecha_nacimiento)
-						then  DATEDIFF(yy,a.Fecha_Nacimiento,f.fecha_resolucion)
-						else   DATEDIFF(yy,a.Fecha_Nacimiento,f.fecha_resolucion) - 1
-					end
- 		end as 'Edad',
+		CASE
+        WHEN isnull(f.fecha_resolucion, NULL) IS NULL
+            THEN DATEDIFF(YEAR, a.Fecha_Nacimiento, GETDATE())  -- Usa la fecha actual
+        ELSE
+            CASE
+                WHEN MONTH(f.fecha_resolucion) > MONTH(a.fecha_nacimiento)
+                    THEN DATEDIFF(YEAR, a.Fecha_Nacimiento, f.fecha_resolucion)
+                ELSE
+                    CASE
+                        WHEN MONTH(f.fecha_resolucion) = MONTH(a.fecha_nacimiento) AND DAY(f.fecha_resolucion) >= DAY(a.fecha_nacimiento)
+                            THEN DATEDIFF(YEAR, a.Fecha_Nacimiento, f.fecha_resolucion)
+                        ELSE DATEDIFF(YEAR, a.Fecha_Nacimiento, f.fecha_resolucion) - 1
+                    END
+            END
+    END AS 'Edad',
 		b.Descripcion,
 		c.Nombre,
 		d.Nombre,
