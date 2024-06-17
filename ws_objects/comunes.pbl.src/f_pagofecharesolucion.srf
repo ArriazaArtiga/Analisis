@@ -6,21 +6,27 @@ forward prototypes
 global function integer f_pagofecharesolucion (datetime inicio, datetime fin)
 end prototypes
 
-global function integer f_pagofecharesolucion (datetime inicio, datetime fin);int meses 
+global function integer f_pagofecharesolucion (datetime inicio, datetime fin);int dias, limite_dias 
 
 			//verifica si el tramite es de vejez, calcula los dias entre las fechas
 	if isnull(inicio) or isnull(fin) then
 		return 2
 	else 
-		select DATEDIFF(mm,:inicio, :fin)
-		into :meses 
+		select DATEDIFF(dy,:inicio, :fin),
+			case 
+				when (month(:inicio) <= 2 and MONTH (:fin)>=2)or(month(:inicio) >= 2 and MONTH (:fin)<=2) THEN 
+					89
+				else 
+					90
+				END
+		into :dias, :limite_dias  
 		from Etapas 
 		where idEtapa = 10
 		using SQLCA;
 
 	end if 
 					
-	if meses >= 3 then 				// si los meses son mayores a 3 retorna 1 de lo contrario 0
+	if dias >= limite_dias then 				// si los meses son mayores a 3 retorna 1 de lo contrario 0
 		return 1
 	else
 		return 0

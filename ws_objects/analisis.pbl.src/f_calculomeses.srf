@@ -1,0 +1,31 @@
+﻿$PBExportHeader$f_calculomeses.srf
+global type f_calculoMeses from function_object
+end type
+
+forward prototypes
+global function integer f_calculomeses (date inicio, date fin)
+end prototypes
+
+global function integer f_calculomeses (date inicio, date fin);date ld_start, ld_end
+time lt_start, lt_end
+long ll_days, ll_months
+
+ld_start = inicio
+lt_start = time(inicio)
+ld_end = fin	
+lt_end = time(inicio)
+
+// Calcula la diferencia en días
+ll_days = DaysAfter(ld_start, ld_end)
+
+// Convierte la diferencia en días a meses
+ll_months = (Year(ld_end) * 12 + Month(ld_end)) - (Year(ld_start) * 12 + Month(ld_start))
+
+// Ajusta si es necesario
+if (lt_end < lt_start) then
+    ll_months = ll_months - 1
+end if
+
+return ll_months
+end function
+

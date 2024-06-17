@@ -20,7 +20,7 @@ n_analisis_connectservice gnv_connect
 end variables
 global type analisis from application
 string appname = "analisis"
-string appruntimeversion = "22.0.0.1892"
+string appruntimeversion = "22.2.0.3356"
 end type
 global analisis analisis
 
