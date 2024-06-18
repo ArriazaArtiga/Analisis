@@ -751,7 +751,13 @@ else
 	end if
 	//sle_buscar.text = ''
 end if
-
+if gi_unidad= 1 then
+	dw_solicitudes.enabled = false
+	dw_detalle_requisitos.enabled = false
+else
+	dw_solicitudes.enabled = true
+	dw_detalle_requisitos.enabled = true
+end if
 
 
 
