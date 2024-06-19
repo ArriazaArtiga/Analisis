@@ -12,7 +12,8 @@ update
 set
 	Fecha_resolucion = :fecha
 where 
-	no_solicitud= :solicitud and DATEDIFF(MONTH, convert(date,fecha_entrega_cargo),   convert(date,fecha)) >3 and tipo_tramite in ('01','02')
+	no_solicitud= :solicitud
+	//no_solicitud= :solicitud and DATEDIFF(MONTH, convert(date,fecha_entrega_cargo),   convert(date,fecha)) >3 and tipo_tramite in ('01','02')
 using SQLCA;
 
 return true
